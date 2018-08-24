@@ -26,7 +26,7 @@ class ArticleForm extends Component {
 	}
 	onSubmit(e){
 		e.preventDefault();
-		fetch('//https://randomrulesdb.herokuapp.com/articles',{
+		fetch('https://randomrulesdb.herokuapp.com/articles',{
 			  method: 'post',
 			  headers: {
 			    'Accept': 'application/json, text/plain, */*',
