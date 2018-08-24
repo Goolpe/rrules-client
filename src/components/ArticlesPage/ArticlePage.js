@@ -14,7 +14,7 @@ class ArticlePage extends Component {
     window.scrollTo(0,0);
     const id = this.props.match.params.id
     
-    fetch("//localhost:8080/rrarticlesdb/" + id)
+    fetch("https://randomrulesdb.herokuapp.com/rrarticlesdb/" + id)
     .then((resp) => resp.json())
     .then(data => this.setState({articles: data}))
   }

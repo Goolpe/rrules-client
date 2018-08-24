@@ -13,7 +13,7 @@ class Articles extends Component {
   componentDidMount() {
     window.scrollTo(0,0);
 
-    fetch("//localhost:8080/rrarticlesdb")
+    fetch("https://randomrulesdb.herokuapp.com/rrarticlesdb")
     	.then((resp) => resp.json())
 		.then(data => 
 			this.setState({articles: data.reverse()}))
