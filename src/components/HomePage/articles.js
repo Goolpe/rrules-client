@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   Link
 } from 'react-router-dom';
+import _ from "lodash";
 
 class Articles extends Component {
   constructor(props){
@@ -16,7 +17,7 @@ class Articles extends Component {
     fetch("https://randomrulesdb.herokuapp.com/articles")
     	.then((resp) => resp.json())
 		.then(data => 
-			this.setState({articles: data.reverse()}))
+			this.setState({articles:  _.orderBy(data, ['date'], ['asc', 'desc']).reverse()}))
   }
   render() {
 	 const listItems = this.state.articles.map((article, index)=>
@@ -24,7 +25,7 @@ class Articles extends Component {
 						<div className="card rounded-0" style={ { backgroundImage: `url(${article.picture})` } }>
 						  	<div className="card-body font-weight-bold">
 							    <h6 className="card-subtitle mb-2 text-muted">{article.date}</h6>
-							    <h5 className="card-title">{article.title}</h5>
+							    <h5 className="card-title">{article.title.slice(0,50)}</h5>
 							    <p className="card-text">{article.text.slice(0,100)}</p>
 							    <Link to={`/article/${article._id}`} className="btn btn-info">Читать дальше</Link>
 						  	</div>

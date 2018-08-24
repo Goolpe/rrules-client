@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Redirect } from 'react-router-dom';
 import {
     Link,
 } from 'react-router-dom';
@@ -7,16 +7,18 @@ import {
 class ArticleForm extends Component {
 	constructor(props){
 	super(props);
-	var today = new Date(), dateNow =  today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+	var today = new Date(),	dateNow =  today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
 	this.state = {
 		title: '',
 		text: '',
 		date: dateNow,
 		hashtags: '',
 		picture: '',
+		redirect: false
 		}
 	this.onChange = this.onChange.bind(this);
 	this.onSubmit = this.onSubmit.bind(this);
+	this.renderRedirect = this.renderRedirect.bind(this);
 	}
 	componentDidMount() {
 	    window.scrollTo(0,0);
@@ -26,7 +28,7 @@ class ArticleForm extends Component {
 	}
 	onSubmit(e){
 		e.preventDefault();
-		fetch('https://randomrulesdb.herokuapp.com/articles',{
+		if(fetch('https://randomrulesdb.herokuapp.com/articles',{
 			  method: 'post',
 			  headers: {
 			    'Accept': 'application/json, text/plain, */*',
@@ -40,14 +42,20 @@ class ArticleForm extends Component {
 				hashtags: this.state.hashtags,
 				picture: this.state.picture
 		     })
-	 	})
+	 	}))
+		this.setState({ redirect: true })
 	}
-	
+	renderRedirect(){
+	    if (this.state.redirect) {
+	      return <Redirect to='/articles' />
+	    }
+	}
   render() {
 	  return (
 	  	<section id="articleform" style={{minHeight: "100vh"}}>	 
 			
 		  	<div className="container text-right mt-5 mb-5">
+		  		{this.renderRedirect()}
 		  		<Link to="/articles" className="btn btn-link bg-transparent position-absolute border-0"><i className="fas fa-times-circle fa-3x text-info"></i></Link>
 	  			<h1 className="text-center mb-5">СОЗДАТЬ СТАТЬЮ</h1>	
 		  	
@@ -69,7 +77,9 @@ class ArticleForm extends Component {
 	                <label>Теги</label>
 	                <input type="text" value={this.state.hashtags} onChange={this.onChange} name="hashtags" className="form-control" placeholder="" required />
 	              </div>
+	              	
 	              <button type="submit" className="btn btn-info w-100 p-3">Опубликовать</button>
+	              
 	            </form>
 	    	</div>	
     	</section>
