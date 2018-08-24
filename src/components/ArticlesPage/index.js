@@ -3,7 +3,6 @@ import {
     Link,
 } from 'react-router-dom';
 import ArticleForm from './ArticleForm';
-import _ from "lodash";
 
 class ArticlesPage extends Component {
 	constructor(props){
@@ -16,17 +15,14 @@ class ArticlesPage extends Component {
 	componentDidMount() {
 		window.scrollTo(0,0);
 
-		fetch("https://randomrulesdb.herokuapp.com/articles")
+		fetch("https://randomrulesdb.herokuapp.com/rrarticlesdb")
 		.then((resp) => resp.json())
 		.then(data => 
-			this.setState({articles:  _.orderBy(data, ['date'], ['asc', 'desc']).reverse()}))
-	}
-	orderByDate() {
-	 
-	}
-	render() {		
-		
+			this.setState({articles:  data}))
 
+	}
+
+	render() {		
 	  const listItems = this.state.articles.map((article, index) =>
 	    	<div className="card mb-5" key={article._id}>
 			  	<div className="card-body">

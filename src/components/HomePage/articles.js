@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   Link
 } from 'react-router-dom';
-import _ from "lodash";
 
 class Articles extends Component {
   constructor(props){
@@ -14,12 +13,14 @@ class Articles extends Component {
   componentDidMount() {
     window.scrollTo(0,0);
 
-    fetch("https://randomrulesdb.herokuapp.com/articles")
+    fetch("https://randomrulesdb.herokuapp.com/rrarticlesdb")
     	.then((resp) => resp.json())
 		.then(data => 
-			this.setState({articles:  _.orderBy(data, ['date'], ['asc', 'desc']).reverse()}))
+			this.setState({articles:  data}))
+
   }
   render() {
+
 	 const listItems = this.state.articles.map((article, index)=>
 		    		<div className="col-12 col-md-6 col-lg-3 mb-2" key={article._id}>
 						<div className="card rounded-0" style={ { backgroundImage: `url(${article.picture})` } }>

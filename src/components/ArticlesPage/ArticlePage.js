@@ -13,11 +13,11 @@ class ArticlePage extends Component {
   componentDidMount() {
     window.scrollTo(0,0);
     const id = this.props.match.params.id
-
+    
     fetch("https://randomrulesdb.herokuapp.com/articles/" + id)
-    .then((resp) => resp.json())
-    .then(data => this.setState({articles: data}))
-  }
+      .then((resp) => resp.json())
+      .then(data => this.setState({articles: data}))
+    }
   render() {
 	  return (
 	  <section id="articlesPage">	  
