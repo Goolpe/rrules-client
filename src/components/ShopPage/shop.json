@@ -1,0 +1,26 @@
+[
+	{
+		"id": 3,
+		"name": "Чехол для телефона",
+		"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, asperiores quas accusantium quaerat et itaque explicabo reprehenderit iusto eaque provident voluptatem earum dicta obcaecati quo. Voluptates accusantium error quo molestias nulla optio ullam cum quasi excepturi animi sint libero totam harum et voluptatem qui nam, illo ea dicta molestiae quos?",
+		"price": "820 руб.",
+		"date": "24 августа 2018 года",
+		"picture": "https://pp.userapi.com/c846420/v846420544/a9bc2/AtnhRYckCwo.jpg"
+	},
+	{
+		"id": 2,
+		"name": "Футболка RR #2",
+		"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, asperiores quas accusantium quaerat et itaque explicabo reprehenderit iusto eaque provident voluptatem earum dicta obcaecati quo. Voluptates accusantium error quo molestias nulla optio ullam cum quasi excepturi animi sint libero totam harum et voluptatem qui nam, illo ea dicta molestiae quos?",
+		"price": "815 руб.",
+		"date": "23 августа 2018 года",
+		"picture": "https://pp.userapi.com/c849416/v849416544/3a309/oEt7ZyDAIik.jpg"
+	},
+	{
+		"id": 1,
+		"name": "Футболка RR #1",
+		"text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, asperiores quas accusantium quaerat et itaque explicabo reprehenderit iusto eaque provident voluptatem earum dicta obcaecati quo. Voluptates accusantium error quo molestias nulla optio ullam cum quasi excepturi animi sint libero totam harum et voluptatem qui nam, illo ea dicta molestiae quos?",
+		"price": "1 025 руб.",
+		"date": "22 августа 2018 года",
+		"picture": "https://pp.userapi.com/c846321/v846321544/ac221/5xft3axiWoM.jpg"
+	}	
+]

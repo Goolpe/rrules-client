@@ -1,0 +1,265 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Albertusfont !important;
+   font-weight: 200 !important;
+   letter-spacing: 1px;
+}
+
+@font-face{
+    font-family: Albertusfont;
+    src: url(Albertusfont.otf);
+}
+
+ul
+{
+    padding: 0;
+}
+
+button{
+    cursor: pointer;
+}
+
+/*Navigation */
+
+.navbar .container
+{
+    padding: 0;
+}
+
+.navbar-brand img
+{
+    height: 60px;
+}
+
+.bg-Nav
+{
+    background: url(nav.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+/*HomePage*/
+
+#headerCarousel
+{
+    height: 500px;
+}
+
+.carousel,
+.carousel-inner{
+    height:100%;
+}
+
+#articles,#schedule
+{
+    background-color: #20232c;
+}
+
+#articles .card
+{
+    background: no-repeat;
+    background-position: top left;
+}
+
+#arts .wrapper
+{
+    height: 50vh;
+
+    background: no-repeat;
+    background-position: top;
+    background-size: cover;
+}
+
+#arts .wrapper:hover .card
+{
+    background: rgba(0,0,0,.5);
+}
+#arts .card
+{
+    height: 50vh;
+
+    cursor: pointer;
+    transition: .5s;
+
+    background: transparent;
+}
+#arts .text-white
+{
+    text-decoration: none;
+}
+
+#social
+{
+    background-color: #20232c;
+}
+
+#social a:nth-child(1) i:hover
+{
+    color: #4a76a8;
+}
+
+#social a:nth-child(2) i:hover
+{
+    color: #7389dc;
+}
+#social a:nth-child(3) i:hover
+{
+    color: #f00;
+}
+#social a:nth-child(4) i:hover
+{
+    color: #f96854;
+}
+#social a:nth-child(5) i:hover
+{
+    color: #2da5e1;
+}
+#social a:nth-child(6) i:hover
+{
+    color: #4b367c;
+}
+
+#reviews img
+{
+    height: 200px;
+}
+
+#reviews .carousel-inner
+{
+    height: 300px;
+}
+
+/*About*/
+
+#aboutPage p{
+    text-indent: 1.5em;
+    text-align: justify;
+}
+
+/*Masters page*/
+
+#masters .wrapper, #library .wrapper
+{
+    height: 400px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5); 
+    background: no-repeat;
+    background-position: top;
+    background-size: cover;
+}
+
+#masters .wrapper:hover .card
+{
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+    transition: .5s;
+    background-color: rgba(0,0,0,0.8);
+}
+
+#masters .wrapper:hover, #library .wrapper:hover
+{
+    transition: .5s;
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+#masters .card, #library .card
+{
+    width: 100%;
+    height: 100%;
+
+    transition: .2s;
+
+    background: transparent;
+}
+
+#masters .text-white, #library .text-white
+{
+    text-decoration: none;
+}
+
+#library .wrapper:hover .card
+{
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+    transition: .5s;
+    background-color: #000;
+}
+
+#articlesPage .card-body img
+{
+    width: 100%;
+}
+
+.blackBG{
+    position: fixed;
+    z-index: 20;
+    background-color: rgba(0,0,0,0.9);
+    height:100%;
+    width:100%;
+    transition: 1s;
+}
+
+.form-inline .form-control
+{
+    width: 700px !important;
+}
+
+footer
+{
+    background-color: #000;
+}
+
+@media (max-width: 1199.98px) {
+     h1{
+        font-size: 26px !important;
+    }
+}
+
+@media (max-width: 991.98px) { 
+    html {
+        font-size: 14px;
+    } 
+
+    body, .btn{
+        font-size: 12px !important;
+    }
+    h1{
+        font-size: 22px !important;
+    }
+    h2{
+        font-size: 15px !important;
+    }
+
+    #channels iframe{
+        width: 100%;
+    }
+
+    #social a{
+        font-size: 12px;
+    }
+    #headerCarousel
+    {
+        height: auto;
+        min-height:200px;
+    }
+    .keyAuth{
+        text-align: center;
+    }
+
+
+}
+@media (max-width: 767.98px) { 
+    
+    #reviews .carousel-inner
+    {
+        height: 120px;
+    }   
+    #articlesPage .text-right{
+        text-align: left !important;
+    }
+    #headerCarousel
+    {
+        min-height:100px;
+    }
+    #login .form{
+        width:100%;
+    }
+}
