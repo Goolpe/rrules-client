@@ -24,7 +24,7 @@ class Articles extends Component {
 						<div className="card rounded-0" style={ { backgroundImage: `url(${article.picture})` } }>
 						  	<div className="card-body font-weight-bold">
 							    <h6 className="card-subtitle mb-2 text-muted">{article.date}</h6>
-							    <h5 className="card-title">{article.name}</h5>
+							    <h5 className="card-title">{article.title}</h5>
 							    <p className="card-text">{article.text.slice(0,100)}</p>
 							    <Link to={`/article/${article._id}`} className="btn btn-info">Читать дальше</Link>
 						  	</div>
