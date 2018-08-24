@@ -23,14 +23,22 @@ class AuthPage extends Component{
     this.state = {
       loginForm: true,
       regForm: false,
+      username:'',
       email: '',
       password: '',
+      passwordConf: '',
       nameId: false
     };
-
+    this.handleName = this.handleName.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePass = this.handlePass.bind(this);
+    this.handlePassConf = this.handlePassConf.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleName(event){
+    this.setState({
+      username: event.target.value
+    })
   }
   handleEmail(event){
     this.setState({
@@ -42,13 +50,24 @@ class AuthPage extends Component{
       password: event.target.value
     })
   }
+  handlePassConf(event){
+    this.setState({
+      passwordConf: event.target.value
+    })
+  }
 
   handleSubmit(event){
     event.preventDefault();
-    accounts.map((account) =>
-      {this.state.email === account.email && this.state.password === account.password && this.setState({nameId: true})}    
-      );
-  }
+    fetch('//localhost:8080/users',{
+     method: 'post',
+     headers: {'Content-Type':'application/json'},
+     body: {
+      "username": this.state.username,
+      "email": this.state.email,
+      "password": this.state.password,
+      "passwordConf": this.state.passwordConf
+     }})
+    }
 
   componentDidMount() {
     window.scrollTo(0,0);
@@ -71,13 +90,21 @@ class AuthPage extends Component{
           <div>
             <h1 className="text-center mb-5">РЕГИСТРАЦИЯ</h1>
             <form style={{maxWidth:"400px", margin: "auto"}}>
+             <div className="form-group">
+                <label >Username</label>
+                <input type="text" value={this.state.username} onChange={this.handleName} className="form-control" id="InputUsername" aria-describedby="emailHelp" placeholder="Введите ник" required/>
+              </div>
               <div className="form-group">
                 <label >Email</label>
-                <input type="email" className="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Введите email" required/>
+                <input type="email" value={this.state.email} onChange={this.handleEmail} className="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Введите email" required/>
               </div>
               <div className="form-group">
                 <label>Пароль</label>
-                <input type="password" className="form-control" id="InputPassword1" placeholder="Придумайте надежный пароль" required/>
+                <input type="password" value={this.state.password} onChange={this.handlePass} className="form-control" id="InputPassword1" placeholder="Придумайте надежный пароль" required/>
+              </div>
+              <div className="form-group">
+                <label>Пароль</label>
+                <input type="password" value={this.state.passwordConf} onChange={this.handlePassConf} className="form-control" id="InputPassword2" placeholder="Повторите пароль" required/>
               </div>
               <div className="form-group form-check">
                 <input type="checkbox" className="form-check-input" id="Check1" required/>
@@ -85,9 +112,9 @@ class AuthPage extends Component{
               </div>
               <button type="submit" className="btn btn-info w-100 p-3">Зарегистрироваться</button>
             </form>    
-            <button onClick={()=> {this.setState({regForm: false})}} className="btn btn-link nav-link w-100">Войти в аккаунт</button>
+            <button  className="btn btn-link nav-link w-100">Войти в аккаунт</button>
           </div>
-
+// onClick={()=> {this.setState({regForm: false})}}
           :
 
           <div>

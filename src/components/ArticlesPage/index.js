@@ -2,18 +2,20 @@ import React, { Component } from 'react';
 import {
     Link,
 } from 'react-router-dom';
+import ArticleForm from './ArticleForm';
 
 class ArticlesPage extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			articles: []
+			articles: [],
+			newArticle: false
 		}
 	}
 	componentDidMount() {
 		window.scrollTo(0,0);
 
-		fetch("https://randomrulesdb.herokuapp.com/rrarticlesdb")
+		fetch("//localhost:8080/articles")
 		.then((resp) => resp.json())
 		.then(data => 
 			this.setState({articles: data.reverse()}))
@@ -28,7 +30,7 @@ class ArticlesPage extends Component {
 			  			</div>
 			  			<div className="col-12 col-md-8">
 			  				<h5 className="card-title">{article.title}</h5>
-						    <p className="card-text ">{article.text}</p>
+						    <p className="card-text ">{article.text.slice(0,1000)}</p>
 						    <Link to={`/article/${article._id}`} className="btn btn-info">Читать дальше</Link>
 						</div>
 			  		</div>
@@ -44,28 +46,9 @@ class ArticlesPage extends Component {
 	  return (
 	  <section id="articlesPage" style={{minHeight: "100vh"}}>	  
 	  	<div className="container text-right mt-5 mb-5">
-	  		{/*{this.state.newArticle ?
-
-	  			<div className="d-flex justify-content-center align-items-center mb-5">
-		    		<h1 className="text-center">СОЗДАТЬ СТАТЬЮ</h1>
-					<button className="btn btn-link bg-transparent border-0" onClick={()=>this.setState({newArticle : !this.state.newArticle})}>
-						 <i className="fas fa-times-circle fa-3x text-info"></i>
-					</button>
-
-				</div>
-				: 
-	  			<div className="d-flex justify-content-center align-items-center mb-5">
-		    		
-					<button className="btn btn-link bg-transparent border-0" onClick={()=>this.setState({newArticle : !this.state.newArticle})}>
-						 <i className="fas fa-plus-circle fa-3x text-info"></i>
-					</button>
-				</div>
-			}
-			
-			{this.state.newArticle ? <ArticleForm  /> : } */}
-
-			<h1 className="text-center mb-5">СТАТЬИ</h1>
-    		<ul className="container text-left">{listItems}</ul>
+	  		<Link to="/new-article" className="btn btn-link bg-transparent position-absolute border-0"><i className="fas fa-plus-circle fa-3x text-info"></i></Link>
+	  		<h1 className="text-center mb-5">СТАТЬИ</h1>
+	  		<ul className="container text-left">{listItems}</ul>				
     	</div>
     	</section>
 	  );

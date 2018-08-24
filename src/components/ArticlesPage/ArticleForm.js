@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import {createPost} from '../actions/postActions';
-import { connect } from 'react-redux';
 
 import {
     Link,
 } from 'react-router-dom';
-import articles from './articles.json';
 
 class ArticleForm extends Component {
 	constructor(props){
 	super(props);
+	var today = new Date(), dateNow =  today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
 	this.state = {
 		title: '',
-		body: ''
+		text: '',
+		date: dateNow,
+		hashtags: '',
+		picture: '',
 		}
 	this.onChange = this.onChange.bind(this);
 	this.onSubmit = this.onSubmit.bind(this);
@@ -24,45 +24,57 @@ class ArticleForm extends Component {
 	onChange(e){
 		this.setState({ [e.target.name]: e.target.value})
 	}
-
 	onSubmit(e){
 		e.preventDefault();
-
-		const post = {
-			title: this.state.title,
-			body: this.state.body,
-			id: this.state.id
-		}
-
-		this.props.createPost(post)
+		fetch('//localhost:8080/articles',{
+			  method: 'post',
+			  headers: {
+			    'Accept': 'application/json, text/plain, */*',
+			    'Content-Type': 'application/json'
+			  },
+		     body: JSON.stringify({
+		      	title: this.state.title,
+				text: this.state.text,
+				id: this.state.id,
+				date: this.state.date,
+				hashtags: this.state.hashtags,
+				picture: this.state.picture
+		     })
+	 	})
 	}
 	
   render() {
 	  return (
-	  <section id="articleform">	  
-	  	<div className="container mb-5" style={{minHeight: "100vh"}}>
-    		<form onSubmit={this.onSubmit} >
-              <div className="form-group text-left">
-                <label>Заголовок</label>
-                <input type="text" value={this.state.title} onChange={this.onChange} name="title" className="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="" required/>
-              </div>
-              <div className="form-group text-left">
-                <label>Текст</label>
-                <textarea type="text" value={this.state.body} onChange={this.onChange} rows="15" cols="45" name="body" className="form-control" id="InputPassword1" placeholder="" required>
-                </textarea>
-              </div>
-              <button type="submit" className="btn btn-info w-100 p-3">Опубликовать</button>
-            </form>
-    	</div>	
+	  	<section id="articleform" style={{minHeight: "100vh"}}>	 
+			
+		  	<div className="container text-right mt-5 mb-5">
+		  		<Link to="/articles" className="btn btn-link bg-transparent position-absolute border-0"><i className="fas fa-times-circle fa-3x text-info"></i></Link>
+	  			<h1 className="text-center mb-5">СОЗДАТЬ СТАТЬЮ</h1>	
+		  	
+	    		<form onSubmit={this.onSubmit} >
+	    		<div className="form-group text-left">
+	                <label>Картинка</label>
+	                <input type="text" value={this.state.picture} onChange={this.onChange} name="picture" className="form-control" placeholder="" required />
+	              </div>
+	              <div className="form-group text-left">
+	                <label>Заголовок</label>
+	                <input type="text" value={this.state.title} onChange={this.onChange} name="title" className="form-control" aria-describedby="emailHelp" placeholder="" required/>
+	              </div>
+	              <div className="form-group text-left">
+	                <label>Текст</label>
+	                <textarea type="text" value={this.state.text} onChange={this.onChange} rows="15" cols="45" name="text" className="form-control" placeholder="" required>
+	                </textarea>
+	              </div>
+	               <div className="form-group text-left">
+	                <label>Теги</label>
+	                <input type="text" value={this.state.hashtags} onChange={this.onChange} name="hashtags" className="form-control" placeholder="" required />
+	              </div>
+	              <button type="submit" className="btn btn-info w-100 p-3">Опубликовать</button>
+	            </form>
+	    	</div>	
     	</section>
-	  );
+	  )
 	}
 }
 
-ArticleForm.propTypes = {
-	createPost : PropTypes.func.isRequired
-}
-
-export default connect(null, { createPost })(ArticleForm);
-
-
+export default ArticleForm;

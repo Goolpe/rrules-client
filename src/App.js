@@ -14,6 +14,7 @@ import LibraryPage from './components/LibraryPage';
 import ArtPage from './components/ArtPage';
 import ArticlesPage from './components/ArticlesPage';
 import ArticlePage from './components/ArticlesPage/ArticlePage';
+import ArticleForm from './components/ArticlesPage/ArticleForm';
 import ShopPage from './components/ShopPage';
 import StreamsPage from './components/StreamsPage';
 import MastersPage from './components/MastersPage';
@@ -100,6 +101,7 @@ class App extends Component {
 		            <Route path="/masters" component={MastersPage} />
 		            <Route path="/master/:id" component={MasterPage} />
 		            <Route path="/support" component={SupportPage} />
+		            <PrivateRoute path="/new-article" component={ArticleForm} />
 			        <PropsRoute path="/auth" component={AuthPage} auth={this.state.isAuthenticated} signout={this.signout} authenticate={this.authenticate}/>
 			        <PrivateRoute path="/id" component={IdPage} />
 			        <Route path="*" render={() => <Redirect to="/" />} />
