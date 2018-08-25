@@ -8,7 +8,7 @@ function SupportPage(props){
 	    		<p className="text-justify">Patreon</p>
 			</div>
 		</div>
-    );
+    )
 }
 
 export default SupportPage;

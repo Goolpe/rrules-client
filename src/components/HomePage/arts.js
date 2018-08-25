@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Link
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Arts (props){
 	const artsMems = [{
@@ -32,13 +30,13 @@ function Arts (props){
 	const arts = artsMems.map((thing) =>
 		<div className="col-12 col-md-6 p-0" key={thing.id}>
 			<Link to={thing.link} className="text-white">
-			<div className="wrapper" style={ { backgroundImage: `url(${thing.url})` } }>
-				<div className="card rounded-0 border-0" >
-			  		<div className="card-body font-weight-bold pl-0">
-				    	<h1 className="card-subtitle mt-5 mb-2 pl-3" style={{textShadow: 'black 0 0 5px'}}>{thing.name}</h1>
-			  		</div>
-				</div>
-			</div>	
+				<div className="wrapper" style={ { backgroundImage: `url(${thing.url})` } }>
+					<div className="card rounded-0 border-0" >
+				  		<div className="card-body font-weight-bold pl-0">
+					    	<h1 className="card-subtitle mt-5 mb-2 pl-3" style={{textShadow: 'black 0 0 5px'}}>{thing.name}</h1>
+				  		</div>
+					</div>
+				</div>	
 			</Link>
 		</div>
 		)

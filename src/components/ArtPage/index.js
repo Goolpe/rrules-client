@@ -3,15 +3,15 @@ import { Card } from 'reactstrap';
 import fetchJsonp from 'fetch-jsonp';
 
 class ArtPage extends Component{
- 	 constructor (props) {
+ 	constructor (props) {
     super(props)
     this.state = {
       bigPicture: false,
       pictures: [],
       selectedIndex: 0
     }
-      this._TogglePrev = this._TogglePrev.bind(this);
-      this._ToggleNext = this._ToggleNext.bind(this);
+    this._TogglePrev = this._TogglePrev.bind(this);
+    this._ToggleNext = this._ToggleNext.bind(this);
   }
   componentDidMount () {
     window.scrollTo(0,0);
@@ -21,8 +21,8 @@ class ArtPage extends Component{
         return response.json()
       })
       .then(json => {
-            this.setState({pictures: json.response.items.reverse()});
-          })
+        this.setState({pictures: json.response.items.reverse()});
+      })
   }
 
   _ToggleNext() {
@@ -87,7 +87,7 @@ class ArtPage extends Component{
         </div>
       </div>
     )
-    }
   }
+}
 
 export default ArtPage;

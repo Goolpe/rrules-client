@@ -1,22 +1,5 @@
 import React, {Component} from 'react';
-import {
-  withRouter
-} from 'react-router-dom';
 
-const accounts = [
-  {
-    id: 1,
-    name: "goolpe",
-    email: "gooolpe@gmail.com",
-    password: "12345"
-  },
-  {
-    id: 133,
-    name: "goolpe2",
-    email: "gooolpe2@gmail.com",
-    password: "123453"
-  }
-]
 class AuthPage extends Component{
   constructor(props){
     super(props);
@@ -27,94 +10,83 @@ class AuthPage extends Component{
       email: '',
       password: '',
       passwordConf: '',
-      nameId: false
+      logemail: '',
+      logpassword: '',
+      nameId: false,
+      redirect: false
     };
-    this.handleName = this.handleName.bind(this);
-    this.handleEmail = this.handleEmail.bind(this);
-    this.handlePass = this.handlePass.bind(this);
-    this.handlePassConf = this.handlePassConf.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleRegistration = this.handleRegistration.bind(this);
+    // this.handleAuth = this.handleAuth.bind(this);
   }
-  handleName(event){
-    this.setState({
-      username: event.target.value
-    })
-  }
-  handleEmail(event){
-    this.setState({
-      email: event.target.value
-    })
-  }
-  handlePass(event){
-    this.setState({
-      password: event.target.value
-    })
-  }
-  handlePassConf(event){
-    this.setState({
-      passwordConf: event.target.value
-    })
+  handleChange(e){
+    this.setState({ [e.target.name]: e.target.value})
   }
 
-  handleSubmit(event){
+  handleRegistration(event){
     event.preventDefault();
-    fetch('//localhost:8080/users',{
-     method: 'post',
-     headers: {'Content-Type':'application/json'},
-     body: {
-      "username": this.state.username,
-      "email": this.state.email,
-      "password": this.state.password,
-      "passwordConf": this.state.passwordConf
-     }})
-    }
+    fetch('https://randomrulesdb.herokuapp.com/users',{
+      method: 'post',
+      headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+          },
+      body: JSON.stringify({
+        "username": this.state.username,
+        "email": this.state.email,
+        "password": this.state.password,
+        "passwordConf" : this.state.passwordConf
+       })})
+  }
 
+  // handleAuth(event){
+  //   event.preventDefault();
+  //   fetch('//localhost:8080/users',{
+  //    method: 'post',
+  //    headers: {
+  //           'Accept': 'application/json, text/plain, */*',
+  //           'Content-Type': 'application/json'
+  //         },
+  //    body: JSON.stringify({
+  //     "logemail": this.state.logemail,
+  //     "logpassword": this.state.logpassword
+  //    })}).then(res => console.log(res))
+  // }
   componentDidMount() {
     window.scrollTo(0,0);
   }
   render(){	
-    const AuthButton = withRouter(
-      ({ history }) =>
-
-        this.props.auth ? (
-            <button className="btn btn-info w-100 p-3" onClick={() => {this.props.signout(() => history.push("/auth"));}}>Выйти</button>
-        ) : (
-          <button className="btn btn-info w-100 p-3" onClick={() => {this.props.authenticate(() => history.push("/id"))}}>Войти</button>
-        )
-    );
       return (      
-		  <section id="login" style={{height:"100vh"}}>
+		  <section id="login" style={{minHeight:"100vh"}}>
         <div className="container pt-5 pb-5 text-center" >
         {this.state.regForm ?
 
           <div>
-            <h1 className="text-center mb-5">РЕГИСТРАЦИЯ</h1>
-            <form style={{maxWidth:"400px", margin: "auto"}}>
+            <h1 className="mb-5">РЕГИСТРАЦИЯ</h1>
+            <form onSubmit={this.handleRegistration} style={{maxWidth:"400px", margin: "auto"}}>
              <div className="form-group">
                 <label >Username</label>
-                <input type="text" value={this.state.username} onChange={this.handleName} className="form-control" id="InputUsername" aria-describedby="emailHelp" placeholder="Введите ник" required/>
+                <input type="text" value={this.state.username} onChange={this.handleChange} name="username" className="form-control" aria-describedby="emailHelp" placeholder="Введите ник" required/>
               </div>
               <div className="form-group">
                 <label >Email</label>
-                <input type="email" value={this.state.email} onChange={this.handleEmail} className="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Введите email" required/>
+                <input type="email" value={this.state.email} onChange={this.handleChange} name="email" className="form-control" aria-describedby="emailHelp" placeholder="Введите email" required/>
               </div>
               <div className="form-group">
                 <label>Пароль</label>
-                <input type="password" value={this.state.password} onChange={this.handlePass} className="form-control" id="InputPassword1" placeholder="Придумайте надежный пароль" required/>
+                <input type="password" value={this.state.password} onChange={this.handleChange} name="password" className="form-control" placeholder="Придумайте надежный пароль" required/>
               </div>
               <div className="form-group">
                 <label>Пароль</label>
-                <input type="password" value={this.state.passwordConf} onChange={this.handlePassConf} className="form-control" id="InputPassword2" placeholder="Повторите пароль" required/>
-              </div>
-              <div className="form-group form-check">
-                <input type="checkbox" className="form-check-input" id="Check1" required/>
-                <label className="form-check-label" htmlFor="Check1">Прочитал условия, блаблабла</label>
+                <input type="password" value={this.state.passwordConf} onChange={this.handleChange} name="passwordConf" className="form-control" placeholder="Повторите пароль" required/>
               </div>
               <button type="submit" className="btn btn-info w-100 p-3">Зарегистрироваться</button>
+              
             </form>    
-            <button  className="btn btn-link nav-link w-100">Войти в аккаунт</button>
+            <p className="mt-2 w-100">Нажимая на кнопку "Зарегистрироваться", Вы подтверждаете, что прочитали и приняли условия игры.</p>
+            <button onClick={()=> {this.setState({regForm: false})}} className="btn btn-link nav-link m-auto mt-5">Войти в аккаунт</button>
           </div>
-// onClick={()=> {this.setState({regForm: false})}}
+// onClick={() => {this.props.authenticate()}}
           :
 
           <div>
@@ -122,32 +94,32 @@ class AuthPage extends Component{
 
             <div>
               <h1 className="mb-5">ВХОД</h1>
-            <form onSubmit={this.handleSubmit} style={{maxWidth:"400px", margin: "auto"}}>
+            <form onSubmit={this.handleAuth} style={{maxWidth:"400px", margin: "auto"}}>
               <div className="form-group text-left">
                 <label>Email</label>
-                <input type="email" value={this.state.email} onChange={this.handleEmail} className="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Введите email" required/>
+                <input type="email" value={this.state.logemail} onChange={this.handleChange} name="logemail" className="form-control" aria-describedby="emailHelp" placeholder="Введите email" required/>
               </div>
               <div className="form-group text-left">
                 <label>Пароль</label>
-                <input type="password" value={this.state.password} onChange={this.handlePass} className="form-control" id="InputPassword1" placeholder="Пароль для входа" required/>
+                <input type="password" value={this.state.logpassword} onChange={this.handleChange} name="logpassword" className="form-control" placeholder="Пароль для входа" required/>
               </div>
-              <AuthButton type="submit" />
+              <button className="btn btn-info w-100 p-3" type="submit" >Войти</button>
             </form>    
-            <button onClick={()=> {this.setState({regForm: true, loginForm: true})}} className="btn btn-link nav-link w-100">Зарегистрироваться</button>
-            <button className="btn btn-link nav-link w-100" onClick={()=> this.setState({loginForm: false})}>Не могу войти</button>
+            <button onClick={()=> {this.setState({regForm: true, loginForm: true})}} className="btn btn-link nav-link m-auto mt-5">Зарегистрироваться</button>
+            <button className="btn btn-link nav-link m-auto" onClick={()=> this.setState({loginForm: false})}>Не могу войти</button>
             </div>
             :
             <div>
               <h1 className="text-center mb-5">ОТПРАВИТЬ ДАННЫЕ ДЛЯ ВХОДА</h1>
               <form style={{maxWidth:"400px", margin: "auto"}}>
                 <div className="form-group">
-                  <label className="text-left" value={this.state.email} onChange={this.handleEmail}>Email</label>
-                  <input type="email" className="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Введите email" required/>
+                  <label className="text-left" value={this.state.logemail} onChange={this.handleChange} name="logemail">Email</label>
+                  <input type="email" className="form-control" aria-describedby="emailHelp" placeholder="Введите email" required/>
                 </div>
                 <button type="submit" className="btn btn-info w-100 p-3">Отправить</button>
               </form>   
-              <button className="btn btn-link nav-link w-100" onClick={()=> this.setState({loginForm: true})} >Вернуться на страницу входа</button> 
-               <button onClick={()=> {this.setState({regForm: true, loginForm: true})}} className="btn btn-link nav-link w-100">Зарегистрироваться</button>
+              <button className="btn btn-link nav-link m-auto mt-5" onClick={()=> this.setState({loginForm: true})} >Вернуться на страницу входа</button> 
+              <button onClick={()=> {this.setState({regForm: true, loginForm: true})}} className="btn btn-link nav-link m-auto">Зарегистрироваться</button>
             </div>
           }
           </div>

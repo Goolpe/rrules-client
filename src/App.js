@@ -103,7 +103,7 @@ class App extends Component {
 		            <Route path="/support" component={SupportPage} />
 		            <PrivateRoute path="/new-article" component={ArticleForm} />
 			        <PropsRoute path="/auth" component={AuthPage} auth={this.state.isAuthenticated} signout={this.signout} authenticate={this.authenticate}/>
-			        <PrivateRoute path="/id" component={IdPage} />
+			        <PrivateRoute path="/id/:id" component={IdPage} />
 			        <Route path="*" render={() => <Redirect to="/" />} />
 			       </Switch>
 		          <Footer />

@@ -74,17 +74,11 @@ class CarouselBlock extends Component {
         >
           <img src={item.src} style={{width:"100%"}} alt={item.altText} />
         </CarouselItem>
-      );
+      )
     return (
-
     	<div>
         <div id="headerCarousel" className="bg-dark">
-	    	  <Carousel
-	        activeIndex={activeIndex}
-	        next={this.next}
-	        previous={this.previous}
-	        interval="3000"
-	      >
+	    	  <Carousel	activeIndex={activeIndex}	next={this.next}	previous={this.previous}	interval="3000">
 		        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
 		        {slides}
 		        <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
@@ -92,7 +86,7 @@ class CarouselBlock extends Component {
 	      	</Carousel>
         </div>
 		</div>
-    );
-}
+    )
+  }
 }
 export default CarouselBlock;

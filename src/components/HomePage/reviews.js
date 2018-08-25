@@ -102,21 +102,12 @@ class Reviews extends Component {
     return (
     	<div id="reviews">
     		<h1 className="text-center m-5">ОТЗЫВЫ</h1>
-        
-          
-	    	<Carousel
-	        activeIndex={activeIndex}
-	        next={this.next}
-	        previous={this.previous}
-	        interval="2000"
-	      >
+	    	<Carousel	activeIndex={activeIndex}	next={this.next} previous={this.previous}	interval="2000">
 		        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
 		        {slides}
 		        <CarouselControl direction="prev" onClickHandler={this.previous} />
 		        <CarouselControl direction="next" onClickHandler={this.next} />
-	      	</Carousel>
-
-          
+	      	</Carousel> 
 	     </div>
     );
 }

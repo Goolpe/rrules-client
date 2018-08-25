@@ -3,13 +3,13 @@ import Schedule from '../HomePage/schedule';
 import Channels from './Channels';
 
 function StreamsPage(props){
-	  return (
-	  	<div>
+	return (
+		<div>
 		  	<Channels />
-	    	<Schedule />
-    	</div>
-	  );
-	}
+			<Schedule />
+		</div>
+	)
+}
 
 export default StreamsPage;
 

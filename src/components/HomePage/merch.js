@@ -3,10 +3,10 @@ import ShopPage from '../ShopPage';
 
 function Merch(props){
     return (
-	    	<section id="merch">
-	    		<ShopPage />
-	    	</section>
-    );
+    	<section id="merch">
+    		<ShopPage />
+    	</section>
+    )
 }
 
 export default Merch;

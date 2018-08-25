@@ -18,24 +18,16 @@ class HomePage extends Component {
     return (
 
     	<div>
-
         <CarouselBlock />
-
   			<Articles />
-  			
   			<Schedule className="pt-5"/>
-
   			<Arts />
-  			
   			<Merch />
-
   			<Social />
-
   			<Reviews />
-
         <Support />
 		  </div>
-    );
-}
+    )
+  } 
 }
 export default HomePage;

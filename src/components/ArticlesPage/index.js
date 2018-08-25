@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import {
-    Link,
-} from 'react-router-dom';
-import ArticleForm from './ArticleForm';
+import { Link } from 'react-router-dom';
 import _ from "lodash";
 
 class ArticlesPage extends Component {
@@ -16,16 +13,14 @@ class ArticlesPage extends Component {
 		window.scrollTo(0,0);
 
 		fetch("https://randomrulesdb.herokuapp.com/articles")
-		.then((resp) => resp.json())
-		.then(data => 
-			this.setState({articles:  data}))
-
+			.then((resp) => resp.json())
+			.then(data => 
+				this.setState({articles:  data}))
 	}
-
 	render() {		
-	let articleSort = _.sortBy(this.state.articles, ['date']).reverse();
+		let articleSort = _.sortBy(this.state.articles, ['date']).reverse();
 
-	  const listItems = articleSort.map((article, index) =>
+	  	const listItems = articleSort.map((article, index) =>
 	    	<div className="card mb-5" key={article._id}>
 			  	<div className="card-body">
 			  		<div className="row">
@@ -46,16 +41,18 @@ class ArticlesPage extends Component {
 			    	</div>
 			  	</div>	
 			</div>
-	  );
-	  return (
-	  <section id="articlesPage" style={{minHeight: "100vh"}}>	  
-	  	<div className="container text-right mt-5 mb-5">
-	  		<Link to="/new-article" className="btn btn-link bg-transparent position-absolute border-0"><i className="fas fa-plus-circle fa-3x text-info"></i></Link>
-	  		<h1 className="text-center mb-5">СТАТЬИ</h1>
-	  		<ul className="container text-left">{listItems}</ul>				
-    	</div>
-    	</section>
-	  );
+		)
+		return (
+			<section id="articlesPage" style={{minHeight: "100vh"}}>	  
+				<div className="container text-right mt-5 mb-5">
+					<Link to="/new-article" className="btn btn-link bg-transparent position-absolute border-0">
+						<i className="fas fa-plus-circle fa-3x text-info"></i>
+					</Link>
+					<h1 className="text-center mb-5">СТАТЬИ</h1>
+					<ul className="container text-left">{listItems}</ul>				
+				</div>
+			</section>
+		)
 	}
 }
 
