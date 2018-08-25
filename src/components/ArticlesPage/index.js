@@ -38,7 +38,7 @@ class ArticlesPage extends Component {
 			  	</div>
 			  	<div className="card-footer text-primary">
 			    	<div className="row">
-			    		<div className="col-12 col-md-6 text-muted mb-2">{article.date}</div>
+			    		<div className="col-12 col-md-6 text-muted mb-2">{article.dateFor}</div>
 			    		<div className="col-12 col-md-6 text-right">{article.hashtags}</div>
 			    	</div>
 			  	</div>	
@@ -47,7 +47,7 @@ class ArticlesPage extends Component {
 		return (
 			<section id="articlesPage" style={{minHeight: "100vh"}}>	  
 				<div className="container text-right mt-5 mb-5">
-					<Link to="/new-article" className="btn btn-link bg-transparent position-absolute border-0">
+					<Link to="/new-article" className="btn btn-link bg-transparent position-absolute border-0" style={{top:"14%",left:"70%"}}>
 						<i className="fas fa-plus-circle fa-3x text-info"></i>
 					</Link>
 					<h1 className="text-center mb-5">СТАТЬИ</h1>

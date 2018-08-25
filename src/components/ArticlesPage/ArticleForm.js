@@ -7,11 +7,13 @@ import { createArticle } from '../actions/postActions';
 class ArticleForm extends Component {
 	constructor(props){
 		super(props);
-		var today = new Date(),	dateNow =  today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+		var dayArticle = new Date();
+		var dateNow =  dayArticle.getDate() + '/' + (dayArticle.getMonth() + 1) + '/' + dayArticle.getFullYear();
 		this.state = {
 			title: '',
 			text: '',
-			date: dateNow,
+			date: dayArticle,
+			dateFor: dateNow,
 			hashtags: '',
 			picture: '',
 			status: false
@@ -33,6 +35,7 @@ class ArticleForm extends Component {
 				text: this.state.text,
 				id: this.state.id,
 				date: this.state.date,
+				dateFor: this.state.dateFor,
 				hashtags: this.state.hashtags,
 				picture: this.state.picture
 		     }
@@ -47,7 +50,7 @@ class ArticleForm extends Component {
 	  return (
 	  	<section id="articleform" style={{minHeight: "100vh"}}>	 
 		  	<div className="container text-right mt-5 mb-5">
-		  		<Link to="/articles" className="btn btn-link bg-transparent position-absolute border-0">
+		  		<Link to="/articles" className="btn btn-link bg-transparent position-absolute border-0" style={{top:"14%",left:"70%"}}>
 		  			<i className="fas fa-times-circle fa-3x text-info"></i>
 		  		</Link>
 	  			<h1 className="text-center mb-5">СОЗДАТЬ СТАТЬЮ</h1>	
