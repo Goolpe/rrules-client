@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createArticle } from '../actions/postActions';
 
 class ArticleForm extends Component {
 	constructor(props){
@@ -12,11 +14,10 @@ class ArticleForm extends Component {
 			date: dateNow,
 			hashtags: '',
 			picture: '',
-			redirect: false
+			status: false
 			}
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
-		this.renderRedirect = this.renderRedirect.bind(this);
 	}
 	componentDidMount() {
 	    window.scrollTo(0,0);
@@ -26,33 +27,26 @@ class ArticleForm extends Component {
 	}
 	onSubmit(e){
 		e.preventDefault();
-		if(fetch('https://randomrulesdb.herokuapp.com/articles',{
-			  method: 'post',
-			  headers: {
-			    'Accept': 'application/json, text/plain, */*',
-			    'Content-Type': 'application/json'
-			  },
-		     body: JSON.stringify({
+
+		const article = {
 		      	title: this.state.title,
 				text: this.state.text,
 				id: this.state.id,
 				date: this.state.date,
 				hashtags: this.state.hashtags,
 				picture: this.state.picture
-		     })
-	 	}))
-		this.setState({ redirect: true })
-	}
-	renderRedirect(){
-	    if (this.state.redirect) {
-	      	return <Redirect to='/articles' />
-	    }
+		     }
+		this.props.createArticle(article);
+		this.setState({
+			title: '',
+			text: '',
+			hashtags: '',
+			picture: ''})
 	}
   render() {
 	  return (
 	  	<section id="articleform" style={{minHeight: "100vh"}}>	 
 		  	<div className="container text-right mt-5 mb-5">
-		  		{this.renderRedirect()}
 		  		<Link to="/articles" className="btn btn-link bg-transparent position-absolute border-0">
 		  			<i className="fas fa-times-circle fa-3x text-info"></i>
 		  		</Link>
@@ -84,4 +78,8 @@ class ArticleForm extends Component {
 	}
 }
 
-export default ArticleForm;
+ArticleForm.propTypes = {
+  createArticle: PropTypes.func.isRequired
+};
+
+export default connect(null, { createArticle })(ArticleForm);

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Redirect } from 'react-router';
 
 class AuthPage extends Component{
   constructor(props){
@@ -12,13 +13,15 @@ class AuthPage extends Component{
       passwordConf: '',
       logemail: '',
       logpassword: '',
-      nameId: false,
-      redirect: false
+      redirect: false,
+      profileId: '',
+      isAuthenticated: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleRegistration = this.handleRegistration.bind(this);
-    // this.handleAuth = this.handleAuth.bind(this);
+    this.handleAuth = this.handleAuth.bind(this);
   }
+
   handleChange(e){
     this.setState({ [e.target.name]: e.target.value})
   }
@@ -37,33 +40,54 @@ class AuthPage extends Component{
         "password": this.state.password,
         "passwordConf" : this.state.passwordConf
        })})
-  }
+      .then(res => { if(res.ok) {
+        this.setState({
+          regForm: false,
+          username:'',
+          email: '',
+          password: '',
+          passwordConf: '' 
+        })
+      }
+    }
+  )}
 
-  // handleAuth(event){
-  //   event.preventDefault();
-  //   fetch('//localhost:8080/users',{
-  //    method: 'post',
-  //    headers: {
-  //           'Accept': 'application/json, text/plain, */*',
-  //           'Content-Type': 'application/json'
-  //         },
-  //    body: JSON.stringify({
-  //     "logemail": this.state.logemail,
-  //     "logpassword": this.state.logpassword
-  //    })}).then(res => console.log(res))
-  // }
+  handleAuth(event){
+    event.preventDefault();
+    fetch('https://randomrulesdb.herokuapp.com/users',{
+     method: 'post',
+     headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+          },
+     body: JSON.stringify({
+      "logemail": this.state.logemail,
+      "logpassword": this.state.logpassword
+     })})
+      .then(res => { if(res.ok) {
+        this.setState({
+          isAuthenticated: true, 
+          redirect: true,
+          profileId : res.url,
+          logemail: '',
+          logpassword: ''
+        })
+      }
+    }
+  )}
   componentDidMount() {
     window.scrollTo(0,0);
   }
   render(){	
-      return (      
+
+      return ( <div>     
 		  <section id="login" style={{minHeight:"100vh"}}>
         <div className="container pt-5 pb-5 text-center" >
         {this.state.regForm ?
 
           <div>
             <h1 className="mb-5">РЕГИСТРАЦИЯ</h1>
-            <form onSubmit={this.handleRegistration} style={{maxWidth:"400px", margin: "auto"}}>
+            <form onSubmit={this.handleRegistration}  style={{maxWidth:"400px", margin: "auto"}}>
              <div className="form-group">
                 <label >Username</label>
                 <input type="text" value={this.state.username} onChange={this.handleChange} name="username" className="form-control" aria-describedby="emailHelp" placeholder="Введите ник" required/>
@@ -86,7 +110,7 @@ class AuthPage extends Component{
             <p className="mt-2 w-100">Нажимая на кнопку "Зарегистрироваться", Вы подтверждаете, что прочитали и приняли условия игры.</p>
             <button onClick={()=> {this.setState({regForm: false})}} className="btn btn-link nav-link m-auto mt-5">Войти в аккаунт</button>
           </div>
-// onClick={() => {this.props.authenticate()}}
+
           :
 
           <div>
@@ -104,7 +128,9 @@ class AuthPage extends Component{
                 <input type="password" value={this.state.logpassword} onChange={this.handleChange} name="logpassword" className="form-control" placeholder="Пароль для входа" required/>
               </div>
               <button className="btn btn-info w-100 p-3" type="submit" >Войти</button>
-            </form>    
+            </form>  
+             {this.state.redirect && <Redirect to={'/id/'}/>}  
+
             <button onClick={()=> {this.setState({regForm: true, loginForm: true})}} className="btn btn-link nav-link m-auto mt-5">Зарегистрироваться</button>
             <button className="btn btn-link nav-link m-auto" onClick={()=> this.setState({loginForm: false})}>Не могу войти</button>
             </div>
@@ -126,6 +152,7 @@ class AuthPage extends Component{
            }
         </div>
       </section>
+      </div>
     );
   }
 }

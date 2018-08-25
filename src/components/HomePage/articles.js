@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import _ from "lodash";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchArticles } from '../actions/postActions';
 
-class Articles extends Component {
-	constructor(props){
-		super(props);
-		this.state = {
-			articles: []
-		}
-	}
+class Articles extends Component {	
   	componentDidMount() {
 	    window.scrollTo(0,0);
+	}
+	componentWillMount() {
+	    this.props.fetchArticles();
+	  }
 
-	    fetch("https://randomrulesdb.herokuapp.com/articles")
-	    	.then((resp) => resp.json())
-			.then(data => 
-				this.setState({articles:  data}))
+	componentWillReceiveProps(nextProps) {
+	    if (nextProps.newArticle) {
+	      this.props.articles.unshift(nextProps.newArticle);
+	    }
   	}
+  	
   	render() {
-	  	let articleSort = _.sortBy(this.state.articles, ['date']).reverse();
+	  	let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
 
 		const listItems = articleSort.map((article, index)=>
 			<div className="col-12 col-md-6 col-lg-3 mb-2" key={article._id}>
@@ -43,4 +45,16 @@ class Articles extends Component {
 	    )
 	}
 }
-export default Articles;
+
+Articles.propTypes = {
+  fetchArticles: PropTypes.func.isRequired,
+  articles: PropTypes.array.isRequired,
+  newArticle: PropTypes.object
+};
+
+const mapStateToProps = state => ({
+	articles: state.articles.items,
+	newArticle: state.articles.item
+})
+
+export default connect(mapStateToProps, { fetchArticles })(Articles);

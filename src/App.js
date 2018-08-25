@@ -5,6 +5,7 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import HomePage from './components/HomePage';
 import Navigation from './components/Navigation';
@@ -23,6 +24,9 @@ import SupportPage from './components/SupportPage';
 import TechWorksPage from './components/TechWorksPage';
 import AuthPage from './components/AuthPage';
 import IdPage from './components/IdPage';
+
+import store from './components/store';
+
 
 const renderMergedProps = (component, ...rest) => {
   const finalProps = Object.assign({}, ...rest);
@@ -61,58 +65,50 @@ class App extends Component {
 
   render(){  
 	const PrivateRoute = ({ component: Component, ...rest }) => (
-	  <Route
-	    {...rest}
-	    render={props =>
+	  <Route {...rest} render={props => 
 	      this.state.isAuthenticated ? (
 	        <Component {...props} />
-	      ) : (
-	        <Redirect
-	          to={{
-	            pathname: "/auth",
-	            state: { from: props.location }
-	          }}
-	        />
-	      )
+	      ) : (	<Redirect to={{	pathname: "/auth", state: { from: props.location }}}/> )
 	    }
 	  />
 	);
     return (
-      <Router >
-	      <div>
-			 {this.state.techs ? 
-			 	<Switch>
-				 	<Route path="/" exact={true} component={TechWorksPage} />
-				 	<Route path="*" render={() => <Redirect to="/" />} /> 
-			 	</Switch>
-		      :
-		        <div>
-
-		          <Navigation auth={this.state.isAuthenticated} signout={this.signout}/>
-		          <Switch>
-		            <Route path="/" exact={true} component={HomePage} />
-		            <Route path="/about-project" component={AboutPage} />
-		            <Route path="/library" component={LibraryPage} />
-		            <Route path="/art" component={ArtPage} />
-		            <Route path="/articles" component={ArticlesPage} />
-		            <Route path="/article/:id" component={ArticlePage} />
-		            <Route path="/shop" component={ShopPage} />
-		            <Route path="/streams" component={StreamsPage} />
-		            <Route path="/masters" component={MastersPage} />
-		            <Route path="/master/:id" component={MasterPage} />
-		            <Route path="/support" component={SupportPage} />
-		            <PrivateRoute path="/new-article" component={ArticleForm} />
-			        <PropsRoute path="/auth" component={AuthPage} auth={this.state.isAuthenticated} signout={this.signout} authenticate={this.authenticate}/>
-			        <PrivateRoute path="/id/:id" component={IdPage} />
-			        <Route path="*" render={() => <Redirect to="/" />} />
-			       </Switch>
-		          <Footer />
-		          
-		        </div>
-		        }
-		        
-	      </div>
-      </Router>
+    	<Provider store={store}>
+	      <Router >
+		      <div>
+				 {this.state.techs ? 
+				 	<Switch>
+					 	<Route path="/" exact={true} component={TechWorksPage} />
+					 	<Route path="*" render={() => <Redirect to="/" />} /> 
+				 	</Switch>
+			      :
+			        <div>
+					<Navigation/>
+			          <Switch>
+			            <Route path="/" exact={true} component={HomePage} />
+			            <Route path="/about-project" component={AboutPage} />
+			            <Route path="/library" component={LibraryPage} />
+			            <Route path="/art" component={ArtPage} />
+			            <Route path="/articles" component={ArticlesPage} />
+			            <Route path="/article/:id" component={ArticlePage} />
+			            <Route path="/shop" component={ShopPage} />
+			            <Route path="/streams" component={StreamsPage} />
+			            <Route path="/masters" component={MastersPage} />
+			            <Route path="/master/:id" component={MasterPage} />
+			            <Route path="/support" component={SupportPage} />
+			            <Route path="/new-article" component={ArticleForm} />
+				        <PropsRoute path="/auth" component={AuthPage} auth={this.state.isAuthenticated} signout={this.signout} authenticate={this.authenticate}/>
+				        <PrivateRoute path="/id/:id" component={IdPage} />
+				        <Route path="*" render={() => <Redirect to="/" />} />
+				       </Switch>
+			          <Footer />
+			          
+			        </div>
+			        }
+			        
+		      </div>
+	      </Router>
+	    </Provider>
     );
   }
 }

@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import _ from "lodash";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchArticles } from '../actions/postActions';
 
 class ArticlesPage extends Component {
-	constructor(props){
-		super(props);
-		this.state = {
-			articles: []
-		}
-	}
 	componentDidMount() {
 		window.scrollTo(0,0);
-
-		fetch("https://randomrulesdb.herokuapp.com/articles")
-			.then((resp) => resp.json())
-			.then(data => 
-				this.setState({articles:  data}))
+	
 	}
+	componentWillMount() {
+	    this.props.fetchArticles();
+	  }
+
+	componentWillReceiveProps(nextProps) {
+	    if (nextProps.newArticle) {
+	      this.props.articles.unshift(nextProps.newArticle);
+	    }
+  	}
 	render() {		
-		let articleSort = _.sortBy(this.state.articles, ['date']).reverse();
+		let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
 
 	  	const listItems = articleSort.map((article, index) =>
 	    	<div className="card mb-5" key={article._id}>
@@ -56,8 +58,17 @@ class ArticlesPage extends Component {
 	}
 }
 
+ArticlesPage.propTypes = {
+  fetchArticles: PropTypes.func.isRequired,
+  articles: PropTypes.array.isRequired,
+  newArticle: PropTypes.object
+};
 
+const mapStateToProps = state => ({
+	articles: state.articles.items,
+	newArticle: state.articles.item
+})
 
-export default ArticlesPage;
+export default connect(mapStateToProps, { fetchArticles })(ArticlesPage);
 
 
