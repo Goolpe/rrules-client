@@ -6,7 +6,6 @@ import Arts from './arts';
 import Merch from './merch';
 import Reviews from './reviews';
 import Social from './social';
-import Support from './support';
 
 class HomePage extends Component {
  
@@ -24,7 +23,6 @@ class HomePage extends Component {
   			<Merch />
   			<Social />
   			<Reviews />
-        <Support />
 		  </div>
     )
   } 

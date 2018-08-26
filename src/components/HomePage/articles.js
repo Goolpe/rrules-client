@@ -12,12 +12,6 @@ class Articles extends Component {
 	componentWillMount() {
 	    this.props.fetchArticles();
 	  }
-
-	componentWillReceiveProps(nextProps) {
-	    if (nextProps.newArticle) {
-	      this.props.articles.unshift(nextProps.newArticle);
-	    }
-  	}
   	
   	render() {
 	  	let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
@@ -27,7 +21,7 @@ class Articles extends Component {
 				<div className="card rounded-0 border-0" style={ { backgroundImage: `url(${article.picture})` } }>
 				  	<div className="card-body font-weight-bold" style={ {backgroundColor: 'rgba(0, 0, 0, 0.6)'}}>
 					    <h6 className="card-subtitle text-right mb-2">{article.dateFor}</h6>
-					    <h5 className="card-title">{article.title.slice(0,50)}</h5>
+					    <h5 className="card-title">{article.title.slice(0,50) + " ..."}</h5>
 					    <p className="card-text">{article.text.slice(0,100)}</p>
 					    <Link to={`/article/${article._id}`} className="btn btn-info">Читать дальше</Link>
 				  	</div>
@@ -48,13 +42,11 @@ class Articles extends Component {
 
 Articles.propTypes = {
   fetchArticles: PropTypes.func.isRequired,
-  articles: PropTypes.array.isRequired,
-  newArticle: PropTypes.object
+  articles: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
-	articles: state.articles.items,
-	newArticle: state.articles.item
+	articles: state.articles.items
 })
 
 export default connect(mapStateToProps, { fetchArticles })(Articles);

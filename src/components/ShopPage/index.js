@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import shop from "./shop.json"
 
-function ShopPage(props){
+
+class ShopPage extends Component {
+	componentDidMount() {
+	    window.scrollTo(0,0);
+	  }
+	 render(){
 	const listItems = shop.map((thing) =>
 		<div className="col-12 col-md-4" key={thing.id}>
 			<div className="card text-center">
@@ -18,7 +23,7 @@ function ShopPage(props){
 		</div>
 	)
 	return (
-	<section id="merch">
+	<section id="merch" style={{minHeight:"100vh"}}>
 			<div className="container pt-5 pb-5">
 				<h1 className="text-dark text-center m-5">МЕРЧ RANDOM RULES</h1>
 				<div className="row">
@@ -27,6 +32,7 @@ function ShopPage(props){
 			</div>
 		</section>
 	)
+}
 }
 
 export default ShopPage;

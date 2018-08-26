@@ -1,14 +1,80 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
+import _ from "lodash";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchArticles } from './actions/postActions';
 
-function Footer(props){
+class Footer extends Component {
+	componentWillMount() {
+	    this.props.fetchArticles();
+	  }
+  	
+  	render() {
+  	let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
+
+  	const listItems = articleSort.map((article, index)=>
+  		<li key={article._id} className="mt-1 mb-1"><Link to={`/article/${article._id}`} className="text-white">{article.title.slice(0,50) + " ..."}</Link></li>
+  	).slice(0,7);
     return (
     	<footer>
-    		<div className="container pt-5 pb-2 text-center text-white">
-				<a href="">Поддержать на patreon</a>
-				<p>&copy; Random Rules, 2018, ВСЕ ПРАВА ЗАЩИЩЕНЫ</p>
+    		<div className="container pt-5 pb-2 text-left text-white">
+    			<div className="row">
+    				<div className="col-12 col-md-4 mt-3">
+    					<h6>НАВИГАЦИЯ</h6>
+    					<hr width="70%" align="left" color="#a9a9a9"/>
+    					<ul>
+    						<li><Link to="/" className="text-white">Главная</Link></li>
+    						<li><Link to="/about-project" className="text-white">О проекте</Link></li>
+    						<li><Link to="/library" className="text-white">Библиотека</Link></li>
+    						<li><Link to="/masters" className="text-white">Резюме мастеров</Link></li>
+    						<li><Link to="/art" className="text-white">Арт</Link></li>
+    						<li><Link to="/streams" className="text-white">Стримы</Link></li>
+    						<li><Link to="/articles" className="text-white">Статьи</Link></li>
+    						<li><Link to="/shop" className="text-white">Магазин</Link></li>
+    					</ul>
+    				</div>
+    				<div className="col-12 col-md-4 mt-3">
+    					<h6>РЕЙТИНГ МАСТЕРОВ</h6>
+    					<hr width="70%" align="left" color="#a9a9a9"/>
+    					<ul>
+    						<li></li>
+    					</ul>
+    				</div>
+    				<div className="col-12 col-md-4 mt-3">
+    					<h6>ПОСЛЕДНИЕ НОВОСТИ</h6>
+    					<hr width="70%" align="left" color="#a9a9a9"/>
+    					<ul>
+    						{listItems}
+    					</ul>
+    				</div>
+    				
+    			</div>
+
     		</div>
+    		<hr color="#a9a9a9"/>
+    		<div className="container pb-5 pt-3">
+    			<div className="row"> 
+    				<div className="col-12 col-md-6">
+						<p className="text-white">&copy; Copyright 2018 | Random Rules | Все права защищены</p>
+					</div>
+					<div className="col-12 col-md-6 text-center">
+						<Link to="/support" className="btn btn-danger pl-5 pr-5">ПОДДЕРЖАТЬ ПРОЕКТ</Link>
+					</div>
+				</div>
+			</div>
     	</footer>
     );
 }
+}
 
-export default Footer;
+Footer.propTypes = {
+  fetchArticles: PropTypes.func.isRequired,
+  articles: PropTypes.array.isRequired
+};
+
+const mapStateToProps = state => ({
+	articles: state.articles.items
+})
+
+export default connect(mapStateToProps, { fetchArticles })(Footer);
