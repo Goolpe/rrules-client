@@ -14,11 +14,6 @@ class ArticlesPage extends Component {
 	    this.props.fetchArticles();
 	  }
 
-	componentWillReceiveProps(nextProps) {
-	    if (nextProps.newArticle) {
-	      this.props.articles.unshift(nextProps.newArticle);
-	    }
-  	}
 	render() {		
 		let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
 
@@ -60,13 +55,11 @@ class ArticlesPage extends Component {
 
 ArticlesPage.propTypes = {
   fetchArticles: PropTypes.func.isRequired,
-  articles: PropTypes.array.isRequired,
-  newArticle: PropTypes.object
+  articles: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
-	articles: state.articles.items,
-	newArticle: state.articles.item
+	articles: state.articles.items
 })
 
 export default connect(mapStateToProps, { fetchArticles })(ArticlesPage);

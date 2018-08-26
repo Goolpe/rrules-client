@@ -7,8 +7,7 @@ import {
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-
-import ArrowUp from './ArrowUp';
+import ArrowUp from './components/ArrowUp';
 
 import HomePage from './components/HomePage';
 import Navigation from './components/Navigation';
@@ -47,7 +46,7 @@ const PropsRoute = ({ component, ...rest }) => {
 }
 
 class App extends Component {
-  constructor(props){
+  	constructor(props){
     	super(props);
 	    this.state = {
 	      techs: false,

@@ -9,13 +9,12 @@ class Footer extends Component {
 	componentWillMount() {
 	    this.props.fetchArticles();
 	  }
-  	
   	render() {
-  	let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
+	  	let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
 
-  	const listItems = articleSort.map((article, index)=>
-  		<li key={article._id} className="mt-1 mb-1"><Link to={`/article/${article._id}`} className="text-white">{article.title.slice(0,50) + " ..."}</Link></li>
-  	).slice(0,7);
+	  	const listItems = articleSort.map((article, index)=>
+	  		<li key={article._id} className="mt-1 mb-1"><Link to={`/article/${article._id}`} className="text-white">{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</Link></li>
+	  	).slice(0,7);
     return (
     	<footer>
     		<div className="container pt-5 pb-2 text-left text-white">

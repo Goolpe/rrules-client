@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import { Redirect } from 'react-router';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createAccount } from '../actions/postActions';
 
 class AuthPage extends Component{
   constructor(props){
@@ -28,29 +31,20 @@ class AuthPage extends Component{
 
   handleRegistration(event){
     event.preventDefault();
-    fetch('https://randomrulesdb.herokuapp.com/users',{
-      method: 'post',
-      headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-          },
-      body: JSON.stringify({
+    const account = {
         "username": this.state.username,
         "email": this.state.email,
         "password": this.state.password,
         "passwordConf" : this.state.passwordConf
-       })})
-      .then(res => { if(res.ok) {
-        this.setState({
-          regForm: false,
-          username:'',
-          email: '',
-          password: '',
-          passwordConf: '' 
-        })
-      }
-    }
-  )}
+         }
+    this.props.createAccount(account)
+    this.setState({
+      regForm: false,
+      username:'',
+      email: '',
+      password: '',
+      passwordConf: '' })
+  }
 
   handleAuth(event){
     event.preventDefault();
@@ -157,5 +151,9 @@ class AuthPage extends Component{
   }
 }
 
-export default AuthPage;
+AuthPage.propTypes = {
+  createAccount: PropTypes.func.isRequired
+};
+
+export default connect(null, { createAccount })(AuthPage);
 

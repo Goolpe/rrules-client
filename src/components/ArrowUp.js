@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Link, Events, animateScroll as scroll} from 'react-scroll';
+import { animateScroll as scroll} from 'react-scroll';
 
 class ArrowUp extends Component {
-  constructor(props) {
-    super(props);
-    this.state={
-	    arrowUp: false
-    }
-	this.onScroll = this.onScroll.bind(this);
-  }	
+  	constructor(props) {
+	    super(props);
+	    this.state={
+		    arrowUp: false
+	    }
+		this.onScroll = this.onScroll.bind(this);
+  	}	
 
     onScroll(){
     	if (window.pageYOffset > 100){
@@ -21,7 +21,6 @@ class ArrowUp extends Component {
    	componentDidMount(){
    	 	window.addEventListener('scroll', this.onScroll);
 	}
-
 	scrollToTop() {
 	    scroll.scrollToTop();
 	  }

@@ -1,4 +1,4 @@
-import { FETCH_ARTICLES, NEW_ARTICLE } from './types';
+import { FETCH_ARTICLES, NEW_ARTICLE, NEW_ACCOUNT } from './types';
 
 export const fetchArticles = () => dispatch => {
   fetch("https://randomrulesdb.herokuapp.com/articles")
@@ -29,5 +29,37 @@ export const createArticle = articleData => dispatch => {
   );
 };
 
+export const createAccount = accountData => dispatch => {
+  fetch('https://randomrulesdb.herokuapp.com/users',{
+      method: 'post',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+       body: JSON.stringify(accountData)
+     })
+      .then(account => {if(account.ok)
+      dispatch({
+        type: NEW_ACCOUNT,
+        payload: account
+    })}
+  )
+};
 
+export const authAccount = accountData => dispatch => {
+  fetch('https://randomrulesdb.herokuapp.com/users',{
+      method: 'post',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+       body: JSON.stringify(accountData)
+     })
+      .then(account => 
+      dispatch({
+        type: NEW_ACCOUNT,
+        payload: account
+    })
+  );
+};
 
