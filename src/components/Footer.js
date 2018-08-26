@@ -13,7 +13,7 @@ class Footer extends Component {
 	  	let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
 
 	  	const listItems = articleSort.map((article, index)=>
-	  		<li key={article._id} className="mt-1 mb-1"><Link to={`/article/${article._id}`} className="text-white">{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</Link></li>
+	  		<li key={article._id} className="mt-1 mb-1"><Link to={`/article/${article._id}`}>{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</Link></li>
 	  	).slice(0,7);
     return (
     	<footer>
@@ -23,14 +23,14 @@ class Footer extends Component {
     					<h6>НАВИГАЦИЯ</h6>
     					<hr width="70%" align="left" color="#a9a9a9"/>
     					<ul>
-    						<li><Link to="/" className="text-white">Главная</Link></li>
-    						<li><Link to="/about-project" className="text-white">О проекте</Link></li>
-    						<li><Link to="/library" className="text-white">Библиотека</Link></li>
-    						<li><Link to="/masters" className="text-white">Резюме мастеров</Link></li>
-    						<li><Link to="/art" className="text-white">Арт</Link></li>
-    						<li><Link to="/streams" className="text-white">Стримы</Link></li>
-    						<li><Link to="/articles" className="text-white">Статьи</Link></li>
-    						<li><Link to="/shop" className="text-white">Магазин</Link></li>
+    						<li><Link to="/" >Главная</Link></li>
+    						<li><Link to="/about-project">О проекте</Link></li>
+    						<li><Link to="/library">Библиотека</Link></li>
+    						<li><Link to="/masters">Резюме мастеров</Link></li>
+    						<li><Link to="/art">Арт</Link></li>
+    						<li><Link to="/streams">Стримы</Link></li>
+    						<li><Link to="/articles">Статьи</Link></li>
+    						<li><Link to="/shop">Магазин</Link></li>
     					</ul>
     				</div>
     				<div className="col-12 col-md-4 mt-3">

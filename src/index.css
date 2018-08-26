@@ -208,6 +208,10 @@ footer{
     background-color: #29282d
 }
 
+footer a{
+    color:#fff !important;
+}
+
 footer ul{
     list-style-type: none;
 }
