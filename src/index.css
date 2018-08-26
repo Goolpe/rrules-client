@@ -276,7 +276,7 @@ footer ul{
     
     #reviews .carousel-inner
     {
-        min-height: 150px;
+        height: 200px;
     }   
     #articlesPage .text-right{
         text-align: left !important;
