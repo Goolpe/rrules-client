@@ -7,6 +7,8 @@ import {
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
+import { Link, Events, animateScroll as scroll} from 'react-scroll';
+
 import HomePage from './components/HomePage';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
@@ -48,11 +50,25 @@ class App extends Component {
     	super(props);
 	    this.state = {
 	      techs: false,
-	      isAuthenticated: false
+	      isAuthenticated: false,
+	      arrow: false
 	    }
 	    this.authenticate = this.authenticate.bind(this);
 	    this.signout = this.signout.bind(this);
+	    this.onScroll = this.onScroll.bind(this);
     }	
+
+    onScroll(){
+    	if (window.pageYOffset > 100){
+    		this.setState({arrow: true})
+    	}
+    	else{
+    		this.setState({arrow: false})
+    	}
+	}
+   	componentDidMount(){
+   	 	window.addEventListener('scroll', this.onScroll);
+	}
 
   	authenticate(cb) {
     	this.setState({isAuthenticated: true});
@@ -62,6 +78,10 @@ class App extends Component {
     	this.setState({isAuthenticated: false});
     	setTimeout(cb, 100);
   	}
+
+  	scrollToTop() {
+	    scroll.scrollToTop();
+	  }
 
   render(){  
 	const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -101,8 +121,8 @@ class App extends Component {
 				        <PrivateRoute path="/id/:id" component={IdPage} />
 				        <Route path="*" render={() => <Redirect to="/" />} />
 				       </Switch>
-			          <Footer />
-			          
+			        <Footer />
+			        {this.state.arrow && <div id="arrowUp" onClick={this.scrollToTop}><i className="fas fa-angle-up fa-3x"></i></div> }
 			        </div>
 			        }
 			        

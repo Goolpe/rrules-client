@@ -76,7 +76,7 @@ class ArtPage extends Component{
           <div className="row">
             {this.state.pictures.map((img, index) => 
               <div className="col-12 col-md-6 col-lg-4 mb-4" key={img.id}>
-                <Card style = {{height : "250px"}}>
+                <Card style = {{height : "400px"}}>
                   <button onClick={()=>{
                   this.setState({ bigPicture: true, selectedIndex: index })}} className="text-center border-0" title={img.text}  style={{ height:"100%", backgroundPosition: "top", backgroundImage: `url(${img.photo_604})` }}></button>
                 </Card>           

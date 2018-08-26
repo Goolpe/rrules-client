@@ -3,7 +3,7 @@ import ShopPage from '../ShopPage';
 
 function Merch(props){
     return (
-    	<section id="merch">
+    	<section id="merch" style={{minHeight:"50vh"}}>
     		<ShopPage />
     	</section>
     )
