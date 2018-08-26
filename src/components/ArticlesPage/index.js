@@ -6,6 +6,12 @@ import { connect } from 'react-redux';
 import { fetchArticles } from '../actions/postActions';
 
 class ArticlesPage extends Component {
+	constructor(props){
+    	super(props);
+    	this.state = {
+    		articlesNew: [],
+    	}
+	}
 	componentDidMount() {
 		window.scrollTo(0,0);
 	
@@ -16,7 +22,6 @@ class ArticlesPage extends Component {
 
 	render() {		
 		let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
-
 	  	const listItems = articleSort.map((article, index) =>
 	    	<div className="card mb-5" key={article._id}>
 			  	<div className="card-body">

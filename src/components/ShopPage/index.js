@@ -23,7 +23,7 @@ class ShopPage extends Component {
 		</div>
 	)
 	return (
-	<section id="merch" style={{minHeight:"100vh"}}>
+	<section id="shop">
 			<div className="container pt-5 pb-5">
 				<h1 className="text-dark text-center m-5">МЕРЧ RANDOM RULES</h1>
 				<div className="row">

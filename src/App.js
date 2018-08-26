@@ -25,7 +25,8 @@ import MasterPage from './components/MastersPage/MasterPage';
 import SupportPage from './components/SupportPage';
 import TechWorksPage from './components/TechWorksPage';
 import AuthPage from './components/AuthPage';
-import IdPage from './components/IdPage';
+import UserPage from './components/UserPage';
+import GamesPage from './components/GamesPage';
 
 import store from './components/store';
 
@@ -99,8 +100,10 @@ class App extends Component {
 			            <Route path="/master/:id" component={MasterPage} />
 			            <Route path="/support" component={SupportPage} />
 			            <Route path="/new-article" component={ArticleForm} />
+			            <Route path="/games" component={GamesPage} />
+			            <Route path="/@:nickname" component={UserPage} />
 				        <PropsRoute path="/auth" component={AuthPage} auth={this.state.isAuthenticated} signout={this.signout} authenticate={this.authenticate}/>
-				        <PrivateRoute path="/id/:id" component={IdPage} />
+				        <PrivateRoute path="/id/:id" component={UserPage} />
 				        <Route path="*" render={() => <Redirect to="/" />} />
 				       </Switch>
 			        <Footer />

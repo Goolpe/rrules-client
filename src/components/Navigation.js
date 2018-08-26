@@ -44,12 +44,10 @@ class Navigation extends Component{
               <NavItem>
                 <NavLink tag={Link} onClick={this.closeNav} to="/" className="bg-transparent border-0 nav-link text-white btn btn-link">ГЛАВНАЯ</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink tag={Link} onClick={this.closeNav} to="/about-project" className="bg-transparent border-0 nav-link text-white btn btn-link">О ПРОЕКТЕ</NavLink>
-              </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle className="text-white btn btn-link" nav caret>НАВИГАЦИЯ</DropdownToggle>
                 <DropdownMenu  className="p-0">
+                <DropdownItem tag={Link} onClick={this.closeNav} to="/about-project" className="p-2 rounded-top">О ПРОЕКТЕ</DropdownItem> 
                   <DropdownItem tag={Link} onClick={this.closeNav} to="/library" className="p-2 rounded-top">БИБЛИОТЕКА</DropdownItem> 
                   <DropdownItem tag={Link} onClick={this.closeNav} to="/masters" className="p-2">РЕЗЮМЕ МАСТЕРОВ</DropdownItem>
                   <DropdownItem tag={Link} onClick={this.closeNav} to="/art" className="p-2">АРТ</DropdownItem>
@@ -63,7 +61,10 @@ class Navigation extends Component{
                 <NavLink tag={Link} onClick={this.closeNav} to="/articles" className="nav-link text-white btn btn-link">СТАТЬИ</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} onClick={this.closeNav} to="/shop" className="nav-link text-white btn btn-danger rounded">МАГАЗИН</NavLink>
+                <NavLink tag={Link} onClick={this.closeNav} to="/shop" className="nav-link text-white btn btn-link">МАГАЗИН</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} onClick={this.closeNav} to="/games" className="nav-link text-white btn btn-danger rounded">НАЙТИ ИГРУ</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar className="keyAuth">
                 <DropdownToggle className="text-white ml-2" nav><i className={this.props.auth ? "fas fa-user-circle fa-2x" : "fab fa-expeditedssl fa-2x"}></i></DropdownToggle>
