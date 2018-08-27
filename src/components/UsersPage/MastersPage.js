@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import mastersJSON from "./mastersJSON.json";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchPlayers } from '../actions/postActions';
 
-class Masters extends Component {
-	constructor(props){
-		super(props);
-		this.state = {
-		}
-	}
+class MastersPage extends Component {
 	componentDidMount() {
 		window.scrollTo(0,0);
 	}
 	render(){
-		const masters = mastersJSON.map((thing, index) =>
+		const masters = this.props.players.map((thing, index) =>
 			<div className="col-12 col-md-6 col-lg-4 mb-5" key={thing.id}>
 				<Link to={`/@${thing.nickname}`} className="text-white">
 					<div className="wrapper"  style={ { backgroundImage: `url(${thing.picture})`} }>
@@ -26,7 +23,7 @@ class Masters extends Component {
 	    return (
 	    	<section id="masters">
 	    		<div className="container text-center">
-					<h1 className="text-center mb-5 mt-5">РЕЗЮМЕ МАСТЕРОВ</h1>
+					<h1 className="text-center mb-5 mt-5">ИГРОКИ</h1>
 					<div className="row">
 					 	{masters}
 					</div>
@@ -36,4 +33,13 @@ class Masters extends Component {
 	}
 }
 
-export default Masters;
+MastersPage.propTypes = {
+  fetchPlayers: PropTypes.func.isRequired,
+  players: PropTypes.array.isRequired
+};
+
+const mapStateToProps = state => ({
+  players: state.players.items
+})
+
+export default connect(mapStateToProps, { fetchPlayers })(MastersPage);
