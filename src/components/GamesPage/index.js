@@ -152,7 +152,7 @@ class GamesPage extends Component {
 	 					<p>Игра: {game.nameGame}</p>
 	 					{gamers.map(master=> {if(game.master === master.gamerId){
 	 						return <div key={master.id}>
-		 						<p>Мастер: <Link to={`/@${master.nickname}`} key={master.id} target="_blank" className="ml-2 mr-1">{master.nickname}</Link></p>
+		 						<p>Мастер: <Link to={`/@${master.nickname}`} target="_blank" key={master.id} className="ml-2 mr-1">{master.nickname}</Link></p>
 		 						<img className="rounded mb-2" src={master.photo} style={{height: "40px"}}/><br />
 		 						<div className="btn btn-outline-warning">{master.rating}</div>
 	 						</div>

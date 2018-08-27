@@ -1,3 +1,5 @@
 export const FETCH_ARTICLES = 'FETCH_ARTICLES';
 export const NEW_ARTICLE = 'NEW_ARTICLE';
 export const NEW_ACCOUNT = 'NEW_ACCOUNT';
+export const AUTH_ACCOUNT = 'AUTH_ACCOUNT';
+export const FETCH_PLAYERS = 'FETCH_PLAYERS';

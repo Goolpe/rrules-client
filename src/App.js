@@ -20,12 +20,15 @@ import ArticlePage from './components/ArticlesPage/ArticlePage';
 import ArticleForm from './components/ArticlesPage/ArticleForm';
 import ShopPage from './components/ShopPage';
 import StreamsPage from './components/StreamsPage';
-import MastersPage from './components/MastersPage';
-import MasterPage from './components/MastersPage/MasterPage';
+
+import MastersPage from './components/UsersPage/MastersPage';
+import UsersPage from './components/UsersPage';
+import UserPage from './components/UsersPage/UserPage';
+import UserPageEditor from './components/UsersPage/UserPageEditor';
+
 import SupportPage from './components/SupportPage';
 import TechWorksPage from './components/TechWorksPage';
 import AuthPage from './components/AuthPage';
-import UserPage from './components/UserPage';
 import GamesPage from './components/GamesPage';
 
 import store from './components/store';
@@ -96,12 +99,13 @@ class App extends Component {
 			            <Route path="/article/:id" component={ArticlePage} />
 			            <Route path="/shop" component={ShopPage} />
 			            <Route path="/streams" component={StreamsPage} />
+			            <Route path="/users" component={UsersPage} />
 			            <Route path="/masters" component={MastersPage} />
-			            <Route path="/master/:id" component={MasterPage} />
 			            <Route path="/support" component={SupportPage} />
 			            <Route path="/new-article" component={ArticleForm} />
 			            <Route path="/games" component={GamesPage} />
 			            <Route path="/@:nickname" component={UserPage} />
+			            <Route path="/edit/@:nickname" component={UserPageEditor} />
 				        <PropsRoute path="/auth" component={AuthPage} auth={this.state.isAuthenticated} signout={this.signout} authenticate={this.authenticate}/>
 				        <PrivateRoute path="/id/:id" component={UserPage} />
 				        <Route path="*" render={() => <Redirect to="/" />} />

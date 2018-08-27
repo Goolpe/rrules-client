@@ -20,7 +20,7 @@ class ArticlePage extends Component {
     }
   render() {
 	  return (
-	  <section id="articlesPage">	  
+	  <section id="articlePage">	  
 	  	<div className="container mt-5 mb-5" style={{minHeight: "100vh"}}>
       <Link to="/articles" className="text-dark"><i className="text-dark fas fa-angle-left "></i> ВСЕ СТАТЬИ</Link>
 	  	<h1 className="text-center m-5">{this.state.articles.title}</h1>

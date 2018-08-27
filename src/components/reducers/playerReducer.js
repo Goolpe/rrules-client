@@ -1,4 +1,4 @@
-import { NEW_ACCOUNT, AUTH_ACCOUNT } from '../actions/types';
+import { FETCH_PLAYERS } from '../actions/types';
 
 const initialState = {
   items: [],
@@ -7,15 +7,10 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case NEW_ACCOUNT:
+    case FETCH_PLAYERS:
       return {
         ...state,
-        item: action.payload
-      };
-    case AUTH_ACCOUNT:
-      return {
-        ...state,
-        item: action.payload
+        items: action.payload
       };
     default:
       return state;

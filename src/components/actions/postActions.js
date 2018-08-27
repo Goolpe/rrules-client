@@ -1,4 +1,4 @@
-import { FETCH_ARTICLES, NEW_ARTICLE, NEW_ACCOUNT } from './types';
+import { FETCH_ARTICLES, NEW_ARTICLE, NEW_ACCOUNT, AUTH_ACCOUNT, FETCH_PLAYERS } from './types';
 
 export const fetchArticles = () => dispatch => {
   fetch("https://randomrulesdb.herokuapp.com/articles")
@@ -55,11 +55,21 @@ export const authAccount = accountData => dispatch => {
       },
        body: JSON.stringify(accountData)
      })
-      .then(account => 
+      .then(account => {if(account.ok)
       dispatch({
-        type: NEW_ACCOUNT,
+        type: AUTH_ACCOUNT,
         payload: account
-    })
+    })}
   );
 };
 
+export const fetchPlayers = () => dispatch => {
+  fetch("https://randomrulesdb.herokuapp.com/players")
+      .then((resp) => resp.json())
+      .then(players => 
+      dispatch({
+        type: FETCH_PLAYERS,
+        payload: players
+      })
+    );
+};

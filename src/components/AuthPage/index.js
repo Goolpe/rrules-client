@@ -3,6 +3,7 @@ import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createAccount } from '../actions/postActions';
+import { authAccount } from '../actions/postActions';
 
 class AuthPage extends Component{
   constructor(props){
@@ -10,6 +11,7 @@ class AuthPage extends Component{
     this.state = {
       loginForm: true,
       regForm: false,
+      dateReg: new Date(),
       username:'',
       email: '',
       password: '',
@@ -32,6 +34,7 @@ class AuthPage extends Component{
   handleRegistration(event){
     event.preventDefault();
     const account = {
+        "dateReg": this.state.dateReg,
         "username": this.state.username,
         "email": this.state.email,
         "password": this.state.password,
@@ -48,27 +51,21 @@ class AuthPage extends Component{
 
   handleAuth(event){
     event.preventDefault();
-    fetch('https://randomrulesdb.herokuapp.com/users',{
-     method: 'post',
-     headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-          },
-     body: JSON.stringify({
-      "logemail": this.state.logemail,
-      "logpassword": this.state.logpassword
-     })})
-      .then(res => { if(res.ok) {
-        this.setState({
-          isAuthenticated: true, 
-          redirect: true,
-          profileId : res.url,
-          logemail: '',
-          logpassword: ''
-        })
-      }
-    }
-  )}
+
+    const account = {
+        "logemail": this.state.logemail,
+        "logpassword": this.state.logpassword
+         }
+
+    this.props.authAccount(account)
+
+    this.setState({
+      isAuthenticated: true, 
+      redirect: true,
+      logemail: '',
+      logpassword: '' })
+  }
+
   componentDidMount() {
     window.scrollTo(0,0);
   }
@@ -152,8 +149,9 @@ class AuthPage extends Component{
 }
 
 AuthPage.propTypes = {
-  createAccount: PropTypes.func.isRequired
+  createAccount: PropTypes.func.isRequired,
+  authAccount: PropTypes.func.isRequired
 };
 
-export default connect(null, { createAccount })(AuthPage);
+export default connect(null, { createAccount, authAccount })(AuthPage);
 
