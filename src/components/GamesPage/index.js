@@ -80,8 +80,8 @@ class GamesPage extends Component {
 	 				<div className="col-12 text-center">
 	 				{(game.placeAll - game.gamersInsideId.length) === 0 ? <Button color="danger" className="btn btn-danger mt-4 pl-5 pr-5" disabled>Нет мест</Button> 
 	 					:
-	 					<Button color="info" className="mt-4 pl-5 pr-5">Записаться</Button>}
-	 					<Button color="danger" className="mt-4 ml-2 pl-5 pr-5">Смотреть</Button>
+	 					<Button color="info" className="mt-3 pl-5 mr-1 ml-1 pr-5">Записаться</Button>}
+	 					<Button color="danger" className="mt-3 ml-1 mr-1 pl-5 pr-5">Смотреть</Button>
 	 				</div>
 	 			</div>
 	 		</div>

@@ -38,13 +38,11 @@ class UserPage extends Component {
               <div className="col-12 col-md-6">
                 <h3 className="mb-4">Рейтинг: <div className="btn btn-outline-warning">{player.rating}</div></h3>
                 <h3 className="mb-4">Контакты:</h3>
-                    <p><span className="font-weight-bold">Discord</span> - {player.discord}<br />
+                <p><span className="font-weight-bold">Discord</span> - {player.discord}<br />
                 <span className="font-weight-bold">Skype</span> - {player.skype}<br />
                 </p>
-                <p>
-                  Водит на канале с {moment(player.dateReg).format('LL')}<br />
-                  {player.paidGames ? "Водит" : "Не водит"} платные игры<br />
-                </p>
+                <p>Зарегистрирован {moment(player.dateReg).format('LL')}</p>
+                  {player.master && <p>{player.paidGames ? "Водит" : "Не водит"} платные игры</p>}
                 <h3 className="mb-4">О себе:</h3>
                 <p>{player.about}</p>
                 <h3 className="mb-4">Любимые системы:</h3><p>{player.systems}</p>
