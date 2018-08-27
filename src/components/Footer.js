@@ -3,18 +3,24 @@ import { Link } from 'react-router-dom';
 import _ from "lodash";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchArticles } from './actions/postActions';
+import { fetchArticles, fetchPlayers } from './actions/postActions';
 
 class Footer extends Component {
 	componentWillMount() {
 	    this.props.fetchArticles();
+        this.props.fetchPlayers();
 	  }
   	render() {
 	  	let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
+        let mastersSort = _.sortBy(this.props.players.filter(master =>  master.master === true
+            ), ['rating']).reverse();
 
 	  	const listItems = articleSort.map((article, index)=>
 	  		<li key={article._id} className="mt-1 mb-1"><Link to={`/article/${article._id}`}>{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</Link></li>
 	  	).slice(0,7);
+        const mastersRating = mastersSort.map(master =>
+                    <li key={master.userId}><Link to={`/@${master.username}`}>{master.username}</Link> - {master.rating}</li>
+            ).slice(0,8)
     return (
     	<footer>
     		<div className="container pt-5 pb-2 text-left text-white">
@@ -37,7 +43,7 @@ class Footer extends Component {
     					<h6>РЕЙТИНГ МАСТЕРОВ</h6>
     					<hr width="70%" align="left" color="#a9a9a9"/>
     					<ul>
-    						<li></li>
+    						{mastersRating}
     					</ul>
     				</div>
     				<div className="col-12 col-md-4 mt-3">
@@ -69,11 +75,15 @@ class Footer extends Component {
 
 Footer.propTypes = {
   fetchArticles: PropTypes.func.isRequired,
-  articles: PropTypes.array.isRequired
+  articles: PropTypes.array.isRequired,
+  fetchPlayers: PropTypes.func.isRequired,
+  players: PropTypes.array.isRequired
+
 };
 
 const mapStateToProps = state => ({
-	articles: state.articles.items
+	articles: state.articles.items,
+    players: state.players.items
 })
 
-export default connect(mapStateToProps, { fetchArticles })(Footer);
+export default connect(mapStateToProps, { fetchArticles, fetchPlayers })(Footer);

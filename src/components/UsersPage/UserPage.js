@@ -19,9 +19,10 @@ class UserPage extends Component {
       this.props.fetchPlayers();
     }
   render() {
-    const searchId = this.props.players.map(player=> {
-      if(player.username === this.props.match.params.nickname){
-        return (<div key={player.userId}>
+    const searchId = this.props.players
+    .filter(player => player.username === this.props.match.params.nickname)
+    .map(player =>
+      <div key={player.userId}>
             <div className="row mb-5 justify-content-center align-items-start">
               <div className="col-12 col-md-4 text-left mb-4"><Link to="/masters" className="text-dark"><i className="fas fa-angle-left "></i> ДРУГИЕ {player.master ? "МАСТЕРА" : "ИГРОКИ"}</Link></div>
               <div className="col-12 col-md-4 text-center"><h1>{player.username}</h1>{player.master && <p>мастер</p>}</div>
@@ -51,9 +52,11 @@ class UserPage extends Component {
               </div>
             </div>
             <div className="row">
-            {player.examples.map(example => 
-              <div className="col-12 col-md-6 mb-3" key={player.userId}>
+            {player.examples.map((example, index) => 
+              <div className="col-12 col-md-6 mb-3" key={index}>
                 <iframe
+
+                    title={player.userId}
                     src={example}
                     width="100%" 
                     height="340"
@@ -64,11 +67,7 @@ class UserPage extends Component {
             )}
             </div>
           </div>
-
           )
-        }
-      }
-    )
 
 	  return (
   	  <section id="masterPage" style={{minHeight: "100vh"}}>	  

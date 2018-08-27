@@ -150,23 +150,24 @@ class GamesPage extends Component {
 	 			<div className="row p-3 text-center align-items-center border">
 	 				<div className="col-12 col-md-4">	 					
 	 					<p>Игра: {game.nameGame}</p>
-	 					{gamers.map(master=> {if(game.master === master.gamerId){
-	 						return <div key={master.id}>
+	 					{gamers.filter(master => game.master === master.gamerId)
+	 						.map(master => 
+	 						<div key={master.id}>
 		 						<p>Мастер: <Link to={`/@${master.nickname}`} target="_blank" key={master.id} className="ml-2 mr-1">{master.nickname}</Link></p>
-		 						<img className="rounded mb-2" src={master.photo} style={{height: "40px"}}/><br />
+		 						<img className="rounded mb-2" alt={master.photo} src={master.photo} style={{height: "40px"}}/><br />
 		 						<div className="btn btn-outline-warning">{master.rating}</div>
 	 						</div>
-	 					}})}
+	 					)}
 	 					
 	 				</div>
 	 				<div className="col-12 col-md-8 text-left">
 	 					<p>Дата игры: {game.DateGame}</p>
 	 					<p>Всего мест: {game.placeAll} | Свободных: {game.placeAll - game.gamersInside.length}</p>
 	 					<div className="d-flex-wrap" style={{wordWrap: "break-word"}}>Игроки: {gamers.map(player=> 
-	 						(game.gamersInside.map(gamer => 
-		 							{if (gamer === player.gamerId) 
-				 						return <Link to={`/@${player.nickname}`} key={player.id} target="_blank" className="ml-2 mr-1">{player.nickname}</Link>
-				 						}
+	 						(game.gamersInside
+	 							.filter(gamer => gamer === player.gamerId) 
+	 							.map(gamer => 
+				 					<Link to={`/@${player.nickname}`} key={player.id} target="_blank" className="ml-2 mr-1">{player.nickname}</Link>
 			 						)
 	 							)
 	 					)}

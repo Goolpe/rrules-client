@@ -31,9 +31,9 @@ class UserPageEditor extends Component {
       this.props.fetchPlayers();
     }
   render() {
-    const searchId = this.props.players.map(player=> {
-      if(player.username === this.props.match.params.nickname){
-        return (<div key={player.userId}>
+    const searchId = this.props.players.filter(player=> player.username === this.props.match.params.nickname)
+    .map(player =>
+        <div key={player.userId}>
             <div className="row mb-5 justify-content-center align-items-start">
               <div className="col-12 col-md-4 text-left mb-4"><Link to="/masters" className="text-dark"><i className="fas fa-angle-left "></i> ДРУГИЕ МАСТЕРА</Link></div>
               <div className="col-12 col-md-4 text-center" ><h1>{player.username}</h1></div>
@@ -73,9 +73,6 @@ class UserPageEditor extends Component {
                 </div>
             </div>
           </div>)
-        }
-      }
-    )
 
     const masterYoutube = this.props.players.map((player) => 
       <div className="col-12 col-md-6 mb-3" key={player.username}>
