@@ -52,9 +52,8 @@ class UserPage extends Component {
             </div>
             <div className="row">
             {player.examples.map(example => 
-              <div className="col-12 col-md-6 mb-3" key={player.username}>
+              <div className="col-12 col-md-6 mb-3" key={player.userId}>
                 <iframe
-                  title={player.userId}
                     src={example}
                     width="100%" 
                     height="340"
