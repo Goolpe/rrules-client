@@ -23,7 +23,7 @@ class MastersPage extends Component {
 	    return (
 	    	<section id="masters">
 	    		<div className="container text-center">
-					<h1 className="text-center mb-5 mt-5">ИГРОКИ</h1>
+					<h1 className="text-center mb-5 mt-5">МАСТЕРА/h1>
 					<div className="row">
 					 	{masters}
 					</div>

@@ -9,7 +9,7 @@ class UsersPage extends Component {
 		window.scrollTo(0,0);
 	}
 	render(){
-		const masters = this.props.players.map((user, index) =>
+		const users = this.props.players.map((user, index) =>
 			<div className="col-12 col-md-6 col-lg-4 mb-5" key={user.userId}>
 				<Link to={`/@${user.username}`} className="text-white">
 					<div className="wrapper"  style={ { backgroundImage: `url(${user.photo})`} }>
@@ -21,11 +21,11 @@ class UsersPage extends Component {
 			</div>
 		)	
 	    return (
-	    	<section id="masters">
+	    	<section id="users">
 	    		<div className="container text-center">
 					<h1 className="text-center mb-5 mt-5">ИГРОКИ</h1>
 					<div className="row">
-					 	{masters}
+					 	{users}
 					</div>
 				</div>
 	    	</section>
