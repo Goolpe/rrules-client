@@ -35,8 +35,8 @@ class AuthPage extends Component{
     event.preventDefault();
     const account = {
         "dateReg": this.state.dateReg,
-        "username": this.state.username,
-        "email": this.state.email,
+        "username": this.state.username.toUpperCase(),
+        "email": this.state.email.toUpperCase(),
         "password": this.state.password,
         "passwordConf" : this.state.passwordConf
          }
@@ -95,7 +95,7 @@ class AuthPage extends Component{
                 <label>Пароль</label>
                 <input type="password" value={this.state.passwordConf} onChange={this.handleChange} name="passwordConf" className="form-control" placeholder="Повторите пароль" required/>
               </div>
-              <button type="submit" className="btn btn-info w-100 p-3">Зарегистрироваться</button>
+              <button type="submit" onClick={this.checkLetters} className="btn btn-info w-100 p-3">Зарегистрироваться</button>
               
             </form>    
             <p className="mt-2 w-100">Нажимая на кнопку "Зарегистрироваться", Вы подтверждаете, что прочитали и приняли условия игры.</p>
