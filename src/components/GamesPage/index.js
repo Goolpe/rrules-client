@@ -184,7 +184,7 @@ class GamesPage extends Component {
 
 	<section id="shop">
 			<div className="container pt-5 pb-5">
-				<h1 className="text-dark text-center m-5">ИГРЫ</h1>
+				<h1 className="text-dark text-center">ИГРЫ</h1>
 				<div className="d-flex justify-content-end">
 				 <ButtonDropdown isOpen={this.state.dropdownOpen} className="mb-2" toggle={this.toggle}>
 			        <DropdownToggle caret className="btn btn-outline-info rounded-0">
