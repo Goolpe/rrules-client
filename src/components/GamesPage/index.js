@@ -49,6 +49,7 @@ class GamesPage extends Component {
 	    this.state = {
 	    	sortByDate: true,
 	    	sortByRate: false,
+	    	gamesSort: games,
 	      	dropdownOpen: false
 	    }
 
@@ -63,7 +64,7 @@ class GamesPage extends Component {
 	    window.scrollTo(0,0);
 	   }
 	 render(){
-	 	const listGames = games.map(game => 
+	 	const listGames = this.state.gamesSort.map(game => 
 	 		<div className="container mb-5" key={game.id}>
 	 			<div className="row p-3 text-center align-items-center border">
 	 				<div className="col-12 col-md-4">	 					
