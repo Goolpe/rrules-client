@@ -149,7 +149,8 @@ button
 /*Masters page*/
 
 #masters .wrapper,
-#library .wrapper
+#library .wrapper,
+#users .wrapper
 {
     height: 400px;
 
@@ -159,7 +160,8 @@ button
     box-shadow: 0 0 20px rgba(0,0,0,.5);
 }
 
-#masters .wrapper:hover .card
+#masters .wrapper:hover .card,
+#users .wrapper:hover .card
 {
     transition: .5s;
 
@@ -168,7 +170,8 @@ button
 }
 
 #masters .wrapper:hover,
-#library .wrapper:hover
+#library .wrapper:hover,
+#users .wrapper:hover
 {
     transition: .5s;
 
@@ -176,7 +179,8 @@ button
 }
 
 #masters .card,
-#library .card
+#library .card,
+#users .card
 {
     width: 100%;
     height: 100%;
@@ -187,7 +191,8 @@ button
 }
 
 #masters .text-white,
-#library .text-white
+#library .text-white,
+#users .text-white
 {
     text-decoration: none;
 }
