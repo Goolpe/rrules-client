@@ -10,11 +10,11 @@ class UsersPage extends Component {
 	}
 	render(){
 		const masters = this.props.players.map((user, index) =>
-			<div className="col-12 col-md-6 col-lg-4 mb-5" key={user.id}>
+			<div className="col-12 col-md-6 col-lg-4 mb-5" key={user.userId}>
 				<Link to={`/@${user.username}`} className="text-white">
 					<div className="wrapper"  style={ { backgroundImage: `url(${user.photo})`} }>
 						<div className="card d-flex align-items-center justify-content-center rounded-0" >
-						  <h1 style={{textShadow: 'black 0 0 20px'}}>{user.nickname.toUpperCase()}</h1>
+						  <h1 style={{textShadow: 'black 0 0 20px'}}>{user.username.toUpperCase()}</h1>
 						</div>
 					</div>
 				</Link>
