@@ -186,7 +186,7 @@ class GamesPage extends Component {
 				<h1 className="text-dark text-center m-5">ИГРЫ</h1>
 				<div className="d-flex justify-content-end">
 				 <ButtonDropdown isOpen={this.state.dropdownOpen} className="mb-2" toggle={this.toggle}>
-			        <DropdownToggle caret color="info">
+			        <DropdownToggle caret className="btn btn-outline-info rounded-0">
 			          Сортировать по: 
 			        </DropdownToggle>
 			        <DropdownMenu>

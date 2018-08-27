@@ -23,7 +23,7 @@ class UserPage extends Component {
       if(player.username === this.props.match.params.nickname){
         return (<div key={player.userId}>
             <div className="row mb-5 justify-content-center align-items-start">
-              <div className="col-12 col-md-4 text-left mb-4"><Link to="/masters" className="text-dark"><i className="fas fa-angle-left "></i> ДРУГИЕ МАСТЕРА</Link></div>
+              <div className="col-12 col-md-4 text-left mb-4"><Link to="/masters" className="text-dark"><i className="fas fa-angle-left "></i> ДРУГИЕ {player.master ? "МАСТЕРА" : "ИГРОКИ"}</Link></div>
               <div className="col-12 col-md-4 text-center"><h1>{player.username}</h1>{player.master && <p>мастер</p>}</div>
               <div  className="col-12 col-md-4 text-right">{this.state.isAuthenticated && <Link to={`/edit/@${player.username}`} className="btn btn-link bg-transparent border-0" >
                 <i className="fas fa-pen-square fa-3x text-info"></i>

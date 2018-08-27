@@ -26,7 +26,7 @@ class MastersPage extends Component {
 			</div>)}}
 		)	
 	    return (
-	    	<section id="masters">
+	    	<section id="masters" style={{minHeight: "100vh"}}>
 	    		<div className="container text-center">
 					<h1 className="text-center mb-5 mt-5">МАСТЕРА</h1>
 					<div className="row">

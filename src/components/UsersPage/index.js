@@ -25,7 +25,7 @@ class UsersPage extends Component {
 				</Link>
 			</div>)}})
 	    return (
-	    	<section id="users">
+	    	<section id="users" style={{minHeight: "100vh"}}>
 	    		<div className="container text-center">
 					<h1 className="text-center mb-5 mt-5">ИГРОКИ</h1>
 					<div className="row">
