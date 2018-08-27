@@ -22,7 +22,7 @@ class UsersPage extends Component {
 						</div>
 					</div>
 				</Link>
-			</div>)}}
+			</div>}})
 	    return (
 	    	<section id="users">
 	    		<div className="container text-center">
