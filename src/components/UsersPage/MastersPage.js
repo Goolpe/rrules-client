@@ -18,7 +18,8 @@ class MastersPage extends Component {
 				<Link to={`/@${master.username}`} className="text-white">
 					<div className="wrapper"  style={ { backgroundImage: `url(${master.photo})`} }>
 						<div className="card d-flex align-items-center justify-content-center rounded-0" >
-						  <h1 style={{textShadow: 'black 0 0 20px'}}>{master.username.toUpperCase()}</h1>
+							<div className="btn btn-secondary position-absolute" style={{top:"20px", left:"20px"}}>{master.rating}</div>
+						  	<h1 style={{textShadow: 'black 0 0 20px'}}>{master.username.toUpperCase()}</h1>
 						</div>
 					</div>
 				</Link>
