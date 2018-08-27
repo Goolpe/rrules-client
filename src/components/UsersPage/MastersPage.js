@@ -13,6 +13,7 @@ class MastersPage extends Component {
     }
 	render(){
 		const masters = this.props.players.map((master, index) =>
+			{if(master.master === true){
 			<div className="col-12 col-md-6 col-lg-4 mb-5" key={master.userId}>
 				<Link to={`/@${master.username}`} className="text-white">
 					<div className="wrapper"  style={ { backgroundImage: `url(${master.photo})`} }>
@@ -21,7 +22,7 @@ class MastersPage extends Component {
 						</div>
 					</div>
 				</Link>
-			</div>
+			</div>}}
 		)	
 	    return (
 	    	<section id="masters">
