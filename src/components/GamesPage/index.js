@@ -88,7 +88,7 @@ class GamesPage extends Component {
 	 		)
 	return (
 
-	<section id="shop">
+	<section id="gamesPage">
 			<div className="container pt-5 pb-5">
 				<h1 className="text-dark text-center">ИГРЫ</h1>
 				<div className="d-flex justify-content-end">

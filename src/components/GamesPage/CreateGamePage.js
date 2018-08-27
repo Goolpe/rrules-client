@@ -59,6 +59,7 @@ class CreateGamePage extends Component {
 			    selectedDay: ''
 			})
 			alert("Готово!")
+			
 		}
 		else{
 			return alert("Укажите правильную дату")
