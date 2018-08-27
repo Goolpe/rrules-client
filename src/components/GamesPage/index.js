@@ -63,6 +63,9 @@ class GamesPage extends Component {
 	componentDidMount() {
 	    window.scrollTo(0,0);
 	   }
+	  componentWillMount() {
+      this.props.fetchPlayers();
+    }
 	 render(){
 	 	const listGames = this.state.gamesSort.map(game => 
 	 		<div className="container mb-5" key={game.id}>
