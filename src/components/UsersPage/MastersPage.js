@@ -8,6 +8,9 @@ class MastersPage extends Component {
 	componentDidMount() {
 		window.scrollTo(0,0);
 	}
+	componentWillMount() {
+      this.props.fetchPlayers();
+    }
 	render(){
 		const masters = this.props.players.map((master, index) =>
 			<div className="col-12 col-md-6 col-lg-4 mb-5" key={master.userId}>
