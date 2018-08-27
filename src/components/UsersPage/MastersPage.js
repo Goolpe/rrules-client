@@ -12,7 +12,7 @@ class MastersPage extends Component {
       this.props.fetchPlayers();
     }
 	render(){
-		const masters = this.props.players.map((master, index) =>
+		const masters = this.props.players.map(master =>
 			{if(master.master === true){
 				return (
 			<div className="col-12 col-md-6 col-lg-4 mb-5" key={master.userId}>

@@ -13,7 +13,8 @@ class UsersPage extends Component {
     }
 	render(){
 		const users = this.props.players.map(user =>
-			{if(user.master == false){
+			{if(user.master === false){
+				return(
 			<div className="col-12 col-md-6 col-lg-4 mb-5" key={user.userId}>
 				<Link to={`/@${user.username}`} className="text-white">
 					<div className="wrapper"  style={ { backgroundImage: `url(${user.photo})`} }>
@@ -22,7 +23,7 @@ class UsersPage extends Component {
 						</div>
 					</div>
 				</Link>
-			</div>}})
+			</div>)}})
 	    return (
 	    	<section id="users">
 	    		<div className="container text-center">
