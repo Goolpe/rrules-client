@@ -9,12 +9,12 @@ class UsersPage extends Component {
 		window.scrollTo(0,0);
 	}
 	render(){
-		const masters = this.props.players.map((thing, index) =>
-			<div className="col-12 col-md-6 col-lg-4 mb-5" key={thing.id}>
-				<Link to={`/@${thing.nickname}`} className="text-white">
-					<div className="wrapper"  style={ { backgroundImage: `url(${thing.picture})`} }>
+		const masters = this.props.players.map((user, index) =>
+			<div className="col-12 col-md-6 col-lg-4 mb-5" key={user.id}>
+				<Link to={`/@${user.username}`} className="text-white">
+					<div className="wrapper"  style={ { backgroundImage: `url(${user.photo})`} }>
 						<div className="card d-flex align-items-center justify-content-center rounded-0" >
-						  <h1 style={{textShadow: 'black 0 0 20px'}}>{thing.nickname.toUpperCase()}</h1>
+						  <h1 style={{textShadow: 'black 0 0 20px'}}>{user.nickname.toUpperCase()}</h1>
 						</div>
 					</div>
 				</Link>
