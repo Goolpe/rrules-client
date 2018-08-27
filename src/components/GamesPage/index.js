@@ -155,7 +155,7 @@ class GamesPage extends Component {
 	 						<div key={master.id}>
 		 						<p>Мастер: <Link to={`/@${master.nickname}`} target="_blank" key={master.id} className="ml-2 mr-1">{master.nickname}</Link></p>
 		 						<img className="rounded mb-2" alt={master.photo} src={master.photo} style={{height: "40px"}}/><br />
-		 						<div className="btn btn-outline-warning">{master.rating}</div>
+		 						<div className="btn btn-secondary">{master.rating}</div>
 	 						</div>
 	 					)}
 	 					
