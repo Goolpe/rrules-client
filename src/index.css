@@ -269,6 +269,9 @@ footer ul{
     .keyAuth{
         text-align: center;
     }
+    #arrowUp{
+         font-size: 14px !important;
+    }
 
 
 }

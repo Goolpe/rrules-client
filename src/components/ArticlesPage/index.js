@@ -47,10 +47,18 @@ class ArticlesPage extends Component {
 		return (
 			<section id="articlesPage" style={{minHeight: "100vh"}}>	  
 				<div className="container text-right mt-5 mb-5">
-					<Link to="/new-article" className="btn btn-link bg-transparent position-absolute border-0" style={{top:"14%",left:"70%"}}>
-						<i className="fas fa-plus-circle fa-3x text-info"></i>
-					</Link>
-					<h1 className="text-center mb-5">СТАТЬИ</h1>
+					<div className="row">
+						<div className="col-3"></div>
+						<div className="col-6">
+							<h1 className="text-center mb-5">СТАТЬИ
+							</h1>
+						</div>
+						<div className="col-3">
+							<Link to="/new-article" className="btn btn-link bg-transparent border-0" >
+								<i className="fas fa-plus-circle fa-3x text-info"></i>
+							</Link>
+						</div>
+					</div>
 					<ul className="container text-left">{listItems}</ul>				
 				</div>
 			</section>
