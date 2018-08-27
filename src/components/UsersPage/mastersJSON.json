@@ -8,7 +8,7 @@
 		"otherContact": "",
 		"master": true,
 		"date": "момента создания",
-		"paidGames": true,
+		"paidGames": 	true,
 		"systems": "Dungeons & Dragons 5-й редакции.",
 		"setting": "Forgotten Realms, Ведьмак, Авторские.",
 		"examples": ["https://www.youtube.com/embed/ZjY-c5wzEwc"],

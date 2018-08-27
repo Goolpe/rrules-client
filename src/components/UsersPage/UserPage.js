@@ -20,7 +20,7 @@ class UserPage extends Component {
     }
   render() {
     const searchId = this.props.players.map(player=> {
-      if(player.username == this.props.match.params.nickname){
+      if(player.username === this.props.match.params.nickname){
         return (<div key={player.userId}>
             <div className="row mb-5 justify-content-center align-items-start">
               <div className="col-12 col-md-4 text-left mb-4"><Link to="/masters" className="text-dark"><i className="fas fa-angle-left "></i> ДРУГИЕ МАСТЕРА</Link></div>
@@ -31,7 +31,7 @@ class UserPage extends Component {
             </div>
             <div className="row">
               <div className="col-12 col-md-6 order-md-2 mb-3 text-center">
-                <img src={player.picture} className="img-fluid" style={{maxHeight: 500}} alt="" />
+                <img src={player.photo} className="img-fluid" style={{maxHeight: 500}} alt="" />
               </div>
               <div className="col-12 col-md-6">
                 <h3 className="mb-4">Рейтинг: <div className="btn btn-outline-warning">{player.rating}</div></h3>
@@ -50,30 +50,31 @@ class UserPage extends Component {
                 <h3 className="mb-4">Примеры игр</h3>
               </div>
             </div>
-          </div>)
+            <div className="row">
+            {player.examples.map(example => 
+              <div className="col-12 col-md-6 mb-3" key={player.username}>
+                <iframe
+                  title={player.userId}
+                    src={example}
+                    width="100%" 
+                    height="340"
+                    frameBorder="0"
+                    allowFullScreen>
+                </iframe>
+              </div>
+            )}
+            </div>
+          </div>
+
+          )
         }
       }
     )
 
-    const masterYoutube = this.props.players.map((player, index) => 
-      <div className="col-12 col-md-6 mb-3" key={player.username}>
-        <iframe
-          title={player.userId}
-            src={player.example}
-            width="100%" 
-            height="340"
-            frameBorder="0"
-            allowFullScreen>
-        </iframe>
-      </div>
-    )
 	  return (
   	  <section id="masterPage" style={{minHeight: "100vh"}}>	  
   	  	<div className="container mt-5 mb-5">
           {searchId}
-          <div className="row">
-            {masterYoutube}
-          </div>
       	</div>
     	</section>
 	  )

@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import mastersJSON from "./mastersJSON.json";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/postActions';
 
-class UserPage extends Component {
+class UserPageEditor extends Component {
   constructor(props){
     super(props);
     this.state ={
       pictureEdit: false,
-
+      photo: '',
+      rating: 0,
+      gamesCount: 0,
+      about: '',
+      master: false,
+      skype: '',
+      discord: '',
+      examples: [],
+      systems: '',
+      setting: '',
+      paidGames: false
     }
 
   }
@@ -23,7 +32,7 @@ class UserPage extends Component {
     }
   render() {
     const searchId = this.props.players.map(player=> {
-      if(player.username == this.props.match.params.nickname){
+      if(player.username === this.props.match.params.nickname){
         return (<div key={player.userId}>
             <div className="row mb-5 justify-content-center align-items-start">
               <div className="col-12 col-md-4 text-left mb-4"><Link to="/masters" className="text-dark"><i className="fas fa-angle-left "></i> ДРУГИЕ МАСТЕРА</Link></div>
@@ -93,7 +102,7 @@ class UserPage extends Component {
 	}
 }
 
-UserPage.propTypes = {
+UserPageEditor.propTypes = {
   fetchPlayers: PropTypes.func.isRequired,
   players: PropTypes.array.isRequired
 };
@@ -102,4 +111,4 @@ const mapStateToProps = state => ({
   players: state.players.items
 })
 
-export default connect(mapStateToProps, { fetchPlayers })(UserPage);
+export default connect(mapStateToProps, { fetchPlayers })( UserPageEditor);

@@ -73,3 +73,21 @@ export const fetchPlayers = () => dispatch => {
       })
     );
 };
+
+export const createPlayer = playerData => dispatch => {
+  fetch('https://randomrulesdb.herokuapp.com/articles',{
+      method: 'post',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+       body: JSON.stringify( playerData)
+     })
+      .then(res => res.json())
+      .then( player =>
+      dispatch({
+        type: NEW_ARTICLE,
+        payload: player
+    })
+  );
+};
