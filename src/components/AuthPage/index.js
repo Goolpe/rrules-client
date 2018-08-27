@@ -35,8 +35,8 @@ class AuthPage extends Component{
     event.preventDefault();
     const account = {
         "dateReg": this.state.dateReg,
-        "username": this.state.username.toUpperCase(),
-        "email": this.state.email.toUpperCase(),
+        "username": this.state.username,
+        "email": this.state.email,
         "password": this.state.password,
         "passwordConf" : this.state.passwordConf
          }
