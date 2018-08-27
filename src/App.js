@@ -30,6 +30,7 @@ import SupportPage from './components/SupportPage';
 import TechWorksPage from './components/TechWorksPage';
 import AuthPage from './components/AuthPage';
 import GamesPage from './components/GamesPage';
+import CreateGamePage from './components/GamesPage/CreateGamePage';
 
 import store from './components/store';
 
@@ -104,6 +105,7 @@ class App extends Component {
 			            <Route path="/support" component={SupportPage} />
 			            <Route path="/new-article" component={ArticleForm} />
 			            <Route path="/games" component={GamesPage} />
+			            <Route path="/create-game" component={CreateGamePage} />
 			            <Route path="/@:nickname" component={UserPage} />
 			            <Route path="/edit/@:nickname" component={UserPageEditor} />
 				        <PropsRoute path="/auth" component={AuthPage} auth={this.state.isAuthenticated} signout={this.signout} authenticate={this.authenticate}/>

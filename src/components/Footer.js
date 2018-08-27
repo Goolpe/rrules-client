@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import _ from "lodash";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchArticles, fetchPlayers } from './actions/postActions';
+import { fetchArticles } from './actions/postActions';
+import { fetchPlayers } from './actions/playerActions';
 
 class Footer extends Component {
 	componentWillMount() {

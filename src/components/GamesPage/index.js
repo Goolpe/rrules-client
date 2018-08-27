@@ -5,76 +5,53 @@ import _ from "lodash";
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchPlayers } from '../actions/postActions';
+import { fetchPlayers } from '../actions/playerActions';
+import { fetchGames } from '../actions/gameActions';
+import moment from 'moment';
 
-var games = [
-	{
-		"id": "1",
-		"nameGame": "Пустоши",
-		"master": "5b842107a83cf500041da1b3",
-		"masterRating":"10",
-		"placeAll": "4",
-		"gamersInside": [],
-		"DateGame": "29/08/2018 | 12:45",
-		"date":"313212321123"
-	},
-	{
-		"id": "2",
-		"nameGame": "Пустоши",
-		"master": "5b8424e8056483000462d695",
-		"masterRating":"1200",
-		"placeAll": "8",
-		"gamersInside": [],
-		"DateGame": "30/08/2018 | 12:45",
-		"date":"313212321124"
-	},
-	{
-		"id": "3",
-		"nameGame": "Пустоши",
-		"master": "5b842527056483000462d697",
-		"masterRating":"120",
-		"placeAll": "8",
-		"gamersInside": [],
-		"DateGame": "01/09/2018 | 12:45",
-		"date":"313212321125"
-	}
+var gamesSort;
 
-]
 
 class GamesPage extends Component {
 	constructor(props) {
 	    super(props);
-
 	    this.toggle = this.toggle.bind(this);
 	    this.state = {
 	    	sortByDate: true,
 	    	sortByRate: false,
-	    	gamesSort: games,
+	    	gamesSort: 'date',
 	      	dropdownOpen: false
 	    }
-
 	  }
-
-	  toggle() {
+	  componentDidMount() {
+	    window.scrollTo(0,0);
+	}
+	toggle() {
 	    this.setState({
 	      dropdownOpen: !this.state.dropdownOpen
 	    });
-	  }
-	componentDidMount() {
-	    window.scrollTo(0,0);
-	   }
-	  componentWillMount() {
+	}
+
+	componentWillMount() {
+	  this.props.fetchGames();
       this.props.fetchPlayers();
+      
     }
-	 render(){
-	 	const listGames = this.state.gamesSort.map(game => 
-	 		<div className="container mb-5" key={game.id}>
-	 			<div className="row p-3 text-center align-items-center border">
+	
+
+	 render(){ 
+
+	 	this.state.gamesSort === "date" ? gamesSort = _.sortBy(this.props.games, ['date']) :
+	 	gamesSort = _.sortBy(this.props.games, ['placeAll']	).reverse()
+
+	 	const listGames = gamesSort.map(game => 
+	 		<div className="container mb-5" key={game._id}>
+	 			<div className="row p-3 text-center align-items-start border">
 	 				<div className="col-12 col-md-4">	 					
 	 					<p>Игра: {game.nameGame}</p>
-	 					{this.props.players.filter(master => game.master === master.userId)
+	 					{this.props.players.filter(master => game.masterId === master.userId)
 	 						.map(master => 
-	 						<div key={master.id}>
+	 						<div key={master.userId}>
 		 						<p>Мастер: <Link to={`/@${master.username}`} target="_blank" key={master.userId} className="ml-2 mr-1">{master.username}</Link></p>
 		 						<img className="rounded mb-2" alt={master.photo} src={master.photo} style={{height: "40px"}}/><br />
 		 						<div className="btn btn-secondary">{master.rating}</div>
@@ -82,23 +59,30 @@ class GamesPage extends Component {
 	 					)}
 	 					
 	 				</div>
-	 				<div className="col-12 col-md-8 text-left">
-	 					<p>Дата игры: {game.DateGame}</p>
-	 					<p>Всего мест: {game.placeAll} | Свободных: {game.placeAll - game.gamersInside.length}</p>
+	 				<div className="col-12 col-md-4 text-left">
+	 					<p>Дата игры: {moment(game.date).format('lll')}</p>
+	 					<p>Всего мест: {game.placeAll} / {game.placeAll - game.gamersInsideId.length} </p>
 	 					<div className="d-flex-wrap" style={{wordWrap: "break-word"}}>Игроки: {this.props.players.map(player=> 
-	 						(game.gamersInside
+	 						(game.gamersInsideId
 	 							.filter(gamer => gamer === player.gamerId) 
 	 							.map(gamer => 
-				 					<Link to={`/@${player.nickname}`} key={player.userId} target="_blank" className="ml-2 mr-1">{player.username}</Link>
+				 					<Link to={`/@${player.username}`} key={player.userId} target="_blank" className="ml-2 mr-1">{player.username}</Link>
 			 						)
 	 							)
 	 					)}
 	 					</div>
-	 					{(game.placeAll - game.gamersInside.length) === 0 ? <Button color="danger" className="btn btn-danger mt-4 pl-5 pr-5" disabled>Нет мест</Button> 
-	 					:
-	 					<Button color="info" className="mt-4 pl-5 pr-5">Играть</Button>}
+	 					
 	 				</div>
-	 				
+	 				<div className="col-12 col-md-4 text-left">
+	 					<p>Доп. информация: {game.infoGame.length === 0 ? "нет" : game.infoGame}</p>
+
+	 				</div>
+	 				<div className="col-12 text-center">
+	 				{(game.placeAll - game.gamersInsideId.length) === 0 ? <Button color="danger" className="btn btn-danger mt-4 pl-5 pr-5" disabled>Нет мест</Button> 
+	 					:
+	 					<Button color="info" className="mt-4 pl-5 pr-5">Записаться</Button>}
+	 					<Button color="danger" className="mt-4 ml-2 pl-5 pr-5">Смотреть</Button>
+	 				</div>
 	 			</div>
 	 		</div>
 	 		)
@@ -108,19 +92,18 @@ class GamesPage extends Component {
 			<div className="container pt-5 pb-5">
 				<h1 className="text-dark text-center">ИГРЫ</h1>
 				<div className="d-flex justify-content-end">
+				<Link to="/create-game" className="btn btn-outline-info rounded-0 mb-2 mr-2">Создать игру</Link>
 				 <ButtonDropdown isOpen={this.state.dropdownOpen} className="mb-2" toggle={this.toggle}>
 			        <DropdownToggle caret className="btn btn-outline-info rounded-0">
 			          Сортировать по: 
 			        </DropdownToggle>
 			        <DropdownMenu>
-			          <DropdownItem onClick={()=>{this.setState({gamesSort : _.sortBy(games, ['date'])})}}>Дате</DropdownItem>
-			          <DropdownItem onClick={()=>{this.setState({gamesSort : _.sortBy(games, ['masterRating']).reverse()})}}>Рейтингу</DropdownItem>
-			          <DropdownItem onClick={()=>{this.setState({gamesSort : _.sortBy(games, ['placeAll']).reverse()})}}>Количеству мест</DropdownItem>
+			          <DropdownItem onClick={()=>{this.setState({gamesSort : 'date'})}}>Дате</DropdownItem>
+			          <DropdownItem onClick={()=>{this.setState({gamesSort : 'placeAll'})}}>Количеству мест</DropdownItem>
 			        </DropdownMenu>
 			      </ButtonDropdown>
 			    </div>
-
-					{listGames}
+				{listGames}
 			</div>
 		</section>
 	)
@@ -129,12 +112,16 @@ class GamesPage extends Component {
 
 GamesPage.propTypes = {
   fetchPlayers: PropTypes.func.isRequired,
-  players: PropTypes.array.isRequired
+  players: PropTypes.array.isRequired,
+  fetchGames: PropTypes.func.isRequired,
+  games: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
-  players: state.players.items
+  players: state.players.items,
+  games: state.games.items
 })
 
-export default connect(mapStateToProps, { fetchPlayers })(GamesPage);
+
+export default connect(mapStateToProps, { fetchPlayers , fetchGames })(GamesPage);
 

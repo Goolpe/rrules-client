@@ -2,16 +2,17 @@ import React, {Component} from 'react';
 import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createAccount } from '../actions/postActions';
-import { authAccount } from '../actions/postActions';
+import { createAccount, authAccount } from '../actions/authActions';
+import moment from 'moment';
 
 class AuthPage extends Component{
   constructor(props){
+    
     super(props);
     this.state = {
       loginForm: true,
       regForm: false,
-      dateReg: new Date(),
+      dateReg: moment(new Date()).format('YYYYMMDD'),
       username:'',
       email: '',
       password: '',
@@ -70,7 +71,6 @@ class AuthPage extends Component{
     window.scrollTo(0,0);
   }
   render(){	
-
       return ( <div>     
 		  <section id="login" style={{minHeight:"100vh"}}>
         <div className="container pt-5 pb-5 text-center" >

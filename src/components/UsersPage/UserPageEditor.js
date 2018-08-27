@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchPlayers } from '../actions/postActions';
+import { fetchPlayers } from '../actions/playerActions';
 
 class UserPageEditor extends Component {
   constructor(props){

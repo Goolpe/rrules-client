@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchPlayers } from '../actions/postActions';
+import { fetchPlayers } from '../actions/playerActions';
+import moment from 'moment';
 
 class UserPage extends Component {
   constructor(props){
@@ -41,7 +42,7 @@ class UserPage extends Component {
                 <span className="font-weight-bold">Skype</span> - {player.skype}<br />
                 </p>
                 <p>
-                  Водит на канале с {player.dateReg}<br />
+                  Водит на канале с {moment(player.dateReg).format('LL')}<br />
                   {player.paidGames ? "Водит" : "Не водит"} платные игры<br />
                 </p>
                 <h3 className="mb-4">О себе:</h3>

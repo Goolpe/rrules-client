@@ -3,17 +3,18 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createArticle } from '../actions/postActions';
+import moment from 'moment';
 
 class ArticleForm extends Component {
 	constructor(props){
 		super(props);
-		var dayArticle = new Date();
-		var dateNow =  dayArticle.getDate() + '/' + (dayArticle.getMonth() + 1) + '/' + dayArticle.getFullYear();
+		var dateTime = new Date();
+		var dateArticle = moment(dateTime).format('LL');  
 		this.state = {
 			title: '',
 			text: '',
-			date: dayArticle,
-			dateFor: dateNow,
+			date: dateTime,
+			dateFor: dateArticle,
 			hashtags: '',
 			picture: '',
 			status: false
