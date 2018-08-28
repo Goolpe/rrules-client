@@ -33,7 +33,7 @@ import GamesPage from './components/GamesPage';
 import CreateGamePage from './components/GamesPage/CreateGamePage';
 
 import store from './components/store';
-import 'bootstrap/dist/css/customizeBT.css';
+
 
 const renderMergedProps = (component, ...rest) => {
   const finalProps = Object.assign({}, ...rest);
