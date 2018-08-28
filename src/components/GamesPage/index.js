@@ -101,7 +101,9 @@ class GamesPage extends Component {
 			        </DropdownMenu>
 			      </ButtonDropdown>
 			    </div>
+			    <div className="container mb-5">
 				{listGames}
+				</div>
 			</div>
 		</section>
 	)
