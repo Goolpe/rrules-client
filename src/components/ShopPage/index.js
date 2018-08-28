@@ -18,7 +18,7 @@ class ShopPage extends Component {
 				    <li className="list-group-item">{thing.price}</li>
 				</ul>
 				<br />
-			    <a href={thing.url} target="_blank" className="btn btn-secondary">Заказать</a>
+			    <a href={thing.url} target="_blank" className="btn btn-info pl-5 pr-5">Заказать</a>
 			  </div>
 			</div>
 		</div>
