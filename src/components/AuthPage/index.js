@@ -99,7 +99,7 @@ class AuthPage extends Component{
               
             </form>    
             <p className="mt-2 w-100">Нажимая на кнопку "Зарегистрироваться", Вы подтверждаете, что прочитали и приняли условия игры.</p>
-            <button onClick={()=> {this.setState({regForm: false})}} className="btn btn-link nav-link m-auto mt-5">Войти в аккаунт</button>
+            <button onClick={()=> {this.setState({regForm: false})}} className="btn bg-transparent text-info m-auto mt-5">Войти в аккаунт</button>
           </div>
 
           :
@@ -122,8 +122,8 @@ class AuthPage extends Component{
             </form>  
              {this.state.redirect && <Redirect to={'/id/'}/>}  
 
-            <button onClick={()=> {this.setState({regForm: true, loginForm: true})}} className="btn btn-link nav-link m-auto mt-5">Зарегистрироваться</button>
-            <button className="btn btn-link nav-link m-auto" onClick={()=> this.setState({loginForm: false})}>Не могу войти</button>
+            <button onClick={()=> {this.setState({regForm: true, loginForm: true})}} className="btn bg-transparent text-info m-auto mt-5">Зарегистрироваться</button><br/>
+            <button className="btn bg-transparent text-info m-auto" onClick={()=> this.setState({loginForm: false})}>Не могу войти</button>
             </div>
             :
             <div>
@@ -135,8 +135,8 @@ class AuthPage extends Component{
                 </div>
                 <button type="submit" className="btn btn-info w-100 p-3">Отправить</button>
               </form>   
-              <button className="btn btn-link nav-link m-auto mt-5" onClick={()=> this.setState({loginForm: true})} >Вернуться на страницу входа</button> 
-              <button onClick={()=> {this.setState({regForm: true, loginForm: true})}} className="btn btn-link nav-link m-auto">Зарегистрироваться</button>
+              <button className="btn bg-transparent text-info m-auto mt-5" onClick={()=> this.setState({loginForm: true})} >Вернуться на страницу входа</button><br />
+              <button onClick={()=> {this.setState({regForm: true, loginForm: true})}} className="btn bg-transparent text-info m-auto">Зарегистрироваться</button>
             </div>
           }
           </div>

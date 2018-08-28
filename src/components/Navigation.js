@@ -75,7 +75,7 @@ class Navigation extends Component{
                   <DropdownItem tag={Link} onClick={this.closeNav} to="/id/:id" className="p-2 rounded-top">Профиль</DropdownItem>
                   <DropdownItem onClick={this.props.signout} className="p-2 rounded-top">Выйти</DropdownItem></span>
                 :
-                 <DropdownItem tag={Link} onClick={this.closeNav} to="/id/:id" className="p-2 rounded-top">Войти</DropdownItem>                      
+                 <DropdownItem tag={Link} onClick={this.closeNav} to="/id/:id" className="p-2 rounded-top">Авторизация</DropdownItem>                      
                 }
                 </DropdownMenu>
               </UncontrolledDropdown>
