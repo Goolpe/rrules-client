@@ -11,7 +11,6 @@ import moment from 'moment';
 
 var gamesSort;
 
-
 class GamesPage extends Component {
 	constructor(props) {
 	    super(props);
