@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 class Schedule extends Component {
 	constructor(props){
 		super(props);
-		
 		this.state={
 			now: ((new Date(2018, 7, 21, 19) - new Date())/1000)
 		}

@@ -45,7 +45,7 @@ class ArtPage extends Component{
 
   render () {
     return (
-      <div id="artpage" style={{minHeight:"100vh"}}>
+      <section id="artpage" style={{minHeight:"100vh"}}>
        {this.state.bigPicture && 
         <div className="blackBG" style={{marginTop: "-85px"}}>
           <div className="row text-center text-white" style={{height: "100%"}}>
@@ -85,7 +85,7 @@ class ArtPage extends Component{
           </div>
            
         </div>
-      </div>
+      </section>
     )
   }
 }

@@ -9,7 +9,7 @@ class ShopPage extends Component {
 	 render(){
 	const listItems = shop.map((thing) =>
 		<div className="col-12 col-md-4" key={thing.id}>
-			<div className="card text-center">
+			<div className="card text-center border-0 shadow-sm ">
 			  <img className="card-img-top" src={thing.picture} alt={thing.title} />
 			  <div className="card-body">
 			    <h5 className="card-title">{thing.title}</h5>

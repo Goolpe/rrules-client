@@ -9,6 +9,10 @@ body
     letter-spacing: 1px;
 }
 
+section{
+        background-color: #f4f4f4;
+}
+
 @font-face
 {
     font-family: Albertusfont;

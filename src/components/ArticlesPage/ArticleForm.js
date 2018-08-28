@@ -50,7 +50,7 @@ class ArticleForm extends Component {
   render() {
 	  return (
 	  	<section id="articleform" style={{minHeight: "100vh"}}>	 
-		  	<div className="container text-right mt-5 mb-5">
+		  	<div className="container text-right pt-5 pb-5">
 		  		<div className="row">
 					<div className="col-3"></div>
 					<div className="col-6">

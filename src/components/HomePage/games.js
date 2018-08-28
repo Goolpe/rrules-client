@@ -12,37 +12,24 @@ import moment from 'moment';
 var gamesSort;
 
 
-class GamesPage extends Component {
+class Games extends Component {
 	constructor(props) {
 	    super(props);
-	    this.toggle = this.toggle.bind(this);
 	    this.state = {
-	    	sortByDate: true,
-	    	sortByRate: false,
-	    	gamesSort: 'date',
 	      	dropdownOpen: false
 	    }
 	  }
 	  componentDidMount() {
 	    window.scrollTo(0,0);
 	}
-	toggle() {
-	    this.setState({
-	      dropdownOpen: !this.state.dropdownOpen
-	    });
-	}
 
 	componentWillMount() {
 	  this.props.fetchGames();
-      this.props.fetchPlayers();
-      
+      this.props.fetchPlayers(); 
     }
-	
 
 	 render(){ 
-
-	 	this.state.gamesSort === "date" ? gamesSort = _.sortBy(this.props.games, ['date']) :
-	 	gamesSort = _.sortBy(this.props.games, ['placeAll']	).reverse()
+	 	let gamesSort = _.sortBy(this.props.games, ['date'])
 
 	 	const listGames = gamesSort.map(game => 
 	 		<div className="container mb-5" key={game._id}>
@@ -85,32 +72,21 @@ class GamesPage extends Component {
 	 				</div>
 	 			</div>
 	 		</div>
-	 		)
+	 		).slice(0,2)
 	return (
 
 	<section id="gamesPage">
-			<div className="container pt-5 pb-5">
-				<h1 className="text-dark text-center">ИГРЫ</h1>
-				<div className="d-flex justify-content-end">
-				<Link to="/create-game" className="btn btn-outline-info rounded-0 mb-2 mr-2">Создать игру</Link>
-				 <ButtonDropdown isOpen={this.state.dropdownOpen} className="mb-2" toggle={this.toggle}>
-			        <DropdownToggle caret className="btn btn-outline-info rounded-0">
-			          Сортировать по: 
-			        </DropdownToggle>
-			        <DropdownMenu>
-			          <DropdownItem onClick={()=>{this.setState({gamesSort : 'date'})}}>Дате</DropdownItem>
-			          <DropdownItem onClick={()=>{this.setState({gamesSort : 'placeAll'})}}>Количеству мест</DropdownItem>
-			        </DropdownMenu>
-			      </ButtonDropdown>
-			    </div>
+			<div className="container pt-5 pb-5 text-center">
+				<h1 className="text-dark mb-5">БЛИЖАЙШИЕ ИГРЫ</h1>
 				{listGames}
+				<Link to="/games" className="btn btn-info p-3 mb-2 mr-2">Посмотреть все игры</Link>
 			</div>
 		</section>
 	)
 	}
 }
 
-GamesPage.propTypes = {
+Games.propTypes = {
   fetchPlayers: PropTypes.func.isRequired,
   players: PropTypes.array.isRequired,
   fetchGames: PropTypes.func.isRequired,
@@ -123,5 +99,5 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { fetchPlayers , fetchGames })(GamesPage);
+export default connect(mapStateToProps, { fetchPlayers , fetchGames })(Games);
 

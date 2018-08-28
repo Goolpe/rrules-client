@@ -23,7 +23,7 @@ class ArticlesPage extends Component {
 	render() {		
 		let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
 	  	const listItems = articleSort.map((article, index) =>
-	    	<div className="card mb-5" key={article._id}>
+	    	<div className="card mb-5 border-0 shadow-sm" key={article._id}>
 			  	<div className="card-body">
 			  		<div className="row">
 			  			<div className="col-12 col-md-3 mb-3">
@@ -46,7 +46,7 @@ class ArticlesPage extends Component {
 		)
 		return (
 			<section id="articlesPage" style={{minHeight: "100vh"}}>	  
-				<div className="container text-right mt-5 mb-5">
+				<div className="container text-right pt-5 pb-5">
 					<div className="row">
 						<div className="col-3"></div>
 						<div className="col-6">

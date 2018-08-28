@@ -19,7 +19,7 @@ class LibraryPage extends Component{
       </div>
     )
     return (
-    	<section id="library" className='mt-5 mb-5' style={{minHeight:"100vh"}}>
+    	<section id="library" className='pt-5 pb-5' style={{minHeight:"100vh"}}>
         <h1 className="text-center mb-5">БИБЛИОТЕКА</h1>
         <div className="container">
           <div className="row">
