@@ -81,11 +81,11 @@ class AuthPage extends Component{
             <form onSubmit={this.handleRegistration}  style={{maxWidth:"400px", margin: "auto"}}>
              <div className="form-group">
                 <label >Username</label>
-                <input type="text" value={this.state.username} onChange={this.handleChange} name="username" className="form-control" aria-describedby="emailHelp" placeholder="Введите ник" required/>
+                <input type="text" value={this.state.username} onChange={this.handleChange} name="username" className="form-control" placeholder="Введите ник" required/>
               </div>
               <div className="form-group">
                 <label >Email</label>
-                <input type="email" value={this.state.email} onChange={this.handleChange} name="email" className="form-control" aria-describedby="emailHelp" placeholder="Введите email" required/>
+                <input type="email" value={this.state.email} onChange={this.handleChange} name="email" className="form-control" placeholder="Введите email" required/>
               </div>
               <div className="form-group">
                 <label>Пароль</label>
@@ -98,7 +98,7 @@ class AuthPage extends Component{
               <button type="submit" onClick={this.checkLetters} className="btn btn-info w-100 p-3">Зарегистрироваться</button>
               
             </form>    
-            <p className="mt-2 w-100">Нажимая на кнопку "Зарегистрироваться", Вы подтверждаете, что прочитали и приняли условия игры.</p>
+            <p className="mt-3 w-100">Нажимая на кнопку "Зарегистрироваться", Вы подтверждаете, что прочитали и приняли условия игры.</p>
             <button onClick={()=> {this.setState({regForm: false})}} className="btn bg-transparent text-info m-auto mt-5">Войти в аккаунт</button>
           </div>
 
@@ -112,7 +112,7 @@ class AuthPage extends Component{
             <form onSubmit={this.handleAuth} style={{maxWidth:"400px", margin: "auto"}}>
               <div className="form-group text-left">
                 <label>Email</label>
-                <input type="email" value={this.state.logemail} onChange={this.handleChange} name="logemail" className="form-control" aria-describedby="emailHelp" placeholder="Введите email" required/>
+                <input type="email" value={this.state.logemail} onChange={this.handleChange} name="logemail" className="form-control" placeholder="Введите email" required/>
               </div>
               <div className="form-group text-left">
                 <label>Пароль</label>
@@ -120,7 +120,7 @@ class AuthPage extends Component{
               </div>
               <button className="btn btn-info w-100 p-3" type="submit" >Войти</button>
             </form>  
-             {this.state.redirect && <Redirect to={'/id/'}/>}  
+             {this.state.redirect && <Redirect to={`/@${this.state.username}`}/>}  
 
             <button onClick={()=> {this.setState({regForm: true, loginForm: true})}} className="btn bg-transparent text-info m-auto mt-5">Зарегистрироваться</button><br/>
             <button className="btn bg-transparent text-info m-auto" onClick={()=> this.setState({loginForm: false})}>Не могу войти</button>
@@ -130,8 +130,8 @@ class AuthPage extends Component{
               <h1 className="text-center mb-5">ОТПРАВИТЬ ДАННЫЕ ДЛЯ ВХОДА</h1>
               <form style={{maxWidth:"400px", margin: "auto"}}>
                 <div className="form-group">
-                  <label className="text-left" value={this.state.logemail} onChange={this.handleChange} name="logemail">Email</label>
-                  <input type="email" className="form-control" aria-describedby="emailHelp" placeholder="Введите email" required/>
+                  <label className="text-left"  name="logemail">Email</label>
+                  <input type="email" value={this.state.logemail} onChange={this.handleChange} className="form-control" placeholder="Введите email" required/>
                 </div>
                 <button type="submit" className="btn btn-info w-100 p-3">Отправить</button>
               </form>   

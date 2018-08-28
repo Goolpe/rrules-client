@@ -46,7 +46,7 @@ class GamesPage extends Component {
 	 	const listGames = gamesSort.map(game => 
 	 		
 	 			<div className="row pt-3 pb-3 text-left align-items-start mb-4 bg-white shadow-sm" key={game._id}>
-	 				<div className="col-12 col-md-4">	 					
+	 				<div className="col-12 col-md-2">	 					
 	 					<p>Игра: {game.nameGame}</p>
 	 					{this.props.players.filter(master => game.masterId === master.userId)
 	 						.map(master => 
@@ -58,7 +58,7 @@ class GamesPage extends Component {
 	 					)}
 	 					
 	 				</div>
-	 				<div className="col-12 col-md-4">
+	 				<div className="col-12 col-md-6">
 	 					<p>Дата игры: {moment(game.date).format('lll')}</p>
 	 					<p>Всего мест: {game.placeAll} / {game.placeAll - game.gamersInsideId.length} </p>
 	 					<div className="d-flex-wrap" style={{wordWrap: "break-word"}}>Игроки: {this.props.players.map(player=> 
