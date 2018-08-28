@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CarouselBlock from './carousel';
-import Articles from './articles';
+import Videos from './videos';
 import Schedule from './schedule';
 import Games from './games';
 import Arts from './arts';
@@ -19,7 +19,7 @@ class HomePage extends Component {
     return (
     	<div>
         <CarouselBlock />
-  			<Articles />
+  			<Videos />
   			<Schedule className="pt-5"/>
         <Games />
   			<Arts />

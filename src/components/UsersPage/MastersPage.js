@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
+import Rating from 'react-rating';
 
 class MastersPage extends Component {
 	constructor(props) {
@@ -47,7 +48,7 @@ class MastersPage extends Component {
 		 							<p className="m-0">{master.username}</p>
 		 						</div>
 		 						<div className="col-12 col-md-4">
-		 							<p className="m-0">Рейтинг: {master.rating}</p>
+		 							<Rating  emptySymbol="far fa-star text-warning fa-1x"  initialRating={master.rating} fullSymbol="fas fa-star text-warning fa-1x" fractions={2} readonly/>
 		 						</div>
 		 						<div className="col-12 col-md-4">
 		 							<p className="m-0">Количество игр: {master.gamesCount}</p>
@@ -59,7 +60,7 @@ class MastersPage extends Component {
 	    return (
 	    	<section id="masters" style={{minHeight: "100vh"}}>
 	    		<div className="container text-center">
-					<h1 className="text-center pt-5 pb-2">МАСТЕРА</h1>
+					<h1 className="text-center pt-5 pb-2">МАСТЕРА КАНАЛА</h1>
 					<div className="d-flex justify-content-end align-items-center pb-2">
 						<p className="m-0">Вид:</p>
 						<button className="btn bg-transparent ml-2" onClick={()=>this.setState({viewList: false})}><i className={this.state.viewList ? "text-dark fas fa-th-large fa-2x" : "text-info fas fa-th-large fa-2x"}></i></button>

@@ -6,19 +6,19 @@ function Arts (props){
 		id:1,
 		url: "https://pp.userapi.com/c846522/v846522612/2cc67/Tpri9nQ03dM.jpg",
 		link: "/art",
-		name: "АРТ"
+		name: "ФАНАРТ"
 	},
 	{
 		id:2,
 		url: "https://pp.userapi.com/c841234/v841234068/248de/-NbfkIst47I.jpg",
 		link: "/masters",
-		name: "РЕЗЮМЕ МАСТЕРОВ"
+		name: "МАСТЕРА КАНАЛА"
 	},
 	{
 		id:3,
 		url: "https://pp.userapi.com/c844321/v844321415/d617/VvyY4yxfLQc.jpg",
 		link: "/articles",
-		name: "СТАТЬИ"
+		name: "НОВОСТИ"
 	},
 	{
 		id:4,

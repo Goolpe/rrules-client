@@ -141,6 +141,12 @@ class AuthPage extends Component{
           }
           </div>
            }
+          <p className="w-50 mx-auto mt-4 mb-4" style={{ borderBottom: '1px solid #dddede', lineHeight: '0.1em'}}><span style={{color:'#6c757d', background:'#f4f4f4'}}>или</span></p> 
+          <div className="row m-auto w-50 justify-content-center">
+            <i className="fab fa-vk fa-2x mr-3 ml-3 text-muted"></i>
+            <i className="fab fa-facebook fa-2x mr-3 ml-3 text-muted"></i>
+            <i className="fab fa-google fa-2x mr-3 ml-3 text-muted"></i>
+          </div>
         </div>
       </section>
       </div>

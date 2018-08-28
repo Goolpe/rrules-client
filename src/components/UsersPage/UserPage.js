@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
 import moment from 'moment';
+import Rating from 'react-rating';
 
 class UserPage extends Component {
   constructor(props){
@@ -36,7 +37,8 @@ class UserPage extends Component {
                 <img src={player.photo} className="img-fluid" style={{maxHeight: 500}} alt="" />
               </div>
               <div className="col-12 col-md-6">
-                <h3 className="mb-4">Рейтинг: <div className="btn btn-outline-warning">{player.rating}</div></h3>
+                <h3>{player.dateBirth}</h3>
+                <h3 className="mb-4"> <Rating  emptySymbol="far fa-star text-warning fa-1x"  initialRating={player.rating} fullSymbol="fas fa-star text-warning fa-1x" fractions={2} readonly/></h3>
                 <h3 className="mb-4">Контакты:</h3>
                 <p><span className="font-weight-bold">Discord</span> - {player.discord}<br />
                 <span className="font-weight-bold">Skype</span> - {player.skype}<br />

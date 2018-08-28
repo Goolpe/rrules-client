@@ -1,28 +1,15 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import _ from "lodash";
 import {
   Carousel,
   CarouselItem,
   CarouselControl,
   CarouselIndicators
 } from 'reactstrap';
-
-const items = [
-  {
-    src: 'headerBG.jpg',
-    altText: 'Slide 1',
-    caption: 'Slide 1'
-  },
-  {
-    src: 'headerBG2.jpg',
-    altText: 'Slide 2',
-    caption: 'Slide 2'
-  },
-  {
-    src: 'headerBG3.jpg',
-    altText: 'Slide 3',
-    caption: 'Slide 3'
-  }
-];
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchArticles } from '../actions/postActions';
 
 class CarouselBlock extends Component {
   constructor(props){
@@ -43,13 +30,13 @@ class CarouselBlock extends Component {
   }
   next() {
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === items.length - 1 ? 0 : this.state.activeIndex + 1;
+    const nextIndex = this.state.activeIndex === 3 - 1 ? 0 : this.state.activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
   }
 
   previous() {
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === 0 ? items.length - 1 : this.state.activeIndex - 1;
+    const nextIndex = this.state.activeIndex === 0 ? 3 - 1 : this.state.activeIndex - 1;
     this.setState({ activeIndex: nextIndex });
   }
 
@@ -60,26 +47,41 @@ class CarouselBlock extends Component {
   componentDidMount() {
     this.setState({ activeIndex: 0 });
   }
-  
+  componentWillMount() {
+      this.props.fetchArticles();
+    }
   render(){
+    let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
+
   	const { activeIndex } = this.state;
 
-    const slides = items.map((item) => 
+    const slides = articleSort.map((article, index)=>
         <CarouselItem
-
+          key={article._id}
           onExiting={this.onExiting}
           onExited={this.onExited}
-          key={item.src}
         >
-          <img src={item.src} style={{width:"100%"}} alt={item.altText} />
+            <div className="container pt-5">
+              <div className="row text-white">
+                <div className="col-6">
+                  <p>{article.dateFor}</p>
+                  <h1>{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
+                  <p>{article.text.length > 600 ? article.text.slice(0,600) + "..." : article.text}</p>
+                  <Link to={`/article/${article._id}`} className="btn btn-info mt-2">Читать дальше</Link>
+                </div>
+                <div className="col-6 text-center">
+                  <img style={{backgroundSize: "contain", height:"500px"}} src={article.picture} />
+                </div>
+                
+              </div>
+            </div>
         </CarouselItem>
-      )
+      ).slice(0,3);
     return (
     	<div>
         <div id="headerCarousel" className="d-none d-md-block bg-dark">
 	    	  <Carousel	activeIndex={activeIndex}	next={this.next} previous={this.previous}	interval="3000">
-		        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
-		        {slides}
+		       {slides}
 		        <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
 		        <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
 	      	</Carousel>
@@ -88,4 +90,13 @@ class CarouselBlock extends Component {
     )
   }
 }
-export default CarouselBlock;
+CarouselBlock.propTypes = {
+  fetchArticles: PropTypes.func.isRequired,
+  articles: PropTypes.array.isRequired
+};
+
+const mapStateToProps = state => ({
+  articles: state.articles.items
+})
+
+export default connect(mapStateToProps, { fetchArticles })(CarouselBlock);

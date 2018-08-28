@@ -36,10 +36,7 @@ class Schedule extends Component {
 	    	<div className="container pt-5 pb-5  text-center">
 				<h1 className="text-white m-5">РАСПИСАНИЕ СТРИМОВ</h1>
 				<img src="shedule.jpg" className="img-fluid mb-5" alt="" />
-		    	<div id="nextGame" className=" text-center text-white">
-		    		<h1>ДО СЛЕДУЮЩЕЙ ИГРЫ ОСТАЛОСЬ:</h1><br /> 
-		    		<h2  className="display-4">0 дней</h2>
-		    		<br />
+		    	<div id="nextGame" className=" text-center text-white">	
 					<div className="row ">
 						<div className="col-12 col-md-4 mb-3 order-md-1">
 							<Link to="/streams"><i className="fab fa-youtube text-danger fa-2x"> YOUTUBE</i></Link>

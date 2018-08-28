@@ -34,10 +34,8 @@ class GamesPage extends Component {
 	componentWillMount() {
 	  this.props.fetchGames();
       this.props.fetchPlayers();
-      
     }
 	
-
 	 render(){ 
 
 	 	this.state.gamesSort === "date" ? gamesSort = _.sortBy(this.props.games, ['date']) :
@@ -59,8 +57,8 @@ class GamesPage extends Component {
 	 					
 	 				</div>
 	 				<div className="col-12 col-md-6">
-	 					<p>Дата игры: {moment(game.date).format('lll')}</p>
-	 					<p>Всего мест: {game.placeAll} / {game.placeAll - game.gamersInsideId.length} </p>
+	 					<p>Дата игры: {moment(game.from).format('lll')} - {moment(game.to).format('lll')}</p>
+	 					<p>Всего мест: {game.placeAll - game.gamersInsideId.length} / {game.placeAll}</p>
 	 					<div className="d-flex-wrap" style={{wordWrap: "break-word"}}>Игроки: {this.props.players.map(player=> 
 	 						(game.gamersInsideId
 	 							.filter(gamer => gamer === player.gamerId) 
@@ -86,7 +84,7 @@ class GamesPage extends Component {
 	 		)
 	return (
 
-	<section id="gamesPage">
+	<section id="gamesPage" style={{minHeight:"100vh"}}>
 			<div className="container pt-5 pb-5 p-0">
 				<h1 className="text-dark text-center">ИГРЫ</h1>
 				<div className="d-flex justify-content-end w-100">

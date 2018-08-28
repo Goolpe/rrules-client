@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
-import 'react-day-picker/lib/style.css';
+import moment from 'moment';
+import 'moment/locale/ru'
 import MomentLocaleUtils, {
   formatDate,
   parseDate,
 } from 'react-day-picker/moment';
-import 'moment/locale/ru';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';
 
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -17,21 +18,39 @@ class CreateGamePage extends Component {
 		super(props);
 		this.state = {
 			nameGame: '',
+			typeOnline: true,
 		    masterId: '',
+		    cityGame:'',
+		    priceGame:'',
 		    placeAll: '',
 		    gamersInsideId: [],
 		    infoGame: '',
-		    selectedDay: ''
+		    from: undefined,
+      		to: undefined
 		}
-		this.handleDayChange = this.handleDayChange.bind(this);
+		this.handleFromChange = this.handleFromChange.bind(this);
+   		this.handleToChange = this.handleToChange.bind(this);
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 	} 
-  handleDayChange(selectedDay, modifiers) {
-    this.setState({
-      selectedDay
-    });
+
+    showFromMonth() {
+    const { from, to } = this.state;
+    if (!from) {
+      return;
+    }
+    if (moment(to).diff(moment(from), 'months') < 2) {
+      this.to.getDayPicker().showMonth(from);
+    }
   }
+  handleFromChange(from) {
+    // Change the from date and focus the "to" input field
+    this.setState({ from });
+  }
+  handleToChange(to) {
+    this.setState({ to }, this.showFromMonth);
+  }
+
 	componentDidMount() {
 	    window.scrollTo(0,0);
 	}
@@ -41,22 +60,28 @@ class CreateGamePage extends Component {
 	}
 	onSubmit(e){
 		e.preventDefault();
-
-		if(this.state.selectedDay > new Date()){
+		if(this.state.from > new Date() && Date.parse(this.state.from) < Date.parse(this.state.to)){
 			const game = {
 				nameGame: this.state.nameGame,
+				cityGame: this.state.cityGame,
 			    masterId: this.state.masterId,
+			    priceGame: this.state.priceGame,
+			    typeOnline: this.state.typeOnline,
 			    placeAll: this.state.placeAll,
 			    gamersInsideId: this.state.gamersInsideId,
-			    date: this.state.selectedDay,
-			    infoGame: this.state.infoGame
+			    from: this.state.from,
+			    to: this.state.to
 		     }
 			this.props.createGame(game);
 			this.setState({
 				nameGame: '',
+				cityGame: '',
+				priceGame:'',
 			    placeAll: '',
+			    typeOnline: true,
 			    infoGame: '',
-			    selectedDay: ''
+			    from: '',
+			    to: ''
 			})
 			alert("Готово!")
 			
@@ -67,7 +92,8 @@ class CreateGamePage extends Component {
 		
 	}
   render() {
-  	const { selectedDay } = this.state;
+   	const { from, to } = this.state;
+    const modifiers = { start: from, end: to };
 	  return (
 	  	<section id="createGame" style={{minHeight: "100vh"}}>
 			<div className="container pt-5 pb-5">
@@ -79,28 +105,64 @@ class CreateGamePage extends Component {
 			    </div>
 			    <div className="container mb-5">
 		 			<div className="row p-3 align-items-begin bg-white shadow-sm">
-		 				<div className="col-12 col-md-4">
+		 				<div className="col-12">
 		 					<label className="mr-2">Название: </label>
 		 					<input type="text" value={this.state.nameGame} onChange={this.onChange} name="nameGame" placeholder="" required/><br />
-		 					<label className="mr-2">Дата игры: </label>
-		 					<DayPickerInput
-						        formatDate={formatDate}
-						        parseDate={parseDate}
-						        format="LLL"
-						        placeholder={`${formatDate(new Date(), 'LLL', 'ru')}`}
-						        onDayChange={this.handleDayChange}
-						        dayPickerProps={{
-						          	locale: 'ru',
-						          	localeUtils: MomentLocaleUtils,
-						          	selectedDays: selectedDay
-						        }}
-						      />
-
-		 					<label className="mr-2">Количество мест: </label>
-		 					<input type="number" min="1" max="20" value={this.state.placeAll} onChange={this.onChange} name="placeAll" placeholder="" required/>
-		 				</div> 
-		 				<div className="col-12 col-md-8">
-		 					<label>Доп. информация:</label>
+		 					<label className="mr-2 mt-3">Дата и время игры: </label>
+		 					 <DayPickerInput
+					          value={from}
+					          placeholder="Начало"
+					          format="LLL"
+					          formatDate={formatDate}
+					          parseDate={parseDate}
+					          dayPickerProps={{
+					            selectedDays: [from, { from, to }],
+					            disabledDays: { after: to },
+					            toMonth: to,
+					            modifiers,
+					            locale: 'ru',
+					            localeUtils: MomentLocaleUtils,
+					            numberOfMonths: 2,
+					            onDayClick: () => this.to.getInput().focus(),
+					          }}
+					          onDayChange={this.handleFromChange}
+					        />{' '}
+					        —{' '}
+					          <DayPickerInput
+					            ref={el => (this.to = el)}
+					            value={to}
+					            placeholder="Конец"
+					            format="LLL"
+					            formatDate={formatDate}
+					            parseDate={parseDate}
+					            dayPickerProps={{
+					              selectedDays: [from, { from, to }],
+					              disabledDays: { before: from },
+					              modifiers,
+					              locale: 'ru',
+					              localeUtils: MomentLocaleUtils,
+					              month: from,
+					              fromMonth: from,
+					              numberOfMonths: 2,
+					            }}
+					            onDayChange={this.handleToChange}
+					          />
+					        <br />
+					        <label className="mr-2 mt-3">Тип игры: </label>
+					        <input className="mr-2" type="radio" name="typeOnline" onChange={this.onChange} value={true} />Online <input className="mr-2" onChange={this.onChange} type="radio" name="typeOnline" value={false} />IRL <br />
+		 					{this.state.typeOnline === "false"  &&
+		 						<div>
+		 							<label className="mr-2 mt-3">Место проведения: </label>
+		 							<input type="string" value={this.state.cityGame} style={{width:"100%"}} onChange={this.onChange} name="cityGame" placeholder=""/><br />
+		 						</div> 
+		 					}
+		 					<div>
+		 						<label className="mr-2 mt-3">Стоимость: </label>
+		 						<input type="string" value={this.state.priceGame} onChange={this.onChange} name="priceGame" placeholder=""/><br />
+		 					</div> 
+		 					<label className="mr-2 mt-3">Количество мест: </label>
+		 					<input type="number" min="1" max="20" value={this.state.placeAll} onChange={this.onChange} name="placeAll" placeholder="" required/><br />
+		 					<label className="mt-3">Доп. информация:</label>
 		 					<textarea type="text" value={this.state.infoGame} style={{resize: "both", width: "100%", minHeight: "200px"}} onChange={this.onChange} name="infoGame" placeholder="" />
 		 				</div> 	
 		 			</div>	

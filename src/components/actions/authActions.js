@@ -1,7 +1,7 @@
 import { NEW_ACCOUNT, AUTH_ACCOUNT } from './types';
 
 export const createAccount = accountData => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/users',{
+  fetch('https://localhost:8080/signup',{
       method: 'post',
       headers: {
         'Accept': 'application/json, text/plain, */*',
@@ -18,7 +18,7 @@ export const createAccount = accountData => dispatch => {
 };
 
 export const authAccount = accountData => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/users',{
+  fetch('https://localhost:8080/login',{
       method: 'post',
       headers: {
         'Accept': 'application/json, text/plain, */*',

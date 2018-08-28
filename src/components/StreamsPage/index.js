@@ -5,8 +5,8 @@ import Channels from './Channels';
 function StreamsPage(props){
 	return (
 		<div>
-		  	<Channels />
 			<Schedule />
+		  	<Channels />
 		</div>
 	)
 }

@@ -33,10 +33,10 @@ class Footer extends Component {
     						<li><Link to="/" >Главная</Link></li>
     						<li><Link to="/about-project">О проекте</Link></li>
     						<li><Link to="/library">Библиотека</Link></li>
-    						<li><Link to="/masters">Резюме мастеров</Link></li>
-    						<li><Link to="/art">Арт</Link></li>
+    						<li><Link to="/masters">Мастера канала</Link></li>
+    						<li><Link to="/art">Фанарт</Link></li>
     						<li><Link to="/streams">Стримы</Link></li>
-    						<li><Link to="/articles">Статьи</Link></li>
+    						<li><Link to="/articles">Новости</Link></li>
     						<li><Link to="/shop">Магазин</Link></li>
     					</ul>
     				</div>
