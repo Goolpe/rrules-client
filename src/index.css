@@ -173,6 +173,15 @@ button
     box-shadow: 0 0 0 rgba(0,0,0,0);
 }
 
+.userCard{
+    background-color: #fff
+}
+
+.userCard:hover{
+    background-color: #587ea2;
+    color:#fff
+}
+
 #masters .wrapper:hover,
 #library .wrapper:hover,
 #users .wrapper:hover
@@ -194,9 +203,9 @@ button
     background: transparent;
 }
 
-#masters .text-white,
+#masters a,
 #library .text-white,
-#users .text-white
+#users a
 {
     text-decoration: none;
 }

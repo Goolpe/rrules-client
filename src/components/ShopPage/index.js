@@ -11,13 +11,14 @@ class ShopPage extends Component {
 		<div className="col-12 col-md-4" key={thing.id}>
 			<div className="card text-center border-0 shadow-sm ">
 			  <img className="card-img-top" src={thing.picture} alt={thing.title} />
+			  <i className="fas fa-external-link-alt text-dark position-absolute fa-2x" style={{top:"5%",left:"85%"}}></i>
 			  <div className="card-body">
 			    <h5 className="card-title">{thing.title}</h5>
 			    <ul className="list-group list-group-flush">
 				    <li className="list-group-item">{thing.price}</li>
 				</ul>
 				<br />
-			    <a href="#home" className="btn btn-secondary">Заказать</a>
+			    <a href={thing.url} target="_blank" className="btn btn-secondary">Заказать</a>
 			  </div>
 			</div>
 		</div>

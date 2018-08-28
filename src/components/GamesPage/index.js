@@ -44,8 +44,8 @@ class GamesPage extends Component {
 	 	gamesSort = _.sortBy(this.props.games, ['placeAll']	).reverse()
 
 	 	const listGames = gamesSort.map(game => 
-	 		<div className="container mb-5" key={game._id}>
-	 			<div className="row p-3 text-center align-items-start bg-white shadow-sm">
+	 		
+	 			<div className="row pt-3 pb-3 text-left align-items-start mb-4 bg-white shadow-sm" key={game._id}>
 	 				<div className="col-12 col-md-4">	 					
 	 					<p>Игра: {game.nameGame}</p>
 	 					{this.props.players.filter(master => game.masterId === master.userId)
@@ -58,7 +58,7 @@ class GamesPage extends Component {
 	 					)}
 	 					
 	 				</div>
-	 				<div className="col-12 col-md-4 text-left">
+	 				<div className="col-12 col-md-4">
 	 					<p>Дата игры: {moment(game.date).format('lll')}</p>
 	 					<p>Всего мест: {game.placeAll} / {game.placeAll - game.gamersInsideId.length} </p>
 	 					<div className="d-flex-wrap" style={{wordWrap: "break-word"}}>Игроки: {this.props.players.map(player=> 
@@ -72,7 +72,7 @@ class GamesPage extends Component {
 	 					</div>
 	 					
 	 				</div>
-	 				<div className="col-12 col-md-4 text-left">
+	 				<div className="col-12 col-md-4">
 	 					<p>Доп. информация: {game.infoGame.length === 0 ? "нет" : game.infoGame}</p>
 
 	 				</div>
@@ -83,14 +83,13 @@ class GamesPage extends Component {
 	 					<Button color="danger" className="mt-3 ml-1 mr-1 pl-5 pr-5">Смотреть</Button>
 	 				</div>
 	 			</div>
-	 		</div>
 	 		)
 	return (
 
 	<section id="gamesPage">
-			<div className="container pt-5 pb-5">
+			<div className="container pt-5 pb-5 p-0">
 				<h1 className="text-dark text-center">ИГРЫ</h1>
-				<div className="d-flex justify-content-end">
+				<div className="d-flex justify-content-end w-100">
 				<Link to="/create-game" className="btn btn-outline-info rounded-0 mb-2 mr-2">Создать игру</Link>
 				 <ButtonDropdown isOpen={this.state.dropdownOpen} className="mb-2" toggle={this.toggle}>
 			        <DropdownToggle caret className="btn btn-outline-info rounded-0">

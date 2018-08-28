@@ -69,11 +69,11 @@ class UserPage extends Component {
           )
 
 	  return (
-  	  <section id="masterPage" style={{minHeight: "100vh"}}>	  
-  	  	<div className="container mt-5 mb-5">
+  	  <div id="userPage" style={{minHeight: "100vh"}}>	  
+  	  	<div className="container pt-5 pb-5">
           {searchId}
       	</div>
-    	</section>
+    	</div>
 	  )
 	}
 }
