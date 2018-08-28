@@ -77,7 +77,7 @@ class CarouselBlock extends Component {
       )
     return (
     	<div>
-        <div id="headerCarousel" className="bg-dark">
+        <div id="headerCarousel" className="d-none d-md-block bg-dark">
 	    	  <Carousel	activeIndex={activeIndex}	next={this.next}	previous={this.previous}	interval="3000">
 		        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
 		        {slides}
