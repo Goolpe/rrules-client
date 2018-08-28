@@ -44,7 +44,7 @@ class MastersPage extends Component {
 	 					<Link to={`/@${master.username}`} className="text-dark ">	
 		 					<div className="row p-3 text-left align-items-start userCard mb-4 shadow-sm">
 		 						<div className="col-12 col-md-4">
-		 							<p className="m-0">Мастер: {master.username}</p>
+		 							<p className="m-0">{master.username}</p>
 		 						</div>
 		 						<div className="col-12 col-md-4">
 		 							<p className="m-0">Рейтинг: {master.rating}</p>
