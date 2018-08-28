@@ -66,6 +66,7 @@ class CreateGamePage extends Component {
 				cityGame: this.state.cityGame,
 			    masterId: this.state.masterId,
 			    priceGame: this.state.priceGame,
+			    infoGame: this.state.infoGame,
 			    typeOnline: this.state.typeOnline,
 			    placeAll: this.state.placeAll,
 			    gamersInsideId: this.state.gamersInsideId,
