@@ -78,7 +78,7 @@ class CreateGamePage extends Component {
 					<Link to="/games" className="btn btn-outline-info rounded-0 mb-2">Выйти из редактора</Link>
 			    </div>
 			    <div className="container mb-5">
-		 			<div className="row p-3 align-items-begin border">
+		 			<div className="row p-3 align-items-begin bg-white shadow-sm">
 		 				<div className="col-12 col-md-4">
 		 					<label className="mr-2">Название: </label>
 		 					<input type="text" value={this.state.nameGame} onChange={this.onChange} name="nameGame" placeholder="" required/><br />
