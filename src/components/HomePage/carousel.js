@@ -41,7 +41,6 @@ class CarouselBlock extends Component {
   onExited() {
     this.animating = false;
   }
-
   next() {
     if (this.animating) return;
     const nextIndex = this.state.activeIndex === items.length - 1 ? 0 : this.state.activeIndex + 1;
@@ -78,7 +77,7 @@ class CarouselBlock extends Component {
     return (
     	<div>
         <div id="headerCarousel" className="d-none d-md-block bg-dark">
-	    	  <Carousel	activeIndex={activeIndex}	next={this.next}	previous={this.previous}	interval="3000">
+	    	  <Carousel	activeIndex={activeIndex}	next={this.next} previous={this.previous}	interval="3000">
 		        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
 		        {slides}
 		        <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
