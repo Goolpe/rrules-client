@@ -4,8 +4,7 @@ import _ from "lodash";
 import {
   Carousel,
   CarouselItem,
-  CarouselControl,
-  CarouselIndicators
+  CarouselControl
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -61,25 +60,24 @@ class CarouselBlock extends Component {
           onExiting={this.onExiting}
           onExited={this.onExited}
         >
-            <div className="container pt-5">
-              <div className="row text-white">
-                <div className="col-6">
+            <div className="container pt-5 pb-5">
+              <div className="row text-white text-justify justify-content-between">
+                <div className="col-12 col-md-6">
                   <p>{article.dateFor}</p>
                   <h1>{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
                   <p>{article.text.length > 600 ? article.text.slice(0,600) + "..." : article.text}</p>
                   <Link to={`/article/${article._id}`} className="btn btn-info mt-2">Читать дальше</Link>
                 </div>
-                <div className="col-6 text-center">
-                  <img style={{backgroundSize: "contain", height:"500px"}} src={article.picture} />
+                <div className="d-none d-md-block">
+                  <img alt={article.title} style={{backgroundSize: "contain", height:"500px"}} src={article.picture} />
                 </div>
-                
               </div>
             </div>
         </CarouselItem>
       ).slice(0,3);
     return (
     	<div>
-        <div id="headerCarousel" className="d-none d-md-block bg-dark">
+        <div id="headerCarousel" className=" bg-dark">
 	    	  <Carousel	activeIndex={activeIndex}	next={this.next} previous={this.previous}	interval="3000">
 		       {slides}
 		        <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />

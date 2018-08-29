@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import shop from "./shop.json"
 
-
 class ShopPage extends Component {
 	componentDidMount() {
 	    window.scrollTo(0,0);
 	  }
 	 render(){
 	const listItems = shop.map((thing) =>
-		<div className="col-12 col-md-4" key={thing.id}>
+		<div className="col-12 col-md-4 mb-4" key={thing.id}>
 			<div className="card text-center border-0 shadow-sm ">
 			  <img className="card-img-top" src={thing.picture} alt={thing.title} />
 			  <i className="fas fa-external-link-alt text-dark position-absolute fa-2x" style={{top:"5%",left:"85%"}}></i>

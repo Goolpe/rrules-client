@@ -18,13 +18,14 @@ class CreateGamePage extends Component {
 		super(props);
 		this.state = {
 			nameGame: '',
-			typeOnline: true,
+			selectedOption: 'sortByTypeOnline',
 		    masterId: '',
 		    cityGame:'',
 		    priceGame:'',
 		    placeAll: '',
 		    gamersInsideId: [],
 		    infoGame: '',
+		    placeGame:'',
 		    from: undefined,
       		to: undefined
 		}
@@ -60,14 +61,15 @@ class CreateGamePage extends Component {
 	}
 	onSubmit(e){
 		e.preventDefault();
-		if(this.state.from > new Date() && Date.parse(this.state.from) < Date.parse(this.state.to)){
+		if(Date.parse(this.state.from) > Date.parse(new Date()) && Date.parse(this.state.from) < Date.parse(this.state.to)){
 			const game = {
 				nameGame: this.state.nameGame,
 				cityGame: this.state.cityGame,
 			    masterId: this.state.masterId,
+			    placeGame: this.state.placeGame,
 			    priceGame: this.state.priceGame,
 			    infoGame: this.state.infoGame,
-			    typeOnline: this.state.typeOnline,
+			    selectedOption: this.state.selectedOption,
 			    placeAll: this.state.placeAll,
 			    gamersInsideId: this.state.gamersInsideId,
 			    from: this.state.from,
@@ -79,8 +81,9 @@ class CreateGamePage extends Component {
 				cityGame: '',
 				priceGame:'',
 			    placeAll: '',
-			    typeOnline: true,
+			    selectedOption: 'sortByTypeOnline',
 			    infoGame: '',
+			    placeGame: '',
 			    from: '',
 			    to: ''
 			})
@@ -95,6 +98,7 @@ class CreateGamePage extends Component {
   render() {
    	const { from, to } = this.state;
     const modifiers = { start: from, end: to };
+
 	  return (
 	  	<section id="createGame" style={{minHeight: "100vh"}}>
 			<div className="container pt-5 pb-5">
@@ -110,7 +114,7 @@ class CreateGamePage extends Component {
 		 					<label className="mr-2">Название: </label>
 		 					<input type="text" value={this.state.nameGame} onChange={this.onChange} name="nameGame" placeholder="" required/><br />
 		 					<label className="mr-2 mt-3">Дата и время игры: </label>
-		 					 <DayPickerInput
+		 					<DayPickerInput
 					          value={from}
 					          placeholder="Начало"
 					          format="LLL"
@@ -123,8 +127,11 @@ class CreateGamePage extends Component {
 					            modifiers,
 					            locale: 'ru',
 					            localeUtils: MomentLocaleUtils,
-					            numberOfMonths: 2,
+					            numberOfMonths: 1,
+					            disabledDays:{
+							          before: new Date() },
 					            onDayClick: () => this.to.getInput().focus(),
+					            
 					          }}
 					          onDayChange={this.handleFromChange}
 					        />{' '}
@@ -144,17 +151,23 @@ class CreateGamePage extends Component {
 					              localeUtils: MomentLocaleUtils,
 					              month: from,
 					              fromMonth: from,
-					              numberOfMonths: 2,
+					              numberOfMonths: 1,
+					              disabledDays:{
+							          before: new Date() },
+							      onDayClick: () => this.to.getInput().focus()
 					            }}
 					            onDayChange={this.handleToChange}
 					          />
 					        <br />
 					        <label className="mr-2 mt-3">Тип игры: </label>
-					        <input className="mr-2" type="radio" name="typeOnline" onChange={this.onChange} value={true} />Online <input className="mr-2" onChange={this.onChange} type="radio" name="typeOnline" value={false} />IRL <br />
-		 					{this.state.typeOnline === "false"  &&
+					        <input type="radio" value="sortByTypeOnline" onChange={()=>{this.setState({selectedOption: 'sortByTypeOnline'})}} checked={this.state.selectedOption === 'sortByTypeOnline'} id="radio10"/><label className="pl-2 mr-2" htmlFor="radio10"> Online </label>
+					        <input type="radio" value="sortByTypeIRL" onChange={()=>{this.setState({selectedOption: 'sortByTypeIRL'})}} checked={this.state.selectedOption === 'sortByTypeIRL'} id="radio11"/><label className="pl-2" htmlFor="radio11"> IRL </label>
+					        {this.state.selectedOption === "sortByTypeIRL"  &&
 		 						<div>
-		 							<label className="mr-2 mt-3">Место проведения: </label>
-		 							<input type="string" value={this.state.cityGame} style={{width:"100%"}} onChange={this.onChange} name="cityGame" placeholder=""/><br />
+		 							<label className="mr-2 mt-3">Город: </label>
+		 							<input type="string" value={this.state.cityGame} style={{width:"50%"}} onChange={this.onChange} name="cityGame" placeholder=""/><br/>
+		 							<label className="mr-2 mt-3">Место провидения: </label>
+		 							<input type="string" value={this.state.placeGame} style={{width:"50%"}} onChange={this.onChange} name="placeGame" placeholder=""/>
 		 						</div> 
 		 					}
 		 					<div>

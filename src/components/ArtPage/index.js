@@ -71,7 +71,7 @@ class ArtPage extends Component{
           </div>
         </div>}
 
-        <h1 className="text-center pt-5 mb-5">ФАНАРТ</h1>
+        <h1 className="text-center pt-5 mb-5">ФАН-АРТ</h1>
         <div className="container">
           <div className="row">
             {this.state.pictures.map((img, index) => 

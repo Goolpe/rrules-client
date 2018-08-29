@@ -33,7 +33,6 @@ class UsersPage extends Component {
 				<Link to={`/@${user.username}`} className="text-white">
 					<div className="wrapper bg-white"  style={ { backgroundImage: `url(${user.photo})`} }>
 						<div className="card d-flex align-items-center justify-content-center rounded-0" >
-							<div className="btn btn-secondary position-absolute" style={{top:"20px", left:"20px"}}>{user.rating}</div>
 						  	<h1 style={{textShadow: 'black 0 0 20px'}}>{user.username.toUpperCase()}</h1>
 						</div>
 					</div>

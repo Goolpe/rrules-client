@@ -6,7 +6,7 @@ function Arts (props){
 		id:1,
 		url: "https://pp.userapi.com/c846522/v846522612/2cc67/Tpri9nQ03dM.jpg",
 		link: "/art",
-		name: "ФАНАРТ"
+		name: "ФАН-АРТ"
 	},
 	{
 		id:2,

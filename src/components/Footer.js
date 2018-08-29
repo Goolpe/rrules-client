@@ -34,7 +34,7 @@ class Footer extends Component {
     						<li><Link to="/about-project">О проекте</Link></li>
     						<li><Link to="/library">Библиотека</Link></li>
     						<li><Link to="/masters">Мастера канала</Link></li>
-    						<li><Link to="/art">Фанарт</Link></li>
+    						<li><Link to="/art">Фан-арт</Link></li>
     						<li><Link to="/streams">Стримы</Link></li>
     						<li><Link to="/articles">Новости</Link></li>
     						<li><Link to="/shop">Магазин</Link></li>

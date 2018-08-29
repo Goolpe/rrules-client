@@ -25,48 +25,44 @@ class Games extends Component {
     }
 
 	 render(){ 
-	 	let gamesSort = _.sortBy(this.props.games, ['date'])
+	 	let gamesSort = _.sortBy(this.props.games, ['from'])
 
 	 	const listGames = gamesSort.map(game => 
-	 		<div className="container mb-5" key={game._id}>
-	 			<div className="row p-3 text-left align-items-start bg-white shadow-sm">
-	 				<div className="col-12 col-md-2">	 					
-	 					<p>Игра: {game.nameGame}</p>
-	 					{this.props.players.filter(master => game.masterId === master.userId)
-	 						.map(master => 
-	 						<div key={master.userId}>
-		 						<p>Мастер: <Link to={`/@${master.username}`} target="_blank" key={master.userId} className="ml-2 mr-1">{master.username}</Link></p>
-		 						<img className="rounded mb-2" alt={master.photo} src={master.photo} style={{height: "40px"}}/><br />
-		 						<div className="btn btn-secondary">{master.rating}</div>
-	 						</div>
-	 					)}
-	 					
-	 				</div>
-	 				<div className="col-12 col-md-6">
-	 					<p>Дата игры: {moment(game.date).format('lll')}</p>
-	 					<p>Всего мест: {game.placeAll} / {game.placeAll - game.gamersInsideId.length} </p>
-	 					<div className="d-flex-wrap" style={{wordWrap: "break-word"}}>Игроки: {this.props.players.map(player=> 
-	 						(game.gamersInsideId
-	 							.filter(gamer => gamer === player.gamerId) 
-	 							.map(gamer => 
-				 					<Link to={`/@${player.username}`} key={player.userId} target="_blank" className="ml-2 mr-1">{player.username}</Link>
-			 						)
-	 							)
-	 					)}
-	 					</div>
-	 					
-	 				</div>
-	 				<div className="col-12 col-md-4">
-	 					<p>Доп. информация: {game.infoGame.length === 0 ? "нет" : game.infoGame}</p>
-
-	 				</div>
-	 				<div className="col-12 text-center">
-	 				{(game.placeAll - game.gamersInsideId.length) === 0 ? <Button color="danger" className="btn btn-danger mt-4 pl-5 pr-5" disabled>Нет мест</Button> 
+	 		<div className="p-3 mb-4 bg-white text-left shadow-sm" key={game._id}>
+	 			<div className="row">
+					<div className="col-12 col-md-3">
+						<p>Игра: {game.nameGame}</p>
+						<p>Мастер: </p>
+						<p>Рейтинг:</p>
+						{(game.placeAll - game.gamersInsideId.length) === 0 ? <Button color="danger" className="btn btn-danger mt-4 pl-5 pr-5" disabled>Нет мест</Button> 
 	 					:
-	 					<Button color="info" className="mt-3 pl-5 mr-1 ml-1 pr-5">Записаться</Button>}
-	 					<Button color="danger" className="mt-3 ml-1 mr-1 pl-5 pr-5">Смотреть</Button>
-	 				</div>
-	 			</div>
+	 					<Button color="info" className="pl-5 mr-1 ml-1 pr-5">Записаться</Button>}
+					</div>
+					<div className="col-12 col-md-9">
+						{this.props.players.filter(master => game.masterId === master.userId)
+ 						.map(master => 
+ 						<div key={master.userId}>
+	 						<p>Мастер: <Link to={`/@${master.username}`} target="_blank" key={master.userId} className="ml-2 mr-1">{master.username}</Link></p>
+	 						<img className="rounded mb-2" alt={master.photo} src={master.photo} style={{height: "40px"}}/><br />
+	 						<div className="btn btn-secondary">{master.rating}</div>
+ 						</div>
+ 					)}
+ 					<p>Дата и время игры: {moment(game.from).format('lll')}</p>
+ 					<p>Тип игры: {game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}
+ 					 {game.selectedOption === "sortByTypeIRL" && <span className="ml-3">Город: {game.cityGame}</span>}</p>
+ 					<p className="d-flex-wrap" style={{wordWrap: "break-word"}}>Всего мест: {game.placeAll - game.gamersInsideId.length} / {game.placeAll}
+ 					<span className="ml-4">Игроки: {this.props.players.map(player=> 
+ 						(game.gamersInsideId
+ 							.filter(gamer => gamer === player.gamerId) 
+ 							.map(gamer => 
+			 					<Link to={`/@${player.username}`} key={player.userId} target="_blank" className="ml-2 mr-1">{player.username}</Link>
+		 						)
+ 							)
+ 					)}</span>
+ 					</p>
+ 					<p>Доп. информация: {game.infoGame.length === 0 ? "нет" : game.infoGame}</p>
+					</div>
+				</div>	
 	 		</div>
 	 		).slice(0,2)
 	return (

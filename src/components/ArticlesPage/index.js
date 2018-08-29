@@ -23,7 +23,7 @@ class ArticlesPage extends Component {
 	render() {		
 		let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
 	  	const listItems = articleSort.map((article, index) =>
-	    	<div className="card mb-5 border-0 shadow-sm" key={article._id}>
+	    	<div className="card text-justify mb-5 border-0 shadow-sm" key={article._id}>
 			  	<div className="card-body">
 			  		<div className="row">
 			  			<div className="col-12 col-md-3 mb-3">
@@ -59,7 +59,7 @@ class ArticlesPage extends Component {
 							</Link>
 						</div>
 					</div>
-					<ul className="container text-left">{listItems}</ul>				
+					<ul>{listItems}</ul>				
 				</div>
 			</section>
 		)
