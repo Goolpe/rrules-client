@@ -1,11 +1,11 @@
 import React from 'react';
-import Schedule from '../HomePage/schedule';
+import SchedulePage from './SchedulePage';
 import Channels from './Channels';
 
 function StreamsPage(props){
 	return (
 		<div>
-			<Schedule />
+			<SchedulePage />
 		  	<Channels />
 		</div>
 	)
