@@ -36,21 +36,20 @@ class CreateGamePage extends Component {
 	} 
 
     showFromMonth() {
-    const { from, to } = this.state;
-    if (!from) {
-      return;
-    }
-    if (moment(to).diff(moment(from), 'months') < 2) {
-      this.to.getDayPicker().showMonth(from);
-    }
-  }
-  handleFromChange(from) {
-    // Change the from date and focus the "to" input field
-    this.setState({ from });
-  }
-  handleToChange(to) {
-    this.setState({ to }, this.showFromMonth);
-  }
+    	const { from, to } = this.state;
+	    if (!from) {
+	      return;
+	    }
+	    if (moment(to).diff(moment(from), 'months') < 2) {
+	      this.to.getDayPicker().showMonth(from);
+	    }
+	}
+	handleFromChange(from) {
+		this.setState({ from });
+	}
+	handleToChange(to) {
+		this.setState({ to }, this.showFromMonth);
+	}
 
 	componentDidMount() {
 	    window.scrollTo(0,0);
@@ -88,12 +87,10 @@ class CreateGamePage extends Component {
 			    to: ''
 			})
 			alert("Готово!")
-			
 		}
 		else{
 			return alert("Укажите правильную дату")
 		}
-		
 	}
   render() {
    	const { from, to } = this.state;

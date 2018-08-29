@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import MomentLocaleUtils from 'react-day-picker/moment';

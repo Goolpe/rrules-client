@@ -19,7 +19,7 @@ class AboutPage extends Component {
     return (
     	<section id="aboutPage" style={{minHeight:"100vh"}}>
     		<div className="container pt-5 pb-5">
-	    		<h1 className="text-center m-5">О ПРОЕКТЕ</h1>
+	    		<h1 className="text-center mb-5">О ПРОЕКТЕ</h1>
 	    		<Button color="secondary" id="toggler1" className="p-4 mb-3 w-100 text-left text-uppercase">
 			      - Что такое настольные ролевые игры?
 			    </Button>
