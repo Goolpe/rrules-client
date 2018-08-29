@@ -69,7 +69,7 @@ class CarouselBlock extends Component {
                   <Link to={`/article/${article._id}`} className="btn btn-info mt-2">Читать дальше</Link>
                 </div>
                 <div className="col-12 col-md-6">
-                  <img alt={article.title} style={{backgroundSize: "contain", height:"500px"}} src={article.picture} />
+                  <img alt={article.title} style={{backgroundSize: "contain", height:"400px"}} src={article.picture} />
                 </div>
               </div>
             </div>
