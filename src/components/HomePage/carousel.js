@@ -68,7 +68,7 @@ class CarouselBlock extends Component {
                   <p className="text-justify">{article.text.length > 600 ? article.text.slice(0,600) + "..." : article.text}</p>
                   <Link to={`/article/${article._id}`} className="btn btn-info mt-2">Читать дальше</Link>
                 </div>
-                <div className="d-none d-md-block">
+                <div className="col-12 col-md-6">
                   <img alt={article.title} style={{backgroundSize: "contain", height:"500px"}} src={article.picture} />
                 </div>
               </div>
