@@ -51,7 +51,7 @@ class SchedulePage extends Component {
     return (
     	<section id="schedule">
 	    	<div className="container pt-5 pb-5 text-center">
-				<h1 className="text-white m-5">РАСПИСАНИЕ СТРИМОВ</h1>
+				<h1 className="text-white mb-5">РАСПИСАНИЕ СТРИМОВ</h1>
 				<DayPicker className="bg-dark text-white mb-5" localeUtils={MomentLocaleUtils} locale="ru" numberOfMonths={3}  modifiers={modifiers} modifiersStyles={modifiersStyles}/>
 	   		</div>
 	    </section> 
