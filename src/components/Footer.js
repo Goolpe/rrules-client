@@ -20,7 +20,7 @@ class Footer extends Component {
 	  		<li key={article._id} className="mt-1 mb-1"><Link to={`/article/${article._id}`}>{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</Link></li>
 	  	).slice(0,7);
         const mastersRating = mastersSort.map(master =>
-                    <li key={master.userId}><Link to={`/@${master.username}`}>{master.username}</Link> - {master.rating}</li>
+                    <Link  key={master.userId} to={`/@${master.username}`}><li><i className="fas fa-star text-warning fa-1x"></i> - {master.rating}  - {master.username}</li></Link>
             ).slice(0,8)
     return (
     	<footer>
@@ -65,7 +65,7 @@ class Footer extends Component {
 						<p className="text-white">&copy; Copyright 2018 | Random Rules | Все права защищены</p>
 					</div>
 					<div className="col-12 col-md-6 text-center">
-						<Link to="/support" className="btn btn-danger pl-5 pr-5">ПОДДЕРЖАТЬ ПРОЕКТ</Link>
+						<Link to="/support" className="btn btn-danger pl-3 pr-3">ПОДДЕРЖАТЬ ПРОЕКТ</Link>
 					</div>
 				</div>
 			</div>

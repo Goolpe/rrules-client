@@ -122,14 +122,12 @@ class CreateGamePage extends Component {
 					          parseDate={parseDate}
 					          dayPickerProps={{
 					            selectedDays: [from, { from, to }],
-					            disabledDays: { after: to },
+					            disabledDays: { before: new Date(), after: this.state.to  },
 					            toMonth: to,
 					            modifiers,
 					            locale: 'ru',
 					            localeUtils: MomentLocaleUtils,
 					            numberOfMonths: 1,
-					            disabledDays:{
-							          before: new Date() },
 					            onDayClick: () => this.to.getInput().focus(),
 					            
 					          }}
@@ -145,15 +143,13 @@ class CreateGamePage extends Component {
 					            parseDate={parseDate}
 					            dayPickerProps={{
 					              selectedDays: [from, { from, to }],
-					              disabledDays: { before: from },
+					              disabledDays: { before: this.state.from || new Date()},
 					              modifiers,
 					              locale: 'ru',
 					              localeUtils: MomentLocaleUtils,
 					              month: from,
 					              fromMonth: from,
 					              numberOfMonths: 1,
-					              disabledDays:{
-							          before: new Date() },
 							      onDayClick: () => this.to.getInput().focus()
 					            }}
 					            onDayChange={this.handleToChange}

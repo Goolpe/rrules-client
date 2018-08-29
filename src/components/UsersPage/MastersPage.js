@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import _ from "lodash";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
@@ -26,7 +27,9 @@ class MastersPage extends Component {
       this.props.fetchPlayers();
     }
 	render(){
-		const mastersView = this.props.players.filter(master =>	master.master === true)
+		var mastersSort = _.sortBy(this.props.players, ['rating']).reverse()
+
+		const mastersView = mastersSort.filter(master =>	master.master === true)
 		.map(master => 
 				<div className="col-12 col-md-6 col-lg-4 mb-5" key={master.userId}>
 					<Link to={`/@${master.username}`} className="text-white">
@@ -38,7 +41,7 @@ class MastersPage extends Component {
 					</Link>
 				</div>
 				)
-		const mastersList = this.props.players.filter(master =>	master.master === true)
+		const mastersList = mastersSort.filter(master =>	master.master === true)
 		.map(master => 
 	 				<div className="col-12" key={master.userId}>
 	 					<Link to={`/@${master.username}`} className="text-dark ">	

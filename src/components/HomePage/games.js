@@ -29,14 +29,12 @@ class Games extends Component {
 
 	 	const listGames = gamesSort.map(game => 
 	 		<div className="p-3 mb-4 bg-white text-left shadow-sm" key={game._id}>
-	 			<div className="row">
+	 			<div className="row justify-content-center">
 					<div className="col-12 col-md-3">
 						<p>Игра: {game.nameGame}</p>
 						<p>Мастер: </p>
 						<p>Рейтинг:</p>
-						{(game.placeAll - game.gamersInsideId.length) === 0 ? <Button color="danger" className="btn btn-danger mt-4 pl-5 pr-5" disabled>Нет мест</Button> 
-	 					:
-	 					<Button color="info" className="pl-5 mr-1 ml-1 pr-5">Записаться</Button>}
+						
 					</div>
 					<div className="col-12 col-md-9">
 						{this.props.players.filter(master => game.masterId === master.userId)
@@ -62,6 +60,9 @@ class Games extends Component {
  					</p>
  					<p>Доп. информация: {game.infoGame.length === 0 ? "нет" : game.infoGame}</p>
 					</div>
+					{(game.placeAll - game.gamersInsideId.length) === 0 ? <Button color="danger" className="btn btn-danger mt-4 pl-5 pr-5" disabled>Нет мест</Button> 
+	 					:
+	 					<Button color="info" className="pl-5 mr-1 ml-1 pr-5">Записаться</Button>}
 				</div>	
 	 		</div>
 	 		).slice(0,2)

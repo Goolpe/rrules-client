@@ -45,7 +45,7 @@ class Schedule extends Component {
 							<Link to="/streams"><i className="fab fa-twitch text-info fa-2x"> TWITCH</i></Link>
 						</div>
 						<div className="col-12 col-md-4 mb-3 order-md-2">
-							<a className="btn btn-outline-secondary p-3">ПОДПИСАТЬСЯ НА ОБНОВЛЕНИЯ</a>
+							<a className="btn btn-outline-secondary p-3">ПОДПИСАТЬСЯ</a>
 						</div>
 					</div>
 		   		</div>
