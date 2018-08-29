@@ -63,7 +63,7 @@ class CarouselBlock extends Component {
             <div className="container pt-5 pb-5">
               <div className="row text-white text-center justify-content-between">
                 <div className="col-12 col-md-6">
-                  <p>{article.dateFor}</p>
+                  <p className="text-left">{article.dateFor}</p>
                   <h1>{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
                   <p className="text-justify">{article.text.length > 600 ? article.text.slice(0,600) + "..." : article.text}</p>
                   <Link to={`/article/${article._id}`} className="btn btn-info mt-2">Читать дальше</Link>
