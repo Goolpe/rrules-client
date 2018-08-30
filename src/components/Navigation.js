@@ -20,7 +20,8 @@ class Navigation extends Component{
     this.toggle = this.toggle.bind(this);
     this.closeNav = this.closeNav.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      isAuthenticated: true
     };
   }
   toggle() {
@@ -69,10 +70,13 @@ class Navigation extends Component{
               <UncontrolledDropdown nav inNavbar className="keyAuth">
                 <DropdownToggle className="text-white ml-2" nav><i className={this.props.auth ? "fas fa-user-circle fa-2x" : "fab fa-expeditedssl fa-2x"}></i></DropdownToggle>
                 <DropdownMenu  className="p-0">
-                {this.props.auth ?
+                {this.state.isAuthenticated === true ?
                   <span>
-                  <DropdownItem tag={Link} onClick={this.closeNav} to="/id/:id" className="p-2 rounded-top">Профиль</DropdownItem>
-                  <DropdownItem onClick={this.props.signout} className="p-2 rounded-top">Выйти</DropdownItem></span>
+                    <DropdownItem tag={Link} onClick={this.closeNav} to="/@Nate" className="p-2 rounded-top">Мой профиль</DropdownItem>
+                    <DropdownItem tag={Link} onClick={this.closeNav} to="/edit/@Nate" className="p-2 rounded-top">Настройки</DropdownItem>
+                    <hr className="m-0"/>
+                    <DropdownItem onClick={this.props.signout} className="p-2 rounded-top">Выйти</DropdownItem>
+                  </span>
                 :
                  <DropdownItem tag={Link} onClick={this.closeNav} to="/id/:id" className="p-2 rounded-top">Авторизация</DropdownItem>                      
                 }

@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { createAccount, authAccount } from '../actions/authActions';
-import moment from 'moment';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import classnames from 'classnames';
+import moment from 'moment';
 
 class AuthPage extends Component{
   constructor(props){ 
