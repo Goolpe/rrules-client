@@ -165,7 +165,7 @@ class CreateGamePage extends Component {
 		 						<div>
 		 							<label className="mr-2 mt-3">Город: </label>
 		 							<input type="string" value={this.state.cityGame} style={{width:"50%"}} onChange={this.onChange} name="cityGame" placeholder=""/><br/>
-		 							<label className="mr-2 mt-3">Место провидения: </label>
+		 							<label className="mr-2 mt-3">Место проведения: </label>
 		 							<input type="string" value={this.state.placeGame} style={{width:"50%"}} onChange={this.onChange} name="placeGame" placeholder=""/>
 		 						</div> 
 		 					}
