@@ -26,6 +26,7 @@ import UsersPage from './components/UsersPage';
 import UserPage from './components/UsersPage/UserPage';
 import UserPageEditor from './components/UsersPage/UserPageEditor';
 
+import AgreementPage from './components/AgreementPage';
 import SupportPage from './components/SupportPage';
 import TechWorksPage from './components/TechWorksPage';
 import AuthPage from './components/AuthPage';
@@ -104,6 +105,7 @@ class App extends Component {
 			            <Route path="/masters" component={MastersPage} />
 			            <Route path="/support" component={SupportPage} />
 			            <Route path="/new-article" component={ArticleForm} />
+			            <Route path="/agreement" component={AgreementPage} />
 			            <Route path="/games" component={GamesPage} />
 			            <Route path="/create-game" component={CreateGamePage} />
 			            <Route path="/@:nickname" component={UserPage} />
