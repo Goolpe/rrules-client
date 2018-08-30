@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card } from 'reactstrap';
 import fetchJsonp from 'fetch-jsonp';
+import LazyLoad from 'react-lazy-load';
 
 class ArtPage extends Component{
  	constructor (props) {
@@ -75,12 +76,17 @@ class ArtPage extends Component{
         <div className="container">
           <div className="row">
             {this.state.pictures.map((img, index) => 
+              
               <div className="col-12 col-md-6 col-lg-4 mb-4" key={img.id}>
+                <LazyLoad height={480}>
                 <Card style = {{height : "400px"}}>
                   <button onClick={()=>{
                   this.setState({ bigPicture: true, selectedIndex: index })}} className="text-center border-0" title={img.text}  style={{ height:"100%", backgroundPosition: "top", backgroundImage: `url(${img.photo_604})` }}></button>
-                </Card>           
+                </Card>  
+                </LazyLoad>         
               </div>
+              
+
               )}
           </div>
            

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
 class AgreementPage extends Component {
-
+	componentDidMount() {
+		window.scrollTo(0,0);
+	}
   render() {
     return (
     	<section id="agreement" style={{minHeight: "100vh"}}>
