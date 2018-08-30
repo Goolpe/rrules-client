@@ -153,8 +153,14 @@ class CreateGamePage extends Component {
 					          />
 					        <br />
 					        <label className="mr-2 mt-3">Тип игры: </label>
-					        <input type="radio" value="sortByTypeOnline" onChange={()=>{this.setState({selectedOption: 'sortByTypeOnline'})}} checked={this.state.selectedOption === 'sortByTypeOnline'} id="radio10"/><label className="pl-2 mr-2" htmlFor="radio10"> Online </label>
-					        <input type="radio" value="sortByTypeIRL" onChange={()=>{this.setState({selectedOption: 'sortByTypeIRL'})}} checked={this.state.selectedOption === 'sortByTypeIRL'} id="radio11"/><label className="pl-2" htmlFor="radio11"> IRL </label>
+					        <div className="custom-control custom-radio mb-2">
+							    <input type="radio" className="custom-control-input" value="sortByTypeOnline" onChange={()=>{this.setState({selectedOption: 'sortByTypeOnline'})}} checked={this.state.selectedOption === 'sortByTypeOnline'} id="radio1" />
+							    <label className="custom-control-label" htmlFor="radio1">Online</label>
+							</div>
+							<div className="custom-control custom-radio mb-2">
+							    <input type="radio" className="custom-control-input" value="sortByTypeIRL" onChange={()=>{this.setState({selectedOption: 'sortByTypeIRL'})}} checked={this.state.selectedOption === 'sortByTypeIRL'} id="radio2" />
+							    <label className="custom-control-label" htmlFor="radio2">IRL</label>
+							</div>
 					        {this.state.selectedOption === "sortByTypeIRL"  &&
 		 						<div>
 		 							<label className="mr-2 mt-3">Город: </label>

@@ -200,10 +200,19 @@ class GamesPage extends Component {
 					          /><br />
 {/*type of the games*/}
 					      <label className="mr-2 mt-3">Тип игры: </label><br/>
-					      	<input type="radio" value="sortByTypeAll" onChange={()=>{this.setState({selectedOption: 'sortByTypeAll'})}} checked={this.state.selectedOption === 'sortByTypeAll'} id="radio0"/><label className="pl-2" htmlFor="radio0"> Все </label><br/>
-					      	<input type="radio" value="sortByTypeOnline" onChange={()=>{this.setState({selectedOption: 'sortByTypeOnline'})}} checked={this.state.selectedOption === 'sortByTypeOnline'} id="radio1"/><label className="pl-2" htmlFor="radio1"> Online </label><br/>
-					      	<input type="radio" value="sortByTypeIRL" onChange={()=>{this.setState({selectedOption: 'sortByTypeIRL'})}} checked={this.state.selectedOption === 'sortByTypeIRL'} id="radio2"/><label className="pl-2" htmlFor="radio2"> IRL </label><br/>
-					        {this.state.selectedOption === "sortByTypeIRL"  &&
+					      	<div className="custom-control custom-radio mb-2">
+							    <input type="radio" className="custom-control-input" value="sortByTypeAll" onChange={()=>{this.setState({selectedOption: 'sortByTypeAll'})}} checked={this.state.selectedOption === 'sortByTypeAll'} id="radio0" />
+							    <label className="custom-control-label" htmlFor="radio0">Все</label>
+							</div>
+							<div className="custom-control custom-radio mb-2">
+							    <input type="radio" className="custom-control-input" value="sortByTypeOnline" onChange={()=>{this.setState({selectedOption: 'sortByTypeOnline'})}} checked={this.state.selectedOption === 'sortByTypeOnline'} id="radio1" />
+							    <label className="custom-control-label" htmlFor="radio1">Online</label>
+							</div>
+							<div className="custom-control custom-radio mb-2">
+							    <input type="radio" className="custom-control-input" value="sortByTypeIRL" onChange={()=>{this.setState({selectedOption: 'sortByTypeIRL'})}} checked={this.state.selectedOption === 'sortByTypeIRL'} id="radio2" />
+							    <label className="custom-control-label" htmlFor="radio2">IRL</label>
+							</div>
+					      	{this.state.selectedOption === "sortByTypeIRL"  &&
 		 						<div className=" mb-4">
 		 							<label className="mr-2 mt-3">Город: </label>
 		 							<input type="string" value={this.state.sortByCityGame} style={{width:"100%"}} onChange={this.onChange} name="sortByCityGame" placeholder=""/><br />
