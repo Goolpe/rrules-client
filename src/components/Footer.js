@@ -38,6 +38,7 @@ class Footer extends Component {
     						<li><Link to="/streams">Стримы</Link></li>
     						<li><Link to="/articles">Новости</Link></li>
     						<li><Link to="/shop">Магазин</Link></li>
+                            <li><Link to="/games">Найти игру</Link></li>
     					</ul>
     				</div>
     				<div className="col-12 col-md-4 mt-3">

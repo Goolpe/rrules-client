@@ -60,21 +60,6 @@ class AuthPage extends Component{
          body: 'A=1&B=2'
        }).then(response=> console.log(response))
 
-      //  
-      //   await (await fetch('https://localhost:8080/signup')).json()
-
-      // fetchAsync()
-      //   .then(data => console.log(data))
-      //   .catch(reason => console.log(reason.message))
-
-      // fetch('https://localhost:8080/signup',{
-      // method: 'post',
-      // headers: {
-      //   "Content-Type": "application/x-www-form-urlencoded"
-      // },
-      // body: (account)})
-      // .then(response=> console.log(response))
-
       this.setState({
         activeTab: '1',
         username:'',
