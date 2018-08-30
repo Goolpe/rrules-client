@@ -7,7 +7,6 @@ import { createAccount, authAccount } from '../actions/authActions';
 import moment from 'moment';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import classnames from 'classnames';
-import ReCAPTCHA from "react-google-recaptcha";
 
 class AuthPage extends Component{
   constructor(props){ 
@@ -87,7 +86,7 @@ class AuthPage extends Component{
       }
   }
 
-  handleAuth(event){
+  handleAuth(event){ 
     event.preventDefault();
 
     const account = {
@@ -209,7 +208,6 @@ class AuthPage extends Component{
                         <input type="checkbox" className="custom-control-input" id="customControlInline" required/>
                         <label style={{fontSize: "14px"}} className="custom-control-label" htmlFor="customControlInline">Я принимаю <Link to="/agreement" className="btn-link">пользовательскоe соглашениe</Link></label>
                       </div>
-                      <div className="d-flex justify-content-center mb-3"><ReCAPTCHA sitekey="6LfOT20UAAAAAGS3dJ8r-1O32vYFXrnz7uW9FYgB" onChange={this.onChange}/></div>
                       <button type="submit" onClick={this.checkLetters} className="btn btn-info w-100 p-3">Зарегистрироваться</button>
                       
                     </form> 
