@@ -33,21 +33,22 @@ class UserPage extends Component {
                 <img src={player.photo} className="img-fluid" style={{maxHeight: 500}} alt="" />
               </div>
               <div className="col-12 col-md-6">
-                <h3>{player.dateBirth}</h3>
                 <h3 className="mb-4">
                   <Rating  emptySymbol="far fa-star text-warning fa-1x"  initialRating={player.rating} fullSymbol="fas fa-star text-warning fa-1x" fractions={2} readonly/>
                   </h3>
-                <h3 className="mb-4">Контакты:</h3>
                 <p><span className="font-weight-bold">Discord</span> - {player.discord}<br />
                 <span className="font-weight-bold">Skype</span> - {player.skype}<br />
+                <span className="font-weight-bold">Допю контакты</span> - {player.otherContacts}<br />
                 </p>
+                <p>Имя: {player.fullName}</p>
+                <p>День рождения: {moment(player.dateBirth).format('LL')}</p>
                 <p>Зарегистрирован {moment(player.dateReg).format('LL')}</p>
                   {player.master && <p>{player.paidGames ? "Водит" : "Не водит"} платные игры</p>}
                 <h3 className="mb-4">О себе:</h3>
                 <p>{player.about}</p>
                 <h3 className="mb-4">Любимые системы:</h3><p>{player.systems}</p>
                 <h3 className="mb-4">Любимые сеттинги:</h3><p>{player.setting}</p>
-                <h3 className="mb-4">Примеры игр</h3>
+                {player.examples > 0 && player.master && <h3 className="mb-4">Примеры игр</h3>}
               </div>
             </div>
             <div className="row">

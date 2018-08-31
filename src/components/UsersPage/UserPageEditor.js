@@ -88,7 +88,7 @@ class UserPageEditor extends Component {
         <FormGroup row>
           <Label sm={4}>День рождения:</Label>
           <Col sm={8}>
-            <Input type="date" name="dateBirth" value={this.state.dateBirth} onChange={this.onChange} />
+            <Input type="date" name="dateBirth" value={this.state.dateBirth} placeholder={player.dateBirth} onChange={this.onChange} />
           </Col>
         </FormGroup>
         <FormGroup row>
