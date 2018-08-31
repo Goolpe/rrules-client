@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createArticle } from '../actions/postActions';
@@ -36,7 +36,6 @@ class ArticleForm extends Component {
 	}
 	onSubmit(e){
 		e.preventDefault();
-
 		const article = {
 		      	title: this.state.title,
 				text: this.state.text,
@@ -104,4 +103,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { createArticle })(ArticleForm);
+export default connect(mapStateToProps, { createArticle })(withRouter(ArticleForm));
