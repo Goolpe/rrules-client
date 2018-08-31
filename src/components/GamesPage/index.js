@@ -6,7 +6,7 @@ import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reac
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
-import { fetchGames } from '../actions/gameActions';
+import { fetchGames, deleteGame } from '../actions/gameActions';
 import moment from 'moment';
 import MomentLocaleUtils from 'react-day-picker/moment';
 import { formatDate, parseDate } from 'react-day-picker/moment';
@@ -18,8 +18,6 @@ var gamesSort;
 class GamesPage extends Component {
 	constructor(props) {
 	    super(props);
-	     this.handleFromChange = this.handleFromChange.bind(this);
-	    this.handleToChange = this.handleToChange.bind(this);
 	    this.state = {
 	      	from: undefined,
 	      	to: undefined,
@@ -29,9 +27,11 @@ class GamesPage extends Component {
 	      	selectedOption:'sortByTypeAll',
 	      	sortByCityGame: '',
 	    }
+	    this.handleFromChange = this.handleFromChange.bind(this);
+	    this.handleToChange = this.handleToChange.bind(this);
 	    this.toggle = this.toggle.bind(this);
 	    this.onChange = this.onChange.bind(this);
-
+	    // this.deleteGame = this.deleteGame.bind(this);
 	  }
 	componentDidMount() {
 	    window.scrollTo(0,0);
@@ -60,6 +60,10 @@ class GamesPage extends Component {
 	    });
 	}
 
+	// deleteGame(gameData){
+	// 	console.log(gameData);
+	// 	this.props.deleteGame(gameData);
+	// }
 	componentWillMount() {
 	  this.props.fetchGames();
       this.props.fetchPlayers();
@@ -69,6 +73,7 @@ class GamesPage extends Component {
 		this.setState({ [e.target.name]: e.target.value})
 	}
 	 render(){ 
+	 	const {isAuthenticated, user} = this.props.auth;
 	 	const { from, to } = this.state;
     	const modifiers = { start: from, end: to };
 
@@ -97,26 +102,23 @@ class GamesPage extends Component {
 	 			Date.parse(game.from) >= Date.parse(this.state.from)))
 
 	 	this.state.to && (gamesSort = gamesSort.filter(game => 
-	 			Date.parse(game.from) < (Date.parse(this.state.to) +	43200000)))
+	 			Date.parse(game.from) < (Date.parse(this.state.to) + 43200000)))
 
 	 	const listGames = gamesSort.map(game => 
 	 				<div className="p-3 mb-4 bg-white shadow-sm" key={game._id}>	 					
 	 					<div className="row">
 	 						<div className="col-12 col-md-3">
-		 						<p>Игра: {game.nameGame}</p>
-		 						<p>Мастер: </p>
-		 						<p>Рейтинг:</p>
+	 							{this.props.players.filter(master => game.masterName === master.username)
+			 						.map(master => 
+			 						<div key={master._id}>
+				 						<p>Мастер: <Link to={`/@${master.username}`} target="_blank" key={master.userId} className="ml-2 mr-1">{master.username}</Link></p>
+				 						<p><i className="fas fa-star text-warning fa-1x"></i> - {master.rating}/5</p>
+			 						</div>
+			 					)}
 		 						
 	 						</div>
 	 						<div className="col-12 col-md-9">
-	 							{this.props.players.filter(master => game.masterId === master.userId)
-			 						.map(master => 
-			 						<div key={master.userId}>
-				 						<p>Мастер: <Link to={`/@${master.username}`} target="_blank" key={master.userId} className="ml-2 mr-1">{master.username}</Link></p>
-				 						<img className="rounded mb-2" alt={master.photo} src={master.photo} style={{height: "40px"}}/><br />
-				 						<div className="btn btn-secondary">{master.rating}</div>
-			 						</div>
-			 					)}
+	 							
 			 					<p>Дата и время игры: {moment(game.from).format('lll')}</p>
 			 					<p>Тип игры: {game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}
 			 					 {game.selectedOption === "sortByTypeIRL" && <span className="ml-3">Город: {game.cityGame}</span>}</p>
@@ -131,8 +133,10 @@ class GamesPage extends Component {
 			 					)}</span>
 			 					</p>
 			 					<p>Доп. информация: {game.infoGame.length === 0 ? "нет" : game.infoGame}</p>
+			 					{game.masterName === user.name && <button className="position-absolute btn btn-outline-danger" style={{top:"5%",left:"90%"}}><i className="fas fa-times"></i></button>}
 	 						</div>
 	 					</div>
+	 					
 	 					{(game.placeAll - game.gamersInsideId.length) === 0 ? <Button color="danger" className="btn btn-danger mt-4 pl-5 pr-5" disabled>Нет мест</Button> 
 				 					:
 				 					<Button color="info" className="pl-5 mr-1 ml-1 pr-5">Записаться</Button>}
@@ -146,7 +150,7 @@ class GamesPage extends Component {
 			    <div className="row mr-0 ml-0">
 			    	<div className="col-12 col-lg-3">
 			    		<div className="container">
-			    		<Link to="/create-game" className="btn btn-info mb-2 w-100">Создать игру</Link>
+			    		{user.master && <Link to="/create-game" className="btn btn-info mb-2 w-100">Создать игру</Link>}
 						 <ButtonDropdown isOpen={this.state.dropdownOpen} className="w-100 mb-2" toggle={this.toggle}>
 					        <DropdownToggle caret className="btn btn-outline-info w-100">
 					          Сортировать: 
@@ -235,8 +239,8 @@ GamesPage.propTypes = {
   players: PropTypes.array.isRequired,
   fetchGames: PropTypes.func.isRequired,
   games: PropTypes.array.isRequired,
-  auth: PropTypes.object.isRequired
-
+  auth: PropTypes.object.isRequired,
+  deleteGame: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -246,5 +250,5 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { fetchPlayers , fetchGames })(GamesPage);
+export default connect(mapStateToProps, { deleteGame, fetchPlayers , fetchGames })(GamesPage);
 

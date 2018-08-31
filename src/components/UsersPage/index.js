@@ -43,7 +43,7 @@ class UsersPage extends Component {
 			</div>)
 		const usersList = usersSort.filter(user =>	user.master === false)
 		.map(user => 
-	 				<div className="col-12" key={user.userId}>
+	 				<div className="col-12" key={user._id}>
 	 					<Link to={`/@${user.username}`} className="text-dark ">	
 		 					<div className="row p-3 text-left align-items-start userCard mb-4 shadow-sm">
 		 						<div className="col-12 col-md-4">

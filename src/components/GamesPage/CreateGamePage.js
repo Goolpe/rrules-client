@@ -12,6 +12,7 @@ import { Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createGame } from '../actions/gameActions';
+import { fetchPlayers } from '../actions/playerActions';
 
 class CreateGamePage extends Component {
 	constructor(props){
@@ -19,7 +20,6 @@ class CreateGamePage extends Component {
 		this.state = {
 			nameGame: '',
 			selectedOption: 'sortByTypeOnline',
-		    masterId: '',
 		    cityGame:'',
 		    priceGame:'',
 		    placeAll: '',
@@ -53,7 +53,7 @@ class CreateGamePage extends Component {
 
 	componentDidMount() {
 	    window.scrollTo(0,0);
-	    if(this.props.auth.isAuthenticated && this.props.auth.master){
+	    if(this.props.auth.isAuthenticated && this.props.auth.user.master){
 	    	this.props.history.push("/create-game")
 	    }
 	    else{
@@ -70,7 +70,7 @@ class CreateGamePage extends Component {
 			const game = {
 				nameGame: this.state.nameGame,
 				cityGame: this.state.cityGame,
-			    masterId: this.state.masterId,
+			    masterName: this.props.auth.user.name,
 			    placeGame: this.state.placeGame,
 			    priceGame: this.state.priceGame,
 			    infoGame: this.state.infoGame,
@@ -195,11 +195,14 @@ class CreateGamePage extends Component {
 
 CreateGamePage.propTypes = {
   createGame: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  fetchPlayers: PropTypes.func.isRequired,
+  players: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
+  players: state.players.items,
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { createGame })(withRouter(CreateGamePage));
+export default connect(mapStateToProps, { fetchPlayers , createGame })(withRouter(CreateGamePage));

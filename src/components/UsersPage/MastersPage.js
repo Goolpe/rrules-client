@@ -29,7 +29,7 @@ class MastersPage extends Component {
 	render(){
 		var mastersSort = _.sortBy(this.props.players, ['rating']).reverse()
 
-		const mastersView = mastersSort.filter(master =>	master.master === true)
+		const mastersView = mastersSort.filter(master => master.master === true)
 		.map(master => 
 				<div className="col-12 col-md-6 col-lg-4 mb-5" key={master.userId}>
 					<Link to={`/@${master.username}`} className="text-white">
@@ -43,7 +43,7 @@ class MastersPage extends Component {
 				)
 		const mastersList = mastersSort.filter(master =>	master.master === true)
 		.map(master => 
-	 				<div className="col-12" key={master.userId}>
+	 				<div className="col-12" key={master._id}>
 	 					<Link to={`/@${master.username}`} className="text-dark ">	
 		 					<div className="row p-3 text-left align-items-start userCard mb-4 shadow-sm">
 		 						<div className="col-12 col-md-4">

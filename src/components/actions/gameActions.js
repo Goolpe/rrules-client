@@ -1,4 +1,5 @@
 import { FETCH_GAMES, NEW_GAME } from './types';
+import axios from 'axios';
 
 export const fetchGames = () => dispatch => {
   fetch('https://randomrulesdb.herokuapp.com/games')
@@ -27,4 +28,16 @@ export const createGame = gameData => dispatch => {
         payload: game
     })
   );
+};
+
+export const deleteGame = (user, gameData) => dispatch => {
+  axios.delete('https://randomrulesdb.herokuapp.com/games/', user, {
+      method: 'delete',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+     })
+
+      .then(res => dispatch({type: FETCH_GAMES, payload: res.data}))
 };

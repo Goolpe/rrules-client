@@ -49,7 +49,11 @@ class LoginPage extends Component{
     }
   }
 
+
+
+
   render(){	
+    
       return (
           <div className="mt-3">
             <button className="btn btn-dark m-2"> <i className="fab fa-vk"></i></button>

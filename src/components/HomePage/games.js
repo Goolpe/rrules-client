@@ -31,20 +31,19 @@ class Games extends Component {
 	 		<div className="p-3 mb-4 bg-white text-left shadow-sm" key={game._id}>
 	 			<div className="row justify-content-center">
 					<div className="col-12 col-md-3">
-						<p>Игра: {game.nameGame}</p>
-						<p>Мастер: </p>
-						<p>Рейтинг:</p>
-						
+						{this.props.players.filter(master => game.masterName === master.username)
+			 						.map(master => 
+			 						<div key={master._id}>
+				 						<p>Мастер: <Link to={`/@${master.username}`} target="_blank" key={master.userId} className="ml-2 mr-1">{master.username}</Link></p>
+				 						<p><i className="fas fa-star text-warning fa-1x"></i> - {master.rating}/5</p>
+			 						</div>
+			 					)}
+			 			{(game.placeAll - game.gamersInsideId.length) === 0 ? <Button color="danger" className="btn btn-danger mt-4 pl-5 pr-5" disabled>Нет мест</Button> 
+	 					:
+	 					<Button color="info" className="pl-5 mr-1 ml-1 pr-5">Записаться</Button>}
 					</div>
 					<div className="col-12 col-md-9">
-						{this.props.players.filter(master => game.masterId === master.userId)
- 						.map(master => 
- 						<div key={master.userId}>
-	 						<p>Мастер: <Link to={`/@${master.username}`} target="_blank" key={master.userId} className="ml-2 mr-1">{master.username}</Link></p>
-	 						<img className="rounded mb-2" alt={master.photo} src={master.photo} style={{height: "40px"}}/><br />
-	 						<div className="btn btn-secondary">{master.rating}</div>
- 						</div>
- 					)}
+						
  					<p>Дата и время игры: {moment(game.from).format('lll')}</p>
  					<p>Тип игры: {game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}
  					 {game.selectedOption === "sortByTypeIRL" && <span className="ml-3">Город: {game.cityGame}</span>}</p>
@@ -60,9 +59,7 @@ class Games extends Component {
  					</p>
  					<p>Доп. информация: {game.infoGame.length === 0 ? "нет" : game.infoGame}</p>
 					</div>
-					{(game.placeAll - game.gamersInsideId.length) === 0 ? <Button color="danger" className="btn btn-danger mt-4 pl-5 pr-5" disabled>Нет мест</Button> 
-	 					:
-	 					<Button color="info" className="pl-5 mr-1 ml-1 pr-5">Записаться</Button>}
+					
 				</div>	
 	 		</div>
 	 		).slice(0,2)
