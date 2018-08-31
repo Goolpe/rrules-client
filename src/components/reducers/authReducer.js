@@ -1,23 +1,20 @@
-import { NEW_ACCOUNT, AUTH_ACCOUNT } from '../actions/types';
+import { SET_CURRENT_USER } from '../actions/types';
+import isEmpty from '../is-empty';
 
 const initialState = {
-  items: [],
-  item: {}
-};
+    isAuthenticated: false,
+    user: {}
+}
 
-export default function(state = initialState, action) {
-  switch (action.type) {
-    case NEW_ACCOUNT:
-      return {
-        ...state,
-        item: action.payload
-      };
-    case AUTH_ACCOUNT:
-      return {
-        ...state,
-        item: action.payload
-      };
-    default:
-      return state;
-  }
+export default function(state = initialState, action ) {
+    switch(action.type) {
+        case SET_CURRENT_USER:
+            return {
+                ...state,
+                isAuthenticated: !isEmpty(action.payload),
+                user: action.payload
+            }
+        default: 
+            return state;
+    }
 }

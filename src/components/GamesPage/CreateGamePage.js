@@ -8,7 +8,7 @@ import MomentLocaleUtils, {
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
-import { Link } from 'react-router-dom';
+import { Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createGame } from '../actions/gameActions';
@@ -53,6 +53,12 @@ class CreateGamePage extends Component {
 
 	componentDidMount() {
 	    window.scrollTo(0,0);
+	    if(this.props.auth.isAuthenticated && this.props.auth.master){
+	    	this.props.history.push("/create-game")
+	    }
+	    else{
+	    	this.props.history.push("/")
+	    }
 	}
 
 	onChange(e){
@@ -188,7 +194,12 @@ class CreateGamePage extends Component {
 }
 
 CreateGamePage.propTypes = {
-  createGame: PropTypes.func.isRequired
+  createGame: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
-export default connect(null, { createGame })(CreateGamePage);
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps, { createGame })(withRouter(CreateGamePage));

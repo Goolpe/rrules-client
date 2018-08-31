@@ -1,35 +1,46 @@
-import { NEW_ACCOUNT, AUTH_ACCOUNT } from './types';
+import axios from 'axios';
+import { GET_ERRORS, SET_CURRENT_USER } from './types';
+import setAuthToken from '../setAuthToken';
+import jwt_decode from 'jwt-decode';
 
-export const createAccount = accountData => dispatch => {
-  fetch('https://localhost:8080/signup',{
-      method: 'post',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      },
-       body: JSON.stringify(accountData)
-     })
-      .then(account => {if(account.ok)
-      dispatch({
-        type: NEW_ACCOUNT,
-        payload: account
-    })}
-  )
-};
+export const registerUser = (user, history) => dispatch => {
+    axios.post('https://randomrulesdb.herokuapp.com/api/users/register', user)
+            .then(res => history.push('/login'))
+            .catch(err => {
+                dispatch({
+                    type: GET_ERRORS,
+                    payload: err.response.data
+                });
+            });
+}
 
-export const authAccount = accountData => dispatch => {
-  fetch('https://localhost:8080/login',{
-      method: 'post',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      },
-       body: JSON.stringify(accountData)
-     })
-      .then(account => {if(account.ok)
-      dispatch({
-        type: AUTH_ACCOUNT,
-        payload: account
-    })}
-  );
-};
+export const loginUser = (user) => dispatch => {
+    axios.post('https://randomrulesdb.herokuapp.com/api/users/login', user)
+            .then(res => {
+                const { token } = res.data;
+                localStorage.setItem('jwtToken', token);
+                setAuthToken(token);
+                const decoded = jwt_decode(token);
+                dispatch(setCurrentUser(decoded));
+            })
+            .catch(err => {
+                dispatch({
+                    type: GET_ERRORS,
+                    payload: err.response.data
+                });
+            });
+}
+
+export const setCurrentUser = decoded => {
+    return {
+        type: SET_CURRENT_USER,
+        payload: decoded
+    }
+}
+
+export const logoutUser = (history) => dispatch => {
+    localStorage.removeItem('jwtToken');
+    setAuthToken(false);
+    dispatch(setCurrentUser({}));
+    history.push('/login');
+}

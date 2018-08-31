@@ -7,12 +7,6 @@ import moment from 'moment';
 import Rating from 'react-rating';
 
 class UserPage extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      isAuthenticated: false
-    }
-  }
   componentDidMount() {
     window.scrollTo(0,0);
 
@@ -21,14 +15,16 @@ class UserPage extends Component {
       this.props.fetchPlayers();
     }
   render() {
+    const {isAuthenticated, user} = this.props.auth;
+
     const searchId = this.props.players
     .filter(player => player.username === this.props.match.params.nickname)
     .map(player =>
-      <div key={player.userId}>
+      <div key={player._id}>
             <div className="row mb-5 justify-content-center align-items-start">
               <div className="col-12 col-md-4 text-left mb-4"><Link to="/masters" className="text-dark"><i className="fas fa-angle-left "></i> ДРУГИЕ {player.master ? "МАСТЕРА" : "ИГРОКИ"}</Link></div>
               <div className="col-12 col-md-4 text-center"><h1>{player.username}</h1>{player.master && <p>мастер</p>}</div>
-              <div  className="col-12 col-md-4 text-right">{this.state.isAuthenticated && <Link to={`/edit/@${player.username}`} className="btn btn-link bg-transparent border-0" >
+              <div  className="col-12 col-md-4 text-right">{user.name === player.username && <Link to={`/edit/@${user.name}`} className="btn btn-link bg-transparent border-0" >
                 <i className="fas fa-pen-square fa-3x text-info"></i>
               </Link>}</div>
             </div>
@@ -84,11 +80,13 @@ class UserPage extends Component {
 
 UserPage.propTypes = {
   fetchPlayers: PropTypes.func.isRequired,
-  players: PropTypes.array.isRequired
+  players: PropTypes.array.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  players: state.players.items
+  players: state.players.items,
+  auth: state.auth
 })
 
 export default connect(mapStateToProps, { fetchPlayers })(UserPage);

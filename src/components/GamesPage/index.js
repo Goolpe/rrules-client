@@ -234,12 +234,15 @@ GamesPage.propTypes = {
   fetchPlayers: PropTypes.func.isRequired,
   players: PropTypes.array.isRequired,
   fetchGames: PropTypes.func.isRequired,
-  games: PropTypes.array.isRequired
+  games: PropTypes.array.isRequired,
+  auth: PropTypes.object.isRequired
+
 };
 
 const mapStateToProps = state => ({
   players: state.players.items,
-  games: state.games.items
+  games: state.games.items,
+  auth: state.auth
 })
 
 

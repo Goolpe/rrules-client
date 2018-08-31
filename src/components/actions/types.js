@@ -9,3 +9,6 @@ export const NEW_PLAYER = 'NEW_PLAYER';
 
 export const FETCH_GAMES = 'FETCH_GAMES';
 export const NEW_GAME = 'NEW_GAME';
+
+export const GET_ERRORS = 'GET_ERRORS';
+export const SET_CURRENT_USER = 'SET_CURRENT_USER';

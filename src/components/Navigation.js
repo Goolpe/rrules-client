@@ -12,16 +12,19 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
-
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { logoutUser } from './actions/authActions';
+import { withRouter } from 'react-router-dom';
 
 class Navigation extends Component{
      constructor(props) {
     super(props);
+    this.onLogout = this.onLogout.bind(this);
     this.toggle = this.toggle.bind(this);
     this.closeNav = this.closeNav.bind(this);
     this.state = {
-      isOpen: false,
-      isAuthenticated: true
+      isOpen: false
     };
   }
   toggle() {
@@ -34,7 +37,13 @@ class Navigation extends Component{
       isOpen: false
     });
   }
+   onLogout(e) {
+        e.preventDefault();
+        this.props.logoutUser(this.props.history);
+    }
   render(){
+    const {isAuthenticated, user} = this.props.auth;
+
     return(
       <Navbar color="dark" className="bg-Nav" light expand="lg">
         <div className="container">
@@ -68,17 +77,17 @@ class Navigation extends Component{
                 <NavLink tag={Link} onClick={this.closeNav} to="/games" className="nav-link text-white btn btn-danger rounded">НАЙТИ ИГРУ</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar className="keyAuth">
-                <DropdownToggle className="text-white ml-2" nav><i className={this.props.auth ? "fas fa-user-circle fa-2x" : "fab fa-expeditedssl fa-2x"}></i></DropdownToggle>
+                <DropdownToggle className="text-white ml-2 p-0"  style={{height:"40px"}} nav>{isAuthenticated ?   <i className= "fas fa-address-book ml-2 mt-1 fa-2x"></i> : <i className= "fas fa-key ml-2 mt-1 fa-2x"></i>}</DropdownToggle>
                 <DropdownMenu  className="p-0">
-                {this.state.isAuthenticated === true ?
+                {isAuthenticated ?
                   <span>
-                    <DropdownItem tag={Link} onClick={this.closeNav} to="/@Nate" className="p-2 rounded-top">Мой профиль</DropdownItem>
-                    <DropdownItem tag={Link} onClick={this.closeNav} to="/edit/@Nate" className="p-2 rounded-top">Настройки</DropdownItem>
+                    <DropdownItem tag={Link} onClick={this.closeNav} to={`/@${user.name}`} className="p-2 rounded-top">Мой профиль</DropdownItem>
+                    <DropdownItem tag={Link} onClick={this.closeNav} to={`/edit/@${user.name}`} className="p-2 rounded-top">Настройки</DropdownItem>
                     <hr className="m-0"/>
-                    <DropdownItem onClick={this.props.signout} className="p-2 rounded-top">Выйти</DropdownItem>
+                    <DropdownItem onClick={this.onLogout.bind(this)} className="p-2 rounded-top">Выйти</DropdownItem>
                   </span>
                 :
-                 <DropdownItem tag={Link} onClick={this.closeNav} to="/id/:id" className="p-2 rounded-top">Авторизация</DropdownItem>                      
+                 <DropdownItem tag={Link} onClick={this.closeNav} to="/auth" className="p-2 rounded-top">Авторизация</DropdownItem>                      
                 }
                 </DropdownMenu>
               </UncontrolledDropdown>
@@ -89,5 +98,13 @@ class Navigation extends Component{
     )
   }
 }
+Navigation.propTypes = {
+    logoutUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+}
 
-export default Navigation
+const mapStateToProps = (state) => ({
+    auth: state.auth
+})
+
+export default connect(mapStateToProps, { logoutUser })(withRouter(Navigation));

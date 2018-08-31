@@ -14,7 +14,6 @@ class ArticlesPage extends Component {
 	}
 	componentDidMount() {
 		window.scrollTo(0,0);
-	
 	}
 	componentWillMount() {
 	    this.props.fetchArticles();
@@ -54,9 +53,9 @@ class ArticlesPage extends Component {
 							</h1>
 						</div>
 						<div className="col-3">
-							<Link to="/new-article" className="btn btn-link bg-transparent border-0" >
+							{this.props.auth.moderator && <Link to="/new-article" className="btn btn-link bg-transparent border-0" >
 								<i className="fas fa-plus-circle fa-3x text-info"></i>
-							</Link>
+							</Link>}
 						</div>
 					</div>
 					<ul>{listItems}</ul>				
@@ -68,11 +67,13 @@ class ArticlesPage extends Component {
 
 ArticlesPage.propTypes = {
   fetchArticles: PropTypes.func.isRequired,
-  articles: PropTypes.array.isRequired
+  articles: PropTypes.array.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-	articles: state.articles.items
+	articles: state.articles.items,
+	auth: state.auth
 })
 
 export default connect(mapStateToProps, { fetchArticles })(ArticlesPage);

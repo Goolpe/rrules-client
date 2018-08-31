@@ -24,6 +24,12 @@ class ArticleForm extends Component {
 	}
 	componentDidMount() {
 	    window.scrollTo(0,0);
+	    if(this.props.auth.isAuthenticated && this.props.auth.master){
+	    	this.props.history.push("/new-article")
+	    }
+	    else{
+	    	this.props.history.push("/")
+	    }
 	}
 	onChange(e){
 		this.setState({ [e.target.name]: e.target.value})
@@ -90,7 +96,12 @@ class ArticleForm extends Component {
 }
 
 ArticleForm.propTypes = {
-  createArticle: PropTypes.func.isRequired
+  createArticle: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
-export default connect(null, { createArticle })(ArticleForm);
+const mapStateToProps = state => ({
+	auth: state.auth
+})
+
+export default connect(mapStateToProps, { createArticle })(ArticleForm);
