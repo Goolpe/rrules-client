@@ -3,18 +3,13 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createArticle } from '../actions/postActions';
-import moment from 'moment';
 
 class ArticleForm extends Component {
 	constructor(props){
 		super(props);
-		var dateTime = new Date();
-		var dateArticle = moment(dateTime).format('LL');  
 		this.state = {
 			title: '',
 			text: '',
-			date: dateTime,
-			dateFor: dateArticle,
 			hashtags: '',
 			picture: '',
 			status: false
@@ -39,9 +34,6 @@ class ArticleForm extends Component {
 		const article = {
 		      	title: this.state.title,
 				text: this.state.text,
-				id: this.state.id,
-				date: this.state.date,
-				dateFor: this.state.dateFor,
 				hashtags: this.state.hashtags,
 				picture: this.state.picture
 		     }

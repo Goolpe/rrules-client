@@ -9,6 +9,7 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchArticles } from '../actions/postActions';
+import moment from 'moment';
 
 class CarouselBlock extends Component {
   constructor(props){
@@ -63,7 +64,7 @@ class CarouselBlock extends Component {
             <div className="container pt-5 pb-5">
               <div className="row text-white text-center justify-content-between">
                 <div className="col-12 col-lg-6">
-                  <p className="text-left">{article.dateFor}</p>
+                  <p className="text-left">{moment(article.date).format('LL')}</p>
                   <h1>{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
                   <p className="text-justify">{article.text.length > 600 ? article.text.slice(0,600) + "..." : article.text}</p>
                   <Link to={`/article/${article._id}`} className="btn btn-info mt-2">Читать дальше</Link>

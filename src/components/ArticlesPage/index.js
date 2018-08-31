@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchArticles } from '../actions/postActions';
 import { fetchPlayers } from '../actions/playerActions';
+import moment from 'moment';
 
 class ArticlesPage extends Component {
 	constructor(props){
@@ -40,7 +41,7 @@ class ArticlesPage extends Component {
 			  	</div>
 			  	<div className="card-footer text-primary">
 			    	<div className="row">
-			    		<div className="col-12 col-md-6 text-muted mb-2">{article.dateFor}</div>
+			    		<div className="col-12 col-md-6 text-muted mb-2">{moment(article.date).format('LL')}</div>
 			    		<div className="col-12 col-md-6 text-right">{article.hashtags}</div>
 			    	</div>
 			  	</div>	
