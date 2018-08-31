@@ -63,13 +63,13 @@ class CarouselBlock extends Component {
         >
             <div className="container pt-5 pb-5">
               <div className="row text-white text-center justify-content-between">
-                <div className="col-12 col-lg-6">
+                <div className="col-12 col-lg-8">
                   <p className="text-left">{moment(article.date).format('LL')}</p>
                   <h1>{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
-                  <p className="text-justify">{article.text.length > 600 ? article.text.slice(0,600) + "..." : article.text}</p>
+                  <p className="text-justify">{article.text.length > 800 ? article.text.slice(0,800) + "..." : article.text}</p>
                   <Link to={`/article/${article._id}`} className="btn btn-info mt-2">Читать дальше</Link>
                 </div>
-                <div className="d-none d-lg-block col-lg-6">
+                <div className="d-none d-lg-block col-lg-4">
                   <img alt={article.title} className="img-fluid" style={{backgroundSize: "contain", height:"400px"}} src={article.picture} />
                 </div>
               </div>
