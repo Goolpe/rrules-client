@@ -26,7 +26,8 @@ class UserPageEditor extends Component {
       paidGames: false,
       leading: false,
       cityLive: '',
-      otherContacts: ''
+      otherContacts: '',
+      playerId:''
     }
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -44,8 +45,8 @@ class UserPageEditor extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-
     const playerData = {
+          id: this.props.players.find(player => this.props.auth.user.name === player.username)._id,
           fullName: this.state.fullName,
           photo: this.state.photo,
           dateBirth: this.state.dateBirth,
@@ -63,6 +64,7 @@ class UserPageEditor extends Component {
           cityLive: this.state.cityLive,
           otherContacts: this.state.otherContacts
          }
+
     this.props.changePlayerData(playerData);
   }
   onChange(e){
@@ -70,10 +72,12 @@ class UserPageEditor extends Component {
   }
   render() {
     const {isAuthenticated, user} = this.props.auth;   
-    
+    console.log(this.props.player)
+
     const playerNow = this.props.players.filter(player => user.name === player.username)
     .map(player =>
         <Form key={player._id} style={{maxWidth: "700px"}} onSubmit={this.handleSubmit} className="pl-5 pr-5 pt-3 pb-3 mx-auto shadow bg-white">
+        
         <h4 className="text-muted">Информация о себе</h4>
         <hr />
         <FormGroup className="pt-3" row>
@@ -184,7 +188,8 @@ UserPageEditor.propTypes = {
 
 const mapStateToProps = state => ({
   players: state.players.items,
-  auth: state.auth
+  auth: state.auth,
+  player: state.data
 })
 
 export default connect(mapStateToProps, { fetchPlayers, changePlayerData })(withRouter(UserPageEditor));

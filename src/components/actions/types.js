@@ -5,7 +5,7 @@ export const NEW_ACCOUNT = 'NEW_ACCOUNT';
 export const AUTH_ACCOUNT = 'AUTH_ACCOUNT';
 
 export const FETCH_PLAYERS = 'FETCH_PLAYERS';
-export const NEW_PLAYER = 'NEW_PLAYER';
+export const FETCH_PLAYER = 'FETCH_PLAYER';
 
 export const FETCH_GAMES = 'FETCH_GAMES';
 export const NEW_GAME = 'NEW_GAME';
