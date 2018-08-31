@@ -2,7 +2,7 @@ import { FETCH_PLAYERS, NEW_PLAYER } from './types';
 import axios from 'axios';
 
 export const fetchPlayers = () => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/api/users/players')
+  fetch('https://randomrulesdb.herokuapp.com/players')
       .then((resp) => resp.json())
       .then(players => 
       dispatch({
@@ -13,7 +13,7 @@ export const fetchPlayers = () => dispatch => {
 };
 
 export const changePlayerData = (user, playerData) => dispatch => {
-    axios.put('https://randomrulesdb.herokuapp.com/api/users/players/:id', user)
+    axios.put('https://randomrulesdb.herokuapp.com/players/:id', user)
             .then(res => res.json())
               .then(player =>
               dispatch({

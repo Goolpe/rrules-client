@@ -4,7 +4,7 @@ import setAuthToken from '../setAuthToken';
 import jwt_decode from 'jwt-decode';
 
 export const registerUser = (user, history) => dispatch => {
-    axios.post('https://randomrulesdb.herokuapp.com/api/users/register', user)
+    axios.post('https://randomrulesdb.herokuapp.com/register', user)
             .then(res => history.push('/login'))
             .catch(err => {
                 dispatch({
@@ -15,7 +15,7 @@ export const registerUser = (user, history) => dispatch => {
 }
 
 export const loginUser = (user) => dispatch => {
-    axios.post('https://randomrulesdb.herokuapp.com/api/users/login', user)
+    axios.post('https://randomrulesdb.herokuapp.com/login', user)
             .then(res => {
                 const { token } = res.data;
                 localStorage.setItem('jwtToken', token);
