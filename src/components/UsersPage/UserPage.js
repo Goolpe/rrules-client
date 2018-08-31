@@ -38,7 +38,7 @@ class UserPage extends Component {
                   </h3>
                 <p><span className="font-weight-bold">Discord</span> - {player.discord}<br />
                 <span className="font-weight-bold">Skype</span> - {player.skype}<br />
-                <span className="font-weight-bold">Допю контакты</span> - {player.otherContacts}<br />
+                <span className="font-weight-bold">Доп. контакты</span> - {player.otherContacts}<br />
                 </p>
                 <p>Имя: {player.fullName}</p>
                 <p>День рождения: {moment(player.dateBirth).format('LL')}</p>
