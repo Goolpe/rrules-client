@@ -35,6 +35,8 @@ class CreateGamePage extends Component {
 		this.onSubmit = this.onSubmit.bind(this);
 	} 
 
+// functions for datepicker
+
     showFromMonth() {
     	const { from, to } = this.state;
 	    if (!from) {
@@ -61,9 +63,14 @@ class CreateGamePage extends Component {
 	    }
 	}
 
+// Handler of change input states  
+
 	onChange(e){
 		this.setState({ [e.target.name]: e.target.value})
 	}
+
+// Handler of submit
+
 	onSubmit(e){
 		e.preventDefault();
 		if(Date.parse(this.state.from) > Date.parse(new Date()) && Date.parse(this.state.from) < Date.parse(this.state.to)){
@@ -99,6 +106,8 @@ class CreateGamePage extends Component {
 		}
 	}
   render() {
+
+//declare consts for Datepicker  	
    	const { from, to } = this.state;
     const modifiers = { start: from, end: to };
 
@@ -107,6 +116,7 @@ class CreateGamePage extends Component {
 			<div className="container pt-5 pb-5">
 				<h1 className="text-dark text-center">СОЗДАТЬ ИГРУ</h1>
 				<form onSubmit={this.onSubmit}>
+{/*Button to create game and exit*/}
 				<div className="d-flex justify-content-end">
 					<button type="submit" className="btn btn-outline-info rounded-0 mb-2 mr-2">Создать игру</button>
 					<Link to="/games" className="btn btn-outline-info rounded-0 mb-2">Выйти из редактора</Link>
@@ -114,8 +124,10 @@ class CreateGamePage extends Component {
 			    <div className="container mb-5">
 		 			<div className="row p-3 align-items-begin bg-white shadow-sm">
 		 				<div className="col-12">
+{/*Name of the game*/}
 		 					<label className="mr-2">Название: </label>
 		 					<input type="text" value={this.state.nameGame} onChange={this.onChange} name="nameGame" placeholder="" required/><br />
+{/*Date and time*/}
 		 					<label className="mr-2 mt-3">Дата и время игры: </label>
 		 					<DayPickerInput
 					          value={from}
@@ -158,6 +170,7 @@ class CreateGamePage extends Component {
 					            onDayChange={this.handleToChange}
 					          />
 					        <br />
+{/*Type of the game*/}
 					        <label className="mr-2 mt-3">Тип игры: </label>
 					        <div className="custom-control custom-radio mb-2">
 							    <input type="radio" className="custom-control-input" value="sortByTypeOnline" onChange={()=>{this.setState({selectedOption: 'sortByTypeOnline'})}} checked={this.state.selectedOption === 'sortByTypeOnline'} id="radio1" />
@@ -175,12 +188,15 @@ class CreateGamePage extends Component {
 		 							<input type="string" value={this.state.placeGame} style={{width:"50%"}} onChange={this.onChange} name="placeGame" placeholder=""/>
 		 						</div> 
 		 					}
+{/*Price*/}
 		 					<div>
 		 						<label className="mr-2 mt-3">Стоимость: </label>
 		 						<input type="string" value={this.state.priceGame} onChange={this.onChange} name="priceGame" placeholder=""/><br />
 		 					</div> 
+{/*Number of seats*/}
 		 					<label className="mr-2 mt-3">Количество мест: </label>
 		 					<input type="number" min="1" max="20" value={this.state.placeAll} onChange={this.onChange} name="placeAll" placeholder="" required/><br />
+{/*Additionally info*/}		 					
 		 					<label className="mt-3">Доп. информация:</label>
 		 					<textarea type="text" value={this.state.infoGame} style={{resize: "both", width: "100%", minHeight: "200px"}} onChange={this.onChange} name="infoGame" placeholder="" />
 		 				</div> 	
