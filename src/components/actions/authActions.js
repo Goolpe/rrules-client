@@ -2,7 +2,6 @@ import axios from 'axios';
 import { GET_ERRORS, SET_CURRENT_USER } from './types';
 import setAuthToken from '../setAuthToken';
 import jwt_decode from 'jwt-decode';
-import { browserHistory } from 'history';
 
 export const registerUser = (user, history) => dispatch => {
     axios.post('https://randomrulesdb.herokuapp.com/register', user)

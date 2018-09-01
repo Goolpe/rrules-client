@@ -19,7 +19,7 @@ import { logoutUser } from './actions/authActions';
 import { withRouter } from 'react-router-dom';
 
 class Navigation extends Component{
-     constructor(props) {
+  constructor(props) {
     super(props);
     this.onLogout = this.onLogout.bind(this);
     this.toggle = this.toggle.bind(this);
@@ -39,10 +39,10 @@ class Navigation extends Component{
       isOpen: false
     });
   }
-   onLogout(e) {
-        e.preventDefault();
-        this.props.logoutUser(this.props.history);
-    }
+  onLogout(e) {
+    e.preventDefault();
+    this.props.logoutUser(this.props.history);
+  }
   render(){
     const {isAuthenticated, user} = this.props.auth;
 

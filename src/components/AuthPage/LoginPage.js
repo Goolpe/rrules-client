@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import { loginUser } from '../actions/authActions';
+import classnames from 'classnames';
 
 class LoginPage extends Component{
   constructor(props){ 
@@ -53,7 +54,7 @@ class LoginPage extends Component{
 
 
   render(){	
-    
+      const {errors} = this.state;
       return (
           <div className="mt-3">
             <button className="btn btn-dark m-2"> <i className="fab fa-vk"></i></button>
@@ -63,7 +64,10 @@ class LoginPage extends Component{
             <form onSubmit={this.handleSubmit} style={{maxWidth:"400px", margin: "auto"}}>
               <InputGroup className="mt-3 mb-3">
                 <InputGroupAddon addonType="prepend">@</InputGroupAddon>
-                <input type="email" value={this.state.email} onChange={this.handleChange} name="email" className="form-control" placeholder="E-mail" required/>
+                <input type="email" value={this.state.email} onChange={this.handleChange} name="email" className={classnames('form-control', {
+                        'is-invalid': errors.email
+                    })} placeholder="E-mail" required/>
+                {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
               </InputGroup>
               <InputGroup className="mt-3 mb-3">
                 <InputGroupAddon addonType="prepend">
@@ -71,7 +75,10 @@ class LoginPage extends Component{
                     <div className="fas fa-key"></div>
                   </InputGroupText>
                 </InputGroupAddon>
-                <input type="password" value={this.state.password} onChange={this.handleChange} name="password" className="form-control" placeholder="Пароль" required/>
+                <input type="password" value={this.state.password} onChange={this.handleChange} name="password" className={classnames('form-control', {
+                        'is-invalid': errors.password
+                    })} placeholder="Пароль" required/>
+                {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
               </InputGroup>
               <p className="text-dark m-auto" style={{cursor: "pointer"}} onClick={()=> this.setState({activeTab: '3'})}>Не могу войти</p>
               <button className="btn btn-info  mt-3 w-100 p-3" type="submit" >Войти</button>

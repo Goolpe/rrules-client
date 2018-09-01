@@ -69,8 +69,9 @@ class RegisterPage extends Component{
                       <InputGroup className="mt-3 mb-3">
                         <InputGroupAddon addonType="prepend">@</InputGroupAddon>
                         <input type="email" value={this.state.email} className={classnames('form-control', {
-                        'is-invalid': errors.name
+                        'is-invalid': errors.email
                     })} onChange={this.handleChange} name="email" placeholder="E-mail" required/>
+                        {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
                      </InputGroup>
                      <InputGroup className="mt-3 mb-3">
                         <InputGroupAddon addonType="prepend">
@@ -81,6 +82,7 @@ class RegisterPage extends Component{
                         <input type="text" value={this.state.name} className={classnames('form-control', {
                         'is-invalid': errors.name
                     })} onChange={this.handleChange} name="name" placeholder="Никнейм" required/>
+                        {errors.name && (<div className="invalid-feedback">{errors.name}</div>)}
                       </InputGroup>
                       <InputGroup className="mt-3 mb-3">
                         <InputGroupAddon addonType="prepend">
@@ -89,8 +91,9 @@ class RegisterPage extends Component{
                           </InputGroupText>
                         </InputGroupAddon>
                         <input type="password" value={this.state.password} className={classnames('form-control', {
-                        'is-invalid': errors.name
+                        'is-invalid': errors.password
                     })} onChange={this.handleChange} name="password" placeholder="Пароль" required/>
+                        {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
                       </InputGroup>
                       <InputGroup className="mt-3 mb-3">
                         <InputGroupAddon addonType="prepend">
@@ -99,8 +102,9 @@ class RegisterPage extends Component{
                           </InputGroupText>
                         </InputGroupAddon>
                         <input type="password" value={this.state.password_confirm} className={classnames('form-control', {
-                        'is-invalid': errors.name
+                        'is-invalid': errors.password_confirm
                     })} onChange={this.handleChange} name="password_confirm" placeholder="Повторите пароль" required/>
+                        {errors.password_confirm && (<div className="invalid-feedback">{errors.password_confirm}</div>)}
                       </InputGroup>
                       <div className="mb-3 custom-control custom-checkbox my-1 mr-sm-2">
                         <input type="checkbox" className="custom-control-input" id="customControlInline" required/>
