@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
 import moment from 'moment';
-import Rating from 'react-rating';
 
 class UserPage extends Component {
   componentDidMount() {
@@ -24,7 +23,8 @@ class UserPage extends Component {
             <div className="row">
               <div className="col-12 col-md-6 order-md-2 mb-3 text-center">
                 <img src={player.photo} className="img-fluid" style={{maxHeight: 500}} alt="" />
-                <h3><i className="fas fa-star text-warning fa-1x mt-4"></i> - {player.rating}/5</h3>
+                <h3><i className="fas fa-star text-warning fa-1x mt-4 mb-2"></i> - {player.rating}/5</h3>
+                {user.name === player.username && user.master && <Link to="/create-game" className="btn btn-info pl-5 pr-5">Создать игру</Link>}
               </div>
               <div className="col-12 col-md-6">
                 <h4 className="mb-4 mt-4">Основная информация:</h4>
@@ -53,22 +53,22 @@ class UserPage extends Component {
                 <hr />
                 <p>{player.setting}</p>
 
-                {player.examples > 0 && player.master && <h4 className="mb-4 mt-4">Примеры игр</h4>}
+                <h4 className="mb-4 mt-4">Примеры игр</h4><hr />
               </div>
             </div>
             <div className="row">
-            {player.examples.map((example, index) => 
-              <div className="col-12 col-md-6 mb-3" key={index}>
-                <iframe
-                    title={player.userId}
-                    src={example}
-                    width="100%" 
-                    height="340"
-                    frameBorder="0"
-                    allowFullScreen>
-                </iframe>
+              <div className="col-12 col-md-6 mb-3">
+                <iframe width="100%" title={player.example1.id} height="300" src={player.example1} frameBorder="0" allowFullScreen></iframe>
               </div>
-            )}
+              <div className="col-12 col-md-6 mb-3">
+                <iframe width="100%" title={player.example2.id} height="300" src={player.example2} frameBorder="0" allowFullScreen></iframe>
+              </div>
+              <div className="col-12 col-md-6 mb-3">
+                <iframe width="100%" title={player.example3.id} height="300" src={player.example3} frameBorder="0" allowFullScreen></iframe>
+              </div>
+              <div className="col-12 col-md-6 mb-3">
+                <iframe width="100%" title={player.example4.id} height="300" src={player.example4} frameBorder="0" allowFullScreen></iframe>
+              </div>
             </div>
           </React.Fragment>
           )

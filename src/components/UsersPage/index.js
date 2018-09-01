@@ -4,7 +4,6 @@ import _ from "lodash";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
-import Rating from 'react-rating';
 
 class UsersPage extends Component {
 	constructor(props) {
@@ -50,7 +49,7 @@ class UsersPage extends Component {
 		 							<p className="m-0">{user.username}</p>
 		 						</div>
 		 						<div className="col-12 col-md-4">
-		 							<Rating  emptySymbol="far fa-star text-warning fa-1x"  initialRating={user.rating} fullSymbol="fas fa-star text-warning fa-1x" fractions={2} readonly/>
+		 							<i className="fas fa-star text-warning fa-1x"></i> - {user.rating}/5
 		 						</div>
 		 						<div className="col-12 col-md-4">
 		 							<p className="m-0">Количество игр: {user.gamesCount}</p>

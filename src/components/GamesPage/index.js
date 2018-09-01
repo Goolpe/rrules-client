@@ -7,11 +7,9 @@ import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
 import { fetchGames, deleteGame } from '../actions/gameActions';
 import moment from 'moment';
-import MomentLocaleUtils from 'react-day-picker/moment';
-import { formatDate, parseDate } from 'react-day-picker/moment';
+import { MomentLocaleUtils, formatDate, parseDate } from 'react-day-picker/moment';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
-
 
 class GamesPage extends Component {
 	constructor(props) {

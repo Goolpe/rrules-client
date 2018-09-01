@@ -21,14 +21,17 @@ class UserPageEditor extends Component {
       master: false,
       skype: '',
       discord: '',
-      examples: [],
       systems: '',
       setting: '',
       paidGames: false,
       leading: false,
       cityLive: '',
       otherContacts: '',
-      playerId:''
+      playerId:'',
+      example1:'',
+      example2:'',
+      example3:'',
+      example4:''
     }
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -57,7 +60,10 @@ class UserPageEditor extends Component {
           master: this.state.master,
           skype: this.state.skype,
           discord: this.state.discord,
-          examples: this.state.examples,
+          example1: this.state.example1,
+          example2: this.state.example2,
+          example3: this.state.example3,
+          example4: this.state.example4,
           systems: this.state.systems,
           setting: this.state.setting,
           paidGames: this.state.paidGames,
@@ -83,7 +89,7 @@ class UserPageEditor extends Component {
         <FormGroup className="pt-3" row>
           <Label sm={4}>Имя:</Label>
           <Col sm={8}>
-            <Input type="text" value={this.state.fullName} onChange={this.onChange} name="fullName" placeholder={player.fullName} />
+            <Input type="text" value={this.state.fullName} onFocus = {(e)=>{e.currentTarget.value = player.fullName}} onChange={this.onChange} name="fullName" placeholder={player.fullName} />
           </Col>
         </FormGroup>
         <FormGroup row>
@@ -96,31 +102,31 @@ class UserPageEditor extends Component {
         <FormGroup row>
           <Label sm={4}>Город:</Label>
           <Col sm={8}>
-            <Input type="text" value={this.state.cityLive} onChange={this.onChange} name="cityLive" placeholder={player.cityLive}/>
+            <Input type="text" value={this.state.cityLive} onFocus = {(e)=>{e.currentTarget.value = player.cityLive}} onChange={this.onChange} name="cityLive" placeholder={player.cityLive}/>
           </Col>
         </FormGroup>
         <FormGroup row>
           <Label sm={4}>О себе:</Label>
           <Col sm={8}>
-            <Input type="textarea" value={this.state.about} onChange={this.onChange} name="about" placeholder={player.about}/>
+            <Input type="textarea" value={this.state.about} onFocus = {(e)=>{e.currentTarget.value = player.about}} onChange={this.onChange} name="about" placeholder={player.about}/>
           </Col>
         </FormGroup>
         <FormGroup row>
           <Label sm={4}>Любимые системы:</Label>
           <Col sm={8}>
-            <Input type="textarea" value={this.state.systems} onChange={this.onChange} name="systems" placeholder={player.systems}/>
+            <Input type="textarea" value={this.state.systems} onFocus = {(e)=>{e.currentTarget.value = player.systems}} onChange={this.onChange} name="systems" placeholder={player.systems}/>
           </Col>
         </FormGroup>
         <FormGroup row>
           <Label sm={4}>Любимые сеттинги:</Label>
           <Col sm={8}>
-            <Input type="textarea" value={this.state.setting} onChange={this.onChange} name="setting" placeholder={player.setting}/>
+            <Input type="textarea" value={this.state.setting} onFocus = {(e)=>{e.currentTarget.value = player.setting}} onChange={this.onChange} name="setting" placeholder={player.setting}/>
           </Col>
         </FormGroup>
         <FormGroup row>
           <Label sm={4}>Аватар:</Label>
           <Col sm={8}>
-            <Input type="text" value={this.state.photo} onChange={this.onChange} name="photo" placeholder={player.photo}/>
+            <Input type="text" value={this.state.photo} onFocus = {(e)=>{e.currentTarget.value = player.photo}} onChange={this.onChange} name="photo" placeholder={player.photo}/>
           </Col>
         </FormGroup>
        {/* <FormGroup row>
@@ -145,29 +151,31 @@ class UserPageEditor extends Component {
                 </div>
               </Col>
         </FormGroup>
-{/*        {this.state.leading === true && <FormGroup row>
+       {this.state.leading === true && <FormGroup row>
           <Label sm={4}>Примеры игр:</Label>
           <Col sm={8}>
-            <Input type="string" value={this.state.examples[0]} onChange={this.onChange} name="nameUser" placeholder=""/>
-            <Input type="string" value={this.state.examples[1]} onChange={this.onChange} name="nameUser" placeholder=""/>
+            <Input type="text" value={this.state.example1} onChange={this.onChange} onFocus = {(e)=>{e.currentTarget.value = player.example1}} className="mb-3" name="example1" placeholder={player.example1}/>
+            <Input type="text" value={this.state.example2} onChange={this.onChange} onFocus = {(e)=>{e.currentTarget.value = player.example2}} className="mb-3" name="example2" placeholder={player.example2}/>
+            <Input type="text" value={this.state.example3} onChange={this.onChange} onFocus = {(e)=>{e.currentTarget.value = player.example3}} className="mb-3" name="example3" placeholder={player.example3}/>
+            <Input type="text" value={this.state.example4} onChange={this.onChange} onFocus = {(e)=>{e.currentTarget.value = player.example4}} className="mb-3" name="example4" placeholder={player.example4}/>
           </Col>
-        </FormGroup>}*/}
+        </FormGroup>}
         <FormGroup row>
           <Label sm={4}>Skype:</Label>
           <Col sm={8}>
-            <Input type="text" value={this.state.skype} onChange={this.onChange} name="skype" placeholder={player.skype}/>
+            <Input type="text" value={this.state.skype} onFocus = {(e)=>{e.currentTarget.value = player.skype}} onChange={this.onChange} name="skype" placeholder={player.skype}/>
           </Col>
         </FormGroup>
         <FormGroup row>
           <Label sm={4}>Discord:</Label>
           <Col sm={8}>
-            <Input type="text" value={this.state.discord} onChange={this.onChange} name="discord" placeholder={player.discord}/>
+            <Input type="text" value={this.state.discord} onFocus = {(e)=>{e.currentTarget.value = player.discord}} onChange={this.onChange} name="discord" placeholder={player.discord}/>
           </Col>
         </FormGroup>
         <FormGroup row>
           <Label sm={4}>Доп. контакты:</Label>
           <Col sm={8}>
-            <Input type="text" value={this.state.otherContacts} onChange={this.onChange} name="otherContacts" placeholder={player.otherContacts}/>
+            <Input type="text" value={this.state.otherContacts} onFocus = {(e)=>{e.currentTarget.value = player.otherContacts}} onChange={this.onChange} name="otherContacts" placeholder={player.otherContacts}/>
           </Col>
         </FormGroup>
         <FormGroup className="mt-5 mb-4" row>
