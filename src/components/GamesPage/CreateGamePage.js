@@ -74,10 +74,19 @@ class CreateGamePage extends Component {
 
 	onSubmit(e){
 		e.preventDefault();
-		var video_id = this.state.videoLink.split('v=')[1];
-		var ampersandPosition = video_id.indexOf('&');
-		if(ampersandPosition !== -1) {
-		  video_id = video_id.substring(0, ampersandPosition);
+
+		var reg = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w]+\?v=|embed\/|v\/)?)([\w]+)(\S+)?$/;
+		if(this.state.videoLink.length > 0){
+			if(this.state.videoLink.match(reg) === null){
+				alert("Укажите правильную ссылку на видео")
+				return false
+			}
+			else {
+				var video_id = this.state.videoLink.match(reg)[5]
+			}
+		}
+		else{
+			video_id = this.state.videoLink
 		}
 
 		if(Date.parse(this.state.from) > Date.parse(new Date()) && Date.parse(this.state.from) < Date.parse(this.state.to)){
@@ -104,8 +113,8 @@ class CreateGamePage extends Component {
 			    selectedOption: 'sortByTypeOnline',
 			    infoGame: '',
 			    placeGame: '',
-			    from: '',
-			    to: '',
+			    from: undefined,
+			    to: undefined,
 			    videoLink: ''
 			})
 			alert("Готово!")
@@ -204,7 +213,7 @@ class CreateGamePage extends Component {
 		 					</div>
 		 					<div>
 		 						<label className="mr-2 mt-3">Ссылка на стрим: </label>
-		 						<input type="string" value={this.state.videoLink} className="w-100" onChange={this.onChange} name="videoLink" placeholder=""/><br />
+		 						<input type="string" value={this.state.videoLink} className="w-100" onChange={this.onChange} name="videoLink" placeholder="YouTube" /><br />
 		 					</div> 
 {/*Number of seats*/}
 		 					<label className="mr-2 mt-3">Количество мест: </label>

@@ -139,7 +139,7 @@ class GamePage extends Component {
 			                
 			                <p>Превью: {game.infoGame.length === 0 ? "нет" : game.infoGame}</p>
 			                <hr />
-			                <YouTube videoId="leKFu6qcw_g" opts={opts} onReady={this._onReady} />
+			                {game.videoLink.length > 0 && <YouTube videoId={game.videoLink} opts={opts} onReady={this._onReady} />}
 		 				</div>
 		 				<div className="col-12 col-md-3 text-center">
 		 					{this.props.players.filter(master => game.masterName === master.username)
