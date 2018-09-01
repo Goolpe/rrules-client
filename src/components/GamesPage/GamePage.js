@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import 'moment/locale/ru';
-import MomentLocaleUtils, {
-  formatDate,
-  parseDate,
-} from 'react-day-picker/moment';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
-import 'react-day-picker/lib/style.css';
 
 import { Button } from 'reactstrap';
 import { Link, withRouter} from 'react-router-dom';
@@ -14,6 +8,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
 import { fetchGames } from '../actions/gameActions';
+import YouTube from 'react-youtube';
 
 class GamePage extends Component {
 	constructor(props){
@@ -71,6 +66,11 @@ class GamePage extends Component {
     	else{
     	}
     }
+
+    _onReady(event) {
+	    // access to player in all event handlers via event.target
+	    event.target.pauseVideo();
+	  }
 // Handler of change input states  
 
 	onChange(e){
@@ -84,10 +84,18 @@ class GamePage extends Component {
 		
 	}
   render() {
-  	const {isAuthenticated, user} = this.props.auth;
+  	const opts = {
+      height: '390',
+      width: '100%',
+      playerVars: { // https://developers.google.com/youtube/player_parameters
+        autoplay: 0
+      }
+    };
+
+  	const {user} = this.props.auth;
 //declare consts for Datepicker  	
-   	const { from, to } = this.state;
-    const modifiers = { start: from, end: to };
+   	// const { from, to } = this.state;
+    // const modifiers = { start: from, end: to };
 
     const gameItems = this.props.games.filter(game => game._id === this.props.match.params.id)
     	.map(game=> 
@@ -131,8 +139,7 @@ class GamePage extends Component {
 			                
 			                <p>Превью: {game.infoGame.length === 0 ? "нет" : game.infoGame}</p>
 			                <hr />
-			                <iframe width="100%" className="mb-5" height="340" title={game._id} src={game.videoLink} frameBorder="0" allowFullScreen></iframe>	
-
+			                <YouTube videoId="leKFu6qcw_g" opts={opts} onReady={this._onReady} />
 		 				</div>
 		 				<div className="col-12 col-md-3 text-center">
 		 					{this.props.players.filter(master => game.masterName === master.username)
@@ -140,7 +147,7 @@ class GamePage extends Component {
 			 					<React.Fragment key={master._id} >
 				 					<p>Мастер: <Link to={`/@${game.masterName}`} target="_blank" >{game.masterName}</Link></p>
 				 					<p><i className="fas fa-star text-warning fa-1x"></i> - {master.rating}/5</p>
-			 						<img src={master.photo} height="200px" className="mb-3"/>
+			 						<img src={master.photo} alt={game.masterName} height="200px" className="mb-3"/>
 			 						<hr />
 			 						<p>Игроки:</p>
 			 						<ul>

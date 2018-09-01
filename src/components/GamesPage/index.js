@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import _ from "lodash";
-import { Button, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
@@ -78,7 +78,7 @@ class GamesPage extends Component {
 
 		
 //authenticate consts	 	
-	 	const {isAuthenticated, user} = this.props.auth;
+	 	const {user} = this.props.auth;
 
 //datepiceker consts
 	 	const { from, to } = this.state;

@@ -23,7 +23,8 @@ class ArticlesPage extends Component {
 	  }
 
 	render() {	
-		const {isAuthenticated, user} = this.props.auth;	
+		const {user} = this.props.auth;	
+
 		let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
 	  	const listItems = articleSort.map((article, index) =>
 	    	<div className="card text-justify mb-5 border-0 shadow-sm" key={article._id}>

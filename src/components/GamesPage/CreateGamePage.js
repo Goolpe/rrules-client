@@ -74,6 +74,12 @@ class CreateGamePage extends Component {
 
 	onSubmit(e){
 		e.preventDefault();
+		var video_id = this.state.videoLink.split('v=')[1];
+		var ampersandPosition = video_id.indexOf('&');
+		if(ampersandPosition !== -1) {
+		  video_id = video_id.substring(0, ampersandPosition);
+		}
+
 		if(Date.parse(this.state.from) > Date.parse(new Date()) && Date.parse(this.state.from) < Date.parse(this.state.to)){
 			const game = {
 				nameGame: this.state.nameGame,
@@ -82,7 +88,7 @@ class CreateGamePage extends Component {
 			    placeGame: this.state.placeGame,
 			    priceGame: this.state.priceGame,
 			    infoGame: this.state.infoGame,
-			    videoLink: this.state.videoLink,
+			    videoLink: video_id,
 			    selectedOption: this.state.selectedOption,
 			    placeAll: this.state.placeAll,
 			    gamersInsideId: this.state.gamersInsideId,

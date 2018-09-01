@@ -63,7 +63,7 @@ class RoutesPage extends Component {
     }	
 
   render(){  
-  	const {isAuthenticated, user} = this.props.auth;
+  	const {isAuthenticated} = this.props.auth;
 
 	const PrivateRoute = ({ component: Component, ...rest }) => (
 	  <Route {...rest} render={props => 

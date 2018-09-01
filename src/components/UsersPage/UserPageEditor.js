@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers, changePlayerData } from '../actions/playerActions';
-import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 
@@ -78,7 +77,7 @@ class UserPageEditor extends Component {
     this.setState({ [e.target.name]: e.target.value})
   }
   render() {
-    const {isAuthenticated, user} = this.props.auth;   
+    const {user} = this.props.auth;   
 
     const playerNow = this.props.players.filter(player => user.name === player.username)
     .map(player =>

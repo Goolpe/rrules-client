@@ -63,7 +63,7 @@ class Footer extends Component {
     		<div className="container pb-5 pt-3">
     			<div className="row"> 
     				<div className="col-12 col-md-8">
-						<p className="text-white">&copy; Copyright 2018 | Random Rules | <a href="https://github.com/Goolpe" target="_blank">Разработал Goolpe</a></p>
+						<p className="text-white">&copy; Copyright 2018 | Random Rules | <a href="https://github.com/Goolpe" rel="noopener noreferrer" target="_blank">Разработал Goolpe</a></p>
 					</div>
 					<div className="col-12 col-md-4 text-center">
 						<Link to="/support" className="btn btn-danger pl-3 pr-3">ПОДДЕРЖАТЬ ПРОЕКТ</Link>

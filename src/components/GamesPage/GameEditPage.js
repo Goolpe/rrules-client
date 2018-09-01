@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import 'moment/locale/ru';
-import MomentLocaleUtils, {
-  formatDate,
-  parseDate,
-} from 'react-day-picker/moment';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
-import 'react-day-picker/lib/style.css';
-
 import { Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -102,8 +95,8 @@ class GameEditPage extends Component {
   render() {
 
 //declare consts for Datepicker  	
-   	const { from, to } = this.state;
-    const modifiers = { start: from, end: to };
+   	// const { from, to } = this.state;
+    // const modifiers = { start: from, end: to };
 
     const gameEdit = this.props.games.filter(game=> game._id === this.props.match.params.id)
     		.map(game => 

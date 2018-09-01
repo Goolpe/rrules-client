@@ -13,7 +13,7 @@ class UserPage extends Component {
       this.props.fetchPlayers();
     }
   render() {
-    const {isAuthenticated, user} = this.props.auth;
+    const {user} = this.props.auth;
 
     const searchId = this.props.players
     .filter(player => player.username === this.props.match.params.nickname)

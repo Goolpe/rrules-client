@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
