@@ -11,7 +11,8 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem,
+  Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from './actions/authActions';
@@ -32,6 +33,7 @@ class Navigation extends Component{
       isOpen: !this.state.isOpen
     });
   }
+
   closeNav(){
     this.setState({
       isOpen: false
@@ -84,7 +86,7 @@ class Navigation extends Component{
                     <DropdownItem tag={Link} onClick={this.closeNav} to={`/@${user.name}`} className="p-2 rounded-top">Мой профиль</DropdownItem>
                     <DropdownItem tag={Link} onClick={this.closeNav} to={`/edit/@${user.name}`} className="p-2 rounded-top">Настройки</DropdownItem>
                     <hr className="m-0"/>
-                    <DropdownItem onClick={this.onLogout.bind(this)} className="p-2 rounded-top">Выйти</DropdownItem>
+                    <DropdownItem onClick={this.onLogout.bind(this)} className="p-2 rounded-top">Выйти </DropdownItem>
                   </span>
                 :
                  <DropdownItem tag={Link} onClick={this.closeNav} to="/auth" className="p-2 rounded-top">Авторизация</DropdownItem>                      

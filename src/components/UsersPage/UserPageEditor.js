@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { fetchPlayers, changePlayerData } from '../actions/playerActions';
 import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
+import moment from 'moment';
 
 class UserPageEditor extends Component {
   constructor(props){
@@ -88,7 +89,8 @@ class UserPageEditor extends Component {
         <FormGroup row>
           <Label sm={4}>День рождения:</Label>
           <Col sm={8}>
-            <Input type="date" name="dateBirth" value={this.state.dateBirth} placeholder={player.dateBirth} onChange={this.onChange} />
+            <Input type="text" name="dateBirth" onFocus = {(e)=>{e.currentTarget.type = "date"}} onBlur={(e)=>{e.currentTarget.type = "text";
+    e.currentTarget.placeholder = moment(player.dateBirth).format('LL')}} value={this.state.dateBirth} placeholder={moment(player.dateBirth).format('LL')} onChange={this.onChange} />
           </Col>
         </FormGroup>
         <FormGroup row>
@@ -113,6 +115,12 @@ class UserPageEditor extends Component {
           <Label sm={4}>Любимые сеттинги:</Label>
           <Col sm={8}>
             <Input type="textarea" value={this.state.setting} onChange={this.onChange} name="setting" placeholder={player.setting}/>
+          </Col>
+        </FormGroup>
+        <FormGroup row>
+          <Label sm={4}>Аватар:</Label>
+          <Col sm={8}>
+            <Input type="text" value={this.state.photo} onChange={this.onChange} name="photo" placeholder={player.photo}/>
           </Col>
         </FormGroup>
        {/* <FormGroup row>
