@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Videos extends Component {	
-  	render() {
+function Videos(props){	
 	    return (
 	    	<div className="container-fluid pt-5" id="articles">
 				<p className="text-white font-weight-bold">ПОСЛЕДНИЕ ВИДЕО</p>
@@ -21,7 +20,6 @@ class Videos extends Component {
 	    		</div>
 	    	</div>
 	    )
-	}
 }
 export default Videos;
 
