@@ -76,6 +76,7 @@ class GamesPage extends Component {
 	}
 	 render(){ 
 
+		
 //authenticate consts	 	
 	 	const {isAuthenticated, user} = this.props.auth;
 
@@ -168,12 +169,14 @@ class GamesPage extends Component {
 				      </ButtonDropdown><br/>
 {/*daypicker*/}
 				      <label className="mr-2 mt-3">Удобные даты: </label><br/>
-	 					<div className="mb-2"><DayPickerInput
+	 					<span className="mr-2"><DayPickerInput
+	 						inputProps={{ style: { width: "100%" } }}
 				          value={from}
 				          placeholder=" с"
 				          format="LL"
 				          formatDate={formatDate}
 				          parseDate={parseDate}
+				          modifiersStyles={modifiersStyles}
 				          dayPickerProps={{
 				            selectedDays: [from, { from, to }],
 				            disabledDays: { before: new Date(), after: this.state.to  },
@@ -186,8 +189,9 @@ class GamesPage extends Component {
 				            
 				          }}
 				          onDayChange={this.handleFromChange}
-				        /></div>
+				        /></span>
 				          <DayPickerInput
+				          	inputProps={{ style: { width: "100%" } }}
 				            ref={el => (this.to = el)}
 				            value={to}
 				            placeholder=" по"
