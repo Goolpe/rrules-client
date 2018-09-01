@@ -169,14 +169,13 @@ class GamesPage extends Component {
 				      </ButtonDropdown><br/>
 {/*daypicker*/}
 				      <label className="mr-2 mt-3">Удобные даты: </label><br/>
-	 					<span className="mr-2"><DayPickerInput
-	 						inputProps={{ style: { width: "100%" } }}
+	 					<div className="mb-2"><DayPickerInput
+	 					  inputProps={{ style: { width: "100%" } }}
 				          value={from}
 				          placeholder=" с"
 				          format="LL"
 				          formatDate={formatDate}
 				          parseDate={parseDate}
-				          modifiersStyles={modifiersStyles}
 				          dayPickerProps={{
 				            selectedDays: [from, { from, to }],
 				            disabledDays: { before: new Date(), after: this.state.to  },
@@ -189,7 +188,7 @@ class GamesPage extends Component {
 				            
 				          }}
 				          onDayChange={this.handleFromChange}
-				        /></span>
+				        /></div	>
 				          <DayPickerInput
 				          	inputProps={{ style: { width: "100%" } }}
 				            ref={el => (this.to = el)}
