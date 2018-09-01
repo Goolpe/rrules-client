@@ -118,9 +118,10 @@ class GamesPage extends Component {
 	 	this.state.to && (gamesSort = gamesSort.filter(game => 
 	 			Date.parse(game.from) < (Date.parse(this.state.to) + 43200000)))
 
-	 	const listGames = gamesSort.map(game => 
+	 	const listGames = gamesSort.filter(game=> game.archive === false).map(game => 
 	 				<Link to={`/game/${game._id}`} className="m-0 p-0 mb-4 btn text-left text-dark w-100" key={game._id}>
 	 				<div className="p-3 userCard shadow-sm" >	 
+	 					{console.log(game.archive)}
 	 					<p className="pb-3 border-bottom">{game.nameGame}</p>				
 	 					<div className="row">
 	 						<div className="col-12 col-md-3">
@@ -175,7 +176,7 @@ class GamesPage extends Component {
 				          placeholder=" с"
 				          format="LL"
 				          formatDate={formatDate}
-				          parseDate={parseDate}
+				          parseDate={parseDate}	
 				          dayPickerProps={{
 				            selectedDays: [from, { from, to }],
 				            disabledDays: { before: new Date(), after: this.state.to  },

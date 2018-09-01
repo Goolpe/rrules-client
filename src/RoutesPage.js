@@ -31,6 +31,7 @@ import AuthPage from './components/AuthPage';
 import GamesPage from './components/GamesPage';
 import CreateGamePage from './components/GamesPage/CreateGamePage';
 import GamePage from './components/GamesPage/GamePage';
+import GameEditPage from './components/GamesPage/GameEditPage';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -103,6 +104,7 @@ class RoutesPage extends Component {
 				        <PrivateRoute path="/new-article" component={ArticleForm} />
 				        <PrivateRoute path="/edit/:nickname" component={UserPageEditor} />
 				        <PrivateRoute path="/create-game" component={CreateGamePage} />
+				        <PrivateRoute path="/edit-game/:id" component={GameEditPage} />
 				        <Route path="*" render={() => <Redirect to="/" />} />
 				       </Switch>
 			        <Footer />

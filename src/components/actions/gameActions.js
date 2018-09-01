@@ -30,6 +30,18 @@ export const createGame = gameData => dispatch => {
   );
 };
 
+export const changeGameData = (user, gameData) => dispatch => {
+  axios.put('https://randomrulesdb.herokuapp.com/games/' + user.id, user, {
+      method: 'put',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+       body: JSON.stringify(gameData)
+     })
+      .then(res => dispatch({type: NEW_GAME, payload: res.data}))
+};
+
 export const deleteGame = (user, gameData) => dispatch => {
   axios.delete('https://randomrulesdb.herokuapp.com/games/', user, {
       method: 'delete',
