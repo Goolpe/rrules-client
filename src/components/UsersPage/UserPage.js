@@ -53,10 +53,13 @@ class UserPage extends Component {
                 <hr />
                 <p>{player.setting}</p>
 
-                {player.leading && <h4 className="mb-4 mt-4">Примеры игр</h4>}<hr />
+                
               </div>
             </div>
-            {player.leading && <div className="row">
+            {player.example1.length > 0 || player.example2.length > 0 || player.example3.length > 0 || player.example4.length > 0 &&
+            <React.Fragment>
+            <h4 className="mb-4 mt-4">Примеры игр</h4><hr />
+            <div className="row">
               <div className="col-12 col-md-6 mb-3">
                 <iframe width="100%" title={player.example1.id} height="300" src={player.example1} frameBorder="0" allowFullScreen></iframe>
               </div>
@@ -69,7 +72,8 @@ class UserPage extends Component {
               <div className="col-12 col-md-6 mb-3">
                 <iframe width="100%" title={player.example4.id} height="300" src={player.example4} frameBorder="0" allowFullScreen></iframe>
               </div>
-            </div>}
+            </div>
+            </React.Fragment>}
           </React.Fragment>
           )
 

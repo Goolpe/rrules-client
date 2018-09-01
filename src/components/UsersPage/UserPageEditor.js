@@ -1,36 +1,36 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { fetchPlayers, changePlayerData } from '../actions/playerActions';
-import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { withRouter } from 'react-router-dom';
-import moment from 'moment';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { fetchPlayers, changePlayerData } from "../actions/playerActions";
+import { Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { withRouter } from "react-router-dom";
+import moment from "moment";
 
 class UserPageEditor extends Component {
   constructor(props){
     super(props);
     this.state ={
-      username: '',
-      fullName: '',
-      photo: '',
-      dateBirth: '',
+      username: "",
+      fullName: "",
+      photo: "",
+      dateBirth: "",
       rating: 0,
       gamesCount: 0,
-      about: '',
+      about: "",
       master: false,
-      skype: '',
-      discord: '',
-      systems: '',
-      setting: '',
+      skype: "",
+      discord: "",
+      systems: "",
+      setting: "",
       paidGames: false,
-      leading: false,
-      cityLive: '',
-      otherContacts: '',
-      playerId:'',
-      example1:'',
-      example2:'',
-      example3:'',
-      example4:''
+      leading: "noMaster",
+      cityLive: "",
+      otherContacts: "",
+      playerId:"",
+      example1:"",
+      example2:"",
+      example3:"",
+      example4:""
     }
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -95,7 +95,7 @@ class UserPageEditor extends Component {
           <Label sm={4}>День рождения:</Label>
           <Col sm={8}>
             <Input type="text" name="dateBirth" onFocus = {(e)=>{e.currentTarget.type = "date"}} onBlur={(e)=>{e.currentTarget.type = "text";
-    e.currentTarget.placeholder = moment(player.dateBirth).format('LL')}} value={this.state.dateBirth} placeholder={moment(player.dateBirth).format('LL')} onChange={this.onChange} />
+    e.currentTarget.placeholder = moment(player.dateBirth).format("LL")}} value={this.state.dateBirth} placeholder={moment(player.dateBirth).format("LL")} onChange={this.onChange} />
           </Col>
         </FormGroup>
         <FormGroup row>
@@ -141,16 +141,16 @@ class UserPageEditor extends Component {
               <Label sm={4}>Водишь игры?</Label>
               <Col sm={8}>
                 <div className="custom-control custom-radio">
-                    <input type="radio" className="custom-control-input" value={true} onChange={()=>{this.setState({leading: true})}} checked={this.state.leading === true} id="radio1" />
+                    <input type="radio" className="custom-control-input" value={true} onChange={()=>{this.setState({leading: "yesMaster"})}} checked={this.state.leading === "yesMaster"} id="radio1" />
                     <label className="custom-control-label" htmlFor="radio1">Да</label>
                 </div>
                 <div className="custom-control custom-radio">
-                    <input type="radio" className="custom-control-input" value={false} onChange={()=>{this.setState({leading: false})}} checked={this.state.leading === false} id="radio2" />
+                    <input type="radio" className="custom-control-input" value={false} onChange={()=>{this.setState({leading: "noMaster"})}} checked={this.state.leading === "noMaster"} id="radio2" />
                     <label className="custom-control-label" htmlFor="radio2">Нет</label>
                 </div>
               </Col>
         </FormGroup>
-       {this.state.leading && <FormGroup row>
+       {this.state.leading === "yesMaster" && <FormGroup row>
           <Label sm={4}>Примеры игр:</Label>
           <Col sm={8}>
             <Input type="text" value={this.state.example1} onChange={this.onChange} onFocus = {(e)=>{e.currentTarget.value = player.example1}} className="mb-3" name="example1" placeholder={player.example1}/>

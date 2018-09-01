@@ -28,40 +28,33 @@ class Games extends Component {
 	 	let gamesSort = _.sortBy(this.props.games, ['from'])
 
 	 	const listGames = gamesSort.map(game => 
-	 		<div className="p-3 mb-4 bg-white text-left shadow-sm" key={game._id}>
-	 			<div className="row justify-content-center">
-					<div className="col-12 col-md-3">
-						{this.props.players.filter(master => game.masterName === master.username)
+	 		<Link to={`/game/${game._id}`} className="m-0 p-0 mb-4 btn text-left text-dark w-100" key={game._id}>
+	 				<div className="p-3 userCard shadow-sm" >	 
+	 					<p className="pb-3 border-bottom">{game.nameGame}</p>				
+	 					<div className="row">
+	 						<div className="col-12 col-md-3">
+	 							{this.props.players.filter(master => game.masterName === master.username)
 			 						.map(master => 
 			 						<div key={master._id}>
-				 						<p>Мастер: <Link to={`/@${master.username}`} target="_blank" key={master.userId} className="ml-2 mr-1">{master.username}</Link></p>
+				 						<p>Мастер: {master.username}</p>
 				 						<p><i className="fas fa-star text-warning fa-1x"></i> - {master.rating}/5</p>
 			 						</div>
 			 					)}
-			 			{(game.placeAll - game.gamersInsideId.length) === 0 ? <Button color="danger" className="btn btn-danger mt-4 pl-5 pr-5" disabled>Нет мест</Button> 
-	 					:
-	 					<Button color="info" className="pl-5 mr-1 ml-1 pr-5">Записаться</Button>}
-					</div>
-					<div className="col-12 col-md-9">
-						
- 					<p>Дата и время игры: {moment(game.from).format('lll')}</p>
- 					<p>Тип игры: {game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}
- 					 {game.selectedOption === "sortByTypeIRL" && <span className="ml-3">Город: {game.cityGame}</span>}</p>
- 					<p className="d-flex-wrap" style={{wordWrap: "break-word"}}>Всего мест: {game.placeAll - game.gamersInsideId.length} / {game.placeAll}
- 					<span className="ml-4">Игроки: {this.props.players.map(player=> 
- 						(game.gamersInsideId
- 							.filter(gamer => gamer === player.gamerId) 
- 							.map(gamer => 
-			 					<Link to={`/@${player.username}`} key={player.userId} target="_blank" className="ml-2 mr-1">{player.username}</Link>
-		 						)
- 							)
- 					)}</span>
- 					</p>
- 					<p>Доп. информация: {game.infoGame.length === 0 ? "нет" : game.infoGame}</p>
-					</div>
-					
-				</div>	
-	 		</div>
+	 						</div>
+	 						<div className="col-12 col-md-5">
+			 					<p>Дата игры: {moment(game.from).format('lll')}</p>
+			 					<p>Тип игры: {game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}
+			 					 {game.selectedOption === "sortByTypeIRL" && <span className="ml-3">Город: {game.cityGame}</span>}</p>
+			 					
+	 						</div>
+	 						<div className="col-12 col-md-4">
+	 							<p className="d-flex-wrap" style={{wordWrap: "break-word"}}>Всего мест: {game.placeAll - game.gamersInsideId.length} / {game.placeAll}
+			 					</p>
+			 					<p>Стоимость: {game.priceGame.length === 0 ? "Бесплатно" : game.priceGame}</p>
+	 						</div>
+	 					</div>
+	 				</div>
+	 				</Link>
 	 		).slice(0,2)
 	return (
 
@@ -69,7 +62,7 @@ class Games extends Component {
 			<div className="container pt-5 pb-5 text-center">
 				<h1 className="text-dark mb-5">БЛИЖАЙШИЕ ИГРЫ</h1>
 				{listGames}
-				<Link to="/games" className="btn btn-info p-3 mb-2 mr-2">Посмотреть все игры</Link>
+				<Link to="/games" className="btn btn-info p-3 mb-2 mt-4">Посмотреть все игры</Link>
 			</div>
 		</section>
 	)

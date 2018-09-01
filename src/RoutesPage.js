@@ -19,6 +19,8 @@ import ArticleForm from './components/ArticlesPage/ArticleForm';
 import ShopPage from './components/ShopPage';
 import StreamsPage from './components/StreamsPage';
 
+import MessagesPage from './components/MessagesPage';
+
 import MastersPage from './components/UsersPage/MastersPage';
 import UsersPage from './components/UsersPage';
 import UserPage from './components/UsersPage/UserPage';
@@ -97,7 +99,7 @@ class RoutesPage extends Component {
 			            <Route path="/masters" component={MastersPage} />
 			            <Route path="/support" component={SupportPage} />   
 			            <Route path="/agreement" component={AgreementPage} />
-			            <Route path="/games" component={GamesPage} />    
+			            <Route path="/games" component={GamesPage} />   
 			            <Route path="/game/:id" component={GamePage} /> 
 			            <Route path="/@:nickname" component={UserPage} />
 				        <Route path="/auth" component={AuthPage} />

@@ -29,7 +29,6 @@ class GamePage extends Component {
    		this.handleToChange = this.handleToChange.bind(this);
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
-		this.handlePlay = this.handlePlay.bind(this);
 	} 
 
 // functions for datepicker
@@ -59,14 +58,6 @@ class GamePage extends Component {
       this.props.fetchPlayers();
     }
 
-    handlePlay(){
-    	if(this.props.auth.isAuthenticated === false){
-    		this.props.history.push('/auth')
-    	}
-    	else{
-    	}
-    }
-
     _onReady(event) {
 	    // access to player in all event handlers via event.target
 	    event.target.pauseVideo();
@@ -81,7 +72,11 @@ class GamePage extends Component {
 
 	onSubmit(e){
 		e.preventDefault();
-		
+		if(this.props.auth.isAuthenticated === false){
+    		this.props.history.push('/auth')
+    	}
+    	else{
+    	}	
 	}
   render() {
   	const opts = {
@@ -113,7 +108,7 @@ class GamePage extends Component {
 					{game.placeAll - game.gamersInsideId.length === 0 ? 
 						<Button color="danger" className="mb-2 mr-2" disabled>Мест нет</Button>
 						:
-						<Button type="submit" onClick={this.handlePlay} color="danger" className="mb-2 mr-2">Играть</Button>
+						<Button type="submit" color="danger" className="mb-2 mr-2">Играть</Button>
 					}
 					<Link to="/games" className="btn btn-outline-info rounded-0 mb-2">Выйти из комнаты</Link>
 					</div>

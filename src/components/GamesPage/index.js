@@ -211,7 +211,7 @@ class GamesPage extends Component {
 				            onDayChange={this.handleToChange}
 				          /><br />
 {/*type of the games*/}
-				      <label className="mr-2 mt-3">Тип игры: </label><br/>
+				      	<label className="mr-2 mt-3">Тип игры: </label><br/>
 				      	<div className="custom-control custom-radio mb-2">
 						    <input type="radio" className="custom-control-input" value="sortByTypeAll" onChange={()=>{this.setState({selectedOption: 'sortByTypeAll'})}} checked={this.state.selectedOption === 'sortByTypeAll'} id="radio0" />
 						    <label className="custom-control-label" htmlFor="radio0">Все</label>

@@ -12,3 +12,6 @@ export const NEW_GAME = 'NEW_GAME';
 
 export const GET_ERRORS = 'GET_ERRORS';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+
+export const FETCH_MSGS = 'FETCH_MSGS';
+export const FETCH_MSG = 'FETCH_MSG';
