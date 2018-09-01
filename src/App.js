@@ -12,11 +12,11 @@ if(localStorage.jwtToken) {
   const decoded = jwt_decode(localStorage.jwtToken);
   store.dispatch(setCurrentUser(decoded));
 
-  const currentTime = Date.now() / 1000;
-  if(decoded.exp < currentTime) {
-    store.dispatch(logoutUser());
-    window.location.href = '/auth'
-  }
+  // const currentTime = Date.now() / 1000;
+  // if(decoded.exp < currentTime) {
+  //   store.dispatch(logoutUser());
+  //   window.location.href = '/auth'
+  // }
 }
 
 class App extends Component {
