@@ -56,7 +56,7 @@ class UserPage extends Component {
                 
               </div>
             </div>
-            {player.example1.length > 0 || player.example2.length > 0 || player.example3.length > 0 || player.example4.length > 0 &&
+            {(player.example1.length > 5 || player.example2.length > 5 || player.example3.length > 5 || player.example4.length > 5) &&
             <React.Fragment>
             <h4 className="mb-4 mt-4">Примеры игр</h4><hr />
             <div className="row">
