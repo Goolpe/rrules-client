@@ -30,6 +30,7 @@ import TechWorksPage from './components/TechWorksPage';
 import AuthPage from './components/AuthPage';
 import GamesPage from './components/GamesPage';
 import CreateGamePage from './components/GamesPage/CreateGamePage';
+import GamePage from './components/GamesPage/GamePage';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -78,6 +79,7 @@ class RoutesPage extends Component {
 			            <Route path="/support" component={SupportPage} />   
 			            <Route path="/agreement" component={AgreementPage} />
 			            <Route path="/games" component={GamesPage} />    
+			            <Route path="/game/:id" component={GamePage} /> 
 			            <Route path="/@:nickname" component={UserPage} />
 				        <Route path="/auth" component={AuthPage} />
 				        <PrivateRoute path="/new-article" component={ArticleForm} />

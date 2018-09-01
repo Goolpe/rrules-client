@@ -26,6 +26,7 @@ class CreateGamePage extends Component {
 		    gamersInsideId: [],
 		    infoGame: '',
 		    placeGame:'',
+		    videoLink:'',
 		    from: undefined,
       		to: undefined
 		}
@@ -81,6 +82,7 @@ class CreateGamePage extends Component {
 			    placeGame: this.state.placeGame,
 			    priceGame: this.state.priceGame,
 			    infoGame: this.state.infoGame,
+			    videoLink: this.state.videoLink,
 			    selectedOption: this.state.selectedOption,
 			    placeAll: this.state.placeAll,
 			    gamersInsideId: this.state.gamersInsideId,
@@ -97,7 +99,8 @@ class CreateGamePage extends Component {
 			    infoGame: '',
 			    placeGame: '',
 			    from: '',
-			    to: ''
+			    to: '',
+			    videoLink: ''
 			})
 			alert("Готово!")
 		}
@@ -114,7 +117,7 @@ class CreateGamePage extends Component {
 	  return (
 	  	<section id="createGame" style={{minHeight: "100vh"}}>
 			<div className="container pt-5 pb-5">
-				<h1 className="text-dark text-center">СОЗДАТЬ ИГРУ</h1>
+				<h1 className="text-dark text-center mb-5">СОЗДАТЬ ИГРУ</h1>
 				<form onSubmit={this.onSubmit}>
 {/*Button to create game and exit*/}
 				<div className="d-flex justify-content-end">
@@ -192,12 +195,16 @@ class CreateGamePage extends Component {
 		 					<div>
 		 						<label className="mr-2 mt-3">Стоимость: </label>
 		 						<input type="string" value={this.state.priceGame} onChange={this.onChange} name="priceGame" placeholder=""/><br />
+		 					</div>
+		 					<div>
+		 						<label className="mr-2 mt-3">Ссылка на стрим: </label>
+		 						<input type="string" value={this.state.videoLink} onChange={this.onChange} name="videoLink" placeholder=""/><br />
 		 					</div> 
 {/*Number of seats*/}
 		 					<label className="mr-2 mt-3">Количество мест: </label>
 		 					<input type="number" min="1" max="20" value={this.state.placeAll} onChange={this.onChange} name="placeAll" placeholder="" required/><br />
 {/*Additionally info*/}		 					
-		 					<label className="mt-3">Доп. информация:</label>
+		 					<label className="mt-3">Превью:</label>
 		 					<textarea type="text" value={this.state.infoGame} style={{resize: "both", width: "100%", minHeight: "200px"}} onChange={this.onChange} name="infoGame" placeholder="" />
 		 				</div> 	
 		 			</div>	

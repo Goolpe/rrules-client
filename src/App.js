@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './components/setAuthToken';
 import { setCurrentUser, logoutUser } from './components/actions/authActions';
 import store from './components/store';
 import RoutesPage from './RoutesPage';
+import { browserHistory } from 'history';
 
 if(localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);

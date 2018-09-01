@@ -151,7 +151,7 @@ class UserPageEditor extends Component {
                 </div>
               </Col>
         </FormGroup>
-       {this.state.leading === true && <FormGroup row>
+       {this.state.leading && <FormGroup row>
           <Label sm={4}>Примеры игр:</Label>
           <Col sm={8}>
             <Input type="text" value={this.state.example1} onChange={this.onChange} onFocus = {(e)=>{e.currentTarget.value = player.example1}} className="mb-3" name="example1" placeholder={player.example1}/>
@@ -187,7 +187,6 @@ class UserPageEditor extends Component {
   	  <section id="userEditPage" style={{minHeight: "100vh"}}>	  
   	  	<div className="container pt-5 pb-5">
           {playerNow}
-        
       	</div>
     	</section>
 	  )
