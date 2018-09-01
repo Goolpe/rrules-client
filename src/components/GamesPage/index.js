@@ -132,11 +132,14 @@ class GamesPage extends Component {
 			 						</div>
 			 					)}
 	 						</div>
-	 						<div className="col-12 col-md-9">
+	 						<div className="col-12 col-md-5">
 			 					<p>Дата игры: {moment(game.from).format('lll')}</p>
 			 					<p>Тип игры: {game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}
 			 					 {game.selectedOption === "sortByTypeIRL" && <span className="ml-3">Город: {game.cityGame}</span>}</p>
-			 					<p className="d-flex-wrap" style={{wordWrap: "break-word"}}>Всего мест: {game.placeAll - game.gamersInsideId.length} / {game.placeAll}
+			 					
+	 						</div>
+	 						<div className="col-12 col-md-4">
+	 							<p className="d-flex-wrap" style={{wordWrap: "break-word"}}>Всего мест: {game.placeAll - game.gamersInsideId.length} / {game.placeAll}
 			 					</p>
 			 					<p>Стоимость: {game.priceGame.length === 0 ? "Бесплатно" : game.priceGame}</p>
 	 						</div>
