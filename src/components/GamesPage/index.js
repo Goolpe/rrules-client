@@ -121,7 +121,6 @@ class GamesPage extends Component {
 	 	const listGames = gamesSort.filter(game=> game.archive === false).map(game => 
 	 				<Link to={`/game/${game._id}`} className="m-0 p-0 mb-4 btn text-left text-dark w-100" key={game._id}>
 	 				<div className="p-3 userCard shadow-sm" >	 
-	 					{console.log(game.archive)}
 	 					<p className="pb-3 border-bottom">{game.nameGame}</p>				
 	 					<div className="row">
 	 						<div className="col-12 col-md-3">
