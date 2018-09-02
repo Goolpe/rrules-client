@@ -67,14 +67,6 @@ class RoutesPage extends Component {
   render(){  
   	const {isAuthenticated} = this.props.auth;
 
-	const PrivateRoute = ({ component: Component, ...rest }) => (
-	  <Route {...rest} render={props => 
-	      isAuthenticated ? (
-	        <Component {...props} />
-	      ) : (	<Redirect to={{	pathname: "/auth", state: { from: props.location }}}/> )
-	    }
-	  />
-	);
     return (
 	      <Router>
 		      <div>
@@ -103,17 +95,16 @@ class RoutesPage extends Component {
 			            <Route path="/game/:id" component={GamePage} /> 
 			            <Route path="/@:nickname" component={UserPage} />
 				        <Route path="/auth" component={AuthPage} />
-				        <PrivateRoute path="/new-article" component={ArticleForm} />
-				        <PrivateRoute path="/edit/:nickname" component={UserPageEditor} />
-				        <PrivateRoute path="/create-game" component={CreateGamePage} />
-				        <PrivateRoute path="/edit-game/:id" component={GameEditPage} />
+				        <Route path="/new-article" component={ArticleForm} />
+				        <Route path="/edit/:nickname" component={UserPageEditor} />
+				        <Route path="/create-game" component={CreateGamePage} />
+				        <Route path="/edit-game/:id" component={GameEditPage} />
 				        <Route path="*" render={() => <Redirect to="/" />} />
 				       </Switch>
 			        <Footer />
 			        <ArrowUp />
 			        </div>
-			        }
-			        
+			        } 
 		      </div>
 	      </Router>
     );
