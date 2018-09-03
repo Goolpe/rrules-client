@@ -50,9 +50,6 @@ class LoginPage extends Component{
     }
   }
 
-
-
-
   render(){	
       const {errors} = this.state;
       return (

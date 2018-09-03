@@ -40,7 +40,7 @@ class UserPageEditor extends Component {
 
     const playerData = {
           id: this.props.player._id,
-          fullName: this.state.fullName || this.props.player.fullName,
+          fullName: this.state.fullName,
           photo: this.state.photo,
           dateBirth: this.state.dateBirth,
           rating: this.state.rating,
@@ -62,7 +62,6 @@ class UserPageEditor extends Component {
          }
 
     this.props.changePlayerData(playerData);
-    this.props.fetchPlayer(this.props.auth.user.playerId)
   }
 
   componentWillMount() {

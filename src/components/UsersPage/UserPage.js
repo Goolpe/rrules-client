@@ -6,12 +6,13 @@ import { fetchPlayers } from '../actions/playerActions';
 import moment from 'moment';
 
 class UserPage extends Component {
-  componentDidMount() {
-    window.scrollTo(0,0);
-  }
+
   componentWillMount() {
       this.props.fetchPlayers();
     }
+  componentDidMount() {
+    window.scrollTo(0,0);
+  }
   render() {
     const {user} = this.props.auth;
 
@@ -19,6 +20,7 @@ class UserPage extends Component {
     .filter(player => player.username === this.props.match.params.nickname)
     .map(player =>
       <React.Fragment key={player._id}>
+            {player.master && <Link to="/masters" className="text-dark"><i className="fas fa-angle-left "></i>ДРУГИЕ МАСТЕРА</Link>}
             <span className="text-center"><h1>{player.username}</h1>{player.master && <p>мастер</p>}</span>
             <div className="row">
               <div className="col-12 col-md-6 order-md-2 mb-3 text-center">
@@ -30,17 +32,18 @@ class UserPage extends Component {
                 <h4 className="mb-4 mt-4">Основная информация:</h4>
                 <hr />
                 <ul>
-                  <li><span className="font-weight-bold">Имя:</span> {player.fullName}</li>
-                  <li><span className="font-weight-bold">День рождения:</span> {moment(player.dateBirth).format('LL')}</li>
+
+                  {player.fullName.length > 0 && <li><span className="font-weight-bold">Имя:</span> {player.fullName}</li>}
+                  {player.dateBirth && <li><span className="font-weight-bold">День рождения:</span> {moment(player.dateBirth).format('LL')}</li>}
                   <li><span className="font-weight-bold">Зарегистрирован:</span> {moment(player.dateReg).format('LL')}</li>
                   <li>{player.master && <p>{player.paidGames ? "Водит" : "Не водит"} платные игры</p>}</li>
                 </ul>
                 <h4 className="mb-4 mt-4">Контакты:</h4>
                 <hr />
                 <ul>
-                  <li><span className="font-weight-bold">Discord</span> - {player.discord}</li>
-                  <li><span className="font-weight-bold">Skype</span> - {player.skype}</li>
-                  <li><span className="font-weight-bold">Доп. контакты</span> - {player.otherContacts}</li>
+                  {player.discord && <li><span className="font-weight-bold">Discord</span> - {player.discord}</li>}
+                  {player.skype && <li><span className="font-weight-bold">Skype</span> - {player.skype}</li>}
+                  {player.otherContacts && <li><span className="font-weight-bold">Доп. контакты</span> - {player.otherContacts}</li>}
                 </ul>
 
                 <h4 className="mb-4 mt-4">О себе:</h4>
@@ -56,6 +59,7 @@ class UserPage extends Component {
                 
               </div>
             </div>
+
             {(player.example1.length > 5 || player.example2.length > 5 || player.example3.length > 5 || player.example4.length > 5) &&
             <React.Fragment>
             <h4 className="mb-4 mt-4">Примеры игр</h4><hr />
@@ -80,7 +84,6 @@ class UserPage extends Component {
 	  return (
   	  <div id="userPage" style={{minHeight: "100vh"}}>	  
   	  	<div className="container pt-5 pb-5">
-          <Link to="/masters" className="text-dark"><i className="fas fa-angle-left "></i> ДРУГИЕ МАСТЕРА</Link>
           {searchId}
       	</div>
     	</div>
@@ -90,7 +93,6 @@ class UserPage extends Component {
 
 UserPage.propTypes = {
   fetchPlayers: PropTypes.func.isRequired,
-  players: PropTypes.array.isRequired,
   auth: PropTypes.object.isRequired
 };
 

@@ -19,6 +19,7 @@ class CreateGamePage extends Component {
 		super(props);
 		this.state = {
 			nameGame: '',
+			masterId:'',
 			selectedOption: 'sortByTypeOnline',
 		    cityGame:'',
 		    priceGame:'',
@@ -94,6 +95,7 @@ class CreateGamePage extends Component {
 				nameGame: this.state.nameGame,
 				cityGame: this.state.cityGame,
 			    masterName: this.props.auth.user.name,
+			    masterId: this.props.auth.user.id,
 			    placeGame: this.state.placeGame,
 			    priceGame: this.state.priceGame,
 			    infoGame: this.state.infoGame,

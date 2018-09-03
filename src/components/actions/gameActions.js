@@ -1,4 +1,4 @@
-import { FETCH_GAMES, NEW_GAME } from './types';
+import { FETCH_GAMES, FETCH_GAME } from './types';
 import axios from 'axios';
 
 export const fetchGames = () => dispatch => {
@@ -12,10 +12,22 @@ export const fetchGames = () => dispatch => {
     );
 };
 
-export const createGame = gameData => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/games',{
+export const fetchGame = (gameData) => dispatch => {
+  fetch('https://randomrulesdb.herokuapp.com/games/' + gameData)
+      .then((resp) => resp.json())
+      .then(game => 
+      dispatch({
+        type: FETCH_GAME,
+        payload: game
+      })
+    );
+};
+
+export const createGame = (gameData) => dispatch => {
+  fetch('https://randomrulesdb.herokuapp.com/games', {
       method: 'post',
       headers: {
+        'Authorization': localStorage.jwtToken,
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       },
@@ -24,7 +36,7 @@ export const createGame = gameData => dispatch => {
       .then(res => res.json())
       .then(game =>
       dispatch({
-        type: NEW_GAME,
+        type: FETCH_GAME,
         payload: game
     })
   );
@@ -39,7 +51,7 @@ export const changeGameData = (user, gameData) => dispatch => {
       },
        body: JSON.stringify(gameData)
      })
-      .then(res => dispatch({type: NEW_GAME, payload: res.data}))
+      .then(res => dispatch({type: FETCH_GAME, payload: res.data}))
 };
 
 export const deleteGame = (user, gameData) => dispatch => {
