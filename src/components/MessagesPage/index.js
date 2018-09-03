@@ -9,17 +9,17 @@ import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
 import { fetchMsgs } from '../actions/msgActions';
 import YouTube from 'react-youtube';
+import { changeGameData } from '../actions/gameActions';
 
 class MessagesPage extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-
+			read: false,
+			gamersInsideId: []
 		}
-		
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
-
 	} 
 	componentDidMount() {
 	    window.scrollTo(0,0);
@@ -40,7 +40,10 @@ class MessagesPage extends Component {
 
 	onSubmit(e){
 		e.preventDefault();
-		
+		const gameData = {
+		    gamersInsideId: this.state.gamersInsideId,
+	    }
+		this.props.changeGameData(gameData);
 	}
   render() {
 
@@ -49,39 +52,35 @@ class MessagesPage extends Component {
    	// const { from, to } = this.state;
     // const modifiers = { start: from, end: to };
 
-    const messagesItems = this.props.msgs.filter(msg => msg.recipient === user.id || msg.sender === user.id)
+    const messagesItems = this.props.msgs.filter(msg => msg.receiver === user.id || msg.sender === user.playerId)
     	.map(msg=> 
-    		<Link to={`/message/${msg._id}`} className="m-0 p-0 mb-4 btn text-left text-dark w-100" key={msg._id}>
- 				<div className="p-3 userCard shadow-sm" >	 
- 					<p className="pb-3 border-bottom">Сообщения</p>				
- 					<div className="row">
+    		<div className="m-0 p-0 mb-2 btn text-left text-dark w-100" key={msg._id}>
+    		<form onSubmit={this.onSubmit}>
+ 				<div className={msg.read ? "p-3 bg-white shadow-sm" : "p-3 bg-dark text-white shadow-sm"} >	
+ 					<div className="row align-items-center">
+ 					
  						<div className="col-12 col-md-3">
- 							{this.props.players.filter(master => msg.masterName === master.username)
-		 						.map(master => 
-		 						<div key={master._id}>
-			 						<p>Мастер: {master.username}</p>
-			 						<p><i className="fas fa-star text-warning fa-1x"></i> - {master.rating}/5</p>
-		 						</div>
-		 					)}
+ 							<p>{msg.title}</p>
  						</div>
  						<div className="col-12 col-md-5">
-		 					<p>Дата игры: {moment(msg.from).format('lll')}</p>
-		 					<p>Тип игры: {msg.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}
-		 					 {msg.selectedOption === "sortByTypeIRL" && <span className="ml-3">Город: {msg.citymsg}</span>}</p>
-		 					
+		 					Отправитель: <Link target="_blank" className="btn btn-info" to={`/@${this.props.players.find(player=> player._id === msg.sender).username}`}>{this.props.players.find(player=> player._id === msg.sender).username}</Link>
  						</div>
  						<div className="col-12 col-md-4">
- 							<p className="d-flex-wrap" style={{wordWrap: "break-word"}}>Всего мест: {msg.placeAll - msg.msgrsInsideId.length} / {msg.placeAll}
-		 					</p>
-		 					<p>Стоимость: {msg.pricemsg.length === 0 ? "Бесплатно" : msg.pricemsg}</p>
+ 							<button type="submit" className="btn btn-info mr-3">Принять</button>
+ 							<button className="btn btn-danger mr-3">Отклонить</button>
  						</div>
+ 					
  					</div>
  				</div>
-	 		</Link>
+ 			</form>
+	 		</div>
     	)
 	  return (
 	  	<section id="messagesPage" style={{minHeight: "100vh"}}>
-			{messagesItems}
+	  		<div className="container pt-5 pb-5">
+	  			<h1 className="text-center mb-5">Сообщения</h1>	
+				{messagesItems}
+			</div>
 		</section>
 	  )
 	}
@@ -92,7 +91,8 @@ MessagesPage.propTypes = {
   fetchPlayers: PropTypes.func.isRequired,
   players: PropTypes.array.isRequired,
   fetchMsgs: PropTypes.func.isRequired,
-  msgs: PropTypes.array.isRequired
+  msgs: PropTypes.array.isRequired,
+  changeGameData: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -101,4 +101,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { fetchMsgs, fetchPlayers })(withRouter(MessagesPage));
+export default connect(mapStateToProps, { changeGameData, fetchMsgs, fetchPlayers })(withRouter(MessagesPage));

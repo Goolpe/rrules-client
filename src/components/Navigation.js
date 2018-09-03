@@ -84,6 +84,7 @@ class Navigation extends Component{
                   <span>
                     <DropdownItem tag={Link} onClick={this.closeNav} to={`/@${user.name}`} className="p-2 rounded-top">Мой профиль</DropdownItem>
                     <DropdownItem tag={Link} onClick={this.closeNav} to={`/edit/@${user.name}`} className="p-2 rounded-top">Настройки</DropdownItem>
+                    <DropdownItem tag={Link} onClick={this.closeNav} to={`/msgs/${user.name}`} className="p-2 rounded-top">Сообщения</DropdownItem>
                     <hr className="m-0"/>
                     <DropdownItem onClick={this.onLogout.bind(this)} className="p-2 rounded-top">Выйти </DropdownItem>
                   </span>

@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
 import { fetchGames } from '../actions/gameActions';
 import YouTube from 'react-youtube';
+import { createMsg } from '../actions/msgActions';
 
 class GamePage extends Component {
 	constructor(props){
@@ -23,7 +24,10 @@ class GamePage extends Component {
 		    infoGame: '',
 		    placeGame:'',
 		    from: undefined,
-      		to: undefined
+      		to: undefined,
+      		title: 'Уведомление на игру',
+			text: 'Чувак хочет играть с тобой',
+			hashtags: ''
 		}
 		this.handleFromChange = this.handleFromChange.bind(this);
    		this.handleToChange = this.handleToChange.bind(this);
@@ -54,8 +58,10 @@ class GamePage extends Component {
 	}
 
 	componentWillMount() {
-	  this.props.fetchGames();
+	  
       this.props.fetchPlayers();
+      this.props.fetchGames();
+
     }
 
     _onReady(event) {
@@ -76,7 +82,25 @@ class GamePage extends Component {
     		this.props.history.push('/auth')
     	}
     	else{
+    		 console.log(this.props.games.find(game => game._id === this.props.match.params.id).masterId)
+    		const msgData = {
+		      	title: this.state.title,
+				text: this.state.text,
+				hashtags: this.state.hashtags,
+				sender: this.props.auth.user.playerId,
+				receiver: this.props.games.find(game => game._id === this.props.match.params.id).masterId,
+				gameId: this.props.games.find(game => game._id === this.props.match.params.id)._id
+		     }
+			this.props.createMsg(msgData);
+			this.setState({
+				title: '',
+				text: '',
+				hashtags: ''
+			})
+			alert("Запрос отправлен!")
     	}	
+
+
 	}
   render() {
   	const opts = {
@@ -146,12 +170,15 @@ class GamePage extends Component {
 			 						<hr />
 			 						<p>Игроки:</p>
 			 						<ul>
-				 						{this.props.players.map(player=> 
-					 						(game.gamersInsideId
-					 							.filter(gamer => gamer === player.gamerId) 
-					 							.map(gamer => 
-
-								 					<li>{player.username}</li>
+				 						{this.props.players.map(player=> (game.gamersInsideId
+					 							.filter(gamer => gamer === player._id)
+					 							.map(gamer => {
+								 					return (
+								 						<React.Fragment key={player._id} >
+								 						<Link to={`/@${player.username}`} target="_blank" >{player.username}</Link><br/>
+								 						</React.Fragment>
+								 						)
+								 				}
 							 						)
 					 							)
 				 							)}
@@ -173,6 +200,7 @@ class GamePage extends Component {
 }
 
 GamePage.propTypes = {
+  createMsg: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   fetchPlayers: PropTypes.func.isRequired,
   players: PropTypes.array.isRequired,
@@ -186,4 +214,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { fetchGames, fetchPlayers })(withRouter(GamePage));
+export default connect(mapStateToProps, { createMsg, fetchGames, fetchPlayers })(withRouter(GamePage));

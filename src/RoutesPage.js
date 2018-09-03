@@ -92,6 +92,7 @@ class RoutesPage extends Component {
 			            <Route path="/support" component={SupportPage} />   
 			            <Route path="/agreement" component={AgreementPage} />
 			            <Route path="/games" component={GamesPage} />   
+			            <Route path="/msgs" component={MessagesPage} />  
 			            <Route path="/game/:id" component={GamePage} /> 
 			            <Route path="/@:nickname" component={UserPage} />
 				        <Route path="/auth" component={AuthPage} />
