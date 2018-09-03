@@ -73,6 +73,9 @@ class UserPageEditor extends Component {
     if(this.props.auth.isAuthenticated){
       this.props.history.push(`/edit/${this.props.auth.user.name}`)
     }
+    else{
+      this.props.history.push('/auth')
+    }
   }
 
   onChange(e){

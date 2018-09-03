@@ -23,6 +23,12 @@ class MessagesPage extends Component {
 	} 
 	componentDidMount() {
 	    window.scrollTo(0,0);
+	    if(this.props.auth.isAuthenticated){
+	    	this.props.history.push(`/msgs/${this.props.auth.user.name}`)
+	    }
+	    else{
+	    	this.props.history.push('/auth')
+	    }
 	}
 
 	componentWillMount() {
