@@ -16,6 +16,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from './actions/authActions';
 import { withRouter } from 'react-router-dom';
+import { fetchMsgs } from './actions/msgActions';
 
 class Navigation extends Component{
   constructor(props) {
@@ -37,6 +38,9 @@ class Navigation extends Component{
     this.setState({
       isOpen: false
     });
+  }
+  componentWillMount(){
+    this.props.fetchMsgs()
   }
   onLogout(e) {
     e.preventDefault();
@@ -78,7 +82,11 @@ class Navigation extends Component{
                 <NavLink tag={Link} onClick={this.closeNav} to="/games" className="nav-link text-white btn btn-danger rounded">НАЙТИ ИГРУ</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar className="keyAuth">
-                <DropdownToggle className="text-white ml-2 p-0"  style={{height:"40px"}} nav>{isAuthenticated ?   <i className= "fas fa-address-book ml-2 mt-1 fa-2x"></i> : <i className= "fas fa-key ml-2 mt-1 fa-2x"></i>}</DropdownToggle>
+                <DropdownToggle className="text-white ml-2 p-0"  style={{height:"40px"}} nav>{isAuthenticated ?   
+                  <React.Fragment>
+                  <i className= "fas fa-address-book ml-2 mt-1 fa-2x"></i><span class="badge badge-danger"></span>
+                  </React.Fragment>
+                 : <i className= "fas fa-key ml-2 mt-1 fa-2x"></i>}</DropdownToggle>
                 <DropdownMenu  className="p-0">
                 {isAuthenticated ?
                   <span>
@@ -102,11 +110,15 @@ class Navigation extends Component{
 }
 Navigation.propTypes = {
     logoutUser: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired,
+    fetchMsgs: PropTypes.func.isRequired,
+    msgs: PropTypes.array.isRequired
+
 }
 
 const mapStateToProps = (state) => ({
-    auth: state.auth
+    auth: state.auth,
+    msgs: state.msgs.items
 })
 
-export default connect(mapStateToProps, { logoutUser })(withRouter(Navigation));
+export default connect(mapStateToProps, { fetchMsgs, logoutUser })(withRouter(Navigation));
