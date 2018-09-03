@@ -57,6 +57,7 @@ class AuthPage extends Component{
               <Row>
                 <Col sm="12">
                   <LoginPage />
+                  <p className="text-dark m-auto" style={{cursor: "pointer"}} onClick={()=> this.setState({activeTab: '3'})}>Не могу войти</p>
                 </Col>
               </Row>
             </TabPane>

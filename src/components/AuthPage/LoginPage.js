@@ -53,7 +53,7 @@ class LoginPage extends Component{
   render(){	
       const {errors} = this.state;
       return (
-          <div className="mt-3">
+          <div className="mt-3 mb-3">
             <button className="btn btn-dark m-2"> <i className="fab fa-vk"></i></button>
             <button className="btn btn-dark m-2 pr-3 pl-3"> <i className="fab fa-facebook-f"> </i></button>  
             <button className="btn btn-dark m-2"> <i className="fab fa-google"> </i></button> 
@@ -77,7 +77,6 @@ class LoginPage extends Component{
                     })} placeholder="Пароль" required/>
                 {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
               </InputGroup>
-              <p className="text-dark m-auto" style={{cursor: "pointer"}} onClick={()=> this.setState({activeTab: '3'})}>Не могу войти</p>
               <button className="btn btn-info  mt-3 w-100 p-3" type="submit" >Войти</button>
             </form> 
 
