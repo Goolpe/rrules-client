@@ -15,6 +15,7 @@ export const createArticle = articleData => dispatch => {
   fetch('https://randomrulesdb.herokuapp.com/articles',{
       method: 'post',
       headers: {
+        'Authorization': localStorage.jwtToken,
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       },

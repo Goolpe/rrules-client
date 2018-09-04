@@ -82,12 +82,14 @@ class GamePage extends Component {
     		this.props.history.push('/auth')
     	}
     	else{
-    		 console.log(this.props.games.find(game => game._id === this.props.match.params.id).masterId)
+    		
     		const msgData = {
 		      	title: this.state.title,
 				text: this.state.text,
 				hashtags: this.state.hashtags,
 				sender: this.props.auth.user.playerId,
+				senderName: this.props.auth.user.name,
+				receiverName: this.props.games.find(game => game._id === this.props.match.params.id).masterName,
 				receiver: this.props.games.find(game => game._id === this.props.match.params.id).masterId,
 				gameId: this.props.games.find(game => game._id === this.props.match.params.id)._id
 		     }

@@ -20,6 +20,7 @@ import ShopPage from './components/ShopPage';
 import StreamsPage from './components/StreamsPage';
 
 import MessagesPage from './components/MessagesPage';
+import MsgPage from './components/MessagesPage/MsgPage';
 
 import MastersPage from './components/UsersPage/MastersPage';
 import UsersPage from './components/UsersPage';
@@ -92,7 +93,8 @@ class RoutesPage extends Component {
 			            <Route path="/support" component={SupportPage} />   
 			            <Route path="/agreement" component={AgreementPage} />
 			            <Route path="/games" component={GamesPage} />   
-			            <Route path="/msgs" component={MessagesPage} />  
+			            <Route path="/msgs/:id" component={MessagesPage} />  
+			            <Route path="/msg/:nickname/:id" component={MsgPage} />
 			            <Route path="/game/:id" component={GamePage} /> 
 			            <Route path="/@:nickname" component={UserPage} />
 				        <Route path="/auth" component={AuthPage} />

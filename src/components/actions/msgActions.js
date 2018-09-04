@@ -1,4 +1,4 @@
-import { FETCH_MSGS, NEW_MSG } from './types';
+import { FETCH_MSGS, FETCH_MSG, NEW_MSG } from './types';
 
 export const fetchMsgs = (user) => dispatch => {
   fetch('https://randomrulesdb.herokuapp.com/msgs', {
@@ -14,6 +14,23 @@ export const fetchMsgs = (user) => dispatch => {
         type: FETCH_MSGS,
         payload: msgs
       })
+    );
+};
+
+export const fetchMsg = (user) => dispatch => {
+  fetch('https://randomrulesdb.herokuapp.com/msgs/' + user, {
+      method: 'get',
+      headers: {
+      	'Authorization': localStorage.jwtToken,
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }})
+      .then((res) => res.json())
+      .then(msg => {
+      dispatch({
+        type: FETCH_MSG,
+        payload: msg
+      })}
     );
 };
 

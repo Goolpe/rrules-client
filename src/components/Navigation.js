@@ -84,7 +84,7 @@ class Navigation extends Component{
               <UncontrolledDropdown nav inNavbar className="keyAuth">
                 <DropdownToggle className="text-white ml-2 p-0"  style={{height:"40px"}} nav>{isAuthenticated ?   
                   <React.Fragment>
-                  <i className= "fas fa-address-book ml-2 mt-1 fa-2x"></i><span class="badge badge-danger"></span>
+                  <i className= "fas fa-address-book ml-2 mt-1 fa-2x"></i><span className="badge badge-danger"></span>
                   </React.Fragment>
                  : <i className= "fas fa-key ml-2 mt-1 fa-2x"></i>}</DropdownToggle>
                 <DropdownMenu  className="p-0">

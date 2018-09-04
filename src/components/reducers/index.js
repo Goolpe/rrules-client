@@ -11,9 +11,11 @@ export default combineReducers({
   accounts: authReducer,
   players: playerReducer,
   games: gameReducer,
+  game: gameReducer,
   errors: errorReducer,
   auth: authReducer,
-  msgs: msgReducer
+  msgs: msgReducer,
+  msg: msgReducer
 });
 
 

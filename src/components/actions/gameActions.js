@@ -53,15 +53,3 @@ export const changeGameData = (user, gameData) => dispatch => {
      })
       .then(res => dispatch({type: FETCH_GAME, payload: res.data}))
 };
-
-export const deleteGame = (user, gameData) => dispatch => {
-  axios.delete('https://randomrulesdb.herokuapp.com/games/', user, {
-      method: 'delete',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      }
-     })
-
-      .then(res => dispatch({type: FETCH_GAMES, payload: res.data}))
-};
