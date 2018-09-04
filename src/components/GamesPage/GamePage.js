@@ -82,7 +82,6 @@ class GamePage extends Component {
     		this.props.history.push('/auth')
     	}
     	else{
-    		
     		const msgData = {
 		      	title: this.state.title,
 				text: this.state.text,
@@ -108,7 +107,7 @@ class GamePage extends Component {
   	const opts = {
       height: '390',
       width: '100%',
-      playerVars: { // https://developers.google.com/youtube/player_parameters
+      playerVars: { 
         autoplay: 0
       }
     };
