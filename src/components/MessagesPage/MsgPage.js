@@ -6,7 +6,7 @@ import { Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
-import { fetchMsg } from '../actions/msgActions';
+import { fetchMsg, changeMsgData } from '../actions/msgActions';
 import { changeGameData, fetchGame } from '../actions/gameActions';
 
 class MsgPage extends Component {
@@ -23,6 +23,8 @@ class MsgPage extends Component {
 	    
 	    if(this.props.auth.isAuthenticated){
 	    	this.props.history.push(`/msg/${this.props.auth.user.name}/${this.props.match.params.id}`)
+
+	    	
 	    }
 	    else{
 	    	this.props.history.push('/auth')
@@ -37,12 +39,12 @@ class MsgPage extends Component {
 
     onSubmit(e){
 		e.preventDefault();
-		console.log(this.state.gamersInsideId)
 		const gameData = {
 			id: this.props.msg.gameId,
 		    gamersInsideId: this.state.gamersInsideId
 	    }
 		this.props.changeGameData(gameData);
+		this.props.changeMsgData(this.props.match.params.id);
 	}
   render() {
 
@@ -85,7 +87,8 @@ MsgPage.propTypes = {
   game: PropTypes.object.isRequired,
   fetchMsg: PropTypes.func.isRequired,
   msg: PropTypes.object.isRequired,
-  changeGameData: PropTypes.func.isRequired
+  changeGameData: PropTypes.func.isRequired,
+  changeMsgData: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -95,4 +98,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { changeGameData, fetchGame, fetchMsg, fetchPlayers })(withRouter(MsgPage));
+export default connect(mapStateToProps, { changeMsgData, changeGameData, fetchGame, fetchMsg, fetchPlayers })(withRouter(MsgPage));

@@ -1,4 +1,5 @@
 import { FETCH_MSGS, FETCH_MSG, NEW_MSG } from './types';
+import axios from 'axios';
 
 export const fetchMsgs = (user) => dispatch => {
   fetch('https://randomrulesdb.herokuapp.com/msgs', {
@@ -51,4 +52,16 @@ export const createMsg = msgData => dispatch => {
         payload: msg
     })
   );
+};
+
+export const changeMsgData = (msgData) => dispatch => {
+  axios.put('https://randomrulesdb.herokuapp.com/msgs/' + msgData, {
+      method: 'put',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+       body: JSON.stringify(msgData)
+     })
+      .then(res => dispatch({type: FETCH_MSG, payload: res.data}))
 };
