@@ -7,7 +7,7 @@ import { Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
-import { fetchGames } from '../actions/gameActions';
+import { fetchGame } from '../actions/gameActions';
 import YouTube from 'react-youtube';
 import { createMsg } from '../actions/msgActions';
 
@@ -34,7 +34,10 @@ class GamePage extends Component {
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 	} 
-
+	componentWillMount() {
+      this.props.fetchPlayers();
+      this.props.fetchGame(this.props.match.params.id);
+    }
 // functions for datepicker
 
     showFromMonth() {
@@ -57,12 +60,7 @@ class GamePage extends Component {
 	    window.scrollTo(0,0);
 	}
 
-	componentWillMount() {
-	  
-      this.props.fetchPlayers();
-      this.props.fetchGames();
-
-    }
+	
 
     _onReady(event) {
 	    // access to player in all event handlers via event.target
@@ -113,24 +111,22 @@ class GamePage extends Component {
     };
 
   	const {user} = this.props.auth;
-//declare consts for Datepicker  	
-   	// const { from, to } = this.state;
-    // const modifiers = { start: from, end: to };
+  	const game = this.props.game;
 
-    const gameItems = this.props.games.filter(game => game._id === this.props.match.params.id)
-    	.map(game=> 
-    		<div className="container pt-5 pb-5" key={game._id}>
+	  return (
+	  	<section id="createGame" style={{minHeight: "100vh"}}>
+			<div className="container pt-5 pb-5" key={game._id}>
 				<h1 className="text-dark text-center mb-5">{game.nameGame}</h1>
 				<form onSubmit={this.onSubmit}>
-
 				<div className="row justify-content-between">
 					<div className="col-12 col-md-6">
+					{console.log(this.props.match.params.id)}
 						{game.masterName === user.name && 
-							<Link to={`/edit-game/${game._id}`} className="btn btn-info mb-2">Редактировать/Удалить</Link>
+							<Link to={`/edit-game/${this.props.match.params.id}`} className="btn btn-info mb-2">Редактировать/Удалить</Link>
 						}
 					</div>
 					<div className="col-12 col-md-6 text-right">
-					{game.placeAll - game.gamersInsideId.length === 0 ? 
+					{game.gamersInsideId && (game.placeAll - game.gamersInsideId.length === 0) ? 
 						<Button color="danger" className="mb-2 mr-2" disabled>Мест нет</Button>
 						:
 						<Button type="submit" color="danger" className="mb-2 mr-2">Играть</Button>
@@ -146,10 +142,10 @@ class GamePage extends Component {
 		 							<p>{moment(game.from).format('lll')}</p>
 		 						</div>
 		 						<div className="col-12 col-md-3">
-		 							<p>Места: {game.placeAll - game.gamersInsideId.length} / {game.placeAll}</p>
+		 							<p>Места: {game.gamersInsideId && (game.placeAll - game.gamersInsideId.length)} / {game.placeAll}</p>
 		 						</div>
 		 						<div className="col-12 col-md-3">
-		 							<p>{game.priceGame.length === 0 ? "Бесплатно" : game.priceGame}</p>
+		 							<p>{game.priceGame === "" ? "Бесплатно" : game.priceGame}</p>
 		 						</div>
 		 						<div className="col-12 col-md-2">
 		 							<p>Тип: {game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}</p>
@@ -157,9 +153,9 @@ class GamePage extends Component {
 			                </div>
 			                <hr />
 			                
-			                <p>Превью: {game.infoGame.length === 0 ? "нет" : game.infoGame}</p>
+			                <p>Превью: {game.infoGame === "" ? "нет" : game.infoGame}</p>
 			                <hr />
-			                {game.videoLink.length > 0 && <YouTube videoId={game.videoLink} opts={opts} onReady={this._onReady} />}
+			                {game.videoLink && game.videoLink.length > 0 && <YouTube videoId={game.videoLink} opts={opts} onReady={this._onReady} />}
 		 				</div>
 		 				<div className="col-12 col-md-3 text-center">
 		 					{this.props.players.filter(master => game.masterName === master.username)
@@ -191,10 +187,6 @@ class GamePage extends Component {
 		 		</div>		
 		 		</form>
 			</div>
-    	)
-	  return (
-	  	<section id="createGame" style={{minHeight: "100vh"}}>
-			{gameItems}
 		</section>
 	  )
 	}
@@ -202,17 +194,18 @@ class GamePage extends Component {
 
 GamePage.propTypes = {
   createMsg: PropTypes.func.isRequired,
+  fetchGame: PropTypes.func.isRequired,
+  game: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   fetchPlayers: PropTypes.func.isRequired,
-  players: PropTypes.array.isRequired,
-  fetchGames: PropTypes.func.isRequired,
-  games: PropTypes.array.isRequired
+  players: PropTypes.array.isRequired
+
 };
 
 const mapStateToProps = state => ({
+  game: state.game.item,
   players: state.players.items,
-  games: state.games.items,
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { createMsg, fetchGames, fetchPlayers })(withRouter(GamePage));
+export default connect(mapStateToProps, { createMsg, fetchGame, fetchPlayers })(withRouter(GamePage));
