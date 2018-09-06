@@ -2,7 +2,7 @@ import { FETCH_MSGS, FETCH_MSG, NEW_MSG } from './types';
 import axios from 'axios';
 
 export const fetchMsgs = (user) => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/msgs', {
+  fetch('https://randomrulesdb.herokuapp.com/messages/' + user, {
       method: 'get',
       headers: {
       	'Authorization': localStorage.jwtToken,
@@ -18,14 +18,16 @@ export const fetchMsgs = (user) => dispatch => {
     );
 };
 
-export const fetchMsg = (user) => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/msgs/' + user, {
-      method: 'get',
+export const fetchMsg = (msgData) => dispatch => {
+  fetch('https://randomrulesdb.herokuapp.com/messages/' + msgData.id, {
+      method: 'post',
       headers: {
       	'Authorization': localStorage.jwtToken,
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
-      }})
+      },
+       body: JSON.stringify(msgData)
+    })
       .then((res) => res.json())
       .then(msg => {
       dispatch({
@@ -36,8 +38,8 @@ export const fetchMsg = (user) => dispatch => {
 };
 
 export const createMsg = msgData => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/msgs',{
-      method: 'post',
+  fetch('https://randomrulesdb.herokuapp.com/messages/' + msgData.id,{
+      method: 'put',
       headers: {
       	'Authorization': localStorage.jwtToken,
         'Accept': 'application/json, text/plain, */*',

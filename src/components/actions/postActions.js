@@ -2,7 +2,7 @@ import { FETCH_ARTICLES, NEW_ARTICLE } from './types';
 
 export const fetchArticles = () => dispatch => {
   fetch("https://randomrulesdb.herokuapp.com/articles")
-      .then((resp) => resp.json())
+      .then((res) => res.json())
       .then(articles => 
       dispatch({
         type: FETCH_ARTICLES,

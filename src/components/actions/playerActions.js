@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export const fetchPlayers = () => dispatch => {
   fetch('https://randomrulesdb.herokuapp.com/players')
-      .then((resp) => resp.json())
+      .then((res) => res.json())
       .then(players => 
       dispatch({
         type: FETCH_PLAYERS,
@@ -15,7 +15,7 @@ export const fetchPlayers = () => dispatch => {
 
 export const fetchPlayer = (playerData) => dispatch => {
   fetch('https://randomrulesdb.herokuapp.com/players/' + playerData)
-      .then((resp) => resp.json())
+      .then((res) => res.json())
       .then(player => 
       dispatch({
         type: FETCH_PLAYER,

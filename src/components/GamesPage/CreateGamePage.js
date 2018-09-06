@@ -57,7 +57,7 @@ class CreateGamePage extends Component {
 
 	componentDidMount() {
 	    window.scrollTo(0,0);
-	    if(this.props.auth.isAuthenticated && this.props.auth.user.master){
+	    if(this.props.auth.isAuthenticated){
 	    	this.props.history.push("/create-game")
 	    }
 	    else{

@@ -22,7 +22,7 @@ class MsgPage extends Component {
 	    window.scrollTo(0,0);
 	    
 	    if(this.props.auth.isAuthenticated){
-	    	this.props.history.push(`/msg/${this.props.auth.user.name}/${this.props.match.params.id}`)
+	    	this.props.history.push(`/msg/${this.props.match.params.id}`)
 
 	    	
 	    }
@@ -32,7 +32,11 @@ class MsgPage extends Component {
 	}
 
 	componentWillMount() {
-	  this.props.fetchMsg(this.props.match.params.id);
+		const msgData = {
+			id: this.props.auth.user.id,
+			msgId: this.props.match.params.id
+		}
+	  this.props.fetchMsg(msgData);
       this.props.fetchPlayers();
       this.props.fetchGame(this.props.msg.gameId);
     }
@@ -56,7 +60,7 @@ class MsgPage extends Component {
 	  	<section id="messagesPage" style={{minHeight: "100vh"}}>
 	  		<div className="container pt-5 pb-5">
 	  			<form onSubmit={this.onSubmit}>
-		  			<Link to={`/msgs/${this.props.auth.user.name}`} className="text-dark"><i className="text-dark fas fa-angle-left "></i> ВСЕ ПИСЬМА</Link>
+		  			<Link to="/messages" className="text-dark"><i className="text-dark fas fa-angle-left "></i> ВСЕ ПИСЬМА</Link>
 		  			<h1 className="text-center mb-5">{msg.title}</h1>	
 					<div className="p-3 bg-white shadow-sm" >	
 	 					<div className="row align-items-center">

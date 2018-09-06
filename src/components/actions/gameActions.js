@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const fetchGames = () => dispatch => {
   fetch('https://randomrulesdb.herokuapp.com/games')
-      .then((resp) => resp.json())
+      .then((res) => res.json())
       .then(games => 
       dispatch({
         type: FETCH_GAMES,
@@ -14,7 +14,7 @@ export const fetchGames = () => dispatch => {
 
 export const fetchGame = (gameData) => dispatch => {
   fetch('https://randomrulesdb.herokuapp.com/games/' + gameData)
-      .then((resp) => resp.json())
+      .then((res) => res.json())
       .then(game => 
       dispatch({
         type: FETCH_GAME,

@@ -14,7 +14,10 @@ import { createMsg } from '../actions/msgActions';
 class GamePage extends Component {
 	constructor(props){
 		super(props);
-
+		this.state = {
+			title: 'уведомление',
+			text: 'игра'
+		}
 		this.handleFromChange = this.handleFromChange.bind(this);
    		this.handleToChange = this.handleToChange.bind(this);
 		this.onChange = this.onChange.bind(this);
@@ -65,20 +68,20 @@ class GamePage extends Component {
     	}
     	else{
     		const msgData = {
+    			id: this.props.auth.user.id,
 		      	title: this.state.title,
 				text: this.state.text,
-				hashtags: this.state.hashtags,
 				sender: this.props.auth.user.playerId,
 				senderName: this.props.auth.user.name,
-				receiverName: this.props.games.find(game => game._id === this.props.match.params.id).masterName,
-				receiver: this.props.games.find(game => game._id === this.props.match.params.id).masterId,
-				gameId: this.props.games.find(game => game._id === this.props.match.params.id)._id
+				receiverName: this.props.game.masterName,
+				receiver: this.props.game.masterId,
+				gameId: this.props.game._id,
+				date: new Date()
 		     }
 			this.props.createMsg(msgData);
 			this.setState({
 				title: '',
-				text: '',
-				hashtags: ''
+				text: ''
 			})
 			alert("Запрос отправлен!")
     	}	
@@ -102,7 +105,6 @@ class GamePage extends Component {
 				<form onSubmit={this.onSubmit}>
 				<div className="row justify-content-between">
 					<div className="col-12 col-md-6">
-					{console.log(this.props.match.params)}
 						{game.masterName === user.name && 
 							<Link to={`/edit-game/${game._id}`} className="btn btn-info mb-2">Редактировать/Удалить</Link>
 						}

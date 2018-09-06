@@ -14,7 +14,7 @@ class MessagesPage extends Component {
 	componentDidMount() {
 	    window.scrollTo(0,0);
 	    if(this.props.auth.isAuthenticated ){
-	    	this.props.history.push(`/msgs/${this.props.auth.user.name}`)
+	    	this.props.history.push('/messages')
 	    }
 	    else{
 	    	this.props.history.push('/auth')
@@ -22,7 +22,7 @@ class MessagesPage extends Component {
 	}
 
 	componentWillMount() {
-	  this.props.fetchMsgs();
+	  this.props.fetchMsgs(this.props.auth.user.id);
       this.props.fetchPlayers();
     }
 
@@ -41,7 +41,7 @@ class MessagesPage extends Component {
 		 					Отправитель: <Link target="_blank" to={`/@${msg.senderName}`}>{msg.senderName}</Link>
  						</div>
  						<div className="col-12 col-md-4">
- 							<Link to={`/msg/${this.props.auth.user.name}/${msg._id}`} className="btn btn-info mr-3">Открыть</Link>
+ 							<Link to={`/msg/${msg._id}`} className="btn btn-info mr-3">Открыть</Link>
  						</div>
  					</div>
  				</div>

@@ -93,8 +93,8 @@ class RoutesPage extends Component {
 			            <Route path="/support" component={SupportPage} />   
 			            <Route path="/agreement" component={AgreementPage} />
 			            <Route path="/games" component={GamesPage} />   
-			            <Route path="/msgs/:id" component={MessagesPage} />  
-			            <Route path="/msg/:nickname/:id" component={MsgPage} />
+			            <Route path="/messages" component={MessagesPage} />  
+			            <Route path="/msg/:id" component={MsgPage} />
 			            <Route path="/game/:id" component={GamePage} /> 
 			            <Route path="/@:nickname" component={UserPage} />
 				        <Route path="/auth" component={AuthPage} />
