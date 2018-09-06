@@ -14,21 +14,7 @@ import { createMsg } from '../actions/msgActions';
 class GamePage extends Component {
 	constructor(props){
 		super(props);
-		this.state = {
-			nameGame: '',
-			selectedOption: 'sortByTypeOnline',
-		    cityGame:'',
-		    priceGame:'',
-		    placeAll: '',
-		    gamersInsideId: [],
-		    infoGame: '',
-		    placeGame:'',
-		    from: undefined,
-      		to: undefined,
-      		title: 'Уведомление на игру',
-			text: 'Чувак хочет играть с тобой',
-			hashtags: ''
-		}
+
 		this.handleFromChange = this.handleFromChange.bind(this);
    		this.handleToChange = this.handleToChange.bind(this);
 		this.onChange = this.onChange.bind(this);
@@ -60,10 +46,8 @@ class GamePage extends Component {
 	    window.scrollTo(0,0);
 	}
 
-	
-
     _onReady(event) {
-	    // access to player in all event handlers via event.target
+// access to player in all event handlers via event.target
 	    event.target.pauseVideo();
 	  }
 // Handler of change input states  
@@ -98,8 +82,6 @@ class GamePage extends Component {
 			})
 			alert("Запрос отправлен!")
     	}	
-
-
 	}
   render() {
   	const opts = {
@@ -120,9 +102,9 @@ class GamePage extends Component {
 				<form onSubmit={this.onSubmit}>
 				<div className="row justify-content-between">
 					<div className="col-12 col-md-6">
-					{console.log(this.props.match.params.id)}
+					{console.log(this.props.match.params)}
 						{game.masterName === user.name && 
-							<Link to={`/edit-game/${this.props.match.params.id}`} className="btn btn-info mb-2">Редактировать/Удалить</Link>
+							<Link to={`/edit-game/${game._id}`} className="btn btn-info mb-2">Редактировать/Удалить</Link>
 						}
 					</div>
 					<div className="col-12 col-md-6 text-right">
