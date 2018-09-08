@@ -9,7 +9,9 @@ import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
 import { fetchGame } from '../actions/gameActions';
 import YouTube from 'react-youtube';
-import { createMsg } from '../actions/msgActions';
+import { createMsg, fetchMsgs } from '../actions/msgActions';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class GamePage extends Component {
 	constructor(props){
@@ -25,6 +27,7 @@ class GamePage extends Component {
 	} 
 	componentWillMount() {
       this.props.fetchPlayers();
+      this.props.fetchMsgs(this.props.auth.user.playerId);
       this.props.fetchGame(this.props.match.params.id);
     }
 // functions for datepicker
@@ -59,6 +62,8 @@ class GamePage extends Component {
 		this.setState({ [e.target.name]: e.target.value})
 	}
 
+	notify(word){toast.error(word)}
+	notifySend(word){toast(word)}
 // Handler of submit
 
 	onSubmit(e){
@@ -66,19 +71,34 @@ class GamePage extends Component {
 		if(this.props.auth.isAuthenticated === false){
     		this.props.history.push('/auth')
     	}
-    	else{
-    		const msgData = {
-		      	title: this.state.title,
-				text: this.state.text,
-				sender: this.props.auth.user.id,
-				senderName: this.props.auth.user.name,
-				receiverName: this.props.game.masterName,
-				receiver: this.props.game.masterId,
-				gameId: this.props.game._id,
-				date: new Date()
-		     }
-			this.props.createMsg(msgData);
-			alert("Запрос отправлен!")
+    	else{	
+    		if(this.props.msgs.find(msg => msg.gameId === this.props.game._id && msg.sender === this.props.auth.user.playerId)){
+    			if(this.props.game.gamersInsideId.includes(this.props.auth.user.playerId)){
+    				this.notify("Вы уже в игре!")
+    			}
+    			else{
+    				this.notify("Вы уже отправляли запрос!")
+    			}
+    		}
+    		else if(this.props.game.masterId === this.props.auth.user.playerId){
+    			this.notify("Вы мастер!")
+    		}
+    		
+    		else{
+	    		const msgData = {
+			      	title: this.state.title,
+					text: this.state.text,
+					sender: this.props.auth.user.playerId,
+					senderName: this.props.auth.user.name,
+					receiverName: this.props.game.masterName,
+					receiver: this.props.game.masterId,
+					gameId: this.props.game._id,
+					date: new Date()
+			     }
+				this.props.createMsg(msgData);
+				this.notifySend("Запрос отправлен!")
+				this.props.history.push(`/game/${this.props.game._id}`)
+			}
     	}	
 	}
   render() {
@@ -95,7 +115,18 @@ class GamePage extends Component {
 
 	  return (
 	  	<section id="createGame" style={{minHeight: "100vh"}}>
-			<div className="container pt-5 pb-5" key={game._id}>
+			<div className="container pt-5 pb-5">
+				<ToastContainer
+					position="top-center"
+					autoClose={2000}
+					hideProgressBar={false}
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnVisibilityChange
+					draggable
+					pauseOnHover
+					/>
 				<h1 className="text-dark text-center mb-5">{game.nameGame || "Игра"}</h1>
 				<form onSubmit={this.onSubmit}>
 				<div className="row justify-content-between">
@@ -175,6 +206,7 @@ class GamePage extends Component {
 
 GamePage.propTypes = {
   createMsg: PropTypes.func.isRequired,
+  fetchMsgs: PropTypes.func.isRequired,
   fetchGame: PropTypes.func.isRequired,
   game: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
@@ -185,8 +217,9 @@ GamePage.propTypes = {
 
 const mapStateToProps = state => ({
   game: state.game.item,
+  msgs: state.msgs.items,
   players: state.players.items,
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { createMsg, fetchGame, fetchPlayers })(withRouter(GamePage));
+export default connect(mapStateToProps, { createMsg, fetchMsgs, fetchGame, fetchPlayers })(withRouter(GamePage));

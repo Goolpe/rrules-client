@@ -23,7 +23,6 @@ import MessagesPage from './components/MessagesPage';
 import MsgPage from './components/MessagesPage/MsgPage';
 
 import MastersPage from './components/UsersPage/MastersPage';
-import UsersPage from './components/UsersPage';
 import UserPage from './components/UsersPage/UserPage';
 import UserPageEditor from './components/UsersPage/UserPageEditor';
 
@@ -87,7 +86,6 @@ class RoutesPage extends Component {
 			            <Route path="/article/:id" component={ArticlePage} />
 			            <Route path="/shop" component={ShopPage} />
 			            <Route path="/streams" component={StreamsPage} />
-			            <Route path="/users" component={UsersPage} />
 			            <Route path="/masters" component={MastersPage} />
 			            <Route path="/support" component={SupportPage} />   
 			            <Route path="/agreement" component={AgreementPage} />

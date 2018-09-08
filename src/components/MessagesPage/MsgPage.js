@@ -12,15 +12,22 @@ import { changeGameData, fetchGame } from '../actions/gameActions';
 class MsgPage extends Component {
 	constructor(props){
 		super(props);
-		this.state={
-			read: true,
-			gamersInsideId: this.props.game.gamersInsideId
-		}
 		this.onSubmit = this.onSubmit.bind(this);
 	}
+	componentWillMount() {
+		const msgData = {
+			id: this.props.auth.user.id,
+			msgId: this.props.match.params.id,
+			read: true
+		}
+	  this.props.fetchMsg(msgData);
+      this.props.fetchPlayers();
+      this.props.fetchGame(this.props.msg.gameId);
+      this.props.changeMsgData(msgData);
+    }
+
 	componentDidMount() {
-	    window.scrollTo(0,0);
-	    
+	    window.scrollTo(0,0);	
 	    if(this.props.auth.isAuthenticated){
 	    	this.props.history.push(`/msg/${this.props.match.params.id}`)
 	    }
@@ -29,31 +36,19 @@ class MsgPage extends Component {
 	    }
 	}
 
-	componentWillMount() {
-		const msgData = {
-			id: this.props.auth.user.id,
-			msgId: this.props.match.params.id,
-			read: this.state.read
-		}
-	  this.props.fetchMsg(msgData);
-      this.props.fetchPlayers();
-      this.props.fetchGame(this.props.msg.gameId);
-      this.props.changeMsgData(msgData);
-    }
+	
 
     onSubmit(e){
 		e.preventDefault();
 		const gameData = {
 			id: this.props.msg.gameId,
-		    gamersInsideId: this.state.gamersInsideId
+		    gamerInsideId: this.props.msg.sender
 	    }
 		this.props.changeGameData(gameData);
-		
+		this.props.history.push("/messages")
 	}
   render() {
-  	const {user} = this.props.auth;
   	const msg = this.props.msg;
-  	
 	  return (
 	  	<section id="messagesPage" style={{minHeight: "100vh"}}>
 	  		<div className="container pt-5 pb-5">
@@ -66,14 +61,17 @@ class MsgPage extends Component {
 	 							<p className="m-0">{moment(msg.date).format('LLL')}</p>
 	 						</div>
 	 						<div className="col-12 col-md-6">
-			 						Отправитель: <Link target="_blank" className="mr-3" to={`/@${msg.senderName}`}>{msg.senderName}</Link>
-			 						Получатель: <Link target="_blank" to={`/@${msg.receiverName}`}>{msg.receiverName}</Link>
+			 					Отправитель: <Link target="_blank" className="mr-3" to={`/@${msg.senderName}`}>{msg.senderName}</Link>
+			 					Получатель: <Link target="_blank" to={`/@${msg.receiverName}`}>{msg.receiverName}</Link>
 	 						</div>
 	 					</div>
-	 					{msg.senderName !== user.name && <div className="text-center mt-5">
+	 					{(this.props.game.gamersInsideId && !this.props.game.gamersInsideId.includes(msg.sender)) ?
+	 					<div className="text-center mt-5">
 	 						<button type="submit" className="btn btn-info mr-3">Подтвердить</button>
 	 						<button className="btn btn-danger mr-3">Отклонить</button>
-	 					</div>}
+	 					</div>
+							:
+	 					<div className="text-center mt-5">Вы уже ответили</div>}
 	 				</div>
  				</form>
 			</div>

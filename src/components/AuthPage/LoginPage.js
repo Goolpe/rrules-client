@@ -54,10 +54,6 @@ class LoginPage extends Component{
       const {errors} = this.state;
       return (
           <div className="mt-3 mb-3">
-            <button className="btn btn-dark m-2"> <i className="fab fa-vk"></i></button>
-            <button className="btn btn-dark m-2 pr-3 pl-3"> <i className="fab fa-facebook-f"> </i></button>  
-            <button className="btn btn-dark m-2"> <i className="fab fa-google"> </i></button> 
-            <p className="mt-3 mb-4" style={{borderBottom: "1px solid #ebeced", lineHeight: "0.1em"}}><span style={{background: "#fff", padding: "0 10px"}}>или</span></p>
             <form onSubmit={this.handleSubmit} style={{maxWidth:"400px", margin: "auto"}}>
               <InputGroup className="mt-3 mb-3">
                 <InputGroupAddon addonType="prepend">@</InputGroupAddon>

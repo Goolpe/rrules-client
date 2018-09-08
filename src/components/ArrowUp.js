@@ -26,9 +26,9 @@ class ArrowUp extends Component {
 	  }
   	render() {
 	    return (
-	    	<div>
+	    	<React.Fragment>
 	    		{this.state.arrowUp && <div id="arrowUp" onClick={this.scrollToTop} ><i className="fas fa-angle-up fa-3x"></i></div>}
-	    	</div>
+	    	</React.Fragment>
 	    );
 	}
 }

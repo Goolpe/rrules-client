@@ -22,26 +22,23 @@ class MessagesPage extends Component {
 	}
 
 	componentWillMount() {
-	  	this.props.fetchMsgs(this.props.auth.user.id);
+	  	this.props.fetchMsgs(this.props.auth.user.playerId);
       	this.props.fetchPlayers();
     }
 
   render() {
-
-  	const {user} = this.props.auth;
-
     const messagesItems = this.props.msgs.map(msg=> 
  				<div className="p-3 mb-1 bg-white shadow-sm" key={msg._id}>	
  					<div className="row align-items-center">
  						<div className="col-12 col-md-4">
- 							<p className="m-0">{msg.senderName !== user.name ? <i className={msg.read ? "fas fa-envelope-open text-success mr-3 fa-2x" : "fas fa-envelope text-danger mr-3 fa-2x"}></i> : <i className="fas fa-share-square text-info mr-3 fa-2x"></i>} {moment(msg.date).format('LLL')}</p>
+ 							<p className="m-0"><i className={msg.read ? "fas fa-envelope-open text-success mr-3 fa-2x" : "fas fa-envelope text-danger mr-3 fa-2x"}></i>{moment(msg.date).format('LLL')}</p>
  						</div>
  						<div className="col-12 col-md-6">
 		 					Отправитель: <Link target="_blank" className="mr-3" to={`/@${msg.senderName}`}>{msg.senderName}</Link>
 		 					Получатель: <Link target="_blank" to={`/@${msg.receiverName}`}>{msg.receiverName}</Link>
  						</div>
  						<div className="col-12 col-md-2">
- 							<Link to={`/msg/${msg._id}`} className="btn btn-info mr-3">Открыть</Link>
+ 							{msg.receiver === this.props.auth.user.playerId && <Link to={`/msg/${msg._id}`} className="btn btn-info mr-3">Открыть</Link>}
  						</div>
  					</div>
  				</div>

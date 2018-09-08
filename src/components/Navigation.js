@@ -11,6 +11,7 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
+  Badge,
   DropdownItem } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -25,7 +26,8 @@ class Navigation extends Component{
     this.toggle = this.toggle.bind(this);
     this.closeNav = this.closeNav.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      read : this.props.msgs.filter(msg=> msg.read === false && msg.receiver === this.props.auth.user.playerId).length
     };
   }
   toggle() {
@@ -39,16 +41,25 @@ class Navigation extends Component{
       isOpen: false
     });
   }
-  componentWillMount(){
-    this.props.fetchMsgs()
+
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      read: nextProps.msgs.filter(msg=> msg.read === false && msg.receiver === this.props.auth.user.playerId).length
+    })
   }
+
+  componentWillMount(){
+    if(this.props.auth.isAuthenticated){
+      this.props.fetchMsgs(this.props.auth.user.playerId)
+    }
+  }
+
   onLogout(e) {
     e.preventDefault();
     this.props.logoutUser(this.props.history);
   }
   render(){
     const {isAuthenticated, user} = this.props.auth;
-
     return(
       <Navbar color="dark" className="bg-Nav" light expand="lg">
         <div className="container">
@@ -84,7 +95,8 @@ class Navigation extends Component{
               <UncontrolledDropdown nav inNavbar className="keyAuth">
                 <DropdownToggle className="text-white ml-2 p-0"  style={{height:"40px"}} nav>{isAuthenticated ?   
                   <React.Fragment>
-                  <i className= "fas fa-address-book ml-2 mt-1 fa-2x"></i><span className="badge badge-danger"></span>
+                  <i className= "fas fa-address-book ml-2 mt-1 fa-2x"></i>
+                    <Badge color="danger">{this.state.read}</Badge>
                   </React.Fragment>
                  : <i className= "fas fa-key ml-2 mt-1 fa-2x"></i>}</DropdownToggle>
                 <DropdownMenu  className="p-0">
@@ -92,7 +104,9 @@ class Navigation extends Component{
                   <span>
                     <DropdownItem tag={Link} onClick={this.closeNav} to={`/@${user.name}`} className="p-2 rounded-top">Мой профиль</DropdownItem>
                     <DropdownItem tag={Link} onClick={this.closeNav} to={`/edit/@${user.name}`} className="p-2 rounded-top">Настройки</DropdownItem>
-                    <DropdownItem tag={Link} onClick={this.closeNav} to="/messages" className="p-2 rounded-top">Сообщения</DropdownItem>
+                    <DropdownItem tag={Link} onClick={this.closeNav} to="/messages" className="p-2 rounded-top">Сообщения
+                      <Badge color="danger" className="ml-2">{this.state.read}</Badge>
+                    </DropdownItem>
                     <hr className="m-0"/>
                     <DropdownItem onClick={this.onLogout.bind(this)} className="p-2 rounded-top">Выйти </DropdownItem>
                   </span>
@@ -109,16 +123,14 @@ class Navigation extends Component{
   }
 }
 Navigation.propTypes = {
-    logoutUser: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired,
-    fetchMsgs: PropTypes.func.isRequired,
-    msgs: PropTypes.array.isRequired
-
+  fetchMsgs: PropTypes.func.isRequired,
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-    auth: state.auth,
-    msgs: state.msgs.items
+  auth: state.auth,
+  msgs: state.msgs.items
 })
 
 export default connect(mapStateToProps, { fetchMsgs, logoutUser })(withRouter(Navigation));

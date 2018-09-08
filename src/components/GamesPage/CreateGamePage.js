@@ -13,6 +13,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createGame } from '../actions/gameActions';
 import { fetchPlayers } from '../actions/playerActions';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class CreateGamePage extends Component {
 	constructor(props){
@@ -72,7 +74,8 @@ class CreateGamePage extends Component {
 	}
 
 // Handler of submit
-
+	notify(word){toast(word)}
+	notifyError(word){toast.error(word)}
 	onSubmit(e){
 		e.preventDefault();
 
@@ -95,7 +98,7 @@ class CreateGamePage extends Component {
 				nameGame: this.state.nameGame,
 				cityGame: this.state.cityGame,
 			    masterName: this.props.auth.user.name,
-			    masterId: this.props.auth.user.id,
+			    masterId: this.props.auth.user.playerId,
 			    placeGame: this.state.placeGame,
 			    priceGame: this.state.priceGame,
 			    infoGame: this.state.infoGame,
@@ -119,10 +122,10 @@ class CreateGamePage extends Component {
 			    to: undefined,
 			    videoLink: ''
 			})
-			alert("Готово!")
+			this.notify("Готово!")
 		}
 		else{
-			return alert("Укажите правильную дату")
+			this.notifyError("Укажите правильную дату!")
 		}
 	}
   render() {
@@ -134,6 +137,17 @@ class CreateGamePage extends Component {
 	  return (
 	  	<section id="createGame" style={{minHeight: "100vh"}}>
 			<div className="container pt-5 pb-5">
+				<ToastContainer
+					position="top-center"
+					autoClose={2000}
+					hideProgressBar={false}
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnVisibilityChange
+					draggable
+					pauseOnHover
+					/>
 				<h1 className="text-dark text-center mb-5">СОЗДАТЬ ИГРУ</h1>
 				<form onSubmit={this.onSubmit}>
 {/*Button to create game and exit*/}

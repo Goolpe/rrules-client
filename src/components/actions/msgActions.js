@@ -1,7 +1,7 @@
 import { FETCH_MSGS, FETCH_MSG } from './types';
 
 export const fetchMsgs = msgData => dispatch => {
-  fetch('//localhost:5000/messages/all/' + msgData, {
+  fetch('https://randomrulesdb.herokuapp.com/messages/all/' + msgData, {
       method: 'post',
       headers: {
       	'Authorization': localStorage.jwtToken,
@@ -18,7 +18,7 @@ export const fetchMsgs = msgData => dispatch => {
 };
 
 export const fetchMsg = msgData => dispatch => {
-  fetch('//localhost:5000/messages/one/' + msgData.msgId, {
+  fetch('https://randomrulesdb.herokuapp.com/messages/one/' + msgData.msgId, {
       method: 'post',
       headers: {
       	'Authorization': localStorage.jwtToken,
@@ -37,7 +37,7 @@ export const fetchMsg = msgData => dispatch => {
 };
 
 export const createMsg = msgData => dispatch => {
-  fetch('//localhost:5000/messages/new',{
+  fetch('https://randomrulesdb.herokuapp.com/messages/new',{
       method: 'post',
       headers: {
       	'Authorization': localStorage.jwtToken,
@@ -56,7 +56,7 @@ export const createMsg = msgData => dispatch => {
 };
 
 export const changeMsgData = msgData => dispatch => {
-  fetch('//localhost:5000/messages/edit/' + msgData.msgId,{
+  fetch('https://randomrulesdb.herokuapp.com/messages/edit/' + msgData.msgId,{
       method: 'put',
       headers: {
         'Authorization': localStorage.jwtToken,
