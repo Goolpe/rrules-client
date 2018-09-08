@@ -1,5 +1,5 @@
 export const FETCH_ARTICLES = 'FETCH_ARTICLES';
-export const NEW_ARTICLE = 'NEW_ARTICLE';
+export const FETCH_ARTICLE = 'FETCH_ARTICLE';
 
 export const NEW_ACCOUNT = 'NEW_ACCOUNT';
 export const AUTH_ACCOUNT = 'AUTH_ACCOUNT';
@@ -15,4 +15,3 @@ export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 
 export const FETCH_MSGS = 'FETCH_MSGS';
 export const FETCH_MSG = 'FETCH_MSG';
-export const NEW_MSG = 'NEW_MSG';

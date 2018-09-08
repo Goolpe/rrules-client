@@ -66,7 +66,6 @@ class RoutesPage extends Component {
     }	
 
   render(){  
-  	const {isAuthenticated} = this.props.auth;
 
     return (
 	      <Router>

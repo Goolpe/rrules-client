@@ -8,8 +8,10 @@ import msgReducer from './msgReducer';
 
 export default combineReducers({
   articles: postReducer,
+  article: postReducer,
   accounts: authReducer,
   players: playerReducer,
+  player: playerReducer,
   games: gameReducer,
   game: gameReducer,
   errors: errorReducer,

@@ -1,14 +1,13 @@
-import { FETCH_MSGS, FETCH_MSG, NEW_MSG } from './types';
-import axios from 'axios';
+import { FETCH_MSGS, FETCH_MSG } from './types';
 
-export const fetchMsgs = (user) => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/messages/' + user, {
-      method: 'get',
+export const fetchMsgs = msgData => dispatch => {
+  fetch('//localhost:5000/messages/all/' + msgData, {
+      method: 'post',
       headers: {
       	'Authorization': localStorage.jwtToken,
         'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      }})
+        'Content-Type': 'application/json'}
+      })
       .then((res) => res.json())
       .then(msgs => 
       dispatch({
@@ -18,8 +17,8 @@ export const fetchMsgs = (user) => dispatch => {
     );
 };
 
-export const fetchMsg = (msgData) => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/messages/' + msgData.id, {
+export const fetchMsg = msgData => dispatch => {
+  fetch('//localhost:5000/messages/one/' + msgData.msgId, {
       method: 'post',
       headers: {
       	'Authorization': localStorage.jwtToken,
@@ -38,8 +37,8 @@ export const fetchMsg = (msgData) => dispatch => {
 };
 
 export const createMsg = msgData => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/messages/' + msgData.id,{
-      method: 'put',
+  fetch('//localhost:5000/messages/new',{
+      method: 'post',
       headers: {
       	'Authorization': localStorage.jwtToken,
         'Accept': 'application/json, text/plain, */*',
@@ -50,20 +49,28 @@ export const createMsg = msgData => dispatch => {
       .then(res => res.json())
       .then(msg =>
       dispatch({
-        type: NEW_MSG,
+        type: FETCH_MSG,
         payload: msg
     })
   );
 };
 
-export const changeMsgData = (msgData) => dispatch => {
-  axios.put('https://randomrulesdb.herokuapp.com/msgs/' + msgData, {
+export const changeMsgData = msgData => dispatch => {
+  fetch('//localhost:5000/messages/edit/' + msgData.msgId,{
       method: 'put',
       headers: {
+        'Authorization': localStorage.jwtToken,
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       },
        body: JSON.stringify(msgData)
      })
-      .then(res => dispatch({type: FETCH_MSG, payload: res.data}))
+      .then(res => res.json())
+      .then(msg =>
+      dispatch({
+        type: FETCH_MSG,
+        payload: msg
+    })
+  );
 };
+

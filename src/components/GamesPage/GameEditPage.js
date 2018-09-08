@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import moment from 'moment';
-import 'moment/locale/ru';
 import { Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -11,43 +9,23 @@ class GameEditPage extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			nameGame: '',
-			masterId:'',
-			selectedOption: 'sortByTypeOnline',
-		    cityGame:'',
-		    priceGame:'',
-		    placeAll: '',
-		    gamersInsideId: [],
-		    infoGame: '',
-		    placeGame:'',
-		    videoLink:'',
-		    from: undefined,
-      		to: undefined,
-      		archive: false
+			nameGame: this.props.game.nameGame,
+			masterId: this.props.game.masterId,
+			selectedOption: this.props.game.selectedOption,
+		    cityGame: this.props.game.cityGame,
+		    priceGame: this.props.game.priceGame,
+		    placeAll: this.props.game.placeAll,
+		    gamersInsideId: this.props.game.gamersInsideId,
+		    infoGame: this.props.game.infoGame,
+		    placeGame: this.props.game.placeGame,
+		    videoLink: this.props.game.videoLink,
+		    from: this.props.game.from,
+      		to: this.props.game.to,
+      		archive: this.props.game.archive
 		}
-		this.handleFromChange = this.handleFromChange.bind(this);
-   		this.handleToChange = this.handleToChange.bind(this);
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 	} 
-
-// functions for datepicker
-
-    showFromMonth() {
-    	const { from, to } = this.state;
-	    if (!from) {
-	      return;
-	    }
-	    if (moment(to).diff(moment(from), 'months') < 2) {
-	      this.to.getDayPicker().showMonth(from);
-	    }
-	}
-	handleFromChange(from) {
-		this.setState({ from });
-	}
-	handleToChange(to) {
-		this.setState({ to }, this.showFromMonth);
-	}
 
 	componentDidMount() {
 	    window.scrollTo(0,0);
@@ -90,19 +68,11 @@ class GameEditPage extends Component {
 		    to: this.state.to
 	    }
 		this.props.changeGameData(gameData);
-		if (this.state.archive === false){
-			this.props.history.push(`/game/${this.props.match.params.id}`)
-		}
-		else{
+		if (this.state.archive){
 			this.props.history.push('/games')
 		}
 	}
   render() {
-  	const game = this.props.game;
-//declare consts for Datepicker  	
-   	// const { from, to } = this.state;
-    // const modifiers = { start: from, end: to };
-
 	  return (
 	  	<section id="createGame" style={{minHeight: "100vh"}}>
 			<div className="container pt-5 pb-5">
@@ -111,58 +81,15 @@ class GameEditPage extends Component {
 	{/*Button to create game and exit*/}
 					<div className="d-flex justify-content-end">
 						<button type="submit" onClick={()=>{this.setState({archive: true})}} className="btn btn-danger rounded-0 mb-2 mr-2">Удалить</button>
-						<button type="submit" className="btn btn-info rounded-0 mb-2 mr-2">Подтвердить</button>
+						<button type="submit" className="btn btn-info rounded-0 mb-2 mr-2">Сохранить</button>
 						<Link to={`/game/${this.props.match.params.id}`} className="btn btn-outline-info rounded-0 mb-2">Выйти из редактора</Link>
 				    </div>
-				    <div className="container mb-5" key={game._id}>
+				    <div className="container mb-5">
 			 			<div className="row p-3 align-items-begin bg-white shadow-sm">
 			 				<div className="col-12">
 	{/*Name of the game*/}
 			 					<label className="mr-2">Название: </label>
-			 					<input type="text" value={this.state.nameGame} className="w-100" onFocus = {(e)=>{e.currentTarget.value = game.nameGame}} onChange={this.onChange} name="nameGame" placeholder={game.nameGame}/><br />
-	{/*Date and time*/}
-			 					{/*<label className="mr-2 mt-3">Дата и время игры: </label>
-			 					<DayPickerInput
-						          value={from}
-						          format="LLL"
-						          formatDate={formatDate}
-						          parseDate={parseDate}
-						          placeholder={moment(game.from).format('LLL')}
-						          dayPickerProps={{
-						            selectedDays: [from, { from, to }],
-						            disabledDays: { before: new Date(), after: this.state.to  },
-						            toMonth: to,
-						            modifiers,
-						            locale: 'ru',
-						            localeUtils: MomentLocaleUtils,
-						            numberOfMonths: 1,
-						            onDayClick: () => this.to.getInput().focus(),
-						            
-						          }}
-						          onDayChange={this.handleFromChange}
-						        />{' '}
-						        —{' '}
-						          <DayPickerInput
-						            ref={el => (this.to = el)}
-						            value={to}
-						            format="LLL"
-						            formatDate={formatDate}
-						            parseDate={parseDate}
-						            placeholder={moment(game.to).format('LLL')}
-						            dayPickerProps={{
-						              selectedDays: [from, { from, to }],
-						              disabledDays: { before: this.state.from || new Date()},
-						              modifiers,
-						              locale: 'ru',
-						              localeUtils: MomentLocaleUtils,
-						              month: from,
-						              fromMonth: from,
-						              numberOfMonths: 1,
-								      onDayClick: () => this.to.getInput().focus()
-						            }}
-						            onDayChange={this.handleToChange}
-						          />
-						        <br />*/}
+			 					<input type="text" value={this.state.nameGame} className="w-100" onChange={this.onChange} name="nameGame" /><br />
 	{/*Type of the game*/}
 						        <label className="mr-2 mt-3">Тип игры: </label>
 						        <div className="custom-control custom-radio mb-2">
@@ -176,26 +103,26 @@ class GameEditPage extends Component {
 						        {this.state.selectedOption === "sortByTypeIRL"  &&
 			 						<div>
 			 							<label className="mr-2 mt-3">Город: </label>
-			 							<input type="string" value={this.state.cityGame} style={{width:"50%"}} onFocus = {(e)=>{e.currentTarget.value = game.cityGame}} onChange={this.onChange} name="cityGame" placeholder={game.cityGame}/><br/>
+			 							<input type="string" value={this.state.cityGame} style={{width:"50%"}} onChange={this.onChange} name="cityGame"/><br/>
 			 							<label className="mr-2 mt-3">Место проведения: </label>
-			 							<input type="string" value={this.state.placeGame} style={{width:"50%"}} onFocus = {(e)=>{e.currentTarget.value = game.placeGame}} onChange={this.onChange} name="placeGame" placeholder={game.placeGame}/>
+			 							<input type="string" value={this.state.placeGame} style={{width:"50%"}} onChange={this.onChange} name="placeGame"/>
 			 						</div> 
 			 					}
 	{/*Price*/}
 			 					<div>
 			 						<label className="mr-2 mt-3">Стоимость: </label>
-			 						<input type="string" value={this.state.priceGame} onFocus = {(e)=>{e.currentTarget.value = game.priceGame}} onChange={this.onChange} name="priceGame" placeholder={game.priceGame}/><br />
+			 						<input type="string" value={this.state.priceGame} onChange={this.onChange} name="priceGame"/><br />
 			 					</div>
 			 					<div>
 			 						<label className="mr-2 mt-3">Ссылка на стрим: </label>
-			 						<input type="string" value={this.state.videoLink} className="w-100" onFocus = {(e)=>{e.currentTarget.value = game.videoLink}} onChange={this.onChange} name="videoLink" placeholder={game.videoLink}/><br />
+			 						<input type="string" value={this.state.videoLink} className="w-100" onChange={this.onChange} name="videoLink" /><br />
 			 					</div> 
 	{/*Number of seats*/}
 			 					<label className="mr-2 mt-3">Количество мест: </label>
-			 					<input type="number" min="1" max="20" value={this.state.placeAll} onFocus = {(e)=>{e.currentTarget.value = game.placeAll}} onChange={this.onChange} name="placeAll" placeholder={game.placeAll}/><br />
+			 					<input type="number" min="1" max="20" value={this.state.placeAll} onChange={this.onChange} name="placeAll" /><br />
 	{/*Additionally info*/}		 					
 			 					<label className="mt-3">Превью:</label>
-			 					<textarea type="text" value={this.state.infoGame} onFocus = {(e)=>{e.currentTarget.value = game.infoGame}} style={{resize: "both", width: "100%", minHeight: "200px"}} onChange={this.onChange} name="infoGame" placeholder={game.infoGame} />
+			 					<textarea type="text" value={this.state.infoGame} style={{resize: "both", width: "100%", minHeight: "200px"}} onChange={this.onChange} name="infoGame" />
 			 				</div> 	
 			 			</div>	
 			 		</div>		

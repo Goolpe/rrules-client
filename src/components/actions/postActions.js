@@ -1,7 +1,7 @@
-import { FETCH_ARTICLES, NEW_ARTICLE } from './types';
+import { FETCH_ARTICLES, FETCH_ARTICLE } from './types';
 
 export const fetchArticles = () => dispatch => {
-  fetch("https://randomrulesdb.herokuapp.com/articles")
+  fetch("//localhost:5000/articles/all")
       .then((res) => res.json())
       .then(articles => 
       dispatch({
@@ -11,8 +11,19 @@ export const fetchArticles = () => dispatch => {
     );
 };
 
+export const fetchArticle = (articleId) => dispatch => {
+  fetch("//localhost:5000/articles/one/" + articleId)
+      .then((res) => res.json())
+      .then(article => 
+      dispatch({
+        type: FETCH_ARTICLE,
+        payload: article
+      })
+    );
+};
+
 export const createArticle = articleData => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/articles',{
+  fetch('//localhost:5000/articles/new',{
       method: 'post',
       headers: {
         'Authorization': localStorage.jwtToken,
@@ -24,7 +35,7 @@ export const createArticle = articleData => dispatch => {
       .then(res => res.json())
       .then(article =>
       dispatch({
-        type: NEW_ARTICLE,
+        type: FETCH_ARTICLE,
         payload: article
     })
   );

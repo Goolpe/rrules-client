@@ -1,4 +1,4 @@
-import { FETCH_MSGS, FETCH_MSG, NEW_MSG } from '../actions/types';
+import { FETCH_MSGS, FETCH_MSG } from '../actions/types';
 
 const initialState = {
   items: [],
@@ -13,11 +13,6 @@ export default function(state = initialState, action) {
         items: action.payload
       };
     case FETCH_MSG:
-      return {
-        ...state,
-        item: action.payload
-      };
-    case NEW_MSG:
       return {
         ...state,
         item: action.payload

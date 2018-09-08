@@ -68,10 +68,9 @@ class GamePage extends Component {
     	}
     	else{
     		const msgData = {
-    			id: this.props.auth.user.id,
 		      	title: this.state.title,
 				text: this.state.text,
-				sender: this.props.auth.user.playerId,
+				sender: this.props.auth.user.id,
 				senderName: this.props.auth.user.name,
 				receiverName: this.props.game.masterName,
 				receiver: this.props.game.masterId,
@@ -79,10 +78,6 @@ class GamePage extends Component {
 				date: new Date()
 		     }
 			this.props.createMsg(msgData);
-			this.setState({
-				title: '',
-				text: ''
-			})
 			alert("Запрос отправлен!")
     	}	
 	}
@@ -101,7 +96,7 @@ class GamePage extends Component {
 	  return (
 	  	<section id="createGame" style={{minHeight: "100vh"}}>
 			<div className="container pt-5 pb-5" key={game._id}>
-				<h1 className="text-dark text-center mb-5">{game.nameGame}</h1>
+				<h1 className="text-dark text-center mb-5">{game.nameGame || "Игра"}</h1>
 				<form onSubmit={this.onSubmit}>
 				<div className="row justify-content-between">
 					<div className="col-12 col-md-6">
@@ -146,8 +141,10 @@ class GamePage extends Component {
 			 						.map(master => 
 			 					<React.Fragment key={master._id} >
 				 					<p>Мастер: <Link to={`/@${game.masterName}`} target="_blank" >{game.masterName}</Link></p>
-				 					<p><i className="fas fa-star text-warning fa-1x"></i> - {master.rating}/5</p>
-			 						<img src={master.photo} alt={game.masterName} height="200px" className="mb-3"/>
+				 					<p><i className="fas fa-star text-warning fa-1x"></i> - {master.rating}/5</p>					
+                  <img src={master.photo
+                   || master.gender 
+                   ? "https://pp.userapi.com/c841430/v841430607/a334/JyoSS0cW0YA.jpg" : "https://pp.userapi.com/c639319/v639319542/3bcfc/-w1TeyATW-o.jpg"} alt={game.masterName} height="200px" className="mb-3" /> 
 			 						<hr />
 			 						<p>Игроки:</p>
 			 						<ul>

@@ -27,7 +27,6 @@ class GamesPage extends Component {
 	    this.handleToChange = this.handleToChange.bind(this);
 	    this.toggle = this.toggle.bind(this);
 	    this.onChange = this.onChange.bind(this);
-	    // this.deleteGame = this.deleteGame.bind(this);
 	  }
 
 // functions for datepicker
@@ -59,11 +58,6 @@ class GamesPage extends Component {
 	componentDidMount() {
 	    window.scrollTo(0,0);
 	}
-
-	// deleteGame(gameData){
-	// 	console.log(gameData);
-	// 	this.props.deleteGame(gameData);
-	// }
 
 	componentWillMount() {
 	  this.props.fetchGames();

@@ -1,55 +1,61 @@
 import { FETCH_GAMES, FETCH_GAME } from './types';
-import axios from 'axios';
 
 export const fetchGames = () => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/games')
-      .then((res) => res.json())
-      .then(games => 
-      dispatch({
-        type: FETCH_GAMES,
-        payload: games
-      })
-    );
-};
-
-export const fetchGame = (gameData) => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/games/' + gameData)
-      .then((res) => res.json())
-      .then(game => 
-      dispatch({
-        type: FETCH_GAME,
-        payload: game
-      })
-    );
-};
-
-export const createGame = (gameData) => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/games', {
-      method: 'post',
-      headers: {
-        'Authorization': localStorage.jwtToken,
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      },
-       body: JSON.stringify(gameData)
-     })
-      .then(res => res.json())
-      .then(game =>
-      dispatch({
-        type: FETCH_GAME,
-        payload: game
+  fetch('//localhost:5000/games/all')
+    .then((res) => res.json())
+    .then(games => 
+    dispatch({
+      type: FETCH_GAMES,
+      payload: games
     })
   );
 };
 
-export const changeGameData = (user, gameData) => dispatch => {
-  axios.put('https://randomrulesdb.herokuapp.com/games/' + user.id, user, {
-      method: 'put',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      },
-       body: JSON.stringify(gameData)
-     })
-      .then(res => dispatch({type: FETCH_GAME, payload: res.data}))
+export const fetchGame = (gameData) => dispatch => {
+  fetch('//localhost:5000/games/one/' + gameData)
+    .then((res) => res.json())
+    .then(game => 
+    dispatch({
+      type: FETCH_GAME,
+      payload: game
+    })
+  );
+};
+
+export const createGame = (gameData) => dispatch => {
+  fetch('//localhost:5000/games/new', {
+    method: 'post',
+    headers: {
+      'Authorization': localStorage.jwtToken,
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    },
+     body: JSON.stringify(gameData)
+   })
+    .then(res => res.json())
+    .then(game =>
+    dispatch({
+      type: FETCH_GAME,
+      payload: game
+    })
+  );
+};
+
+export const changeGameData = (gameData) => dispatch => {
+  fetch('//localhost:5000/games/edit/' + gameData.id, {
+    method: 'put',
+    headers: {
+      'Authorization': localStorage.jwtToken,
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    },
+     body: JSON.stringify(gameData)
+   })
+    .then((res) => res.json())
+    .then(game => 
+      dispatch({
+        type: FETCH_GAME, 
+        payload: game
+      })
+    );
 };

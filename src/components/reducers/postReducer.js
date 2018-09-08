@@ -1,4 +1,4 @@
-import { FETCH_ARTICLES, NEW_ARTICLE } from '../actions/types';
+import { FETCH_ARTICLES, FETCH_ARTICLE } from '../actions/types';
 
 const initialState = {
   items: [],
@@ -12,7 +12,7 @@ export default function(state = initialState, action) {
         ...state,
         items: action.payload
       };
-    case NEW_ARTICLE:
+    case FETCH_ARTICLE:
       return {
         ...state,
         item: action.payload

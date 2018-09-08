@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'reactstrap';
 import _ from "lodash";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
