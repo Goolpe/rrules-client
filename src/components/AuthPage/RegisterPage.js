@@ -35,6 +35,7 @@ class RegisterPage extends Component{
           password_confirm: this.state.password_confirm
       }
       this.props.registerUser(user, this.props.history);
+      console.log(this.state.errors.length)
       if(this.state.errors.length === 0){
         this.setState({checkEmail: true})
       }
