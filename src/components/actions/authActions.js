@@ -5,12 +5,13 @@ import jwt_decode from 'jwt-decode';
 
 export const registerUser = (user, history) => dispatch => {
     axios.post('https://randomrulesdb.herokuapp.com/users/register', user)
-            .catch(err => {
-                dispatch({
-                    type: GET_ERRORS,
-                    payload: err.response.data
-                });
+        .then(res => history.push('/email-verification'))
+        .catch(err => {
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
             });
+        });
 }
 
 export const loginUser = (user) => dispatch => {

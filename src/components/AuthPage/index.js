@@ -83,7 +83,6 @@ class AuthPage extends Component{
                         <input type="email" value={this.state.logemail} onChange={this.handleChange} name="logemail" className="form-control" placeholder="E-mail" required/>
                      </InputGroup>
                       <button type="submit" onClick={this.checkLetters} className="btn btn-info w-100 p-3">Восстановить пароль</button>
-                      
                     </form> 
                   </div>
                 </Col>

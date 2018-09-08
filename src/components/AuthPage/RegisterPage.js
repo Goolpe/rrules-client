@@ -14,8 +14,7 @@ class RegisterPage extends Component{
       email: '',
       password: '',
       password_confirm: '',
-      errors: {},
-      checkEmail: false
+      errors: {}
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,10 +34,6 @@ class RegisterPage extends Component{
           password_confirm: this.state.password_confirm
       }
       this.props.registerUser(user, this.props.history);
-      console.log(this.state.errors.length)
-      if(this.state.errors.length === 0){
-        this.setState({checkEmail: true})
-      }
   }
 
   componentDidMount() {
@@ -64,9 +59,6 @@ class RegisterPage extends Component{
     const { errors } = this.state;  
       return ( 
             <div className="mt-3">
-              {this.state.checkEmail ? 
-                <p className="mt-5">На Вашу почту выслана ссылка для авторизации</p>
-              :
               <form onSubmit={this.handleSubmit} >
                 <InputGroup className="mt-3 mb-3">
                   <InputGroupAddon addonType="prepend">@</InputGroupAddon>
@@ -114,7 +106,6 @@ class RegisterPage extends Component{
                 </div>
                 <button type="submit" onClick={this.checkLetters} className="btn btn-info w-100 p-3">Зарегистрироваться</button>
               </form> 
-              }
             </div>
     );
   }
