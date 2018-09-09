@@ -24,7 +24,7 @@ class UserPage extends Component {
             <span className="text-center"><h1>{player.username}</h1>{player.master && <p>мастер</p>}</span>
             <div className="row">
               <div className="col-12 col-md-6 order-md-2 mb-3 text-center">
-                  <img src={player.photo || player.gender ? "https://pp.userapi.com/c841430/v841430607/a334/JyoSS0cW0YA.jpg" : "https://pp.userapi.com/c639319/v639319542/3bcfc/-w1TeyATW-o.jpg"} className="img-fluid" style={{maxHeight: 500}} alt="" />
+                  <img src={player.photo || "../avatar.svg"} className="img-fluid" style={{maxHeight: 500}} alt="" />
                 <h3><i className="fas fa-star text-warning fa-1x mt-4 mb-2"></i> - {player.rating}/5</h3>
                 {user.name === player.username && user.master && <Link to="/create-game" className="btn btn-info pl-5 pr-5">Создать игру</Link>}
               </div>

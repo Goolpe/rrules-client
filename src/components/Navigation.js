@@ -16,6 +16,7 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from './actions/authActions';
+import { fetchPlayer } from './actions/playerActions';
 import { withRouter } from 'react-router-dom';
 import { fetchMsgs } from './actions/msgActions';
 
@@ -95,8 +96,8 @@ class Navigation extends Component{
               <UncontrolledDropdown nav inNavbar className="keyAuth">
                 <DropdownToggle className="text-white ml-2 p-0"  style={{height:"40px"}} nav>{isAuthenticated ?   
                   <React.Fragment>
-                  <i className= "fas fa-address-book ml-2 mt-1 fa-2x"></i>
-                    <Badge color="danger">{this.state.read}</Badge>
+                    <img src={this.props.player.photo || "../avatar.svg"} className="img-fluid rounded bg-white position-relative" style={{height:"100%", width:"30px"}}/>
+                    <Badge color="danger" className="position-absolute" style={{top: -5,left:30}}>{this.state.read}</Badge>
                   </React.Fragment>
                  : <i className= "fas fa-key ml-2 mt-1 fa-2x"></i>}</DropdownToggle>
                 <DropdownMenu  className="p-0">
@@ -123,6 +124,8 @@ class Navigation extends Component{
   }
 }
 Navigation.propTypes = {
+  fetchPlayer: PropTypes.func.isRequired,
+  player: PropTypes.object.isRequired,
   fetchMsgs: PropTypes.func.isRequired,
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
@@ -130,7 +133,8 @@ Navigation.propTypes = {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  player: state.player.item,
   msgs: state.msgs.items
 })
 
-export default connect(mapStateToProps, { fetchMsgs, logoutUser })(withRouter(Navigation));
+export default connect(mapStateToProps, { fetchMsgs, fetchPlayer, logoutUser })(withRouter(Navigation));
