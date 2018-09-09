@@ -38,18 +38,6 @@ button
     padding: 0;
 }
 
-.navbar-brand img
-{
-    height: 60px;
-}
-
-.bg-Nav
-{
-    background: url(nav.jpg) no-repeat;
-    background-position: center;
-    background-size: cover;
-}
-
 /*HomePage*/
 
 #headerCarousel
