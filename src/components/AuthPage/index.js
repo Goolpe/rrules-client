@@ -3,6 +3,9 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col, InputGroup, Input
 import classnames from 'classnames';
 import LoginPage from './LoginPage';
 import RegisterPage from './RegisterPage';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class AuthPage extends Component{
   constructor(props){ 
@@ -21,6 +24,9 @@ class AuthPage extends Component{
 
   componentDidMount() {
     window.scrollTo(0,0);
+    if(this.props.auth.isAuthenticated) {
+        this.props.history.push('/');
+    }
   }
   toggle(tab) {
     if (this.state.activeTab !== tab) {
@@ -35,7 +41,7 @@ class AuthPage extends Component{
         <div className="container" >
         <div className="container shadow-lg bg-white pt-5 pb-5 text-center" style={{maxWidth: "400px"}}>
           <button className="btn btn-dark m-2"> <i className="fab fa-vk"></i></button>
-              <button className="btn btn-dark m-2 pr-3 pl-3"> <i className="fab fa-facebook-f"> </i></button>  
+              <a href='http://localhost:5000/auth/facebook' className="btn btn-dark m-2 pr-3 pl-3"> <i className="fab fa-facebook-f"></i></a>  
               <button className="btn btn-dark m-2"> <i className="fab fa-google"> </i></button> 
               <p className="mt-3 mb-4" style={{borderBottom: "1px solid #ebeced", lineHeight: "0.1em"}}><span style={{background: "#fff", padding: "0 10px"}}>или</span></p>
            <Nav tabs style={{cursor: "pointer"}} className="justify-content-center">
@@ -97,5 +103,15 @@ class AuthPage extends Component{
   }
 }
 
-export default AuthPage;
+AuthPage.propTypes = {
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+    auth: state.auth,
+    errors: state.errors
+})
+
+export  default connect(mapStateToProps, {})(withRouter(AuthPage));
 

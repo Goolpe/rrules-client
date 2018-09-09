@@ -10,6 +10,7 @@ import ArrowUp from './components/ArrowUp';
 import HomePage from './components/HomePage';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import error404Page from './components/error404Page';
 import AboutPage from './components/AboutPage';
 import LibraryPage from './components/LibraryPage';
 import ArtPage from './components/ArtPage';
@@ -25,6 +26,7 @@ import MsgPage from './components/MessagesPage/MsgPage';
 import MastersPage from './components/UsersPage/MastersPage';
 import UserPage from './components/UsersPage/UserPage';
 import UserPageEditor from './components/UsersPage/UserPageEditor';
+
 
 import AgreementPage from './components/AgreementPage';
 import SupportPage from './components/SupportPage';
@@ -76,36 +78,41 @@ class RoutesPage extends Component {
 					 	<Route path="*" render={() => <Redirect to="/" />} /> 
 				 	</Switch>
 			      :
-			        <div>
-					<Navigation/>
-			          <Switch>
-			            <Route path="/" exact={true} component={HomePage} />
-			            <Route path="/about-project" component={AboutPage} />
-			            <Route path="/library" component={LibraryPage} />
-			            <Route path="/art" component={ArtPage} />
-			            <Route path="/articles" component={ArticlesPage} />
-			            <Route path="/article/:id" component={ArticlePage} />
-			            <Route path="/shop" component={ShopPage} />
-			            <Route path="/streams" component={StreamsPage} />
-			            <Route path="/masters" component={MastersPage} />
-			            <Route path="/support" component={SupportPage} />   
-			            <Route path="/agreement" component={AgreementPage} />
-			            <Route path="/games" component={GamesPage} />   
-			            <Route path="/messages" component={MessagesPage} />  
-			            <Route path="/msg/:id" component={MsgPage} />
-			            <Route path="/game/:id" component={GamePage} /> 
-			            <Route path="/@:nickname" component={UserPage} />
-				        <Route path="/auth" component={AuthPage} />
-				        <Route path="/email-verification" component={EmailVerif} />
-				        <Route path="/new-article" component={ArticleForm} />
-				        <Route path="/edit/:nickname" component={UserPageEditor} />
-				        <Route path="/create-game" component={CreateGamePage} />
-				        <Route path="/edit-game/:id" component={GameEditPage} />
-				        <Route path="*" render={() => <Redirect to="/" />} />
-				       </Switch>
-			        <Footer />
-			        <ArrowUp />
-			        </div>
+			        <React.Fragment>
+			        	<Switch>
+			        		<Route path="/404" component={error404Page} />
+					    <React.Fragment>	
+						<Navigation/>
+				          <Switch>
+				            <Route path="/" exact={true} component={HomePage} />
+				            <Route path="/about-project" component={AboutPage} />
+				            <Route path="/library" component={LibraryPage} />
+				            <Route path="/art" component={ArtPage} />
+				            <Route path="/articles" component={ArticlesPage} />
+				            <Route path="/article/:id" component={ArticlePage} />
+				            <Route path="/shop" component={ShopPage} />
+				            <Route path="/streams" component={StreamsPage} />
+				            <Route path="/masters" component={MastersPage} />
+				            <Route path="/support" component={SupportPage} />   
+				            <Route path="/agreement" component={AgreementPage} />
+				            <Route path="/games" component={GamesPage} />   
+				            <Route path="/messages" component={MessagesPage} />  
+				            <Route path="/msg/:id" component={MsgPage} />
+				            <Route path="/game/:id" component={GamePage} /> 
+				            <Route path="/@:nickname" component={UserPage} />
+					        <Route path="/auth" component={AuthPage} />
+					        <Route path="/email-verification" component={EmailVerif} />
+					        <Route path="/new-article" component={ArticleForm} />
+					        <Route path="/edit/:nickname" component={UserPageEditor} />
+					        <Route path="/create-game" component={CreateGamePage} />
+					        <Route path="/edit-game/:id" component={GameEditPage} />
+					        <Route path="*" render={() => <Redirect to="/404" />} />
+					       </Switch>
+				        <Footer />
+				        <ArrowUp />
+				        </React.Fragment>
+				        </Switch>	
+			        </React.Fragment>
 			        } 
 		      </div>
 	      </Router>

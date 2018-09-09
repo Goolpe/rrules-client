@@ -141,7 +141,7 @@ class GamePage extends Component {
 						:
 						<Button type="submit" color="danger" className="mb-2 mr-2">Играть</Button>
 					}
-					<Link to="/games" className="btn btn-outline-info rounded-0 mb-2">Выйти из комнаты</Link>
+					<Link to="/games" className="btn btn-info rounded-0 mb-2">Выйти из комнаты</Link>
 					</div>
 			    </div>
 			    <div className="container mb-5">

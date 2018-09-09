@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
-import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class EmailVerif extends Component{
 
   componentDidMount() {
     window.scrollTo(0,0);
+    if(this.props.auth.isAuthenticated) {
+        this.props.history.push('/');
+    }
   }
   render(){ 
       return ( 
@@ -17,5 +22,15 @@ class EmailVerif extends Component{
   }
 }
 
-export default EmailVerif;
+EmailVerif.propTypes = {
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+    auth: state.auth,
+    errors: state.errors
+})
+
+export  default connect(mapStateToProps, {})(withRouter(EmailVerif));
 

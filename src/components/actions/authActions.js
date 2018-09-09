@@ -2,9 +2,10 @@ import axios from 'axios';
 import { GET_ERRORS, SET_CURRENT_USER } from './types';
 import setAuthToken from '../setAuthToken';
 import jwt_decode from 'jwt-decode';
+import server from "./server.json";
 
 export const registerUser = (user, history) => dispatch => {
-    axios.post('https://randomrulesdb.herokuapp.com/users/register', user)
+    axios.post(server.online + '/auth/register', user)
         .then(res => history.push('/email-verification'))
         .catch(err => {
             dispatch({
@@ -15,20 +16,20 @@ export const registerUser = (user, history) => dispatch => {
 }
 
 export const loginUser = (user) => dispatch => {
-    axios.post('https://randomrulesdb.herokuapp.com/users/login', user)
-            .then(res => {
-                const { token } = res.data;
-                localStorage.setItem('jwtToken', token);
-                setAuthToken(token);
-                const decoded = jwt_decode(token);
-                dispatch(setCurrentUser(decoded));
-            })
-            .catch(err => {
-                dispatch({
-                    type: GET_ERRORS,
-                    payload: err.response.data
-                });
+    axios.post(server.online + '/auth/login', user)
+        .then(res => {
+            const { token } = res.data;
+            localStorage.setItem('jwtToken', token);
+            setAuthToken(token);
+            const decoded = jwt_decode(token);
+            dispatch(setCurrentUser(decoded));
+        })
+        .catch(err => {
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
             });
+        });
 }
 
 export const setCurrentUser = decoded => {

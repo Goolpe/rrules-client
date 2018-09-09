@@ -1,7 +1,8 @@
 import { FETCH_GAMES, FETCH_GAME } from './types';
+import server from "./server.json";
 
 export const fetchGames = () => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/games/all')
+  fetch(server.online + '/games/all')
     .then((res) => res.json())
     .then(games => 
     dispatch({
@@ -12,7 +13,7 @@ export const fetchGames = () => dispatch => {
 };
 
 export const fetchGame = (gameData) => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/games/one/' + gameData)
+  fetch(server.online + '/games/one/' + gameData)
     .then((res) => res.json())
     .then(game => 
     dispatch({
@@ -23,7 +24,7 @@ export const fetchGame = (gameData) => dispatch => {
 };
 
 export const createGame = (gameData) => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/games/new', {
+  fetch(server.online + '/games/new', {
     method: 'post',
     headers: {
       'Authorization': localStorage.jwtToken,
@@ -42,7 +43,7 @@ export const createGame = (gameData) => dispatch => {
 };
 
 export const changeGameData = (gameData) => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/games/edit/' + gameData.id, {
+  fetch(server.online + '/games/edit/' + gameData.id, {
     method: 'put',
     headers: {
       'Authorization': localStorage.jwtToken,

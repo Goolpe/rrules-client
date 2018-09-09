@@ -1,7 +1,8 @@
 import { FETCH_PLAYERS, FETCH_PLAYER } from './types';
+import server from "./server.json";
 
 export const fetchPlayers = () => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/players/all')
+  fetch(server.online + '/players/all')
       .then((res) => res.json())
       .then(players => 
       dispatch({
@@ -12,7 +13,7 @@ export const fetchPlayers = () => dispatch => {
 };
 
 export const fetchPlayer = (playerData) => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/players/one/' + playerData)
+  fetch(server.online + '/players/one/' + playerData)
       .then((res) => res.json())
       .then(player => 
       dispatch({
@@ -23,7 +24,7 @@ export const fetchPlayer = (playerData) => dispatch => {
 };
 
 export const changePlayerData = (playerData) => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/players/edit/' + playerData.id, {
+  fetch(server.online + '/players/edit/' + playerData.id, {
       method: 'put',
       headers: {
         'Authorization': localStorage.jwtToken,

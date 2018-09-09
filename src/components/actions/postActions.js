@@ -1,7 +1,8 @@
 import { FETCH_ARTICLES, FETCH_ARTICLE } from './types';
+import server from "./server.json";
 
 export const fetchArticles = () => dispatch => {
-  fetch("https://randomrulesdb.herokuapp.com/articles/all")
+  fetch(server.online + '/articles/all')
       .then((res) => res.json())
       .then(articles => 
       dispatch({
@@ -12,7 +13,7 @@ export const fetchArticles = () => dispatch => {
 };
 
 export const fetchArticle = (articleId) => dispatch => {
-  fetch("https://randomrulesdb.herokuapp.com/articles/one/" + articleId)
+  fetch(server.online + '/articles/one/' + articleId)
       .then((res) => res.json())
       .then(article => 
       dispatch({
@@ -23,7 +24,7 @@ export const fetchArticle = (articleId) => dispatch => {
 };
 
 export const createArticle = articleData => dispatch => {
-  fetch('https://randomrulesdb.herokuapp.com/articles/new',{
+  fetch(server.online + '/articles/new',{
       method: 'post',
       headers: {
         'Authorization': localStorage.jwtToken,
