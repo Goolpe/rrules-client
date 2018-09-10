@@ -12,15 +12,15 @@ export const fetchArticles = () => dispatch => {
     );
 };
 
-export const fetchArticle = (articleId) => dispatch => {
+export const fetchArticle = (articleId,history) => dispatch => {
   fetch(server.online + '/articles/one/' + articleId)
       .then((res) => res.json())
       .then(article => 
       dispatch({
         type: FETCH_ARTICLE,
         payload: article
-      })
-    );
+      }))
+      .catch(err => history.push('/404'))
 };
 
 export const createArticle = articleData => dispatch => {

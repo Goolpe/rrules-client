@@ -3,7 +3,8 @@ import { Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createGame, fetchGame, changeGameData } from '../actions/gameActions';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class GameEditPage extends Component {
 	constructor(props){
@@ -47,6 +48,7 @@ class GameEditPage extends Component {
 	}
 
 // Handler of submit
+	notify(word){toast(word)}
 
 	onSubmit(e){
 		e.preventDefault();
@@ -68,14 +70,27 @@ class GameEditPage extends Component {
 		    to: this.state.to
 	    }
 		this.props.changeGameData(gameData);
+		this.notify("Готово!")
 		if (this.state.archive){
 			this.props.history.push('/games')
 		}
+		
 	}
   render() {
 	  return (
 	  	<section id="createGame" style={{minHeight: "100vh"}}>
 			<div className="container pt-5 pb-5">
+				<ToastContainer
+					position="top-center"
+					autoClose={2000}
+					hideProgressBar={false}
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnVisibilityChange
+					draggable
+					pauseOnHover
+					/>
 				<h1 className="text-dark text-center mb-5">РЕДАКТИРОВАТЬ ИГРУ</h1>
 				<form onSubmit={this.onSubmit}>
 	{/*Button to create game and exit*/}

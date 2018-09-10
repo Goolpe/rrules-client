@@ -12,15 +12,15 @@ export const fetchGames = () => dispatch => {
   );
 };
 
-export const fetchGame = (gameData) => dispatch => {
+export const fetchGame = (gameData, history) => dispatch => {
   fetch(server.online + '/games/one/' + gameData)
     .then((res) => res.json())
     .then(game => 
     dispatch({
       type: FETCH_GAME,
       payload: game
-    })
-  );
+    }))
+    .catch(err => history.push('/404'))
 };
 
 export const createGame = (gameData) => dispatch => {

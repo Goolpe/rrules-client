@@ -99,7 +99,7 @@ class Navigation extends Component{
                     <img src={this.props.player.photo || "../avatar.svg"} className="img-fluid rounded bg-white position-relative" style={{height:"100%", width:"30px"}}/>
                     <Badge color="danger" className="position-absolute" style={{top: -5,left:30}}>{this.state.read}</Badge>
                   </React.Fragment>
-                 : <i className= "fas fa-key ml-2 mt-1 fa-2x"></i>}</DropdownToggle>
+                 : <i className= "fas fa-sign-in-alt ml-2 mt-1 fa-2x"></i>}</DropdownToggle>
                 <DropdownMenu  className="p-0">
                 {isAuthenticated ?
                   <span>

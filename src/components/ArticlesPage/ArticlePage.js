@@ -10,7 +10,7 @@ class ArticlePage extends Component {
     window.scrollTo(0,0);
   }
   componentWillMount(){
-    this.props.fetchArticle(this.props.match.params.id);
+    this.props.fetchArticle(this.props.match.params.id, this.props.history);
   }
 
   render() {
