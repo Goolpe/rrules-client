@@ -59,6 +59,7 @@ class Navigation extends Component{
     e.preventDefault();
     this.props.logoutUser(this.props.history);
   }
+
   render(){
     const {isAuthenticated, user} = this.props.auth;
     return(
@@ -128,7 +129,8 @@ Navigation.propTypes = {
   player: PropTypes.object.isRequired,
   fetchMsgs: PropTypes.func.isRequired,
   logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  msgs: PropTypes.array.isRequired
 }
 
 const mapStateToProps = (state) => ({

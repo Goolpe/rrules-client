@@ -39,7 +39,7 @@ class GameEditPage extends Component {
 	}
 
 	componentWillMount() {
-	  this.props.fetchGame(this.props.match.params.id);
+	  this.props.fetchGame(this.props.match.params.id, this.props.history);
     }
 // Handler of change input states  
 

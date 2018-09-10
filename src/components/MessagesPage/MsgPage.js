@@ -36,8 +36,6 @@ class MsgPage extends Component {
 	    }
 	}
 
-	
-
     onSubmit(e){
 		e.preventDefault();
 		const gameData = {

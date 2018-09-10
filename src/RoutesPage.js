@@ -66,7 +66,6 @@ class RoutesPage extends Component {
 	      techs: false
 	    }
     }	
-
   render(){  
 
     return (
