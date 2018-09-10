@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -20,7 +20,7 @@ import { fetchPlayer } from './actions/playerActions';
 import { withRouter } from 'react-router-dom';
 import { fetchMsgs } from './actions/msgActions';
 
-class Navigation extends Component{
+class MenuPage extends Component{
   constructor(props) {
     super(props);
     this.onLogout = this.onLogout.bind(this);
@@ -60,16 +60,10 @@ class Navigation extends Component{
     e.preventDefault();
     this.props.logoutUser(this.props.history);
   }
-
-  render(){
-    const {isAuthenticated, user} = this.props.auth;
-    return(
-      <Navbar color="info" className="shadow" light expand="lg">
-        <div className="container">
-          <NavbarBrand tag={Link} onClick={this.closeNav} to="/" className="navbar-brand"><img src="../logo.png" style={{height:"50px"}} alt="ГЛАВНАЯ"/></NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+  render(){	
+     const {isAuthenticated, user} = this.props.auth;
+    return (
+    	<Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink tag={Link} onClick={this.closeNav} to="/" className="bg-transparent border-0 nav-link text-white btn btn-link">ГЛАВНАЯ</NavLink>
               </NavItem>
@@ -112,20 +106,18 @@ class Navigation extends Component{
                       <Badge color="danger" className="ml-2">{this.state.read}</Badge>
                     </DropdownItem>
                     <hr className="m-0"/>
-                    <DropdownItem onClick={this.onLogout.bind(this)} className="p-2 rounded-top">Выйти</DropdownItem>
+                    <DropdownItem onClick={this.onLogout.bind(this)} className="p-2 rounded-top">Выйти </DropdownItem>
                   </span>                      
                 }
                 </DropdownMenu>
               </UncontrolledDropdown>
                : <Link to="/auth" className="text-white"><i className="fas fa-sign-in-alt ml-2 mt-1 fa-2x"></i></Link>}
             </Nav>
-          </Collapse>
-        </div>
-      </Navbar>
     )
   }
 }
-Navigation.propTypes = {
+
+MenuPage.propTypes = {
   fetchPlayer: PropTypes.func.isRequired,
   player: PropTypes.object.isRequired,
   fetchMsgs: PropTypes.func.isRequired,
@@ -140,4 +132,8 @@ const mapStateToProps = (state) => ({
   msgs: state.msgs.items
 })
 
-export default connect(mapStateToProps, { fetchMsgs, fetchPlayer, logoutUser })(withRouter(Navigation));
+export default connect(mapStateToProps, { fetchMsgs, fetchPlayer, logoutUser })(withRouter(MenuPage));
+
+
+
+
