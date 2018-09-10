@@ -27,8 +27,7 @@ class Navigation extends Component{
     this.toggle = this.toggle.bind(this);
     this.closeNav = this.closeNav.bind(this);
     this.state = {
-      isOpen: false,
-      read : this.props.msgs.filter(msg=> msg.read === false && msg.receiver === this.props.auth.user.playerId).length
+      isOpen: false
     };
   }
   toggle() {
@@ -44,9 +43,11 @@ class Navigation extends Component{
   }
 
   componentWillReceiveProps(nextProps){
-    this.setState({
-      read: nextProps.msgs.filter(msg=> msg.read === false && msg.receiver === this.props.auth.user.playerId).length
-    })
+    if(this.props.auth.isAuthenticated){
+      this.setState({
+        read: nextProps.msgs.filter(msg=> msg.read === false && msg.receiver === this.props.auth.user.playerId).length
+      })
+    }
   }
 
   componentWillMount(){
