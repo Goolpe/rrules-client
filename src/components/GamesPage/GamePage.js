@@ -27,8 +27,10 @@ class GamePage extends Component {
 	} 
 	componentWillMount() {
       this.props.fetchPlayers();
-      this.props.fetchMsgs(this.props.auth.user.playerId);
       this.props.fetchGame(this.props.match.params.id, this.props.history);
+      if(this.props.auth.isAuthenticated){
+	      this.props.fetchMsgs(this.props.auth.user.playerId);
+	  }
     }
 // functions for datepicker
 
