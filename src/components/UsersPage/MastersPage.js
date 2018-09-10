@@ -32,7 +32,7 @@ class MastersPage extends Component {
 		.map(master => 
 				<div className="col-12 col-md-6 col-lg-4 mb-5" key={master._id}>
 					<Link to={`/@${master.username}`} className="text-white">
-						<div className="wrapper bg-white"  style={ { backgroundImage: `url(${master.photo || "../avatar.svg"})`} }>
+						<div className="wrapper bg-white"  style={ { backgroundImage: `url(${master.photo})`} }>
 							<div className="card d-flex align-items-center justify-content-center rounded-0" >
 							  	<h1 style={{textShadow: 'black 0 0 20px'}}>{master.username.toUpperCase()}</h1>
 							</div>

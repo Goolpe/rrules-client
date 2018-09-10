@@ -12,7 +12,8 @@ import {
   DropdownToggle,
   DropdownMenu,
   Badge,
-  DropdownItem } from 'reactstrap';
+  DropdownItem,
+  UncontrolledTooltip } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from './actions/authActions';
@@ -94,12 +95,12 @@ class Navigation extends Component{
               </NavItem>
               <NavItem>
                 <NavLink tag={Link} onClick={this.closeNav} to="/games" className="nav-link text-white btn btn-danger rounded">НАЙТИ ИГРУ</NavLink>
-              </NavItem>
+             </NavItem>
               {isAuthenticated ?
               <UncontrolledDropdown nav inNavbar className="keyAuth">
                  
                 <DropdownToggle className="text-white ml-2 p-0"  style={{height:"40px"}} nav>   
-                    <img src={this.props.player.photo || "../avatar.svg"} className="img-fluid rounded bg-white position-relative" style={{height:"100%", width:"30px"}}/>
+                    <img src="../avatar.svg" alt="avatar" className="img-fluid rounded bg-white position-relative" style={{height:"100%", width:"30px"}}/>
                     <Badge color="danger" className="position-absolute" style={{top: -5,left:30}}>{this.state.read}</Badge>
                 </DropdownToggle>
                 
@@ -117,7 +118,14 @@ class Navigation extends Component{
                 }
                 </DropdownMenu>
               </UncontrolledDropdown>
-               : <Link to="/auth" className="text-white"><i className="fas fa-sign-in-alt ml-2 mt-1 fa-2x"></i></Link>}
+               : 
+               <React.Fragment>
+                  <Link to="/auth" className="text-white" id="AuthToggle"><i className="fas fa-sign-in-alt ml-2 mt-1 fa-2x"></i></Link>
+                  <UncontrolledTooltip placement="bottom" target="AuthToggle">
+                      Авторизация
+                  </UncontrolledTooltip>
+                </React.Fragment>
+              }
             </Nav>
           </Collapse>
         </div>

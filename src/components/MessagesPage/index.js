@@ -47,7 +47,7 @@ class MessagesPage extends Component {
 	  	<section id="messagesPage" style={{minHeight: "100vh"}}>
 	  		<div className="container pt-5 pb-5">
 	  			<h1 className="text-center mb-5">Сообщения</h1>	
-				{messagesItems.reverse()}
+				{this.props.msgs.length ? messagesItems.reverse() : <div style={{height: "500px"}} className="d-flex align-items-center justify-content-center"><h1 className="text-center text-muted" >Пусто</h1></div>}
 			</div>
 		</section>
 	  )

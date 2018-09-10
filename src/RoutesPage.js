@@ -27,8 +27,6 @@ import MastersPage from './components/UsersPage/MastersPage';
 import UserPage from './components/UsersPage/UserPage';
 import UserPageEditor from './components/UsersPage/UserPageEditor';
 
-import MenuPage from './components/MenuPage';
-
 import AgreementPage from './components/AgreementPage';
 import SupportPage from './components/SupportPage';
 import TechWorksPage from './components/TechWorksPage';
@@ -80,7 +78,6 @@ class RoutesPage extends Component {
 			      :
 		        	<Switch>
 		        		<Route path="/404" component={error404Page} />
-		        		<Route path="/menu" component={MenuPage} />
 					    <React.Fragment>	
 							<Navigation/>
 					          <Switch>
