@@ -81,7 +81,7 @@ class GamePage extends Component {
     			}
     		}
     		else if(this.props.game.masterId === this.props.auth.user.playerId){
-    			this.notify("Вы мастер!")
+    			this.notify("Вы создатель!")
     		}
     		
     		else{
