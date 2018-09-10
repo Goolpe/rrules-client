@@ -173,9 +173,7 @@ class GamePage extends Component {
 			 					<React.Fragment key={master._id} >
 				 					<p>Мастер: <Link to={`/@${game.masterName}`} target="_blank" >{game.masterName}</Link></p>
 				 					<p><i className="fas fa-star text-warning fa-1x"></i> - {master.rating}/5</p>					
-                  <img src={master.photo
-                   || master.gender 
-                   ? "https://pp.userapi.com/c841430/v841430607/a334/JyoSS0cW0YA.jpg" : "https://pp.userapi.com/c639319/v639319542/3bcfc/-w1TeyATW-o.jpg"} alt={game.masterName} height="200px" className="mb-3" /> 
+                  <img src={master.photo || "../avatar.svg"} alt={game.masterName} height="150px" className="mb-3" /> 
 			 						<hr />
 			 						<p>Игроки:</p>
 			 						<ul>

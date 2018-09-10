@@ -12,15 +12,15 @@ export const fetchPlayers = () => dispatch => {
     );
 };
 
-export const fetchPlayer = (playerData) => dispatch => {
+export const fetchPlayer = (playerData, history) => dispatch => {
   fetch(server.online + '/players/one/' + playerData)
       .then((res) => res.json())
       .then(player => 
       dispatch({
         type: FETCH_PLAYER,
         payload: player
-      })
-    );
+      }))
+      .catch(err => history.push('/404'))
 };
 
 export const changePlayerData = (playerData) => dispatch => {
@@ -33,11 +33,4 @@ export const changePlayerData = (playerData) => dispatch => {
       },
        body: JSON.stringify(playerData)
      })
-      .then((res) => res.json())
-      .then(player => 
-        dispatch({
-          type: FETCH_PLAYER, 
-          payload: player 
-        })
-      );
 };

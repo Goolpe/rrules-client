@@ -17,7 +17,7 @@ import 'react-day-picker/lib/style.css';
         super();
         this.state = {
           currentPage: 1,
-          todosPerPage: 3,
+          todosPerPage: 4,
 	      from: undefined,
 	      to: undefined,
 	      sortByDate: true,
@@ -165,19 +165,19 @@ import 'react-day-picker/lib/style.css';
         const renderPageNumbers = pageNumbers.map(number => {
           return (
           	<PaginationItem key={number} >
-	          <PaginationLink id={number} className="shadow-sm border-0"  onClick={this.handleClick}>
-	            {number}
-	          </PaginationLink>
+  	          <PaginationLink id={number} className="shadow-sm text-dark rounded-0 border-0"  onClick={this.handleClick}>
+  	            {number}
+  	          </PaginationLink>
 	        </PaginationItem>
           );
         });
 
         return (
         	<section id="gamesPage" style={{minHeight:"100vh"}}>  
-              <h1 className="text-dark text-center mb-5 pt-5">ИГРЫ</h1>
               <div className="container pb-3 pt-3 p-0">
                 <div className="row mr-0 ml-0">
                   <div className="col-12 col-lg-3">
+                    <h2 className="text-dark text-left mb-3">ИГРЫ</h2>
                     <div className="container bg-white shadow-sm pt-3 pb-3">
                     {user.master && <Link to="/create-game" className="btn btn-info mb-2 w-100">Создать игру</Link>}
                    <ButtonDropdown isOpen={this.state.dropdownOpen} className="w-100 mb-2" toggle={this.toggle}>

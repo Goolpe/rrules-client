@@ -1,4 +1,4 @@
 {
-	"online": "http://localhost:5000",
-	"server2": "https://randomrulesdb.herokuapp.com"
+	"online": "https://randomrulesdb.herokuapp.com",
+	"server2": "http://localhost:5000"
 }

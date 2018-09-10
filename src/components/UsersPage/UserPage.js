@@ -8,23 +8,24 @@ import moment from 'moment';
 class UserPage extends Component {
 
   componentWillMount() {
-      this.props.fetchPlayer(this.props.match.params.nickname);
+      this.props.fetchPlayer(this.props.match.params.nickname, this.props.history);
     }
   componentDidMount() {
     window.scrollTo(0,0);
+    console.log(this.props)
   }
   render() {
     const {user} = this.props.auth;
     const player = this.props.player;
 
-	  return (
-  	  <div id="userPage" style={{minHeight: "100vh"}}>	  
-  	  	<div className="container pt-5 pb-5">
+    return (
+      <div id="userPage" style={{minHeight: "100vh"}}>    
+        <div className="container pt-5 pb-5">
             {player.master && <Link to="/masters" className="text-dark"><i className="fas fa-angle-left "></i>ДРУГИЕ МАСТЕРА</Link>}
-            <span className="text-center"><h1>{player.username}</h1>{player.master && <p>мастер</p>}</span>
+            <span className="text-center"><h1>{player.username || ""}</h1>{player.master && <p>мастер</p>}</span>
             <div className="row">
               <div className="col-12 col-md-6 order-md-2 mb-3 text-center">
-                  <img src={player.photo || "../avatar.svg"} className="img-fluid" style={{maxHeight: 500}} alt="" />
+                  <img src={player.photo || "../avatar.svg"} className="img-fluid" style={{maxHeight: 400}} alt="" />
                 <h3><i className="fas fa-star text-warning fa-1x mt-4 mb-2"></i> - {player.rating}/5</h3>
                 {user.name === player.username && user.master && <Link to="/create-game" className="btn btn-info pl-5 pr-5">Создать игру</Link>}
               </div>
@@ -49,13 +50,13 @@ class UserPage extends Component {
 
                 <h4 className="mb-4 mt-4">О себе:</h4>
                 <hr />
-                <p>{player.about}</p>
+                <p>{player.about || "Обычный кот: сплю, ем, ловлю мышей"}</p>
                 <h4 className="mb-4 mt-4">Любимые системы:</h4>
                 <hr />
-                <p>{player.systems}</p>
+                <p>{player.systems || "Пусто"}</p>
                 <h4 className="mb-4 mt-4">Любимые сеттинги:</h4>
                 <hr />
-                <p>{player.setting}</p>
+                <p>{player.setting || "Пусто"}</p>
 
               </div>
             </div>
@@ -63,16 +64,16 @@ class UserPage extends Component {
             <h4 className="mb-4 mt-4">Примеры игр</h4><hr />
             <div className="row">
               <div className="col-12 col-md-6 mb-3">
-                <iframe width="100%" title={player.example1} height="300" src={player.example1} frameBorder="0" allowFullScreen></iframe>
+                <iframe width="100%" title="sample1" height="300" src={player.example1} frameBorder="0" allowFullScreen></iframe>
               </div>
               <div className="col-12 col-md-6 mb-3">
-                <iframe width="100%" title={player.example2} height="300" src={player.example2} frameBorder="0" allowFullScreen></iframe>
+                <iframe width="100%" title="sample2" height="300" src={player.example2} frameBorder="0" allowFullScreen></iframe>
               </div>
               <div className="col-12 col-md-6 mb-3">
-                <iframe width="100%" title={player.example3} height="300" src={player.example3} frameBorder="0" allowFullScreen></iframe>
+                <iframe width="100%" title="sample3" height="300" src={player.example3} frameBorder="0" allowFullScreen></iframe>
               </div>
               <div className="col-12 col-md-6 mb-3">
-                <iframe width="100%" title={player.example4} height="300" src={player.example4} frameBorder="0" allowFullScreen></iframe>
+                <iframe width="100%" title="sample4" height="300" src={player.example4} frameBorder="0" allowFullScreen></iframe>
               </div>
             </div>
       	</div>
@@ -84,12 +85,14 @@ class UserPage extends Component {
 UserPage.propTypes = {
   fetchPlayer: PropTypes.func.isRequired,
   player: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   player: state.player.item,
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 })
 
 export default connect(mapStateToProps, { fetchPlayer })(UserPage);

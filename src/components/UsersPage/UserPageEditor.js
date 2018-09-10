@@ -13,7 +13,7 @@ import MomentLocaleUtils from 'react-day-picker/moment';
 class UserPageEditor extends Component {
   constructor(props){
     super(props);
-    this.state ={
+    this.state = {
       username: this.props.player.username,
       fullName: this.props.player.fullName,
       photo: this.props.player.photo,
@@ -98,10 +98,10 @@ class UserPageEditor extends Component {
           master: this.state.master,
           skype: this.state.skype,
           discord: this.state.discord,
-          example1: this.state.example1,
-          example2: this.state.example2,
-          example3: this.state.example3,
-          example4: this.state.example4,
+          example1: this.state.example1.replace("watch?v=","embed/"),
+          example2: this.state.example2.replace("watch?v=","embed/"),
+          example3: this.state.example3.replace("watch?v=","embed/"),
+          example4: this.state.example4.replace("watch?v=","embed/"),
           systems: this.state.systems,
           setting: this.state.setting,
           paidGames: this.state.paidGames,
@@ -114,9 +114,9 @@ class UserPageEditor extends Component {
     this.props.changePlayerData(playerData);
   }
   render() {
-	  return (
-  	  <section id="userEditPage" style={{minHeight: "100vh"}}>	  
-  	  	<div className="container pt-5 pb-5">
+    return (
+      <section id="userEditPage" style={{minHeight: "100vh"}}>    
+        <div className="container pt-5 pb-5">
           <Form style={{maxWidth: "700px"}} onSubmit={this.handleSubmit} className="pl-5 pr-5 pt-3 pb-3 mx-auto shadow bg-white">
             <h4 className="text-muted">Информация о себе</h4>
             <hr />
@@ -223,9 +223,9 @@ class UserPageEditor extends Component {
             </FormGroup>
           </Form>
         </div>
-    	</section>
-	  )
-	}
+      </section>
+    )
+  }
 }
 
 UserPageEditor.propTypes = {
