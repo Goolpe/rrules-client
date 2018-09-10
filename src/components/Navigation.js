@@ -64,7 +64,7 @@ class Navigation extends Component{
   render(){
     const {isAuthenticated, user} = this.props.auth;
     return(
-      <Navbar color="info" light expand="lg">
+      <Navbar color="info" className="shadow" light expand="lg">
         <div className="container">
           <NavbarBrand tag={Link} onClick={this.closeNav} to="/" className="navbar-brand"><img src="../logo.png" style={{height:"50px"}} alt="ГЛАВНАЯ"/></NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
