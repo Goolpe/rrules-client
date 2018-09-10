@@ -52,29 +52,31 @@ class UserPage extends Component {
                 <p>{player.about || "Обычный кот: сплю, ем, ловлю мышей"}</p>
                 <h4 className="mb-4 mt-4">Любимые системы:</h4>
                 <hr />
-                <p>{player.systems || "Пусто"}</p>
+                <p>{player.systems || "Нет"}</p>
                 <h4 className="mb-4 mt-4">Любимые сеттинги:</h4>
                 <hr />
-                <p>{player.setting || "Пусто"}</p>
+                <p>{player.setting || "Нет"}</p>
 
               </div>
             </div>
-
-            <h4 className="mb-4 mt-4">Примеры игр</h4><hr />
-            <div className="row">
-              <div className="col-12 col-md-6 mb-3">
-                <iframe width="100%" title="sample1" height="300" src={player.example1} frameBorder="0" allowFullScreen></iframe>
-              </div>
-              <div className="col-12 col-md-6 mb-3">
-                <iframe width="100%" title="sample2" height="300" src={player.example2} frameBorder="0" allowFullScreen></iframe>
-              </div>
-              <div className="col-12 col-md-6 mb-3">
-                <iframe width="100%" title="sample3" height="300" src={player.example3} frameBorder="0" allowFullScreen></iframe>
-              </div>
-              <div className="col-12 col-md-6 mb-3">
-                <iframe width="100%" title="sample4" height="300" src={player.example4} frameBorder="0" allowFullScreen></iframe>
-              </div>
-            </div>
+            {(player.example1 || player.example2 || player.example3 || player.example4) &&
+              <React.Fragment>
+                <h4 className="mb-4 mt-4">Примеры игр</h4><hr />
+                <div className="row">
+                  {player.example1 && <div className="col-12 col-md-6 mb-3">
+                    <iframe width="100%" title="sample1" height="300" src={player.example1} frameBorder="0" allowFullScreen></iframe>
+                  </div>}
+                  {player.example2 && <div className="col-12 col-md-6 mb-3">
+                    <iframe width="100%" title="sample2" height="300" src={player.example2} frameBorder="0" allowFullScreen></iframe>
+                  </div>}
+                  {player.example3 && <div className="col-12 col-md-6 mb-3">
+                    <iframe width="100%" title="sample3" height="300" src={player.example3} frameBorder="0" allowFullScreen></iframe>
+                  </div>}
+                  {player.example4 && <div className="col-12 col-md-6 mb-3">
+                    <iframe width="100%" title="sample4" height="300" src={player.example4} frameBorder="0" allowFullScreen></iframe>
+                  </div>}
+                </div>
+              </React.Fragment>}
       	</div>
     	</div>
 	  )
