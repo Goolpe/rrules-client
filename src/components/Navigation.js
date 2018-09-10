@@ -95,15 +95,16 @@ class Navigation extends Component{
               <NavItem>
                 <NavLink tag={Link} onClick={this.closeNav} to="/games" className="nav-link text-white btn btn-danger rounded">НАЙТИ ИГРУ</NavLink>
               </NavItem>
+              {isAuthenticated ?
               <UncontrolledDropdown nav inNavbar className="keyAuth">
-                <DropdownToggle className="text-white ml-2 p-0"  style={{height:"40px"}} nav>{isAuthenticated ?   
-                  <React.Fragment>
+                 
+                <DropdownToggle className="text-white ml-2 p-0"  style={{height:"40px"}} nav>   
                     <img src={this.props.player.photo || "../avatar.svg"} className="img-fluid rounded bg-white position-relative" style={{height:"100%", width:"30px"}}/>
                     <Badge color="danger" className="position-absolute" style={{top: -5,left:30}}>{this.state.read}</Badge>
-                  </React.Fragment>
-                 : <i className= "fas fa-sign-in-alt ml-2 mt-1 fa-2x"></i>}</DropdownToggle>
+                </DropdownToggle>
+                
                 <DropdownMenu  className="p-0">
-                {isAuthenticated ?
+                {isAuthenticated &&
                   <span>
                     <DropdownItem tag={Link} onClick={this.closeNav} to={`/@${user.name}`} className="p-2 rounded-top">Мой профиль</DropdownItem>
                     <DropdownItem tag={Link} onClick={this.closeNav} to={`/edit/@${user.name}`} className="p-2 rounded-top">Настройки</DropdownItem>
@@ -112,12 +113,11 @@ class Navigation extends Component{
                     </DropdownItem>
                     <hr className="m-0"/>
                     <DropdownItem onClick={this.onLogout.bind(this)} className="p-2 rounded-top">Выйти </DropdownItem>
-                  </span>
-                :
-                 <DropdownItem tag={Link} onClick={this.closeNav} to="/auth" className="p-2 rounded-top">Авторизация</DropdownItem>                      
+                  </span>                      
                 }
                 </DropdownMenu>
               </UncontrolledDropdown>
+               : <Link to="/auth" className="text-white"><i className="fas fa-sign-in-alt ml-2 mt-1 fa-2x"></i></Link>}
             </Nav>
           </Collapse>
         </div>
