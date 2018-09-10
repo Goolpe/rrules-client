@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import _ from "lodash";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -11,8 +12,10 @@ class ArticlesPage extends Component {
 	constructor(props){
     	super(props);
     	this.state = {
-    		articlesNew: [],
+    		currentPage: 1,
+          	todosPerPage: 4
     	}
+    	this.handleClick = this.handleClick.bind(this);
 	}
 	componentDidMount() {
 		window.scrollTo(0,0);
@@ -21,12 +24,30 @@ class ArticlesPage extends Component {
 	    this.props.fetchArticles();
 	    this.props.fetchPlayers();
 	  }
-
+	handleClick(event) {
+		this.setState({
+		  currentPage: Number(event.target.id)
+		});
+		window.scrollTo(0,0);
+	}
 	render() {	
 		const {user} = this.props.auth;	
 
 		let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
-	  	const listItems = articleSort.map((article, index) =>
+
+		const {currentPage, todosPerPage } = this.state;
+
+        // Logic for displaying page numbers
+        const indexOfLastTodo = currentPage * todosPerPage;
+        const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
+        const currentTodos = articleSort.slice(indexOfFirstTodo, indexOfLastTodo);
+
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(articleSort.length / todosPerPage); i++) {
+          pageNumbers.push(i);
+        }
+
+	  	const listItems = currentTodos.map((article, index) =>
 	    	<div className="card text-justify mb-5 border-0 shadow-sm" key={article._id}>
 			  	<div className="card-body">
 			  		<div className="row">
@@ -47,7 +68,18 @@ class ArticlesPage extends Component {
 			    	</div>
 			  	</div>	
 			</div>
-		)
+		);
+
+		const renderPageNumbers = pageNumbers.map(number => {
+          return (
+          	<PaginationItem key={number} >
+  	          <PaginationLink id={number} className="shadow-sm text-dark rounded-0 border-0"  onClick={this.handleClick}>
+  	            {number}
+  	          </PaginationLink>
+	        </PaginationItem>
+          );
+        });
+
 		return (
 			<section id="articlesPage" style={{minHeight: "100vh"}}>	  
 				<div className="container text-right pt-5 pb-5">
@@ -63,7 +95,10 @@ class ArticlesPage extends Component {
 							</Link>}
 						</div>
 					</div>
-					<ul>{listItems}</ul>				
+					<ul>{listItems}</ul>
+					<Pagination aria-label="Page navigation">
+      			    	{renderPageNumbers}
+      		    	</Pagination>				
 				</div>
 			</section>
 		)

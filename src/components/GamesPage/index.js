@@ -18,13 +18,13 @@ import 'react-day-picker/lib/style.css';
         this.state = {
           currentPage: 1,
           todosPerPage: 4,
-	      from: undefined,
-	      to: undefined,
-	      sortByDate: true,
-	      sortByRate: false,
-	      dropdownOpen: false,
-	      selectedOption:'sortByTypeAll',
-	      sortByCityGame: ''
+  	      from: undefined,
+  	      to: undefined,
+  	      sortByDate: true,
+  	      sortByRate: false,
+  	      dropdownOpen: false,
+  	      selectedOption:'sortByTypeAll',
+  	      sortByCityGame: ''
 	      }
 	      this.handleFromChange = this.handleFromChange.bind(this);
 	      this.handleToChange = this.handleToChange.bind(this);
