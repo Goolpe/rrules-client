@@ -53,7 +53,9 @@ class Navigation extends Component{
 
   componentWillMount(){
     if(this.props.auth.isAuthenticated){
+      console.log(this.props.auth.user.playerId)
       this.props.fetchMsgs(this.props.auth.user.playerId)
+      this.props.fetchPlayer(this.props.auth.user.name, this.props.history)
     }
   }
 
@@ -99,8 +101,8 @@ class Navigation extends Component{
               {isAuthenticated ?
               <UncontrolledDropdown nav inNavbar className="keyAuth">
                  
-                <DropdownToggle className="text-white ml-2 p-0"  style={{height:"40px"}} nav>   
-                    <img src="../avatar.svg" alt="avatar" className="img-fluid rounded bg-white position-relative" style={{height:"100%", width:"30px"}}/>
+                <DropdownToggle className="text-white ml-2 p-0" style={{height:"40px"}} nav>   
+                    <img src={this.props.player.photo} alt="avatar" className="img-fluid rounded bg-white position-relative" style={{height:"100%", width:"30px"}}/>
                     <Badge color="danger" className="position-absolute" style={{top: -5,left:30}}>{this.state.read}</Badge>
                 </DropdownToggle>
                 
