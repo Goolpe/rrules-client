@@ -19,12 +19,11 @@ class ArticlePage extends Component {
 	  return (
 	  <section id="articlePage">	  
 	  	<div className="container pt-5 pb-5" style={{minHeight: "100vh"}}>
-      <Link to="/articles" className="text-dark"><i className="text-dark fas fa-angle-left "></i> ВСЕ СТАТЬИ</Link>
-	  	<h1 className="text-center mb-5">{article.title}</h1>
-        <div className="row">
+        <Link to="/articles" className="text-dark"><i className="text-dark fas fa-angle-left "></i> ВСЕ СТАТЬИ</Link>
+	  	  <h1 className="text-center mb-5">{article.title}</h1>
+        <div className="row p-5 bg-white">
           <div className="col-12 col-md-4 order-md-2 text-right">
             <img className="img-fluid" alt={article.title} src={article.picture} />
-            
           </div>
           <div className="col-12 col-md-8">
             <p>{article.text}</p>

@@ -152,10 +152,15 @@ button
     text-indent: 1.5em;
 }
 
+
+
+#library .wrapper{
+    height: 300px;
+}
+
 /*Masters page*/
 
 #masters .wrapper,
-#library .wrapper,
 #users .wrapper
 {
     height: 400px;
