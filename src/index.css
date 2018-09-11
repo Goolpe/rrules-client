@@ -362,4 +362,7 @@ footer ul
     {
         width: 100%;
     }
+    #social i.fa-2x{
+      font-size: 1em;
+    }
 }

@@ -78,7 +78,7 @@ class CarouselBlock extends Component {
       ).slice(0,3);
     return (
     	<div>
-        <div id="headerCarousel" className=" bg-dark">
+        <div id="headerCarousel" className="bg-dark">
 	    	  <Carousel	activeIndex={activeIndex}	next={this.next} previous={this.previous}	interval="3000">
 		       {slides}
 		        <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
