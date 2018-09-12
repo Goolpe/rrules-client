@@ -34,6 +34,17 @@ class SocialAuth extends Component{
     })
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(this.props.auth.isAuthenticated) {
+        this.props.history.push('/');
+    }
+    if(nextProps.errors) {
+        this.setState({
+            errors: nextProps.errors
+        });
+    }
+  }
+  
   handleSubmit(e) {
       e.preventDefault();
 
