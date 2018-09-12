@@ -31,6 +31,7 @@ import AgreementPage from './components/AgreementPage';
 import SupportPage from './components/SupportPage';
 import TechWorksPage from './components/TechWorksPage';
 import AuthPage from './components/AuthPage';
+import SocialAuth from './components/AuthPage/SocialAuth';
 import GamesPage from './components/GamesPage';
 import CreateGamePage from './components/GamesPage/CreateGamePage';
 import GamePage from './components/GamesPage/GamePage';
@@ -98,6 +99,7 @@ class RoutesPage extends Component {
 					            <Route path="/game/:id" component={GamePage} /> 
 					            <Route path="/@:nickname" component={UserPage} />
 						        <Route path="/auth" component={AuthPage} />
+						        <Route path="/social-auth/:id" component={SocialAuth} />
 						        <Route path="/email-verification" component={EmailVerif} />
 						        <Route path="/new-article" component={ArticleForm} />
 						        <Route path="/edit/:nickname" component={UserPageEditor} />

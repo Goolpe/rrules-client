@@ -12,7 +12,7 @@ class AuthPage extends Component{
     super(props);
     this.state = {
       logemail: '',
-      activeTab: '1'
+      activeTab: 'login'
     };
     this.toggle = this.toggle.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -40,45 +40,45 @@ class AuthPage extends Component{
 		  <section id="login" style={{minHeight:"100vh"}} className="pt-5">
         <div className="container" >
         <div className="container shadow-lg bg-white pt-5 pb-5 text-center" style={{maxWidth: "400px"}}>
-          <button className="btn btn-dark m-2"> <i className="fab fa-vk"></i></button>
-              <a href='http://localhost:5000/auth/facebook' className="btn btn-dark m-2 pr-3 pl-3"> <i className="fab fa-facebook-f"></i></a>  
-              <button className="btn btn-dark m-2"> <i className="fab fa-google"> </i></button> 
-              <p className="mt-3 mb-4" style={{borderBottom: "1px solid #ebeced", lineHeight: "0.1em"}}><span style={{background: "#fff", padding: "0 10px"}}>или</span></p>
+          <a href='http://localhost:5000/auth/vkontakte' className="btn btn-dark m-2"> <i className="fab fa-vk"></i></a>
+          <a href='http://localhost:5000/auth/facebook' className="btn btn-dark m-2 pr-3 pl-3"> <i className="fab fa-facebook-f"></i></a>  
+          <a href='http://localhost:5000/auth/google' className="btn btn-dark m-2"> <i className="fab fa-google"> </i></a> 
+          <p className="mt-3 mb-4" style={{borderBottom: "1px solid #ebeced", lineHeight: "0.1em"}}><span style={{background: "#fff", padding: "0 10px"}}>или</span></p>
            <Nav tabs style={{cursor: "pointer"}} className="justify-content-center">
             <NavItem>
               <NavLink
-                className={classnames({ active: this.state.activeTab === '1' })}
-                onClick={() => { this.toggle('1'); }}
+                className={classnames({ active: this.state.activeTab === 'login' })}
+                onClick={() => { this.toggle('login'); }}
               >
                 ВХОД
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink 
-                className={classnames({ active: this.state.activeTab === '2' })}
-                onClick={() => { this.toggle('2'); }}
+                className={classnames({ active: this.state.activeTab === 'register' })}
+                onClick={() => { this.toggle('register'); }}
               >
                 РЕГИСТРАЦИЯ
               </NavLink>
             </NavItem>
           </Nav>
           <TabContent activeTab={this.state.activeTab}>
-            <TabPane tabId="1">
+            <TabPane tabId="login">
               <Row>
                 <Col sm="12">
                   <LoginPage />
-                  <p className="text-dark m-auto" style={{cursor: "pointer"}} onClick={()=> this.setState({activeTab: '3'})}>Не могу войти</p>
+                  <p className="text-dark m-auto" style={{cursor: "pointer"}} onClick={()=> this.setState({activeTab: 'forgot'})}>Не могу войти</p>
                 </Col>
               </Row>
             </TabPane>
-            <TabPane tabId="2">
+            <TabPane tabId="register">
               <Row>
                 <Col sm="12">
                   <RegisterPage />
                 </Col>
               </Row>
             </TabPane>
-            <TabPane tabId="3">
+            <TabPane tabId="forgot">
               <Row>
                 <Col sm="12">
                   <div>

@@ -102,7 +102,8 @@ class Navigation extends Component{
               <UncontrolledDropdown nav inNavbar className="keyAuth">
                  
                 <DropdownToggle className="text-white ml-2 p-0" style={{height:"40px"}} nav>   
-                    <img src={this.props.player.photo} alt="avatar" className="img-fluid rounded bg-white position-relative" style={{height:"100%", width:"30px"}}/>
+                    {this.props.player.photo ? <img src={this.props.player.photo} alt="avatar" className="img-fluid rounded bg-white position-relative" style={{height:"100%", width:"30px"}}/>
+                    : <i className="fas fa-user-astronaut fa-2x"></i>}
                     <Badge color="danger" className="position-absolute" style={{top: -5,left:30}}>{this.state.read}</Badge>
                 </DropdownToggle>
                 
