@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
+import { FiLogIn, FiUser } from "react-icons/fi";
 import {
   Collapse,
   Navbar,
@@ -103,7 +104,7 @@ class Navigation extends Component{
                  
                 <DropdownToggle className="text-white ml-2 p-0" style={{height:"40px"}} nav>   
                     {this.props.player.photo ? <img src={this.props.player.photo} alt="avatar" className="img-fluid rounded bg-white position-relative" style={{height:"100%", width:"30px"}}/>
-                    : <i className="fas fa-user-astronaut fa-2x"></i>}
+                    : <FiUser size="2em" />}
                     <Badge color="danger" className="position-absolute" style={{top: -5,left:30}}>{this.state.read}</Badge>
                 </DropdownToggle>
                 
@@ -123,7 +124,7 @@ class Navigation extends Component{
               </UncontrolledDropdown>
                : 
                <React.Fragment>
-                  <Link to="/auth" className="text-white" id="AuthToggle"><i className="fas fa-sign-in-alt ml-2 mt-1 fa-2x"></i></Link>
+                  <Link to="/auth" className="text-white" id="AuthToggle"><FiLogIn className="ml-2 mt-1" size="2em" /></Link>
                   <UncontrolledTooltip placement="bottom" target="AuthToggle">
                       Авторизация
                   </UncontrolledTooltip>

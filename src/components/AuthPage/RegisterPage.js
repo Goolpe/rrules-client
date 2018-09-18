@@ -5,6 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import classnames from 'classnames';
 import { registerUser } from '../actions/authActions';
+import { FaKey, FaSlideshare } from "react-icons/fa";
 
 class RegisterPage extends Component{
   constructor(props){ 
@@ -69,7 +70,7 @@ class RegisterPage extends Component{
                <InputGroup className="mt-3 mb-3">
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
-                      <div className="fab fa-slideshare"></div>
+                      <FaSlideshare />
                     </InputGroupText>
                   </InputGroupAddon>
                   <input type="text" value={this.state.name} className={classnames('form-control', {
@@ -80,7 +81,7 @@ class RegisterPage extends Component{
                 <InputGroup className="mt-3 mb-3">
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
-                      <div className="fas fa-key"></div>
+                      <FaKey />
                     </InputGroupText>
                   </InputGroupAddon>
                   <input type="password" value={this.state.password} className={classnames('form-control', {
@@ -91,7 +92,7 @@ class RegisterPage extends Component{
                 <InputGroup className="mt-3 mb-3">
                   <InputGroupAddon addonType="prepend">
                     <InputGroupText>
-                      <div className="fas fa-key"></div>
+                      <FaKey />
                     </InputGroupText>
                   </InputGroupAddon>
                   <input type="password" value={this.state.password_confirm} className={classnames('form-control', {

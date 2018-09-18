@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createArticle } from '../actions/postActions';
+import { FaTimesCircle } from "react-icons/fa";
 
 class ArticleForm extends Component {
 	constructor(props){
@@ -56,7 +57,7 @@ class ArticleForm extends Component {
 					</div>
 					<div className="col-3">
 						<Link to="/articles" className="btn btn-link bg-transparent border-0" >
-							<i className="fas fa-times-circle fa-3x text-info"></i>
+							<FaTimesCircle size="3em" className="text-info" />
 						</Link>
 					</div>
 				</div>		  	

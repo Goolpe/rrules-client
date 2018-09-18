@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchArticles } from './actions/postActions';
 import { fetchPlayers } from './actions/playerActions';
+import { FaStar } from "react-icons/fa";
 
 class Footer extends Component {
 	componentWillMount() {
@@ -20,7 +21,7 @@ class Footer extends Component {
 	  		<li key={article._id} className="mt-1 mb-1"><Link to={`/article/${article._id}`}>{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</Link></li>
 	  	).slice(0,7);
         const mastersRating = mastersSort.map(master =>
-                    <Link  key={master._id} to={`/@${master.username}`}><li><i className="fas fa-star text-warning fa-1x"></i> {master.rating}/5  - {master.username}</li></Link>
+                    <Link  key={master._id} to={`/@${master.username}`}><li><FaStar className="text-warning" /> {master.rating}/5  - {master.username}</li></Link>
             ).slice(0,8)
     return (
     	<footer>

@@ -11,6 +11,7 @@ import moment from 'moment';
 import { MomentLocaleUtils, formatDate, parseDate } from 'react-day-picker/moment';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
+import { FaStar } from "react-icons/fa";
 
  class GamesPage extends Component {
       constructor() {
@@ -142,7 +143,7 @@ import 'react-day-picker/lib/style.css';
                   .map(master => 
                   <div key={master._id}>
                     <p>Мастер: {master.username}</p>
-                    <p><i className="fas fa-star text-warning fa-1x"></i> - {master.rating}/5</p>
+                    <p><FaStar className="text-warning" /> - {master.rating}/5</p>
                   </div>
                 )}
               </div>

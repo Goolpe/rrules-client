@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
 import { fetchGames } from '../actions/gameActions';
 import moment from 'moment';
+import { FaStar } from "react-icons/fa";
 
 class Games extends Component {
 	constructor(props) {
@@ -36,7 +37,7 @@ class Games extends Component {
 			 						.map(master => 
 			 						<div key={master._id}>
 				 						<p>Мастер: {master.username}</p>
-				 						<p><i className="fas fa-star text-warning fa-1x"></i> - {master.rating}/5</p>
+				 						<p><FaStar className="text-warning" /> - {master.rating}/5</p>
 			 						</div>
 			 					)}
 	 						</div>

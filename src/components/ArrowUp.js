@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { animateScroll as scroll} from 'react-scroll';
+import { FaAngleUp } from "react-icons/fa";
 
 class ArrowUp extends Component {
   	constructor(props) {
@@ -27,7 +28,7 @@ class ArrowUp extends Component {
   	render() {
 	    return (
 	    	<React.Fragment>
-	    		{this.state.arrowUp && <div id="arrowUp" onClick={this.scrollToTop} ><i className="fas fa-angle-up fa-3x"></i></div>}
+	    		{this.state.arrowUp && <div id="arrowUp" onClick={this.scrollToTop} ><FaAngleUp size="3em" /></div>}
 	    	</React.Fragment>
 	    );
 	}

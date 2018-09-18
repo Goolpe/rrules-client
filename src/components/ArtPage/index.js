@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card } from 'reactstrap';
 import fetchJsonp from 'fetch-jsonp';
 import LazyLoad from 'react-lazy-load';
+import { FaChevronLeft, FaChevronRight, FaTimesCircle } from "react-icons/fa";
 
 class ArtPage extends Component{
  	constructor (props) {
@@ -49,14 +50,14 @@ class ArtPage extends Component{
         <div className="blackBG" style={{marginTop: "-85px"}}>
           <div className="row text-center text-white" style={{height: "100%"}}>
             <div className="col-2 col-md-4 d-flex align-items-center justify-content-center " style={{height: "100%", cursor: "pointer"}}  onClick={this._TogglePrev}>
-               <button className="fas fa-chevron-left fa-3x bg-transparent text-center text-white border-0 p-0"></button>
+               <button className="bg-transparent text-center text-white border-0 p-0"><FaChevronLeft size="3em" /></button>
             </div>
             <div className="col-8 col-md-4 d-flex align-items-center justify-content-center" style={{height: "100%", cursor: "pointer"}}>    
                         
               <div className="row"> 
                 <div className="col-12">
                   <img src={this.state.pictures[this.state.selectedIndex].photo_604} alt={this.state.pictures[this.state.selectedIndex].text} className="img-fluid"/>
-                  <div onClick={()=>{this.setState({bigPicture: false})}} className="fixed-top fas fa-times-circle fa-4x text-center text-white bg-transparent border-0 p-0" style={{top: "50px", left: "60%"}}></div>
+                  <div onClick={()=>{this.setState({bigPicture: false})}} className="fixed-top text-center text-white bg-transparent border-0 p-0" style={{top: "50px", left: "60%"}}><FaTimesCircle size="3em" /></div>
                 </div>
                 <div className="col-12">
                   <p className=" mt-2">{this.state.pictures[this.state.selectedIndex].text}</p>
@@ -65,7 +66,7 @@ class ArtPage extends Component{
 
             </div> 
             <div className="col-2 col-md-4 d-flex align-items-center justify-content-center"  style={{height: "100%", cursor: "pointer"}} onClick={this._ToggleNext}>
-              <button className="fas fa-chevron-right fa-3x text-center text-white bg-transparent border-0 p-0"></button> 
+              <button className="bg-transparent text-center text-white border-0 p-0"><FaChevronRight size="3em" /></button> 
             </div>
           </div>
         </div>}

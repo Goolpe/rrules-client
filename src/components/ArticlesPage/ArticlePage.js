@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchArticle } from '../actions/postActions';
 import moment from 'moment';
+import { FaAngleLeft } from "react-icons/fa";
 
 class ArticlePage extends Component {
   componentDidMount() {
@@ -19,7 +20,7 @@ class ArticlePage extends Component {
 	  return (
 	  <section id="articlePage">	  
 	  	<div className="container pt-5 pb-5" style={{minHeight: "100vh"}}>
-        <Link to="/articles" className="text-dark"><i className="text-dark fas fa-angle-left "></i> ВСЕ СТАТЬИ</Link>
+        <Link to="/articles" className="text-dark"><FaAngleLeft /> ВСЕ СТАТЬИ</Link>
 	  	  <h1 className="text-center mb-5">{article.title}</h1>
         <div className="row p-5 bg-white">
           <div className="col-12 col-md-4 order-md-2 text-right">

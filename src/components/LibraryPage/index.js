@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import books from './library.json';
+import { FaStar } from "react-icons/fa";
 
 class LibraryPage extends Component{
   componentDidMount() {

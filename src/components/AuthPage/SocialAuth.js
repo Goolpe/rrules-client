@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { registerUser } from '../actions/authActions';
+import { FaVk, FaFacebookF, FaGoogle } from "react-icons/fa";
 
 class SocialAuth extends Component{
   constructor(props){ 
@@ -62,9 +63,9 @@ class SocialAuth extends Component{
         <section id="SocialAuth" style={{minHeight:"100vh"}} className="pt-5">
           <div className="container" >
         <div className="container shadow-lg bg-white pt-5 pb-5 text-center" style={{maxWidth: "400px"}}>
-          {this.props.match.params.id === "vk" && <i className="fab fa-vk fa-2x" ></i>}
-          {this.props.match.params.id === "google" && <i className="fab fa-google fa-2x" ></i>}
-          {this.props.match.params.id === "facebook" && <i className="fab fa-facebook-f fa-2x" ></i>}
+          {this.props.match.params.id === "vk" && <FaVk />}
+          {this.props.match.params.id === "google" && <FaGoogle />}
+          {this.props.match.params.id === "facebook" && <FaFacebookF />}
          <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId="soclogin">
               <Row>

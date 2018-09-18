@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import { loginUser } from '../actions/authActions';
 import classnames from 'classnames';
+import { FaKey } from "react-icons/fa";
 
 class LoginPage extends Component{
   constructor(props){ 
@@ -13,7 +14,8 @@ class LoginPage extends Component{
     this.state = {
       email: '',
       password: '',
-      errors: {}
+      errors: {},
+      redirect: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,7 +34,11 @@ class LoginPage extends Component{
         email: this.state.email,
         password: this.state.password,
     }
-    this.props.loginUser(user);
+    this.props.loginUser(user)
+    if(this.props.loginUser(user)){
+      this.setState({redirect: true})
+    };
+    
   }
 
   componentDidMount() {
@@ -65,7 +71,7 @@ class LoginPage extends Component{
               <InputGroup className="mt-3 mb-3">
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>
-                    <div className="fas fa-key"></div>
+                    <FaKey />
                   </InputGroupText>
                 </InputGroupAddon>
                 <input type="password" value={this.state.password} onChange={this.handleChange} name="password" className={classnames('form-control', {
@@ -73,10 +79,10 @@ class LoginPage extends Component{
                     })} placeholder="Пароль" required/>
                 {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
               </InputGroup>
-              <button className="btn btn-info  mt-3 w-100 p-3" type="submit" >Войти</button>
+              <button className="btn btn-info  mt-3 w-100 p-3" type="submit">Войти</button>
             </form> 
 
-           {this.state.redirect && <Redirect to={`/@${this.state.name}`}/>}  
+           {this.state.redirect && <Redirect to="/"/>}  
           </div>
     );
   }

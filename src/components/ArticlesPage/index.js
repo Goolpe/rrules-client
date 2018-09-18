@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { fetchArticles } from '../actions/postActions';
 import { fetchPlayers } from '../actions/playerActions';
 import moment from 'moment';
+import { FaPlusCircle } from "react-icons/fa";
 
 class ArticlesPage extends Component {
 	constructor(props){
@@ -91,7 +92,7 @@ class ArticlesPage extends Component {
 						</div>
 						<div className="col-3">
 							{user.moderator && <Link to="/new-article" className="btn btn-link bg-transparent border-0" >
-								<i className="fas fa-plus-circle fa-3x text-info"></i>
+								<FaPlusCircle size="3em" className="text-info" />
 							</Link>}
 						</div>
 					</div>

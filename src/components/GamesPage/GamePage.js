@@ -12,6 +12,7 @@ import YouTube from 'react-youtube';
 import { createMsg, fetchMsgs } from '../actions/msgActions';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaStar } from "react-icons/fa";
 
 class GamePage extends Component {
 	constructor(props){
@@ -174,7 +175,7 @@ class GamePage extends Component {
 			 						.map(master => 
 			 					<React.Fragment key={master._id} >
 				 					<p>Мастер: <Link to={`/@${game.masterName}`} target="_blank" >{game.masterName}</Link></p>
-				 					<p><i className="fas fa-star text-warning fa-1x"></i> - {master.rating}/5</p>					
+				 					<p><FaStar className="text-warning" /> - {master.rating}/5</p>					
                   <img src={master.photo || "../avatar.svg"} alt={game.masterName} height="150px" className="mb-3" /> 
 			 						<hr />
 			 						<p>Игроки:</p>
