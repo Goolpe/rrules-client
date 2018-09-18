@@ -104,7 +104,7 @@ class Navigation extends Component{
                  
                 <DropdownToggle className="text-white ml-2 p-0" style={{height:"40px"}} nav>   
                     {this.props.player.photo ? <img src={this.props.player.photo} alt="avatar" className="img-fluid rounded bg-white position-relative" style={{height:"100%", width:"30px"}}/>
-                    : <FiUser size="2em" />}
+                    : <FiUser size="2em" className="mt-2" />}
                     <Badge color="danger" className="position-absolute" style={{top: -5,left:30}}>{this.state.read}</Badge>
                 </DropdownToggle>
                 
