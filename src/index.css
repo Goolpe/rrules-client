@@ -54,6 +54,7 @@ button
     margin-top: -76px;
     padding-top: 100px;
     height: 700px;
+    background: #313438;
 }
 
 .carousel,
@@ -62,16 +63,10 @@ button
     height: 100%;
 }
 
-#articles,
+#videos,
 #schedule
 {
     background-color: #20232c;
-}
-
-#articles .card
-{
-    background: no-repeat;
-    background-position: top left;
 }
 
 #arts .wrapper

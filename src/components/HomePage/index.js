@@ -17,7 +17,7 @@ class HomePage extends Component {
   
   render(){
     return (
-    	<div>
+    	<div id="HomePage">
         <CarouselBlock />
   			<Videos />
   			<Schedule className="pt-5"/>

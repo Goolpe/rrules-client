@@ -134,7 +134,7 @@ class Navigation extends Component{
               </UncontrolledDropdown>
                : 
                <NavItem>
-                  <NavLink tag={Link} to="/auth" onClick={this.closeNav} className="nav-link text-white" id="AuthToggle"><FiLogIn className="ml-2 mt-1" size="2em" /></NavLink>
+                  <NavLink tag={Link} to="/auth" onClick={this.closeNav} className="nav-link text-white pt-1" id="AuthToggle"><FiLogIn size="2em" /></NavLink>
                   <UncontrolledTooltip placement="bottom" target="AuthToggle">
                       Авторизация
                   </UncontrolledTooltip>

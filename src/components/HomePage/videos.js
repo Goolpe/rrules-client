@@ -2,7 +2,7 @@ import React from 'react';
 
 function Videos(props){	
 	    return (
-	    	<div className="container-fluid pt-5" id="articles">
+	    	<div className="container-fluid pt-5" id="videos">
 				<p className="text-white font-weight-bold">ПОСЛЕДНИЕ ВИДЕО</p>
 	    		<div className="row text-white">
 	    			<div className="col-12 col-md-6 col-lg-3 mt-2">
