@@ -7,7 +7,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-   case FETCH_PLAYER:
+    case FETCH_PLAYER:
       return {
         ...state,
         item: action.payload

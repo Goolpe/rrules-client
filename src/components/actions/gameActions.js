@@ -3,7 +3,10 @@ import server from "./server.json";
 
 export const fetchGames = () => dispatch => {
   fetch(server.online + '/games/all')
-    .then((res) => res.json())
+    .then(
+      res => res.json(),
+      err => console.log(err)
+    )
     .then(games => 
     dispatch({
       type: FETCH_GAMES,
@@ -14,7 +17,10 @@ export const fetchGames = () => dispatch => {
 
 export const fetchGame = (gameData, history) => dispatch => {
   fetch(server.online + '/games/one/' + gameData)
-    .then((res) => res.json())
+    .then(
+      res => res.json(),
+      err => console.log(err)
+    )
     .then(game => 
     dispatch({
       type: FETCH_GAME,
@@ -33,7 +39,10 @@ export const createGame = (gameData) => dispatch => {
     },
      body: JSON.stringify(gameData)
    })
-    .then(res => res.json())
+    .then(
+      res => res.json(),
+      err => console.log(err)
+    )
     .then(game =>
     dispatch({
       type: FETCH_GAME,
@@ -52,7 +61,10 @@ export const changeGameData = (gameData) => dispatch => {
     },
      body: JSON.stringify(gameData)
    })
-    .then((res) => res.json())
+    .then(
+      res => res.json(),
+      err => console.log(err)
+    )
     .then(game => 
       dispatch({
         type: FETCH_GAME, 

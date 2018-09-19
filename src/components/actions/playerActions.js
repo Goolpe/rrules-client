@@ -3,7 +3,10 @@ import server from "./server.json";
 
 export const fetchPlayers = () => dispatch => {
   fetch(server.online + '/players/all')
-      .then((res) => res.json())
+      .then(
+        res => res.json(),
+        err => console.log(err)
+      )
       .then(players => 
       dispatch({
         type: FETCH_PLAYERS,
@@ -14,7 +17,10 @@ export const fetchPlayers = () => dispatch => {
 
 export const fetchPlayer = (playerData, history) => dispatch => {
   fetch(server.online + '/players/one/' + playerData)
-      .then((res) => res.json())
+      .then(
+        res => res.json(),
+        err => console.log(err)
+      )
       .then(player => 
       dispatch({
         type: FETCH_PLAYER,

@@ -9,7 +9,10 @@ export const fetchMsgs = msgData => dispatch => {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'}
       })
-      .then((res) => res.json())
+      .then(
+        res => res.json(),
+        err => console.log(err)
+      )
       .then(msgs => 
       dispatch({
         type: FETCH_MSGS,
@@ -28,7 +31,10 @@ export const fetchMsg = msgData => dispatch => {
       },
        body: JSON.stringify(msgData)
     })
-      .then((res) => res.json())
+      .then(
+        res => res.json(),
+        err => console.log(err)
+      )
       .then(msg => {
       dispatch({
         type: FETCH_MSG,
@@ -47,7 +53,10 @@ export const createMsg = msgData => dispatch => {
       },
        body: JSON.stringify(msgData)
      })
-      .then(res => res.json())
+      .then(
+        res => res.json(),
+        err => console.log(err)
+      )
       .then(msg =>
       dispatch({
         type: FETCH_MSG,
@@ -66,7 +75,10 @@ export const changeMsgData = msgData => dispatch => {
       },
        body: JSON.stringify(msgData)
      })
-      .then(res => res.json())
+      .then(
+        res => res.json(),
+        err => console.log(err)
+      )
       .then(msg =>
       dispatch({
         type: FETCH_MSG,

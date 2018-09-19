@@ -3,7 +3,10 @@ import server from "./server.json";
 
 export const fetchArticles = () => dispatch => {
   fetch(server.online + '/articles/all')
-      .then((res) => res.json())
+      .then(
+        res => res.json(),
+        err => console.log(err)
+      )
       .then(articles => 
       dispatch({
         type: FETCH_ARTICLES,
@@ -14,7 +17,10 @@ export const fetchArticles = () => dispatch => {
 
 export const fetchArticle = (articleId,history) => dispatch => {
   fetch(server.online + '/articles/one/' + articleId)
-      .then((res) => res.json())
+      .then(
+        res => res.json(),
+        err => console.log(err)
+      )
       .then(article => 
       dispatch({
         type: FETCH_ARTICLE,
@@ -33,7 +39,10 @@ export const createArticle = articleData => dispatch => {
       },
        body: JSON.stringify(articleData)
      })
-      .then(res => res.json())
+      .then(
+        res => res.json(),
+        err => console.log(err)
+      )
       .then(article =>
       dispatch({
         type: FETCH_ARTICLE,

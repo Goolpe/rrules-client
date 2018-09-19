@@ -6,30 +6,34 @@ import server from "./server.json";
 
 export const registerUser = (user, history) => dispatch => {
     axios.post(server.online + '/auth/register', user)
-        .then(res => history.push('/email-verification'))
-        .catch(err => {
-            dispatch({
-                type: GET_ERRORS,
-                payload: err.response.data
-            });
-        });
+        .then(
+            res => history.push('/email-verification'),
+            err => {
+                dispatch({
+                    type: GET_ERRORS,
+                    payload: err.response.data
+                });
+            }
+        );
 }
 
 export const loginUser = (user) => dispatch => {
     axios.post(server.online + '/auth/login', user)
-        .then(res => {
-            const { token } = res.data;
-            localStorage.setItem('jwtToken', token);
-            setAuthToken(token);
-            const decoded = jwt_decode(token);
-            dispatch(setCurrentUser(decoded));
-        })
-        .catch(err => {
-            dispatch({
-                type: GET_ERRORS,
-                payload: err.response.data
-            });
-        });
+        .then(
+            res => {
+                const { token } = res.data;
+                localStorage.setItem('jwtToken', token);
+                setAuthToken(token);
+                const decoded = jwt_decode(token);
+                dispatch(setCurrentUser(decoded));
+            },
+            err => {
+                dispatch({
+                    type: GET_ERRORS,
+                    payload: err.response.data
+                });
+            }
+        );
 }
 
 export const setCurrentUser = decoded => {
