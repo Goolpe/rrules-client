@@ -47,7 +47,7 @@ class ArtPage extends Component{
     return (
       <section id="artpage" style={{minHeight:"100vh"}}>
        {this.state.bigPicture && 
-        <div className="blackBG" style={{marginTop: "-85px"}}>
+        <div className="blackBG" style={{marginTop: "-85px", zIndex: "900"}}>
           <div className="row text-center text-white" style={{height: "100%"}}>
             <div className="col-2 col-md-4 d-flex align-items-center justify-content-center " style={{height: "100%", cursor: "pointer"}}  onClick={this._TogglePrev}>
                <button className="bg-transparent text-center text-white border-0 p-0"><FaChevronLeft size="3em" /></button>
@@ -57,7 +57,7 @@ class ArtPage extends Component{
               <div className="row"> 
                 <div className="col-12">
                   <img src={this.state.pictures[this.state.selectedIndex].photo_604} alt={this.state.pictures[this.state.selectedIndex].text} className="img-fluid"/>
-                  <div onClick={()=>{this.setState({bigPicture: false})}} className="fixed-top text-center text-white bg-transparent border-0 p-0" style={{top: "150px", left: "60%"}}><FaTimesCircle size="3em" /></div>
+                  <div onClick={()=>{this.setState({bigPicture: false})}} className="fixed-top text-center text-white bg-transparent border-0 p-0" style={{top: "50px", left: "60%"}}><FaTimesCircle size="3em" /></div>
                 </div>
                 <div className="col-12">
                   <p className=" mt-2">{this.state.pictures[this.state.selectedIndex].text}</p>

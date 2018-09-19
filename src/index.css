@@ -35,7 +35,7 @@ button
 
 .navbar .container
 {
-    z-index: 999;
+    z-index: 800;
     padding: 0;
 
 }
