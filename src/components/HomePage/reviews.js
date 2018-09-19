@@ -100,8 +100,8 @@ class Reviews extends Component {
         </CarouselItem>
       );
     return (
-    	<div id="reviews">
-    		<h1 className="text-center m-5">ОТЗЫВЫ</h1>
+    	<div id="reviews" className="bg-white">
+    		<h1 className="text-center p-5">ОТЗЫВЫ</h1>
 	    	<Carousel	activeIndex={activeIndex}	next={this.next} previous={this.previous}	interval="2000">
 		        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
 		        {slides}

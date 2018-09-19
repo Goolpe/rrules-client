@@ -18,7 +18,7 @@ class UserPage extends Component {
     const player = this.props.player;
 
     return (
-      <div id="userPage" style={{minHeight: "100vh"}}>    
+      <div id="userPage" style={{minHeight: "100vh", background: "#fff"}}>    
         <div className="container pt-5 pb-5">
             {player.master && <Link to="/masters" className="text-dark"><i className="fas fa-angle-left "></i>ДРУГИЕ МАСТЕРА</Link>}
             <span className="text-center"><h1>{player.username || ""}</h1>{player.master && <p>мастер</p>}</span>

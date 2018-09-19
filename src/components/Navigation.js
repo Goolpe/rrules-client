@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { FiLogIn, FiUser } from "react-icons/fi";
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
@@ -33,12 +31,25 @@ class Navigation extends Component{
     };
   }
   toggle() {
+    if(!this.state.isOpen){
+      document.getElementById('hr1').classList.add("hr3");
+      document.getElementById('hr2').classList.add("collapse");
+      document.getElementById('hr3').classList.add("hr1");
+    }
+    else{
+      document.getElementById('hr1').classList.remove("hr3");
+      document.getElementById('hr2').classList.remove("collapse");
+      document.getElementById('hr3').classList.remove("hr1");
+    }
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
 
   closeNav(){
+    document.getElementById('hr1').classList.remove("hr3");
+    document.getElementById('hr2').classList.remove("collapse");
+    document.getElementById('hr3').classList.remove("hr1");
     this.setState({
       isOpen: false
     });
@@ -54,7 +65,6 @@ class Navigation extends Component{
 
   componentWillMount(){
     if(this.props.auth.isAuthenticated){
-      console.log(this.props.auth.user.playerId)
       this.props.fetchMsgs(this.props.auth.user.playerId)
       this.props.fetchPlayer(this.props.auth.user.name, this.props.history)
     }
@@ -68,11 +78,11 @@ class Navigation extends Component{
   render(){
     const {isAuthenticated, user} = this.props.auth;
     return(
-      <Navbar color="info" className="shadow" light expand="lg">
+      <Navbar className="bg-transparent" light expand="lg">
         <div className="container">
           <NavbarBrand tag={Link} onClick={this.closeNav} to="/" className="navbar-brand"><img src="../logo.png" style={{height:"50px"}} alt="ГЛАВНАЯ"/></NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
+          <button className="navbar-toggler" onClick={this.toggle}><hr id="hr1"/><hr id="hr2"/><hr id="hr3"/></button>
+          <div className={this.state.isOpen ? "collapse show navbar-collapse" : "collapse navbar-collapse"} id="colNav">
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink tag={Link} onClick={this.closeNav} to="/" className="bg-transparent border-0 nav-link text-white btn btn-link">ГЛАВНАЯ</NavLink>
@@ -98,14 +108,14 @@ class Navigation extends Component{
               </NavItem>
               <NavItem>
                 <NavLink tag={Link} onClick={this.closeNav} to="/games" className="nav-link text-white btn btn-danger rounded">НАЙТИ ИГРУ</NavLink>
-             </NavItem>
+              </NavItem>
               {isAuthenticated ?
               <UncontrolledDropdown nav inNavbar className="keyAuth">
                  
                 <DropdownToggle className="text-white ml-2 p-0" style={{height:"40px"}} nav>   
-                    {this.props.player.photo ? <img src={this.props.player.photo} alt="avatar" className="img-fluid rounded bg-white position-relative" style={{height:"100%", width:"30px"}}/>
+                    {this.props.player.photo ? <img src={this.props.player.photo} alt="avatar" className="img-fluid rounded bg-white" style={{height:"100%", width:"30px"}}/>
                     : <FiUser size="2em" className="mt-2" />}
-                    <Badge color="danger" className="position-absolute" style={{top: -5,left:30}}>{this.state.read}</Badge>
+                    <Badge color="danger" className="ml-2" >{this.state.read}</Badge>
                 </DropdownToggle>
                 
                 <DropdownMenu  className="p-0">
@@ -117,21 +127,22 @@ class Navigation extends Component{
                       <Badge color="danger" className="ml-2">{this.state.read}</Badge>
                     </DropdownItem>
                     <hr className="m-0"/>
-                    <DropdownItem onClick={this.onLogout.bind(this)} className="p-2 rounded-top">Выйти</DropdownItem>
+                    <DropdownItem tag={Link} to="/auth" onClick={this.onLogout.bind(this)} className="p-2 rounded-top">Выйти</DropdownItem>
                   </span>                      
                 }
                 </DropdownMenu>
               </UncontrolledDropdown>
                : 
-               <React.Fragment>
-                  <Link to="/auth" className="text-white" id="AuthToggle"><FiLogIn className="ml-2 mt-1" size="2em" /></Link>
+               <NavItem>
+                  <NavLink tag={Link} to="/auth" onClick={this.closeNav} className="nav-link text-white" id="AuthToggle"><FiLogIn className="ml-2 mt-1" size="2em" /></NavLink>
                   <UncontrolledTooltip placement="bottom" target="AuthToggle">
                       Авторизация
                   </UncontrolledTooltip>
-                </React.Fragment>
+                </NavItem>
               }
             </Nav>
-          </Collapse>
+          </div>
+
         </div>
       </Navbar>
     )

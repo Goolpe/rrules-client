@@ -5,12 +5,12 @@ body
 
     margin: 0;
     padding: 0;
-
+    background-color: #587ea2 !important;
     letter-spacing: 1px;
 }
 
 section{
-        background-color: #f4f4f4;
+    background-color: #f4f4f4;
 }
 
 @font-face
@@ -35,14 +35,25 @@ button
 
 .navbar .container
 {
+    z-index: 999;
     padding: 0;
+
+}
+
+.navbar hr
+{
+    border: 1px solid #fff !important;
+    width: 10%;
+    margin: 30px auto;
 }
 
 /*HomePage*/
 
 #headerCarousel
 {
-    height: 500px;
+    margin-top: -76px;
+    padding-top: 100px;
+    height: 700px;
 }
 
 .carousel,
@@ -320,6 +331,75 @@ footer ul
     h2
     {
         font-size: 15px !important;
+    }
+
+    #colNav{
+        height: 100vh;
+    }
+
+    .navbar-toggler
+    {
+        position: absolute;
+        right: 10px;
+        top:10px;
+        z-index: 999;
+
+        width: 50px;
+        height: 50px;
+
+        border-color: transparent !important;
+        outline: none;
+        background: transparent;
+    }
+
+    .navbar-toggler hr
+    {
+        width: 20px;
+        margin: 5px auto;
+
+        transition: .3s ease;
+
+        border: 1px solid #000;
+    }
+
+    .hr1
+    {
+        transition: .3s ease;
+        -webkit-transform: skewY(-45deg);
+                transform: skewY(-45deg);
+    }
+    .hr3
+    {
+        transition: .3s ease;
+        -webkit-transform: skewY(45deg);
+                transform: skewY(45deg);
+    }
+    
+    .navbar-nav li
+    {
+        width: 300px;
+        margin: auto;
+    }
+    
+    .navbar-nav li svg
+    {
+        width: 300px;
+        margin:auto;
+    }
+
+    .dropdown-menu{
+        background-color: transparent !important;
+        text-align: center !important;
+    } 
+
+    .nav-item{
+        margin-top: 8px !important;
+    }       
+    
+    .dropdown-menu a{
+        margin-top: 10px !important;
+        font-size: 0.9em;
+        color: #fff;
     }
 
     #channels iframe
