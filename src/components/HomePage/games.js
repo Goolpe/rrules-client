@@ -29,8 +29,8 @@ class Games extends Component {
 	 	let gamesSort = _.sortBy(this.props.games, ['from'])
 
 	 	const listGames = gamesSort.map(game => 
-	 		<Link to={`/game/${game._id}`} className="m-0 p-0 mb-4 btn text-left text-dark w-100" key={game._id}>
- 				<div className="shadow page_card">
+	 		<Link to={`/game/${game._id}`} className="m-0 p-0 mb-3 btn text-left text-dark w-100" key={game._id}>
+ 				<div className="shadow page_card bg_card">
                   	<div className="border-bottom">
                   		<p>{game.nameGame}</p>  
                   	</div>

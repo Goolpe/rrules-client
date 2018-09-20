@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import CarouselBlock from './carousel';
+import { Link } from 'react-router-dom';
 import Msgs from './msgs';
 import Games from './games';
 import News from './news';
 import Header from './header';
-import Reviews from './reviews';
-import Social from './social';
 
 
 class HomePage extends Component {
@@ -15,37 +13,36 @@ class HomePage extends Component {
   }
   
   render(){
-    
+
     return (
     	<section id="HomePage">
-        <div className="grid-container">
-          <div className="grid-item item-header"><Header /></div>
-          <div className="grid-item item-msgs"><Msgs /></div>
-          <div className="grid-item item2">2</div>
-          <div className="grid-item item-games"><Games /></div>  
-          <div className="grid-item item-news"><News /></div>
-        </div>
-{/*        <div className="container-fluid">
-          <div className="row">
-            <div className="col-12 col-md-4">
-              
+
+        <div className="container-fluid">
+
+          <div className="row text-white">
+            <div className="col-12">
+              <Header />
             </div>
             <div className="col-12 col-md-4">
-              
+              <p>Youtube</p>
+              <iframe width="100%" height="320" className="mb-3" title="youtube" src="https://www.youtube.com/embed?max-results=1&rel=0&listType=user_uploads&list=objectivitytime" frameBorder="0" allowFullScreen></iframe>
+              <p>Twitch</p>
+              <iframe width="100%" height="320" title="twitch" src="https://player.twitch.tv/?channel=random_rules" frameBorder="0" allowFullScreen></iframe>
             </div>
             <div className="col-12 col-md-4">
-              
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-12 col-md-4">
-              <Msgs />
-            </div>
-            <div className="col-12 col-md-4">
+              <p>Игры | <Link to="/games">Все игры</Link></p>
+              <Games />
+              <p>Игры</p>
               <Games />
             </div>
+            <div className="col-12 col-md-4">
+              <p>Новости | <Link to="/articles">Все новости</Link></p>
+              <News />
+              <p>Новости</p>
+              <News />
+            </div>
           </div>
-        </div>*/}
+        </div>
         {/*<CarouselBlock />
   			<Videos />
   			<Schedule className="pt-5"/>
