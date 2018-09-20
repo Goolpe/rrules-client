@@ -7,6 +7,7 @@ import { fetchPlayers } from '../actions/playerActions';
 import { fetchGames } from '../actions/gameActions';
 import moment from 'moment';
 import { FaStar } from "react-icons/fa";
+import YouTube from 'react-youtube';
 
 class Games extends Component {
 	constructor(props) {
@@ -24,47 +25,60 @@ class Games extends Component {
       this.props.fetchPlayers(); 
     }
 
+    _onReady(event) {
+	    event.target.pauseVideo();
+	}
+
 	 render(){ 
+	 	const opts = {
+	      height: '100%',
+	      width: '100%',
+	      playerVars: { 
+	        autoplay: 0
+	      }
+	    };
 	 	let gamesSort = _.sortBy(this.props.games, ['from'])
 
 	 	const listGames = gamesSort.map(game => 
 	 		<Link to={`/game/${game._id}`} className="m-0 p-0 mb-4 btn text-left text-dark w-100" key={game._id}>
-	 				<div className="p-3 userCard shadow-sm" >	 
-	 					<p className="pb-3 border-bottom">{game.nameGame}</p>				
-	 					<div className="row">
-	 						<div className="col-12 col-md-3">
-	 							{this.props.players.filter(master => game.masterName === master.username)
-			 						.map(master => 
-			 						<div key={master._id}>
-				 						<p>Мастер: {master.username}</p>
-				 						<p><FaStar className="text-warning" /> - {master.rating}/5</p>
-			 						</div>
-			 					)}
-	 						</div>
-	 						<div className="col-12 col-md-5">
-			 					<p>Дата игры: {moment(game.from).format('lll')}</p>
-			 					<p>Тип игры: {game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}
-			 					 {game.selectedOption === "sortByTypeIRL" && <span className="ml-3">Город: {game.cityGame}</span>}</p>
-			 					
-	 						</div>
-	 						<div className="col-12 col-md-4">
-	 							<p className="d-flex-wrap" style={{wordWrap: "break-word"}}>Всего мест: {game.placeAll - game.gamersInsideId.length} / {game.placeAll}
-			 					</p>
-			 					<p>Стоимость: {game.priceGame.length === 0 ? "Бесплатно" : game.priceGame}</p>
-	 						</div>
-	 					</div>
-	 				</div>
-	 				</Link>
+ 				<div className="shadow page_card">
+	                <div className="row">
+	                  <div className="col-12 col-md-4">
+	                  	{game.videoLink && game.videoLink.length > 0 && <YouTube videoId={game.videoLink} opts={opts} onReady={this._onReady} />}
+	                  </div>
+	                  <div className="col-12 col-md-8">
+	                  	<p className="pb-3 border-bottom">{game.nameGame}</p>       
+			            <div className="row">
+			              <div className="col-12 col-md-3">
+			                {this.props.players.filter(master => game.masterName === master.username)
+			                  .map(master => 
+			                  <div key={master._id}>
+			                    <p>Мастер: {master.username}</p>
+			                    <p><FaStar className="text-warning" /> - {master.rating}/5</p>
+			                  </div>
+			                )}
+			              </div>
+			              <div className="col-12 col-md-5">
+			                <p>Дата игры: {moment(game.from).format('lll')}</p>
+			                <p>Тип игры: {game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}
+			                 {game.selectedOption === "sortByTypeIRL" && <span className="ml-3">Город: {game.cityGame}</span>}</p>
+			                
+			              </div>
+			              <div className="col-12 col-md-4">
+			                <p className="d-flex-wrap" style={{wordWrap: "break-word"}}>Всего мест: {game.placeAll - game.gamersInsideId.length} / {game.placeAll}
+			                </p>
+			                <p>Стоимость: {game.priceGame.length === 0 ? "Бесплатно" : game.priceGame}</p>
+			              </div>
+			            </div>
+	                  </div>
+	                </div>
+	            </div>
+	 		</Link>
 	 		).slice(0,2)
 	return (
-
-	<section id="gamesPage">
-			<div className="container pt-5 pb-5 text-center">
-				<h1 className="text-dark mb-5">БЛИЖАЙШИЕ ИГРЫ</h1>
-				{listGames}
-				<Link to="/games" className="btn btn-info p-3 mb-2 mt-4">Посмотреть все игры</Link>
-			</div>
-		</section>
+		<React.Fragment>
+			{listGames}
+		</React.Fragment>
 	)
 	}
 }

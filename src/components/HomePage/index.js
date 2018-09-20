@@ -18,6 +18,16 @@ class HomePage extends Component {
   render(){
     return (
     	<section id="HomePage">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-12 col-md-6">
+              <Games />
+            </div>
+            <div className="col-12 col-md-6">
+              <div className="shadow page_card">123</div>
+            </div>
+          </div>
+        </div>
         {/*<CarouselBlock />
   			<Videos />
   			<Schedule className="pt-5"/>

@@ -1,19 +1,8 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import { FiLogIn, FiShoppingBag, FiBookOpen, FiUser, FiFileText, FiImage, FiEye, FiPlay, FiMail } from "react-icons/fi";
-import { FaHome, FaBook, FaGithubAlt, FaLinkedinIn } from 'react-icons/fa';
-import {
-  Navbar,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  Badge,
-  DropdownItem,
-  UncontrolledTooltip } from 'reactstrap';
+import { FiLogIn, FiShoppingBag, FiBookOpen, FiUser, FiFileText, FiImage, FiEye, FiPlay } from "react-icons/fi";
+import { FaHome } from 'react-icons/fa';
+import { Badge,  UncontrolledTooltip } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from './actions/authActions';
@@ -30,7 +19,7 @@ class Navigation extends Component{
     this.handleClick = this.handleClick.bind(this);
     this.state = {
       isOpen: false,
-      active: "home"
+      active: "TooltipHome"
     };
   }
   toggle() {
@@ -71,6 +60,9 @@ class Navigation extends Component{
         this.props.auth.isAuthenticated &&
         this.props.fetchMsgs(this.props.auth.user.playerId)
       }, 5000);
+    setTimeout(() => {
+      document.getElementById("Navigation").style.marginLeft = "-35px"; 
+    }, 2000)
   }
 
   componentWillUnmount() {
@@ -88,7 +80,6 @@ class Navigation extends Component{
     this.setState({
       active: e.target.id
     })
-    console.log(e.target)
   }
 
   onLogout(e) {
@@ -105,44 +96,44 @@ class Navigation extends Component{
             {isAuthenticated ? 
             <React.Fragment>
               <Link to={`/@${user.name}`} id="TooltipUser" onClick={this.handleClick}><li className={this.state.active === "TooltipUser" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}>{this.state.read ? <Badge color="danger" className="ml-2" >{this.state.read}</Badge> : <FiUser />}</li></Link>
-              <UncontrolledTooltip className="ml-1" placement="right" target="TooltipUser">
+              <UncontrolledTooltip className="ml-2" placement="right" target="TooltipUser">
                 Профиль
               </UncontrolledTooltip>
             </React.Fragment>
             :
             <React.Fragment>
               <Link to="/auth" id="TooltipAuth" onClick={this.handleClick}><li className={this.state.active === "TooltipAuth" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiLogIn /></li></Link>
-              <UncontrolledTooltip className="ml-1" placement="right" target="TooltipAuth">
+              <UncontrolledTooltip className="ml-2" placement="right" target="TooltipAuth">
                 Авторизация
               </UncontrolledTooltip>
             </React.Fragment>
           }
             <Link to="/" id="TooltipHome" onClick={this.handleClick}><li className={this.state.active === "TooltipHome" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"} ><FaHome/></li></Link>
-            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipHome">
+            <UncontrolledTooltip className="ml-2" placement="right" target="TooltipHome">
               Главная
             </UncontrolledTooltip>
             <Link to="/about-project" id="TooltipAbout" onClick={this.handleClick}><li className={this.state.active === "TooltipAbout" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiEye/></li></Link>
-            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipAbout">
+            <UncontrolledTooltip className="ml-2" placement="right" target="TooltipAbout">
               О проекте
             </UncontrolledTooltip>
             <Link to="/games" id="TooltipGames" onClick={this.handleClick}><li className={this.state.active === "TooltipGames" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiPlay/></li></Link>
-            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipGames">
+            <UncontrolledTooltip className="ml-2" placement="right" target="TooltipGames">
               Игры
             </UncontrolledTooltip>
             <Link to="/library" id="TooltipLibrary" onClick={this.handleClick}><li className={this.state.active === "TooltipLibrary" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiBookOpen/></li></Link>
-            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipLibrary">
+            <UncontrolledTooltip className="ml-2" placement="right" target="TooltipLibrary">
               Библиотека
             </UncontrolledTooltip>
             <Link to="/articles" id="TooltipNews" onClick={this.handleClick}><li className={this.state.active === "TooltipNews" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiFileText/></li></Link>
-            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipNews">
+            <UncontrolledTooltip className="ml-2" placement="right" target="TooltipNews">
               Новости
             </UncontrolledTooltip>
             <Link to="/art" id="TooltipArt" onClick={this.handleClick}><li className={this.state.active === "TooltipArt" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiImage/></li></Link>
-            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipArt">
+            <UncontrolledTooltip className="ml-2" placement="right" target="TooltipArt">
               Фан-арт
             </UncontrolledTooltip> 
             <Link to="/shop" id="TooltipShop" onClick={this.handleClick}><li className={this.state.active === "TooltipShop" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiShoppingBag/></li></Link>
-            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipShop">
+            <UncontrolledTooltip className="ml-2" placement="right" target="TooltipShop">
               Магазин
             </UncontrolledTooltip>
           </ul>
