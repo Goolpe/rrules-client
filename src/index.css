@@ -42,6 +42,22 @@ button
     overflow: hidden;
 }
 
+#Navigation svg{
+    font-size: 1.2em;
+}
+
+#Navigation svg,
+#Navigation li{
+    pointer-events: none;
+}
+
+#Navigation a:hover svg{
+    color: #55bbeb;
+}
+
+.active{
+    color: #55bbeb;
+}
 /*HomePage*/
 
 #headerCarousel

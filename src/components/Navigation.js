@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import { FiLogIn, FiUser, FiEye, FiMail } from "react-icons/fi";
+import { FiLogIn, FiShoppingBag, FiBookOpen, FiUser, FiFileText, FiImage, FiEye, FiPlay, FiMail } from "react-icons/fi";
 import { FaHome, FaBook, FaGithubAlt, FaLinkedinIn } from 'react-icons/fa';
 import {
   Navbar,
@@ -27,8 +27,10 @@ class Navigation extends Component{
     this.onLogout = this.onLogout.bind(this);
     this.toggle = this.toggle.bind(this);
     this.closeNav = this.closeNav.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      active: "home"
     };
   }
   toggle() {
@@ -82,6 +84,13 @@ class Navigation extends Component{
     }
   }
 
+  handleClick(e){
+    this.setState({
+      active: e.target.id
+    })
+    console.log(e.target)
+  }
+
   onLogout(e) {
     e.preventDefault();
     this.props.logoutUser(this.props.history);
@@ -95,49 +104,47 @@ class Navigation extends Component{
           <ul className="text-center">
             {isAuthenticated ? 
             <React.Fragment>
-              <Link to={`/@${user.name}`} id="TooltipUser"><li className="pb-2 pt-2"><FiUser color="white" size="1.2em" /></li></Link>
+              <Link to={`/@${user.name}`} id="TooltipUser" onClick={this.handleClick}><li className={this.state.active === "TooltipUser" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}>{this.state.read ? <Badge color="danger" className="ml-2" >{this.state.read}</Badge> : <FiUser />}</li></Link>
               <UncontrolledTooltip className="ml-1" placement="right" target="TooltipUser">
                 Профиль
               </UncontrolledTooltip>
             </React.Fragment>
             :
             <React.Fragment>
-              <Link to="/auth" id="TooltipAuth"><li className="pb-2 pt-2" ><FiLogIn color="white" size="1.2em" /></li></Link>
+              <Link to="/auth" id="TooltipAuth" onClick={this.handleClick}><li className={this.state.active === "TooltipAuth" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiLogIn /></li></Link>
               <UncontrolledTooltip className="ml-1" placement="right" target="TooltipAuth">
                 Авторизация
               </UncontrolledTooltip>
             </React.Fragment>
           }
-            <Link to="/" id="TooltipHome"><li className="pb-2 pt-2" ><FaHome color="white" size="1.2em"/></li></Link>
+            <Link to="/" id="TooltipHome" onClick={this.handleClick}><li className={this.state.active === "TooltipHome" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"} ><FaHome/></li></Link>
             <UncontrolledTooltip className="ml-1" placement="right" target="TooltipHome">
               Главная
             </UncontrolledTooltip>
-            <Link to="/about" id="TooltipAbout"><li className="pb-2 pt-2"><FaBook color="white" size="1.2em"/></li></Link>
+            <Link to="/about-project" id="TooltipAbout" onClick={this.handleClick}><li className={this.state.active === "TooltipAbout" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiEye/></li></Link>
             <UncontrolledTooltip className="ml-1" placement="right" target="TooltipAbout">
-                Библиотека
-              </UncontrolledTooltip>
-            <Link to="/works" id="TooltipPortfolio"><li className="pb-2 pt-2"><FiEye color="white" size="1.2em"/></li></Link>
-            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipPortfolio">
-                  Portfolio
-              </UncontrolledTooltip> 
-              <Link to="/contacts" id="TooltipContacts"><li className="pb-2 pt-2"><FiMail color="white" size="1.2em"/></li></Link>
-            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipContacts">
-                  Contacts
-              </UncontrolledTooltip>
-          </ul>
-          <ul className="text-center">
-            <a href="https://drive.google.com/file/d/19JZKoj07JXDcXXVxltXzKr5bAzXOhJ6R/view?usp=sharing" rel="noopener noreferrer" target="_blank"><li className="pb-2 pt-2" id="TooltipCV">CV</li></a>
-            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipCV">
-                  Curriculum vitae
-              </UncontrolledTooltip>
-            <a href="https://github.com/goolpe" rel="noopener noreferrer" target="_blank"><li className="pb-2 pt-2" id="TooltipGithub"><FaGithubAlt color="white" size="1.2em"/></li></a>
-            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipGithub">
-                  Github
-              </UncontrolledTooltip>
-            <a href="https://www.linkedin.com/in/goolpe" rel="noopener noreferrer" target="_blank"><li className="pb-2 pt-2" id="TooltipLinkedin"><FaLinkedinIn color="white" size="1.2em"/></li></a>
-            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipLinkedin">
-                  Linkedin
-              </UncontrolledTooltip>
+              О проекте
+            </UncontrolledTooltip>
+            <Link to="/games" id="TooltipGames" onClick={this.handleClick}><li className={this.state.active === "TooltipGames" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiPlay/></li></Link>
+            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipGames">
+              Игры
+            </UncontrolledTooltip>
+            <Link to="/library" id="TooltipLibrary" onClick={this.handleClick}><li className={this.state.active === "TooltipLibrary" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiBookOpen/></li></Link>
+            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipLibrary">
+              Библиотека
+            </UncontrolledTooltip>
+            <Link to="/articles" id="TooltipNews" onClick={this.handleClick}><li className={this.state.active === "TooltipNews" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiFileText/></li></Link>
+            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipNews">
+              Новости
+            </UncontrolledTooltip>
+            <Link to="/art" id="TooltipArt" onClick={this.handleClick}><li className={this.state.active === "TooltipArt" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiImage/></li></Link>
+            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipArt">
+              Фан-арт
+            </UncontrolledTooltip> 
+            <Link to="/shop" id="TooltipShop" onClick={this.handleClick}><li className={this.state.active === "TooltipShop" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiShoppingBag/></li></Link>
+            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipShop">
+              Магазин
+            </UncontrolledTooltip>
           </ul>
         </div>
       </div>
