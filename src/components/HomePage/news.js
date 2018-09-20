@@ -37,14 +37,10 @@ class News extends Component {
 	  	const listItems = articleSort.map((article, index) =>
 		    	<Link to={`/article/${article._id}`} className="m-0 p-0 btn text-left w-100" key={article._id}>
 		    		<div className="shadow news_card bg_card">
-		    			<div className="position-relative" style={{height: "94px", overflow: "hidden", backgroundImage: `url(${article.picture})` }}>
-		    				<div className="position-absolute news_card__wrapper" ></div>
-		    				<div className="position-absolute bg-white text-dark p-2" style={{bottom:"5px", left: "5px"}}>{moment(article.date).format('ll').slice(0,moment.length-9)}</div>
-		    			</div>
-				  		<p className="text-center text-white p-3">{article.title}</p>
+				  		<p className="text-left text-white p-3">{moment(article.date).format('ll').slice(0,moment.length-9)} | {article.title}</p>
 				  	</div>
 				</Link>
-		).slice(0,2);
+		).slice(0,4);
 	return (
 		<React.Fragment>
 			{listItems}

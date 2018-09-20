@@ -76,7 +76,6 @@ button
 
 .page_card{
     padding: 10px;
-    height: 150px;
     color:#fff;
     overflow: hidden;
 }
@@ -84,19 +83,6 @@ button
 .page_card:hover{
     background: #fff;
     color:#000;
-}
-
-
-.news_card:hover .news_card__wrapper{
-    background: rgba(74,118,168,0.9);
-    transition: .5s
-}
-
-.news_card__wrapper{
-    top:0; 
-    left: 0;
-    height:100%; 
-    width:100%;
 }
 
 #headerCarousel

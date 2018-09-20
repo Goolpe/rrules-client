@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import { FiLogIn, FiShoppingBag, FiBookOpen, FiUser, FiFileText, FiImage, FiEye, FiPlay } from "react-icons/fi";
+import { FiLogIn, FiLogOut, FiShoppingBag, FiBookOpen, FiUser, FiFileText, FiImage, FiEye, FiPlay } from "react-icons/fi";
 import { FaHome } from 'react-icons/fa';
 import { Badge,  UncontrolledTooltip } from 'reactstrap';
 import PropTypes from 'prop-types';
@@ -27,8 +27,7 @@ class Header extends Component {
     super(props);
     this.onLogout = this.onLogout.bind(this);
     this.state = {
-      isOpen: false,
-      active: "TooltipHome"
+      isOpen: false
     };
   }
 	componentWillMount(){
@@ -47,22 +46,13 @@ class Header extends Component {
         <Navbar className="bg-transparent">
           <NavbarBrand className="pl-5"><img src="../logo.png" style={{height:"50px"}} alt="ГЛАВНАЯ"/></NavbarBrand>
             <Nav className="ml-auto">
-              <NavItem>
-                <NavLink href="/components/">Поддержать</NavLink>
-              </NavItem>
                 {isAuthenticated ? 
                   <NavItem>
-                    <NavLink tag={Link} to="/auth" id="TooltipLogout" onClick={this.onLogout.bind(this)}><FiLogIn size="2em"/></NavLink>
-                    <UncontrolledTooltip className="ml-2" placement="bottom" target="TooltipLogout">
-                      Выйти
-                    </UncontrolledTooltip>
+                    <NavLink tag={Link} to="/" onClick={this.onLogout.bind(this)}><FiLogOut size="2em"/> Выйти</NavLink>
                   </NavItem>
                   :
                   <NavItem>
-                    <NavLink tag={Link} to="/auth" id="TooltipAuthNav" onClick={this.handleClick}><FiLogIn size="2em"/></NavLink>
-                    <UncontrolledTooltip className="ml-2" placement="bottom" target="TooltipAuthNav">
-                      Авторизация
-                    </UncontrolledTooltip>
+                    <NavLink tag={Link} to="/auth"><FiLogIn size="2em"/> Авторизация</NavLink>
                   </NavItem>
                 }
               

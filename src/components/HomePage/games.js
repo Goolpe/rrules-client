@@ -31,9 +31,7 @@ class Games extends Component {
 	 	const listGames = gamesSort.map(game => 
 	 		<Link to={`/game/${game._id}`} className="m-0 p-0 mb-3 btn text-left text-dark w-100" key={game._id}>
  				<div className="shadow page_card bg_card">
-                  	<div className="border-bottom">
-                  		<p>{game.nameGame}</p>  
-                  	</div>
+                  		<p className="mb-0">{game.nameGame}</p>  
                   	<div className="row">
 		              	<div className="col-12 col-md-3 mt-3">
 			                {this.props.players.filter(master => game.masterName === master.username)
@@ -46,11 +44,11 @@ class Games extends Component {
 			            </div>
 		              	<div className="col-12 col-md-5 mt-3">
 			                <p>{moment(game.from).format('lll')}</p>
-			                <p>Тип: {game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}
+			                <p>{game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}
 			                 {game.selectedOption === "sortByTypeIRL" && <span className="ml-3">Город: {game.cityGame}</span>}</p>
 			            </div>
 			            <div className="col-12 col-md-4 mt-3">
-			                <p className="d-flex-wrap" style={{wordWrap: "break-word"}}>Мест: {game.placeAll - game.gamersInsideId.length} / {game.placeAll}
+			                <p className="d-flex-wrap" style={{wordWrap: "break-word"}}>{game.placeAll - game.gamersInsideId.length} / {game.placeAll}
 			                </p>
 			                <p>{game.priceGame.length === 0 ? "Бесплатно" : game.priceGame}</p>
 			            </div>
