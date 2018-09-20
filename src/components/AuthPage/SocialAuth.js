@@ -59,17 +59,18 @@ class SocialAuth extends Component{
   }
   render(){ 
     const { errors } = this.state;
+    console.log(this.props)
       return ( 
         <section id="SocialAuth" style={{minHeight:"100vh"}} className="pt-5">
           <div className="container" >
         <div className="container shadow-lg bg-white pt-5 pb-5 text-center" style={{maxWidth: "400px"}}>
-          {this.props.match.params.id === "vk" && <FaVk />}
-          {this.props.match.params.id === "google" && <FaGoogle />}
-          {this.props.match.params.id === "facebook" && <FaFacebookF />}
          <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId="soclogin">
               <Row>
                 <Col sm="12">
+                  {this.props.match.params.id === "vk" && <FaVk />}
+                  {this.props.match.params.id === "google" && <FaGoogle />}
+                  {this.props.match.params.id === "facebook" && <FaFacebookF />}
                   <p>Придумайте никнейм</p>
                   <form onSubmit={this.handleSubmit} style={{maxWidth:"400px", margin: "auto"}}>
                     <InputGroup className="mt-3 mb-3">

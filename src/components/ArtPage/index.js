@@ -19,7 +19,10 @@ class ArtPage extends Component{
     window.scrollTo(0,0);
 
     fetchJsonp('https://api.vk.com/method/photos.get?owner_id=-117179920&album_id=246570102&access_token=0989ad1e0989ad1e0989ad1ead09ec15a7009890989ad1e52f0d8c1830196143cdb8f23&v=5.52')
-      .then(res => res.json())
+      .then(
+        res => res.json(),
+        err => console.log(err)
+      )
       .then(json => {
         this.setState({pictures: json.response.items.reverse()});
       })

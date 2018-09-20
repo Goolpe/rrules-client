@@ -56,11 +56,22 @@ class Navigation extends Component{
   }
 
   componentWillReceiveProps(nextProps){
-    if(this.props.auth.isAuthenticated){
+    if(this.props.auth.isAuthenticated && this.props.msgs !== nextProps.msgs){
       this.setState({
-        read: nextProps.msgs.filter(msg=> msg.read === false && msg.receiver === this.props.auth.user.playerId).length
+        read: nextProps.msgs.filter(msg => msg.read === false && msg.receiver === this.props.auth.user.name).length
       })
     }
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(() => {
+        this.props.auth.isAuthenticated &&
+        this.props.fetchMsgs(this.props.auth.user.playerId)
+      }, 5000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   componentWillMount(){
@@ -142,7 +153,6 @@ class Navigation extends Component{
               }
             </Nav>
           </div>
-
         </div>
       </Navbar>
     )

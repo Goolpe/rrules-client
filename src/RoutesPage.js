@@ -81,7 +81,7 @@ class RoutesPage extends Component {
 		        		<Route path="/404" component={error404Page} />
 					    <React.Fragment>	
 							<Navigation/>
-					          <Switch>
+					        <Switch>
 					            <Route path="/" exact={true} component={HomePage} />
 					            <Route path="/about-project" component={AboutPage} />
 					            <Route path="/library" component={LibraryPage} />
@@ -106,7 +106,7 @@ class RoutesPage extends Component {
 						        <Route path="/create-game" component={CreateGamePage} />
 						        <Route path="/edit-game/:id" component={GameEditPage} />
 						        <Route path="*" render={() => <Redirect to="/404" />} />
-						       </Switch>
+						    </Switch>
 					        <Footer />
 					        <ArrowUp />
 				        </React.Fragment>
