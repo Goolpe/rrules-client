@@ -8,6 +8,7 @@ import { fetchGames } from '../actions/gameActions';
 import moment from 'moment';
 import { FaStar } from "react-icons/fa";
 import YouTube from 'react-youtube';
+import {FiVideoOff} from "react-icons/fi";
 
 class Games extends Component {
 	constructor(props) {
@@ -42,36 +43,30 @@ class Games extends Component {
 	 	const listGames = gamesSort.map(game => 
 	 		<Link to={`/game/${game._id}`} className="m-0 p-0 mb-4 btn text-left text-dark w-100" key={game._id}>
  				<div className="shadow page_card">
-	                <div className="row">
-	                  <div className="col-12 col-md-4">
-	                  	{game.videoLink && game.videoLink.length > 0 && <YouTube videoId={game.videoLink} opts={opts} onReady={this._onReady} />}
-	                  </div>
-	                  <div className="col-12 col-md-8">
-	                  	<p className="pb-3 border-bottom">{game.nameGame}</p>       
-			            <div className="row">
-			              <div className="col-12 col-md-3">
+                  	<div className="border-bottom">
+                  		<p>{game.nameGame}</p>  
+                  	</div>
+                  	<div className="row">
+		              	<div className="col-12 col-md-3 mt-3">
 			                {this.props.players.filter(master => game.masterName === master.username)
 			                  .map(master => 
-			                  <div key={master._id}>
-			                    <p>Мастер: {master.username}</p>
+			                  	<React.Fragment key={master._id}>
+			                    <p> {master.username}</p>
 			                    <p><FaStar className="text-warning" /> - {master.rating}/5</p>
-			                  </div>
+			                    </React.Fragment>
 			                )}
-			              </div>
-			              <div className="col-12 col-md-5">
-			                <p>Дата игры: {moment(game.from).format('lll')}</p>
-			                <p>Тип игры: {game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}
-			                 {game.selectedOption === "sortByTypeIRL" && <span className="ml-3">Город: {game.cityGame}</span>}</p>
-			                
-			              </div>
-			              <div className="col-12 col-md-4">
-			                <p className="d-flex-wrap" style={{wordWrap: "break-word"}}>Всего мест: {game.placeAll - game.gamersInsideId.length} / {game.placeAll}
-			                </p>
-			                <p>Стоимость: {game.priceGame.length === 0 ? "Бесплатно" : game.priceGame}</p>
-			              </div>
 			            </div>
-	                  </div>
-	                </div>
+		              	<div className="col-12 col-md-5 mt-3">
+			                <p>{moment(game.from).format('lll')}</p>
+			                <p>Тип: {game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}
+			                 {game.selectedOption === "sortByTypeIRL" && <span className="ml-3">Город: {game.cityGame}</span>}</p>
+			            </div>
+			            <div className="col-12 col-md-4 mt-3">
+			                <p className="d-flex-wrap" style={{wordWrap: "break-word"}}>Мест: {game.placeAll - game.gamersInsideId.length} / {game.placeAll}
+			                </p>
+			                <p>{game.priceGame.length === 0 ? "Бесплатно" : game.priceGame}</p>
+			            </div>
+		            </div>
 	            </div>
 	 		</Link>
 	 		).slice(0,2)

@@ -3,7 +3,7 @@ import CarouselBlock from './carousel';
 import Videos from './videos';
 import Schedule from './schedule';
 import Games from './games';
-import Arts from './arts';
+import News from './news';
 import Merch from './merch';
 import Reviews from './reviews';
 import Social from './social';
@@ -20,11 +20,14 @@ class HomePage extends Component {
     	<section id="HomePage">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-12 col-md-6">
+            <div className="col-12 col-md-4">
               <Games />
             </div>
-            <div className="col-12 col-md-6">
-              <div className="shadow page_card">123</div>
+            <div className="col-12 col-md-4">
+              <Games />
+            </div>
+            <div className="col-12 col-md-4">
+              <News />
             </div>
           </div>
         </div>
