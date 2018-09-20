@@ -18,9 +18,7 @@ class News extends Component {
     	}
     	this.handleClick = this.handleClick.bind(this);
 	}
-	componentDidMount() {
-		window.scrollTo(0,0);
-	}
+
 	componentWillMount() {
 	    this.props.fetchArticles();
 	    this.props.fetchPlayers();
@@ -37,9 +35,9 @@ class News extends Component {
 		let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
 
 	  	const listItems = articleSort.map((article, index) =>
-		    	<Link to={`/article/${article._id}`} className="m-0 p-0 mb-4 btn text-left w-100" key={article._id}>
+		    	<Link to={`/article/${article._id}`} className="m-0 p-0 btn text-left w-100" key={article._id}>
 		    		<div className="shadow news_card">
-		    			<div className="position-relative" style={{height: "150px", overflow: "hidden"}}><img src={article.picture} alt="" />
+		    			<div className="position-relative" style={{height: "150px", overflow: "hidden", backgroundImage: `url(${article.picture})` }}>
 		    				<div className="position-absolute news_card__wrapper" ></div>
 		    				<div className="position-absolute bg-white text-dark p-2" style={{bottom:"5px", left: "5px"}}>{moment(article.date).format('ll').slice(0,moment.length-9)}</div>
 		    			</div>

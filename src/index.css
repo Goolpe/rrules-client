@@ -14,6 +14,10 @@ section{
     overflow-y: auto;
 }
 
+a{
+    color:#fff !important;
+}
+
 @font-face
 {
     font-family: Albertusfont;
@@ -66,14 +70,46 @@ button
 
 /*HomePage*/
 
-#HomePage{
-    padding-top: 100px;
+.grid-container {
+  display: grid;
+  height: 100%;
+  grid-gap: 15px;
+}
+
+.item-header{
+  grid-column: 1 / span 3;
+  grid-row: 1;  
+}
+
+.item-msgs {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.item2 {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.item-games {
+  grid-column: 2;
+  grid-row: 2 / span 2;
+}
+
+.item-news {
+  grid-column: 3;
+  grid-row: 2 / span 2;
+}
+
+.page_card,
+.news_card,
+.msgs_card{
+    background: #3b3c40;   
 }
 
 .page_card{
     padding: 10px;
     height: 150px;
-    background: #3b3c40;
     color:#fff;
     overflow: hidden;
 }
@@ -83,9 +119,6 @@ button
     color:#000;
 }
 
-.news_card{
-    background: #3b3c40;
-}
 
 .news_card:hover .news_card__wrapper{
     background: rgba(74,118,168,0.8);
@@ -97,6 +130,8 @@ button
     height:100%; 
     width:100%;
 }
+
+
 
 #headerCarousel
 {

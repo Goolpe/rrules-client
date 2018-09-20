@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import CarouselBlock from './carousel';
-import Videos from './videos';
-import Schedule from './schedule';
+import Msgs from './msgs';
 import Games from './games';
 import News from './news';
-import Merch from './merch';
+import Header from './header';
 import Reviews from './reviews';
 import Social from './social';
 
@@ -16,21 +15,37 @@ class HomePage extends Component {
   }
   
   render(){
+    
     return (
     	<section id="HomePage">
-        <div className="container-fluid">
+        <div className="grid-container">
+          <div className="grid-item item-header"><Header /></div>
+          <div className="grid-item item-msgs"><Msgs /></div>
+          <div className="grid-item item2">2</div>
+          <div className="grid-item item-games"><Games /></div>  
+          <div className="grid-item item-news"><News /></div>
+        </div>
+{/*        <div className="container-fluid">
           <div className="row">
             <div className="col-12 col-md-4">
-              <Games />
+              
             </div>
             <div className="col-12 col-md-4">
-              <Games />
+              
             </div>
             <div className="col-12 col-md-4">
-              <News />
+              
             </div>
           </div>
-        </div>
+          <div className="row">
+            <div className="col-12 col-md-4">
+              <Msgs />
+            </div>
+            <div className="col-12 col-md-4">
+              <Games />
+            </div>
+          </div>
+        </div>*/}
         {/*<CarouselBlock />
   			<Videos />
   			<Schedule className="pt-5"/>

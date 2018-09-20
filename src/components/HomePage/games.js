@@ -7,8 +7,6 @@ import { fetchPlayers } from '../actions/playerActions';
 import { fetchGames } from '../actions/gameActions';
 import moment from 'moment';
 import { FaStar } from "react-icons/fa";
-import YouTube from 'react-youtube';
-import {FiVideoOff} from "react-icons/fi";
 
 class Games extends Component {
 	constructor(props) {
@@ -25,19 +23,9 @@ class Games extends Component {
 	  this.props.fetchGames();
       this.props.fetchPlayers(); 
     }
-
-    _onReady(event) {
-	    event.target.pauseVideo();
-	}
+   
 
 	 render(){ 
-	 	const opts = {
-	      height: '100%',
-	      width: '100%',
-	      playerVars: { 
-	        autoplay: 0
-	      }
-	    };
 	 	let gamesSort = _.sortBy(this.props.games, ['from'])
 
 	 	const listGames = gamesSort.map(game => 
