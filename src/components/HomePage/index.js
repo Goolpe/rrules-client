@@ -17,16 +17,16 @@ class HomePage extends Component {
   
   render(){
     return (
-    	<div id="HomePage">
-        <CarouselBlock />
+    	<section id="HomePage">
+        {/*<CarouselBlock />
   			<Videos />
   			<Schedule className="pt-5"/>
         <Games />
   			<Arts />
   			<Merch />
   			<Social />
-  			<Reviews />
-		  </div>
+  			<Reviews />*/}
+		  </section>
     )
   } 
 }

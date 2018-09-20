@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import { FiLogIn, FiUser } from "react-icons/fi";
+import { FiLogIn, FiUser, FiEye, FiMail } from "react-icons/fi";
+import { FaHome, FaBook, FaGithubAlt, FaLinkedinIn } from 'react-icons/fa';
 import {
   Navbar,
   NavbarBrand,
@@ -89,72 +90,58 @@ class Navigation extends Component{
   render(){
     const {isAuthenticated, user} = this.props.auth;
     return(
-      <Navbar className="bg-transparent" light expand="lg">
-        <div className="container">
-          <NavbarBrand tag={Link} onClick={this.closeNav} to="/" className="navbar-brand"><img src="../logo.png" style={{height:"50px"}} alt="ГЛАВНАЯ"/></NavbarBrand>
-          <button className="navbar-toggler" onClick={this.toggle}><hr id="hr1"/><hr id="hr2"/><hr id="hr3"/></button>
-          <div className={this.state.isOpen ? "collapse show navbar-collapse" : "collapse navbar-collapse"} id="colNav">
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink tag={Link} onClick={this.closeNav} to="/" className="bg-transparent border-0 nav-link text-white btn btn-link">ГЛАВНАЯ</NavLink>
-              </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle className="text-white btn btn-link" nav caret>МЕНЮ</DropdownToggle>
-                <DropdownMenu  className="p-0">
-                <DropdownItem tag={Link} onClick={this.closeNav} to="/about-project" className="p-2 rounded-top">О ПРОЕКТЕ</DropdownItem> 
-                  <DropdownItem tag={Link} onClick={this.closeNav} to="/library" className="p-2 rounded-top">БИБЛИОТЕКА</DropdownItem> 
-                  <DropdownItem tag={Link} onClick={this.closeNav} to="/masters" className="p-2">МАСТЕРА КАНАЛА</DropdownItem>
-                  <DropdownItem tag={Link} onClick={this.closeNav} to="/art" className="p-2">ФАН-АРТ</DropdownItem>
-                  <DropdownItem tag={Link} onClick={this.closeNav} to="/support" className="p-2 rounded-bottom">ПОДДЕРЖАТЬ ПРОЕКТ</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              <NavItem>
-                <NavLink tag={Link} onClick={this.closeNav} to="/streams" className="nav-link text-white btn btn-link">СТРИМЫ</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} onClick={this.closeNav} to="/articles" className="nav-link text-white btn btn-link">НОВОСТИ</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} onClick={this.closeNav} to="/shop" className="nav-link text-white btn btn-link">МАГАЗИН</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} onClick={this.closeNav} to="/games" className="nav-link text-white btn btn-danger rounded">НАЙТИ ИГРУ</NavLink>
-              </NavItem>
-              {isAuthenticated ?
-              <UncontrolledDropdown nav inNavbar className="keyAuth">
-                 
-                <DropdownToggle className="text-white ml-2 p-0" style={{height:"40px"}} nav>   
-                    {this.props.player.photo ? <img src={this.props.player.photo} alt="avatar" className="img-fluid rounded bg-white" style={{height:"100%", width:"30px"}}/>
-                    : <FiUser size="2em" className="mt-2" />}
-                    <Badge color="danger" className="ml-2" >{this.state.read}</Badge>
-                </DropdownToggle>
-                
-                <DropdownMenu  className="p-0">
-                {isAuthenticated &&
-                  <span>
-                    <DropdownItem tag={Link} onClick={this.closeNav} to={`/@${user.name}`} className="p-2 rounded-top">Мой профиль</DropdownItem>
-                    <DropdownItem tag={Link} onClick={this.closeNav} to={`/edit/@${user.name}`} className="p-2 rounded-top">Настройки</DropdownItem>
-                    <DropdownItem tag={Link} onClick={this.closeNav} to="/messages" className="p-2 rounded-top">Сообщения
-                      <Badge color="danger" className="ml-2">{this.state.read}</Badge>
-                    </DropdownItem>
-                    <hr className="m-0"/>
-                    <DropdownItem tag={Link} to="/auth" onClick={this.onLogout.bind(this)} className="p-2 rounded-top">Выйти</DropdownItem>
-                  </span>                      
-                }
-                </DropdownMenu>
-              </UncontrolledDropdown>
-               : 
-               <NavItem>
-                  <NavLink tag={Link} to="/auth" onClick={this.closeNav} className="nav-link text-white pt-1" id="AuthToggle"><FiLogIn size="2em" /></NavLink>
-                  <UncontrolledTooltip placement="bottom" target="AuthToggle">
-                      Авторизация
-                  </UncontrolledTooltip>
-                </NavItem>
-              }
-            </Nav>
-          </div>
+      <div id="Navigation" className="position-absolute">
+        <div className="d-flex flex-column justify-content-between" style={{height: "100%"}}>
+          <ul className="text-center">
+            {isAuthenticated ? 
+            <React.Fragment>
+              <Link to={`/@${user.name}`} id="TooltipUser"><li className="pb-2 pt-2"><FiUser color="white" size="1.2em" /></li></Link>
+              <UncontrolledTooltip className="ml-1" placement="right" target="TooltipUser">
+                Профиль
+              </UncontrolledTooltip>
+            </React.Fragment>
+            :
+            <React.Fragment>
+              <Link to="/auth" id="TooltipAuth"><li className="pb-2 pt-2" ><FiLogIn color="white" size="1.2em" /></li></Link>
+              <UncontrolledTooltip className="ml-1" placement="right" target="TooltipAuth">
+                Авторизация
+              </UncontrolledTooltip>
+            </React.Fragment>
+          }
+            <Link to="/" id="TooltipHome"><li className="pb-2 pt-2" ><FaHome color="white" size="1.2em"/></li></Link>
+            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipHome">
+              Главная
+            </UncontrolledTooltip>
+            <Link to="/about" id="TooltipAbout"><li className="pb-2 pt-2"><FaBook color="white" size="1.2em"/></li></Link>
+            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipAbout">
+                Библиотека
+              </UncontrolledTooltip>
+            <Link to="/works" id="TooltipPortfolio"><li className="pb-2 pt-2"><FiEye color="white" size="1.2em"/></li></Link>
+            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipPortfolio">
+                  Portfolio
+              </UncontrolledTooltip> 
+              <Link to="/contacts" id="TooltipContacts"><li className="pb-2 pt-2"><FiMail color="white" size="1.2em"/></li></Link>
+            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipContacts">
+                  Contacts
+              </UncontrolledTooltip>
+          </ul>
+          <ul className="text-center">
+            <a href="https://drive.google.com/file/d/19JZKoj07JXDcXXVxltXzKr5bAzXOhJ6R/view?usp=sharing" rel="noopener noreferrer" target="_blank"><li className="pb-2 pt-2" id="TooltipCV">CV</li></a>
+            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipCV">
+                  Curriculum vitae
+              </UncontrolledTooltip>
+            <a href="https://github.com/goolpe" rel="noopener noreferrer" target="_blank"><li className="pb-2 pt-2" id="TooltipGithub"><FaGithubAlt color="white" size="1.2em"/></li></a>
+            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipGithub">
+                  Github
+              </UncontrolledTooltip>
+            <a href="https://www.linkedin.com/in/goolpe" rel="noopener noreferrer" target="_blank"><li className="pb-2 pt-2" id="TooltipLinkedin"><FaLinkedinIn color="white" size="1.2em"/></li></a>
+            <UncontrolledTooltip className="ml-1" placement="right" target="TooltipLinkedin">
+                  Linkedin
+              </UncontrolledTooltip>
+          </ul>
         </div>
-      </Navbar>
+      </div>
+      
     )
   }
 }

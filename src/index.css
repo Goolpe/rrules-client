@@ -10,7 +10,8 @@ body
 }
 
 section{
-    background-color: #f4f4f4;
+    height:100vh;
+    overflow-y: auto;
 }
 
 @font-face
@@ -33,26 +34,18 @@ button
 
 /*Navigation */
 
-.navbar .container
-{
-    z-index: 800;
-    padding: 0;
-
-}
-
-.navbar hr
-{
-    border: 1px solid #fff !important;
-    width: 10%;
-    margin: 30px auto;
+#Navigation{
+    height:100vh;
+    width: 50px;
+    background: #181818;
+    z-index: 999;
+    overflow: hidden;
 }
 
 /*HomePage*/
 
 #headerCarousel
 {
-    margin-top: -76px;
-    padding-top: 100px;
     height: 700px;
     background: #313438;
 }
