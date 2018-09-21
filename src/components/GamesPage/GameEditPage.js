@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { createGame, fetchGame, changeGameData } from '../actions/gameActions';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaAngleLeft } from "react-icons/fa";
 
 class GameEditPage extends Component {
 	constructor(props){
@@ -78,8 +79,12 @@ class GameEditPage extends Component {
 	}
   render() {
 	  return (
-	  	<section id="createGame" style={{minHeight: "100vh"}}>
-			<div className="container pt-5 pb-5">
+	  	<section id="createGame">
+			<div className="container">
+				<p className="text-white pb-4"><Link to={`/game/${this.props.match.params.id}`} className="p-0 btn">
+			        <FaAngleLeft size="1.5em"/> Назад&nbsp;
+			    </Link> 
+			    | Редактировать игру</p>
 				<ToastContainer
 					position="top-center"
 					autoClose={2000}
@@ -91,16 +96,14 @@ class GameEditPage extends Component {
 					draggable
 					pauseOnHover
 					/>
-				<h1 className="text-dark text-center mb-5">РЕДАКТИРОВАТЬ ИГРУ</h1>
 				<form onSubmit={this.onSubmit}>
 	{/*Button to create game and exit*/}
 					<div className="d-flex justify-content-end">
 						<button type="submit" onClick={()=>{this.setState({archive: true})}} className="btn btn-danger rounded-0 mb-2 mr-2">Удалить</button>
-						<button type="submit" className="btn btn-info rounded-0 mb-2 mr-2">Сохранить</button>
-						<Link to={`/game/${this.props.match.params.id}`} className="btn btn-outline-info rounded-0 mb-2">Выйти из редактора</Link>
-				    </div>
+						<button type="submit" className="btn btn-info rounded-0 mb-2">Сохранить</button>
+					</div>
 				    <div className="container mb-5">
-			 			<div className="row p-3 align-items-begin bg-white shadow-sm">
+			 			<div className="row p-3 align-items-begin bg_card shadow">
 			 				<div className="col-12">
 	{/*Name of the game*/}
 			 					<label className="mr-2">Название: </label>

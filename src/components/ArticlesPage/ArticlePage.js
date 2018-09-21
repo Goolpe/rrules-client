@@ -20,9 +20,9 @@ class ArticlePage extends Component {
 	  return (
 	  <section id="articlePage">
       <div className="container">	 
-      <Link to="/articles" className="btn text-white">
-            <FaAngleLeft size="1.5em"/> Все статьи 
-        </Link> 
+      <Link to="/articles" className="btn p-0 text-white">
+        <FaAngleLeft size="1.5em"/> Все статьи 
+      </Link> 
 	  	<div className="m-auto pb-5 pt-5 text-light text-left" style={{width:"70%"}}>
           <div className="bg_card">
             <h1 className="text-center mb-5 pt-5">{article.title}</h1>

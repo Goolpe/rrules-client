@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import 'moment/locale/ru';
-
 import { Button } from 'reactstrap';
 import { Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -12,7 +11,7 @@ import YouTube from 'react-youtube';
 import { createMsg, fetchMsgs } from '../actions/msgActions';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaAngleLeft } from "react-icons/fa";
 
 class GamePage extends Component {
 	constructor(props){
@@ -117,8 +116,13 @@ class GamePage extends Component {
   	const game = this.props.game;
 
 	  return (
-	  	<section id="createGame" style={{minHeight: "100vh"}}>
-			<div className="container pt-5 pb-5">
+	  	<section id="createGame">
+			<div className="container">
+				<p className="text-white pb-4"><Link to="/games" className="p-0 btn">
+			        <FaAngleLeft size="1.5em"/> Все игры&nbsp;
+			    </Link> 
+			    | {game.nameGame || "Игра"}</p>
+
 				<ToastContainer
 					position="top-center"
 					autoClose={2000}
@@ -130,7 +134,6 @@ class GamePage extends Component {
 					draggable
 					pauseOnHover
 					/>
-				<h1 className="text-dark text-center mb-5">{game.nameGame || "Игра"}</h1>
 				<form onSubmit={this.onSubmit}>
 				<div className="row justify-content-between">
 					<div className="col-12 col-md-6">
@@ -140,15 +143,14 @@ class GamePage extends Component {
 					</div>
 					<div className="col-12 col-md-6 text-right">
 					{game.gamersInsideId && (game.placeAll - game.gamersInsideId.length === 0) ? 
-						<Button color="danger" className="mb-2 mr-2" disabled>Мест нет</Button>
+						<Button color="danger" className="mb-2" disabled>Мест нет</Button>
 						:
-						<Button type="submit" color="danger" className="mb-2 mr-2">Играть</Button>
+						<Button type="submit" color="danger" className="mb-2">Играть</Button>
 					}
-					<Link to="/games" className="btn btn-info rounded-0 mb-2">Выйти из комнаты</Link>
 					</div>
 			    </div>
 			    <div className="container mb-5">
-		 			<div className="row p-3 align-items-begin bg-white shadow-sm">
+		 			<div className="row p-3 align-items-begin bg_card shadow">
 		 				<div className="col-12 col-md-9">
 		 					<div className="row text-left justify-content-center">
 		 						<div className="col-12 col-md-4">
@@ -176,7 +178,6 @@ class GamePage extends Component {
 			 					<React.Fragment key={master._id} >
 				 					<p>Мастер: <Link to={`/@${game.masterName}`} target="_blank" >{game.masterName}</Link></p>
 				 					<p><FaStar className="text-warning" /> - {master.rating}/5</p>					
-                  <img src={master.photo || "../avatar.svg"} alt={game.masterName} height="150px" className="mb-3" /> 
 			 						<hr />
 			 						<p>Игроки:</p>
 			 						<ul>
