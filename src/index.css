@@ -2,7 +2,7 @@ body
 {
     font-family: Albertusfont, Arial !important;
     font-weight: 200 !important;
-
+    
     margin: 0;
     padding: 0;
     background-color: #27292c !important;
@@ -11,7 +11,7 @@ body
 
 section{
     height:100vh;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 a{
@@ -38,6 +38,26 @@ button
 
 .btn:focus {
     box-shadow: none !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
 }
 
 /*Navigation */
