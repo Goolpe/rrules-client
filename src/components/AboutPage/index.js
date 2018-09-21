@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { UncontrolledCollapse, Button, CardBody, Card } from 'reactstrap';
+import { FiCode } from "react-icons/fi";
 
 class AboutPage extends Component {
   constructor(props) {
@@ -17,12 +18,14 @@ class AboutPage extends Component {
 
   render() {
     return (
-    	<section id="aboutPage" style={{minHeight:"100vh"}}>
-    		<div className="container pt-5 pb-5">
-	    		<h1 className="text-center mb-5">О ПРОЕКТЕ</h1>
-	    		<Button color="secondary" id="toggler1" className="p-4 mb-3 w-100 text-left text-uppercase">
+    	<section id="aboutPage">
+    		<div className="container">
+	    		<span className="text-white">
+		            <FiCode size="1.5em"/> О проекте 
+		        </span>
+	    		<button id="toggler1" className="bg_card btn shadow text-white p-4 mt-5 mb-3 w-100 text-left">
 			      - Что такое настольные ролевые игры?
-			    </Button>
+			    </button>
 			    <UncontrolledCollapse toggler="#toggler1">
 			      <Card>
 			        <CardBody>
@@ -35,9 +38,9 @@ class AboutPage extends Component {
 			      </Card>
 			    </UncontrolledCollapse><br />
 
-	    		<Button color="secondary" id="toggler2" className="p-4 mb-3 w-100 text-left text-uppercase">
+	    		<button id="toggler2" className="bg_card btn shadow text-white p-4 mb-3 w-100 text-left">
 			      - Когда проходят игры/стримы?
-			    </Button>
+			    </button>
 			    <UncontrolledCollapse toggler="#toggler2">
 			      <Card>
 			        <CardBody>
@@ -46,9 +49,9 @@ class AboutPage extends Component {
 			      </Card>
 			    </UncontrolledCollapse><br />
 
-		        <Button color="secondary" id="toggler3" className="p-4 mb-3 w-100 text-left text-uppercase">
+		        <button id="toggler3" className="bg_card btn shadow text-white p-4 mb-3 w-100 text-left">
 			      - Как принять участие?
-			    </Button>
+			    </button>
 			    <UncontrolledCollapse toggler="#toggler3">
 			      <Card>
 			        <CardBody>
@@ -61,9 +64,9 @@ class AboutPage extends Component {
 			      </Card>
 			    </UncontrolledCollapse><br />
 
-		        <Button color="secondary" id="toggler4" className="p-4 mb-3 w-100 text-left text-uppercase">
+		        <button id="toggler4" className="bg_card btn shadow text-white p-4 mb-3 w-100 text-left">
 			      - Что нужно, чтобы играть?
-			    </Button>
+			    </button>
 			    <UncontrolledCollapse toggler="#toggler4">
 			      <Card>
 			        <CardBody>

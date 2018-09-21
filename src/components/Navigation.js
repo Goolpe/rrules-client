@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import { FiLogIn, FiShoppingBag, FiChevronsLeft, FiChevronsRight, FiBookOpen, FiUser, FiFileText, FiImage, FiEye, FiPlay } from "react-icons/fi";
+import { FiLogIn, FiShoppingBag, FiChevronsLeft, FiChevronsRight, FiBookOpen,FiUsers, FiUser, FiFileText, FiImage, FiCode, FiPlay } from "react-icons/fi";
 import { FaHome } from 'react-icons/fa';
 import { Badge,  UncontrolledTooltip } from 'reactstrap';
 import PropTypes from 'prop-types';
@@ -112,14 +112,14 @@ class Navigation extends Component{
           <ul className="text-center">
             {isAuthenticated ? 
             <React.Fragment>
-              <Link to={`/@${user.name}`} id="TooltipUser" onClick={this.handleClick}><li className={this.state.active === "TooltipUser" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}>{this.state.read ? <Badge color="danger" className="ml-2" >{this.state.read}</Badge> : <FiUser />}</li></Link>
+              <Link to={`/@${user.name}`} id="TooltipUser" name="/@" onClick={this.handleClick}><li className={this.state.active.includes("/@") ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}>{this.state.read ? <Badge color="danger" className="ml-2" >{this.state.read}</Badge> : <FiUser />}</li></Link>
               <UncontrolledTooltip className="ml-2" placement="right" target="TooltipUser">
                 Профиль
               </UncontrolledTooltip>
             </React.Fragment>
             :
             <React.Fragment>
-              <Link to="/auth" id="TooltipAuth" onClick={this.handleClick}><li className={this.state.active === "TooltipAuth" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiLogIn /></li></Link>
+              <Link to="/auth" id="TooltipAuth" name="/auth" onClick={this.handleClick}><li className={this.state.active === "/auth" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiLogIn /></li></Link>
               <UncontrolledTooltip className="ml-2" placement="right" target="TooltipAuth">
                 Авторизация
               </UncontrolledTooltip>
@@ -129,7 +129,7 @@ class Navigation extends Component{
             <UncontrolledTooltip className="ml-2" placement="right" target="TooltipHome">
               Главная
             </UncontrolledTooltip>
-            <Link to="/about-project" id="TooltipAbout" name="/about-project" onClick={this.handleClick}><li className={this.state.active === "/about-project" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiEye/></li></Link>
+            <Link to="/about-project" id="TooltipAbout" name="/about-project" onClick={this.handleClick}><li className={this.state.active === "/about-project" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiCode/></li></Link>
             <UncontrolledTooltip className="ml-2" placement="right" target="TooltipAbout">
               О проекте
             </UncontrolledTooltip>
@@ -140,6 +140,10 @@ class Navigation extends Component{
             <Link to="/library" id="TooltipLibrary" name="/library" onClick={this.handleClick}><li className={this.state.active === "/library" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiBookOpen/></li></Link>
             <UncontrolledTooltip className="ml-2" placement="right" target="TooltipLibrary">
               Библиотека
+            </UncontrolledTooltip>
+            <Link to="/masters" id="TooltipMasters" name="/masters" onClick={this.handleClick}><li className={this.state.active === "/masters" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiUsers/></li></Link>
+            <UncontrolledTooltip className="ml-2" placement="right" target="TooltipMasters">
+              Мастера канала
             </UncontrolledTooltip>
             <Link to="/articles" id="TooltipNews" name="/article" onClick={this.handleClick}><li className={this.state.active.includes("/article") ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiFileText/></li></Link>
             <UncontrolledTooltip className="ml-2" placement="right" target="TooltipNews">
@@ -153,7 +157,7 @@ class Navigation extends Component{
             <UncontrolledTooltip className="ml-2" placement="right" target="TooltipShop">
               Магазин
             </UncontrolledTooltip>
-            <button className="btn bg-transparent border-0 text-white" onClick={this.handleToggle} id="TooltipNavToggle">{this.state.nav ? <FiChevronsLeft/> : <FiChevronsRight/>}</button>
+            <a className="btn bg-transparent border-0 text-white" onClick={this.handleToggle} id="TooltipNavToggle">{this.state.nav ? <FiChevronsLeft/> : <FiChevronsRight/>}</a>
             <UncontrolledTooltip className="ml-2" placement="right" target="TooltipNavToggle">
               {this.state.nav ? "Скрыть меню" : "Зафиксировать меню"}
             </UncontrolledTooltip>

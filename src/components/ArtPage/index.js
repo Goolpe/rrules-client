@@ -49,7 +49,7 @@ class ArtPage extends Component{
 
   render () {
     return (
-      <section id="artpage">
+      <section id="artpage" className="p-0">
        {this.state.bigPicture && 
         <div className="blackBG" style={{zIndex: "999"}}>
           <div className="row text-center text-white" style={{height: "100%"}}>
@@ -75,11 +75,11 @@ class ArtPage extends Component{
           </div>
         </div>}
 
-        <div className="container pt-5">
+        <div className="container pt-5 pb-5">
           <span className="text-white">
             <FiImage size="1.5em"/> Фан-арт 
           </span>
-          <div className="row pt-3">
+          <div className="row pt-5">
             {this.state.pictures.map((img, index) => 
               <div className="col-12 col-md-6 col-lg-3" key={img.id}>
                 <LazyLoad height={350}>

@@ -4,6 +4,7 @@ import _ from "lodash";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
+import { FiUsers} from "react-icons/fi";
 
 class MastersPage extends Component {
 	constructor(props) {
@@ -43,8 +44,8 @@ class MastersPage extends Component {
 		const mastersList = mastersSort.filter(master => master.master === true)
 		.map(master => 
 	 				<div className="col-12" key={master._id}>
-	 					<Link to={`/@${master.username}`} className="text-dark ">	
-		 					<div className="row p-3 text-left align-items-start userCard mb-4 shadow-sm">
+	 					<Link to={`/@${master.username}`}>	
+		 					<div className="row p-3 text-left align-items-start bg_card mb-4 shadow">
 		 						<div className="col-12 col-md-4">
 		 							<p className="m-0">{master.username}</p>
 		 						</div>
@@ -59,13 +60,15 @@ class MastersPage extends Component {
 	 				</div>
 		)	
 	    return (
-	    	<section id="masters" style={{minHeight: "100vh"}}>
-	    		<div className="container text-center">
-					<h1 className="text-center pt-5 pb-2">МАСТЕРА КАНАЛА</h1>
-					<div className="d-flex justify-content-end align-items-center pb-2">
+	    	<section id="masters">
+	    		<div className="container">
+					<span className="text-white">
+			            <FiUsers size="1.5em"/> Мастера канала 
+			        </span>
+					<div className="d-flex justify-content-end align-items-center text-white pb-2">
 						<p className="m-0">Вид:</p>
-						<button className="btn bg-transparent ml-2" onClick={()=>this.setState({viewList: false})}><i className={this.state.viewList ? "text-dark fas fa-th-large fa-2x" : "text-info fas fa-th-large fa-2x"}></i></button>
-						<button className="btn bg-transparent" onClick={()=>this.setState({viewList: true})}><i  className={this.state.viewList ? "text-info fas fa-th-list fa-2x" : "text-dark fas fa-th-list fa-2x"}></i></button>
+						<button className="btn bg-transparent ml-2" onClick={()=>this.setState({viewList: false})}><i className={this.state.viewList ? "text-white text-secondary fas fa-th-large fa-2x" : "text-white fas fa-th-large fa-2x"}></i></button>
+						<button className="btn bg-transparent" onClick={()=>this.setState({viewList: true})}><i  className={this.state.viewList ? "text-white fas fa-th-list fa-2x" : "text-secondary fas fa-th-list fa-2x"}></i></button>
 				    </div>
 				    <div className="row">
 					 	{this.state.viewList ? mastersList : mastersView  }

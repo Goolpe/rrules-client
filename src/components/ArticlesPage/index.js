@@ -50,7 +50,7 @@ class ArticlesPage extends Component {
 
 	  	const listItems = currentTodos.map((article, index) =>
 	    	<div className="container pt-5 pb-5 mb-3 bg_card shadow">
-              <div className="row text-white text-center justify-content-between">
+              <div className="row text-center justify-content-between">
                 <div className="col-12 col-lg-8 text-left">
                   <p>{moment(article.date).format('LL')}</p>
                   <h1 className="text-center">{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
@@ -67,7 +67,7 @@ class ArticlesPage extends Component {
 		const renderPageNumbers = pageNumbers.map(number => {
           return (
           	<PaginationItem key={number} >
-  	          <PaginationLink id={number} className="shadow-sm text-dark rounded-0 border-0"  onClick={this.handleClick}>
+  	          <PaginationLink id={number} className="shadow bg_card text-white rounded-0 border-0 mr-2"  onClick={this.handleClick}>
   	            {number}
   	          </PaginationLink>
 	        </PaginationItem>
@@ -76,14 +76,14 @@ class ArticlesPage extends Component {
 
 		return (
 			<section id="articlesPage">	  
-				<div className="container text-left pt-5 pb-5">
+				<div className="container text-left">
 					<span className="text-white">
 						<FaNewspaper size="1.5em"/> Новости 
 					</span>
 					{user.moderator && <Link to="/article-new" className="btn btn-link bg-transparent border-0" >
 						<FaPlusCircle size="3em" className="text-info" />
 					</Link>}
-					<ul className="pt-3">{listItems}</ul>
+					<ul className="pt-5">{listItems}</ul>
 					<Pagination aria-label="Page navigation">
       			    	{renderPageNumbers}
       		    	</Pagination>				

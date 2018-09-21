@@ -166,8 +166,8 @@ import { FaStar, FaGamepad  } from "react-icons/fa";
 
         const renderPageNumbers = pageNumbers.map(number => {
           return (
-          	<PaginationItem key={number} >
-  	          <PaginationLink id={number} className="shadow-sm text-dark rounded-0 border-0"  onClick={this.handleClick}>
+          	<PaginationItem key={number}>
+  	          <PaginationLink id={number} className="shadow bg_card text-white rounded-0 border-0 mr-2"  onClick={this.handleClick}>
   	            {number}
   	          </PaginationLink>
 	        </PaginationItem>
@@ -176,11 +176,11 @@ import { FaStar, FaGamepad  } from "react-icons/fa";
 
         return (
         	<section id="gamesPage">  
-              <div className="container text-white pt-5 pb-5">
+              <div className="container text-white">
                 <span className="text-white">
                   <FaGamepad size="1.5em"/> Игры 
                 </span>
-                <div className="row pt-3">
+                <div className="row pt-5">
                   <div className="col-12 col-lg-3 mt-2">
                     <div className="container bg_card shadow pt-3 pb-3">
                       {user.master && <Link to="/game-create" className="btn btn-info mb-2 w-100">Создать игру</Link>}

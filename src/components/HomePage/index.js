@@ -15,7 +15,7 @@ class HomePage extends Component {
   render(){
     return (
     	<section id="HomePage">
-        <div className="container-fluid mt-5">
+        <div className="container-fluid">
             <div className="container text-white">
               <div className="row">
                 <div className="col-12 mb-4">
