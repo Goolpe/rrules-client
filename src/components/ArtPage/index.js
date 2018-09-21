@@ -3,6 +3,7 @@ import { Card } from 'reactstrap';
 import fetchJsonp from 'fetch-jsonp';
 import LazyLoad from 'react-lazy-load';
 import { FaChevronLeft, FaChevronRight, FaTimesCircle } from "react-icons/fa";
+import { FiImage } from "react-icons/fi";
 
 class ArtPage extends Component{
  	constructor (props) {
@@ -48,9 +49,9 @@ class ArtPage extends Component{
 
   render () {
     return (
-      <section id="artpage" style={{minHeight:"100vh"}}>
+      <section id="artpage">
        {this.state.bigPicture && 
-        <div className="blackBG" style={{marginTop: "-85px", zIndex: "900"}}>
+        <div className="blackBG" style={{zIndex: "999"}}>
           <div className="row text-center text-white" style={{height: "100%"}}>
             <div className="col-2 col-md-4 d-flex align-items-center justify-content-center " style={{height: "100%", cursor: "pointer"}}  onClick={this._TogglePrev}>
                <button className="bg-transparent text-center text-white border-0 p-0"><FaChevronLeft size="3em" /></button>
@@ -74,13 +75,15 @@ class ArtPage extends Component{
           </div>
         </div>}
 
-        <h1 className="text-center pt-5 mb-5">ФАН-АРТ</h1>
-        <div className="container">
-          <div className="row">
+        <div className="container pt-5">
+          <span className="text-white">
+            <FiImage size="1.5em"/> Фан-арт 
+          </span>
+          <div className="row pt-3">
             {this.state.pictures.map((img, index) => 
               <div className="col-12 col-md-6 col-lg-3" key={img.id}>
                 <LazyLoad height={350}>
-                <Card style = {{height: "300px"}}>
+                <Card className="shadow border-0" style={{height: "300px"}}>
                   <button onClick={()=>{
                   this.setState({ bigPicture: true, selectedIndex: index })}} className="text-center border-0" title={img.text}  style={{ height:"100%", backgroundPosition: "top", backgroundImage: `url(${img.photo_604})` }}></button>
                 </Card>  

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { fetchArticles } from '../actions/postActions';
 import { fetchPlayers } from '../actions/playerActions';
 import moment from 'moment';
-import { FaPlusCircle } from "react-icons/fa";
+import { FaPlusCircle, FaNewspaper} from "react-icons/fa";
 
 class ArticlesPage extends Component {
 	constructor(props){
@@ -31,9 +31,9 @@ class ArticlesPage extends Component {
 		});
 		window.scrollTo(0,0);
 	}
+
 	render() {	
 		const {user} = this.props.auth;	
-
 		let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
 
 		const {currentPage, todosPerPage } = this.state;
@@ -49,26 +49,19 @@ class ArticlesPage extends Component {
         }
 
 	  	const listItems = currentTodos.map((article, index) =>
-	    	<div className="card text-justify mb-5 border-0 shadow-sm" key={article._id}>
-			  	<div className="card-body">
-			  		<div className="row">
-			  			<div className="col-12 col-md-3 mb-3">
-			  				<img src={article.picture} alt="" />
-			  			</div>
-			  			<div className="col-12 col-md-8">
-			  				<h5 className="card-title">{article.title}</h5>
-						    <p className="card-text ">{article.text.slice(0,1000)}</p>
-						    <Link to={`/article/${article._id}`} className="btn btn-info">Читать дальше</Link>
-						</div>
-			  		</div>
-			  	</div>
-			  	<div className="card-footer text-primary">
-			    	<div className="row">
-			    		<div className="col-12 col-md-6 text-muted mb-2">{moment(article.date).format('LL')}</div>
-			    		<div className="col-12 col-md-6 text-right">{article.hashtags}</div>
-			    	</div>
-			  	</div>	
-			</div>
+	    	<div className="container pt-5 pb-5 mb-3 bg_card shadow">
+              <div className="row text-white text-center justify-content-between">
+                <div className="col-12 col-lg-8 text-left">
+                  <p>{moment(article.date).format('LL')}</p>
+                  <h1 className="text-center">{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
+                  <p className="text-justify">{article.text.length > 800 ? article.text.slice(0,800) + "..." : article.text}</p>
+                  <Link to={`/article/${article._id}`} className="btn btn-info mt-2">Читать дальше</Link>
+                </div>
+                <div className="d-none d-lg-block col-lg-4">
+                  <img alt={article.title} className="img-fluid" style={{backgroundSize: "contain", height:"400px"}} src={article.picture} />
+                </div>
+              </div>
+            </div>
 		);
 
 		const renderPageNumbers = pageNumbers.map(number => {
@@ -82,21 +75,15 @@ class ArticlesPage extends Component {
         });
 
 		return (
-			<section id="articlesPage" style={{minHeight: "100vh"}}>	  
-				<div className="container text-right pt-5 pb-5">
-					<div className="row">
-						<div className="col-3"></div>
-						<div className="col-6">
-							<h1 className="text-center mb-5">НОВОСТИ
-							</h1>
-						</div>
-						<div className="col-3">
-							{user.moderator && <Link to="/article-new" className="btn btn-link bg-transparent border-0" >
-								<FaPlusCircle size="3em" className="text-info" />
-							</Link>}
-						</div>
-					</div>
-					<ul>{listItems}</ul>
+			<section id="articlesPage">	  
+				<div className="container text-left pt-5 pb-5">
+					<span className="text-white">
+						<FaNewspaper size="1.5em"/> Новости 
+					</span>
+					{user.moderator && <Link to="/article-new" className="btn btn-link bg-transparent border-0" >
+						<FaPlusCircle size="3em" className="text-info" />
+					</Link>}
+					<ul className="pt-3">{listItems}</ul>
 					<Pagination aria-label="Page navigation">
       			    	{renderPageNumbers}
       		    	</Pagination>				

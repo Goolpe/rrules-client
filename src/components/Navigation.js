@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import { FiLogIn, FiShoppingBag,FiChevronsLeft, FiChevronsRight, FiBookOpen, FiUser, FiFileText, FiImage, FiEye, FiPlay } from "react-icons/fi";
+import { FiLogIn, FiShoppingBag, FiChevronsLeft, FiChevronsRight, FiBookOpen, FiUser, FiFileText, FiImage, FiEye, FiPlay } from "react-icons/fi";
 import { FaHome } from 'react-icons/fa';
 import { Badge,  UncontrolledTooltip } from 'reactstrap';
 import PropTypes from 'prop-types';

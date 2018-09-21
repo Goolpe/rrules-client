@@ -11,7 +11,7 @@ import moment from 'moment';
 import { MomentLocaleUtils, formatDate, parseDate } from 'react-day-picker/moment';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaGamepad  } from "react-icons/fa";
 
  class GamesPage extends Component {
       constructor() {
@@ -134,8 +134,8 @@ import { FaStar } from "react-icons/fa";
         }
 
         const renderTodos = currentTodos.filter(game=> game.archive === false).map((game,index) => 
-          <Link to={`/game/${game._id}`} className="m-0 p-0 mb-4 btn text-left text-dark w-100" key={index}>
-          <div className="p-3 userCard shadow-sm" >  
+          <Link to={`/game/${game._id}`} className="m-0 p-0 mb-4 btn text-left text-white w-100" key={index}>
+          <div className="p-3 bg_card shadow" >  
             <p className="pb-3 border-bottom">{game.nameGame}</p>       
             <div className="row">
               <div className="col-12 col-md-3">
@@ -174,12 +174,14 @@ import { FaStar } from "react-icons/fa";
         });
 
         return (
-        	<section id="gamesPage" style={{minHeight:"100vh"}}>  
-              <div className="container pb-3 pt-3 p-0">
-                <div className="row mr-0 ml-0">
+        	<section id="gamesPage">  
+              <div className="container text-white pt-5 pb-5">
+                <span className="text-white">
+                  <FaGamepad size="1.5em"/> Игры 
+                </span>
+                <div className="row pt-3">
                   <div className="col-12 col-lg-3 mt-2">
-                    <h2 className="text-dark text-left mb-3">ИГРЫ</h2>
-                    <div className="container bg-white shadow-sm pt-3 pb-3">
+                    <div className="container bg_card shadow pt-3 pb-3">
                       {user.master && <Link to="/game-create" className="btn btn-info mb-2 w-100">Создать игру</Link>}
                      <ButtonDropdown isOpen={this.state.dropdownOpen} className="w-100 mb-2" toggle={this.toggle}>
                           <DropdownToggle caret className="btn btn-info w-100">
@@ -192,7 +194,7 @@ import { FaStar } from "react-icons/fa";
                         </ButtonDropdown><br/>
 
                         <label className="mr-2 mt-3">Удобные даты: </label><br/>
-                      <div className="mb-2">
+                      <div className="mb-2 text-dark">
                         <DayPickerInput
                           inputProps={{ style: { width: "100%" } }}
                               value={from}
@@ -214,6 +216,7 @@ import { FaStar } from "react-icons/fa";
                               onDayChange={this.handleFromChange}
                             />
                         </div>
+                        <div className="text-dark">
                             <DayPickerInput
                               inputProps={{ style: { width: "100%" } }}
                               ref={el => (this.to = el)}
@@ -234,7 +237,8 @@ import { FaStar } from "react-icons/fa";
                             onDayClick: () => this.to.getInput().focus()
                               }}
                               onDayChange={this.handleToChange}
-                            /><br />
+                            />
+                          </div>
                             <label className="mr-2 mt-3">Тип игры: </label><br/>
                             <div className="custom-control custom-radio mb-2">
                             <input type="radio" className="custom-control-input" value="sortByTypeAll" onChange={()=>{this.setState({selectedOption: 'sortByTypeAll'})}} checked={this.state.selectedOption === 'sortByTypeAll'} id="radio0" />
@@ -257,10 +261,11 @@ import { FaStar } from "react-icons/fa";
                       </div>
                   </div>
                   <div className="col-12 col-lg-9 mt-2">
+                    {renderTodos}
                   	<Pagination aria-label="Page navigation">
       			    	    {renderPageNumbers}
       		    	    </Pagination>
-      	            	{renderTodos}
+      	            	
       	          </div>
               </div>
             </div>
