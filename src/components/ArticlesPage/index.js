@@ -91,7 +91,7 @@ class ArticlesPage extends Component {
 							</h1>
 						</div>
 						<div className="col-3">
-							{user.moderator && <Link to="/new-article" className="btn btn-link bg-transparent border-0" >
+							{user.moderator && <Link to="/article-new" className="btn btn-link bg-transparent border-0" >
 								<FaPlusCircle size="3em" className="text-info" />
 							</Link>}
 						</div>

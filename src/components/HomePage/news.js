@@ -35,16 +35,14 @@ class News extends Component {
 		let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
 
 	  	const listItems = articleSort.map((article, index) =>
-		    	<Link to={`/article/${article._id}`} className="m-0 p-0 mb-4 btn text-left w-100" key={article._id}>
-		    		<div className="shadow news_card bg_card">
+		    	<Link to={`/article/${article._id}`} className="btn btn-link m-0 p-0 text-left w-100" key={article._id}>
 				  		<p className="text-left text-white p-3 m-0">{moment(article.date).format('ll').slice(0,moment.length-9)} | {article.title}</p>
-				  	</div>
 				</Link>
-		).slice(0,4);
+		).slice(0,5);
 	return (
-		<React.Fragment>
+		<div className="shadow news_card bg_card">
 			{listItems}
-		</React.Fragment>
+		</div>
 	)
 	}
 }

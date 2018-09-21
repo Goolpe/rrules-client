@@ -63,9 +63,9 @@ class CarouselBlock extends Component {
         >
             <div className="container pt-5 pb-5">
               <div className="row text-white text-center justify-content-between">
-                <div className="col-12 col-lg-8">
-                  <p className="text-left">{moment(article.date).format('LL')}</p>
-                  <h1>{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
+                <div className="col-12 col-lg-8 text-left">
+                  <p>{moment(article.date).format('LL')}</p>
+                  <h1 className="text-center">{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
                   <p className="text-justify">{article.text.length > 800 ? article.text.slice(0,800) + "..." : article.text}</p>
                   <Link to={`/article/${article._id}`} className="btn btn-info mt-2">Читать дальше</Link>
                 </div>
@@ -79,10 +79,8 @@ class CarouselBlock extends Component {
     return (
     	<div>
         <div id="headerCarousel">
-	    	  <Carousel	activeIndex={activeIndex}	next={this.next} previous={this.previous}	interval="3000">
+	    	  <Carousel	activeIndex={activeIndex}	next={this.next} previous={this.previous}	interval="5000">
 		       {slides}
-		        <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
-		        <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
 	      	</Carousel>
         </div>
 		</div>

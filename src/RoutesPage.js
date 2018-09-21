@@ -99,10 +99,10 @@ class RoutesPage extends Component {
 					        <Route path="/auth" component={AuthPage} />
 					        <Route path="/social-auth/:id" component={SocialAuth} />
 					        <Route path="/email-verification" component={EmailVerif} />
-					        <Route path="/new-article" component={ArticleForm} />
+					        <Route path="/article-new" component={ArticleForm} />
 					        <Route path="/edit/:nickname" component={UserPageEditor} />
-					        <Route path="/create-game" component={CreateGamePage} />
-					        <Route path="/edit-game/:id" component={GameEditPage} />
+					        <Route path="/game-create" component={CreateGamePage} />
+					        <Route path="/game-edit/:id" component={GameEditPage} />
 					        <Route path="*" component={error404Page} />
 					    </Switch>
 				    </React.Fragment>	

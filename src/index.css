@@ -36,6 +36,10 @@ button
     cursor: pointer;
 }
 
+.btn:focus {
+    box-shadow: none !important;
+}
+
 /*Navigation */
 
 #Navigation{
@@ -55,7 +59,7 @@ button
     font-size: 1.1em;
 }
 
-#Navigation svg,
+svg,
 #Navigation li{
     pointer-events: none;
 }
@@ -85,10 +89,8 @@ button
     color:#000;
 }
 
-#headerCarousel
-{
-    height: 700px;
-    background: #313438;
+.homepage__news{
+    display: none;
 }
 
 .carousel,

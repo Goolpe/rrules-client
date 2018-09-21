@@ -25,7 +25,7 @@ class Msgs extends Component {
  					</div>
     	)
 	return (
-		<div className="shadow bg_card mb-4 p-5">
+		<div className="shadow bg_card">
 			{this.props.msgs.length ? messagesItems.reverse() : <div style={{height: "100%"}} className="d-flex align-items-center justify-content-center"><h1 className="text-center text-muted" >Сообщений нет</h1></div>}
 		</div>
 	)

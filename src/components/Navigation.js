@@ -20,7 +20,7 @@ class Navigation extends Component{
     this.handleToggle = this.handleToggle.bind(this);
     this.state = {
       isOpen: false,
-      active: "TooltipHome",
+      active: this.props.location.pathname,
       nav:true
     };
   }
@@ -55,13 +55,18 @@ class Navigation extends Component{
         read: nextProps.msgs.filter(msg => msg.read === false && msg.receiver === this.props.auth.user.name).length
       })
     }
+    if(this.props.location.pathname !== nextProps.location.pathname){
+      this.setState({
+        active: nextProps.location.pathname
+      })
+    }
   }
 
   componentDidMount() {
     this.interval = setInterval(() => {
         this.props.auth.isAuthenticated &&
         this.props.fetchMsgs(this.props.auth.user.playerId)
-      }, 5000);
+      }, 1000);
   }
 
   componentWillUnmount() {
@@ -77,7 +82,7 @@ class Navigation extends Component{
 
   handleClick(e){
     this.setState({
-      active: e.target.id
+      active: e.target.name
     })
   }
 
@@ -120,37 +125,37 @@ class Navigation extends Component{
               </UncontrolledTooltip>
             </React.Fragment>
           }
-            <Link to="/" id="TooltipHome" onClick={this.handleClick}><li className={this.state.active === "TooltipHome" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"} ><FaHome/></li></Link>
+            <Link to="/" id="TooltipHome" name="/" onClick={this.handleClick}><li className={this.state.active === "/" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"} ><FaHome/></li></Link>
             <UncontrolledTooltip className="ml-2" placement="right" target="TooltipHome">
               Главная
             </UncontrolledTooltip>
-            <Link to="/about-project" id="TooltipAbout" onClick={this.handleClick}><li className={this.state.active === "TooltipAbout" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiEye/></li></Link>
+            <Link to="/about-project" id="TooltipAbout" name="/about-project" onClick={this.handleClick}><li className={this.state.active === "/about-project" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiEye/></li></Link>
             <UncontrolledTooltip className="ml-2" placement="right" target="TooltipAbout">
               О проекте
             </UncontrolledTooltip>
-            <Link to="/games" id="TooltipGames" onClick={this.handleClick}><li className={this.state.active === "TooltipGames" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiPlay/></li></Link>
+            <Link to="/games" id="TooltipGames" name="/game" onClick={this.handleClick}><li className={this.state.active.includes("/game") ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiPlay/></li></Link>
             <UncontrolledTooltip className="ml-2" placement="right" target="TooltipGames">
               Игры
             </UncontrolledTooltip>
-            <Link to="/library" id="TooltipLibrary" onClick={this.handleClick}><li className={this.state.active === "TooltipLibrary" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiBookOpen/></li></Link>
+            <Link to="/library" id="TooltipLibrary" name="/library" onClick={this.handleClick}><li className={this.state.active === "/library" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiBookOpen/></li></Link>
             <UncontrolledTooltip className="ml-2" placement="right" target="TooltipLibrary">
               Библиотека
             </UncontrolledTooltip>
-            <Link to="/articles" id="TooltipNews" onClick={this.handleClick}><li className={this.state.active === "TooltipNews" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiFileText/></li></Link>
+            <Link to="/articles" id="TooltipNews" name="/article" onClick={this.handleClick}><li className={this.state.active.includes("/article") ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiFileText/></li></Link>
             <UncontrolledTooltip className="ml-2" placement="right" target="TooltipNews">
               Новости
             </UncontrolledTooltip>
-            <Link to="/art" id="TooltipArt" onClick={this.handleClick}><li className={this.state.active === "TooltipArt" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiImage/></li></Link>
+            <Link to="/art" id="TooltipArt" name="/art" onClick={this.handleClick}><li className={this.state.active === "/art" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiImage/></li></Link>
             <UncontrolledTooltip className="ml-2" placement="right" target="TooltipArt">
               Фан-арт
             </UncontrolledTooltip> 
-            <Link to="/shop" id="TooltipShop" onClick={this.handleClick}><li className={this.state.active === "TooltipShop" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiShoppingBag/></li></Link>
+            <Link to="/shop" id="TooltipShop" name="/shop" onClick={this.handleClick}><li className={this.state.active === "/shop" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiShoppingBag/></li></Link>
             <UncontrolledTooltip className="ml-2" placement="right" target="TooltipShop">
               Магазин
             </UncontrolledTooltip>
             <button className="btn bg-transparent border-0 text-white" onClick={this.handleToggle} id="TooltipNavToggle">{this.state.nav ? <FiChevronsLeft/> : <FiChevronsRight/>}</button>
             <UncontrolledTooltip className="ml-2" placement="right" target="TooltipNavToggle">
-              {this.state.nav ? "Закрыть меню" : "Открыть меню"}
+              {this.state.nav ? "Скрыть меню" : "Зафиксировать меню"}
             </UncontrolledTooltip>
           </ul>
 

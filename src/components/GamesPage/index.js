@@ -180,7 +180,7 @@ import { FaStar } from "react-icons/fa";
                   <div className="col-12 col-lg-3 mt-2">
                     <h2 className="text-dark text-left mb-3">ИГРЫ</h2>
                     <div className="container bg-white shadow-sm pt-3 pb-3">
-                      {user.master && <Link to="/create-game" className="btn btn-info mb-2 w-100">Создать игру</Link>}
+                      {user.master && <Link to="/game-create" className="btn btn-info mb-2 w-100">Создать игру</Link>}
                      <ButtonDropdown isOpen={this.state.dropdownOpen} className="w-100 mb-2" toggle={this.toggle}>
                           <DropdownToggle caret className="btn btn-info w-100">
                             Сортировать: 

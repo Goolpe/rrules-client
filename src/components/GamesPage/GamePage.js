@@ -135,7 +135,7 @@ class GamePage extends Component {
 				<div className="row justify-content-between">
 					<div className="col-12 col-md-6">
 						{game.masterName === user.name && 
-							<Link to={`/edit-game/${game._id}`} className="btn btn-info mb-2">Редактировать/Удалить</Link>
+							<Link to={`/game-edit/${game._id}`} className="btn btn-info mb-2">Редактировать/Удалить</Link>
 						}
 					</div>
 					<div className="col-12 col-md-6 text-right">
