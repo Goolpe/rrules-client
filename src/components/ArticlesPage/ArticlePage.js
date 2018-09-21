@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchArticle } from '../actions/postActions';
 import moment from 'moment';
-import { FaAngleLeft } from "react-icons/fa";
+import { FaAngleLeft, FaNewspaper } from "react-icons/fa";
 
 class ArticlePage extends Component {
   componentDidMount() {
@@ -18,20 +18,22 @@ class ArticlePage extends Component {
     const article = this.props.article;
 
 	  return (
-	  <section id="articlePage">	  
-	  	<div className="container pt-5 pb-5" style={{minHeight: "100vh"}}>
-        <Link to="/articles" className="text-dark"><FaAngleLeft /> ВСЕ СТАТЬИ</Link>
-	  	  <h1 className="text-center mb-5">{article.title}</h1>
-        <div className="row p-5 bg-white">
-          <div className="col-12 col-md-4 order-md-2 text-right">
-            <img className="img-fluid" alt={article.title} src={article.picture} />
-          </div>
-          <div className="col-12 col-md-8">
-            <p>{article.text}</p>
-            <p className="mt-5">{moment(article.date).format('LL')}</p>
+	  <section id="articlePage">
+      <div className="container">	 
+      <Link to="/articles" className=" pt-5 btn text-white">
+            <FaAngleLeft size="1.5em"/> Все статьи 
+        </Link> 
+	  	<div className="m-auto pb-5 text-light text-left" style={{width:"70%"}}>
+          <div className="bg_card mt-3">
+            <h1 className="text-center mb-5 pt-5">{article.title}</h1>
+            <div className="w-100 text-center" style={{height:"300px", overflow: "hidden"}}><img className="img-fluid" style={{height:"300px"}} alt={article.title} src={article.picture} /></div>
+            <div className="container">
+              <p className="pt-5">{article.text}</p>
+              <p className="pt-5 pb-5">{moment(article.date).format('LL')}</p>
+            </div>
           </div>
         </div>
-    	</div>
+      </div>
     	</section>
 	  );
 	}

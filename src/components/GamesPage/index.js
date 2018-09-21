@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
 import { fetchGames } from '../actions/gameActions';
 import moment from 'moment';
+import 'moment/locale/ru';
 import { MomentLocaleUtils, formatDate, parseDate } from 'react-day-picker/moment';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
@@ -18,7 +19,7 @@ import { FaStar, FaGamepad  } from "react-icons/fa";
         super();
         this.state = {
           currentPage: 1,
-          todosPerPage: 4,
+          todosPerPage: 3,
   	      from: undefined,
   	      to: undefined,
   	      sortByDate: true,
@@ -261,7 +262,7 @@ import { FaStar, FaGamepad  } from "react-icons/fa";
                       </div>
                   </div>
                   <div className="col-12 col-lg-9 mt-2">
-                    {renderTodos}
+                    <div style={{height:"600px"}}>{renderTodos}</div>
                   	<Pagination aria-label="Page navigation">
       			    	    {renderPageNumbers}
       		    	    </Pagination>
