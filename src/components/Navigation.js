@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import { FiLogIn, FiShoppingBag, FiBookOpen, FiUser, FiFileText, FiImage, FiEye, FiPlay } from "react-icons/fi";
+import { FiLogIn, FiShoppingBag,FiChevronsLeft, FiChevronsRight, FiBookOpen, FiUser, FiFileText, FiImage, FiEye, FiPlay } from "react-icons/fi";
 import { FaHome } from 'react-icons/fa';
 import { Badge,  UncontrolledTooltip } from 'reactstrap';
 import PropTypes from 'prop-types';
@@ -17,9 +17,11 @@ class Navigation extends Component{
     this.toggle = this.toggle.bind(this);
     this.closeNav = this.closeNav.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
     this.state = {
       isOpen: false,
-      active: "TooltipHome"
+      active: "TooltipHome",
+      nav:true
     };
   }
   toggle() {
@@ -60,9 +62,6 @@ class Navigation extends Component{
         this.props.auth.isAuthenticated &&
         this.props.fetchMsgs(this.props.auth.user.playerId)
       }, 5000);
-    setTimeout(() => {
-      document.getElementById("Navigation").style.marginLeft = "-35px"; 
-    }, 2000)
   }
 
   componentWillUnmount() {
@@ -82,6 +81,18 @@ class Navigation extends Component{
     })
   }
 
+  handleToggle(){
+    if(!this.state.nav){
+      document.getElementById("Navigation").style.marginLeft = "0"; 
+    }
+    else{
+      document.getElementById("Navigation").style.marginLeft = "-35px";
+    }
+    this.setState({
+      nav: !this.state.nav
+    })
+  }
+
   onLogout(e) {
     e.preventDefault();
     this.props.logoutUser(this.props.history);
@@ -90,8 +101,9 @@ class Navigation extends Component{
   render(){
     const {isAuthenticated, user} = this.props.auth;
     return(
+      <React.Fragment>
       <div id="Navigation" className="position-absolute">
-        <div className="d-flex flex-column justify-content-between" style={{height: "100%"}}>
+        <div className="d-flex flex-column justify-content-between w-100" style={{height: "100%"}}>
           <ul className="text-center">
             {isAuthenticated ? 
             <React.Fragment>
@@ -136,10 +148,15 @@ class Navigation extends Component{
             <UncontrolledTooltip className="ml-2" placement="right" target="TooltipShop">
               Магазин
             </UncontrolledTooltip>
+            <button className="btn bg-transparent border-0 text-white" onClick={this.handleToggle} id="TooltipNavToggle">{this.state.nav ? <FiChevronsLeft/> : <FiChevronsRight/>}</button>
+            <UncontrolledTooltip className="ml-2" placement="right" target="TooltipNavToggle">
+              {this.state.nav ? "Закрыть меню" : "Открыть меню"}
+            </UncontrolledTooltip>
           </ul>
+
         </div>
       </div>
-      
+      </React.Fragment>
     )
   }
 }
