@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Msgs from './msgs';
 import Games from './games';
 import CarouselBlock from './carousel';
-import News from './news';
-import Header from './header';
-import { FaTwitch, FaYoutube, FaGamepad, FaNewspaper, FaAngleUp, FaAngleDown } from 'react-icons/fa';
-import { FiPlay } from "react-icons/fi";
-import { UncontrolledCollapse  } from 'reactstrap';
-import { Collapse, Button, CardBody, Card } from 'reactstrap';
+import { FaYoutube, FaGamepad, FaNewspaper } from 'react-icons/fa';
 
 class HomePage extends Component {
 

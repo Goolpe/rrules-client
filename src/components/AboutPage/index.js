@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
-import { UncontrolledCollapse, Button, CardBody, Card } from 'reactstrap';
+import { UncontrolledCollapse, CardBody, Card } from 'reactstrap';
 import { FiCode } from "react-icons/fi";
 
 class AboutPage extends Component {

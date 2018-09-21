@@ -6,10 +6,8 @@ import {
   Redirect
 } from 'react-router-dom';
 
-import ArrowUp from './components/ArrowUp';
 import HomePage from './components/HomePage';
 import Navigation from './components/Navigation';
-import Footer from './components/Footer';
 import error404Page from './components/error404Page';
 import AboutPage from './components/AboutPage';
 import LibraryPage from './components/LibraryPage';

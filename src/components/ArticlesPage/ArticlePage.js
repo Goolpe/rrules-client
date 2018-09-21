@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchArticle } from '../actions/postActions';
 import moment from 'moment';
-import { FaAngleLeft, FaNewspaper } from "react-icons/fa";
+import { FaAngleLeft } from "react-icons/fa";
 
 class ArticlePage extends Component {
   componentDidMount() {

@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayer } from '../actions/playerActions';
 import moment from 'moment';
+import Msgs from './msgs';
+import Games from '../HomePage/games';
+import { FaStar } from "react-icons/fa";
 
 class UserPage extends Component {
 
@@ -18,48 +21,41 @@ class UserPage extends Component {
     const player = this.props.player;
 
     return (
-      <div id="userPage" style={{minHeight: "100vh", background: "#fff"}}>    
-        <div className="container pt-5 pb-5">
-            {player.master && <Link to="/masters" className="text-dark"><i className="fas fa-angle-left "></i>ДРУГИЕ МАСТЕРА</Link>}
-            <span className="text-center"><h1>{player.username || ""}</h1>{player.master && <p>мастер</p>}</span>
-            <div className="row">
-              <div className="col-12 col-md-6 order-md-2 mb-3 text-center">
-                  <img src={player.photo} className="img-fluid" style={{maxHeight: 400}} alt="" />
-                <h3><i className="fas fa-star text-warning fa-1x mt-4 mb-2"></i> - {player.rating}/5</h3>
-                {user.name === player.username && user.master && <Link to="/create-game" className="btn btn-info pl-5 pr-5">Создать игру</Link>}
-              </div>
-              <div className="col-12 col-md-6">
-                <h4 className="mb-4 mt-4">Основная информация:</h4>
-                <hr />
-                <ul>
-
-                  {player.fullName && player.fullName.length > 0 && <li><span className="font-weight-bold">Имя:</span> {player.fullName}</li>}
-                  <li><span className="font-weight-bold">Пол:</span> {player.gender ? "Мужской" : "Женский"}</li>
-                  {player.dateBirth && <li><span className="font-weight-bold">День рождения:</span> {moment(player.dateBirth).format('LL')}</li>}
-                  <li><span className="font-weight-bold">Зарегистрирован:</span> {moment(player.dateReg).format('LL')}</li>
-                  <li>{player.master && <p>{player.paidGames ? "Водит" : "Не водит"} платные игры</p>}</li>
-                </ul>
-                <h4 className="mb-4 mt-4">Контакты:</h4>
-                <hr />
-                <ul>
-                  {player.discord && <li><span className="font-weight-bold">Discord</span> - {player.discord}</li>}
-                  {player.skype && <li><span className="font-weight-bold">Skype</span> - {player.skype}</li>}
-                  {player.otherContacts && <li><span className="font-weight-bold">Доп. контакты</span> - {player.otherContacts}</li>}
-                </ul>
-
-                <h4 className="mb-4 mt-4">О себе:</h4>
-                <hr />
-                <p>{player.about || "Обычный кот: сплю, ем, ловлю мышей"}</p>
-                <h4 className="mb-4 mt-4">Любимые системы:</h4>
-                <hr />
-                <p>{player.systems || "Нет"}</p>
-                <h4 className="mb-4 mt-4">Любимые сеттинги:</h4>
-                <hr />
-                <p>{player.setting || "Нет"}</p>
-
-              </div>
+      <section id="userPage">    
+        <div className="container">
+          <div className="row">
+            <div className="col-12 col-md-3">
             </div>
-            {(player.example1 || player.example2 || player.example3 || player.example4) &&
+            <div className="col-12 col-md-6 shadow bg_card pt-4 pb-4">
+              <span className="text-center"><p>{player.username || ""} <FaStar className="text-warning" /> - {player.rating}/5</p>{player.master && <p>мастер</p>}</span>
+              <h4 className="mb-4 mt-4">Основная информация:</h4>
+              <ul>
+                {player.fullName && player.fullName.length > 0 && <li>Имя: {player.fullName}</li>}
+                <li>Пол: {player.gender ? "Мужской" : "Женский"}</li>
+                {player.dateBirth && <li>День рождения: {moment(player.dateBirth).format('LL')}</li>}
+                <li>Зарегистрирован: {moment(player.dateReg).format('LL')}</li>
+                <li>{player.master && <p>{player.paidGames ? "Водит" : "Не водит"} платные игры</p>}</li>
+              </ul>
+              <hr/>
+              <h4 className="mb-4 mt-4">Контакты:</h4>
+              <ul>
+                {player.discord && <li><span className="font-weight-bold">Discord</span> - {player.discord}</li>}
+                {player.skype && <li><span className="font-weight-bold">Skype</span> - {player.skype}</li>}
+                {player.otherContacts && <li><span className="font-weight-bold">Доп. контакты</span> - {player.otherContacts}</li>}
+              </ul>
+              <hr />
+              <h4 className="mb-4 mt-4">О себе:</h4>
+              
+              <p>{player.about || "Обычный кот: сплю, ем, ловлю мышей"}</p>
+              <hr />
+              <h4 className="mb-4 mt-4">Любимые системы:</h4>
+
+              <p>{player.systems || "Нет"}</p>
+              <hr />
+
+              <h4 className="mb-4 mt-4">Любимые сеттинги:</h4>
+              <p>{player.setting || "Нет"}</p>
+                {(player.example1 || player.example2 || player.example3 || player.example4) &&
               <React.Fragment>
                 <h4 className="mb-4 mt-4">Примеры игр</h4><hr />
                 <div className="row">
@@ -77,8 +73,12 @@ class UserPage extends Component {
                   </div>}
                 </div>
               </React.Fragment>}
+            </div>
+            <div className="col-12 col-md-3">
+            </div>
       	</div>
-    	</div>
+        </div>
+    	</section>
 	  )
 	}
 }
