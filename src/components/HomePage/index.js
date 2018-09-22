@@ -20,18 +20,20 @@ class HomePage extends Component {
                     <CarouselBlock />
                 </div>
                 <div className="mb-5">
+                  <span className="text-danger">
+                  <FaYoutube size="1.5em"/> Стримы</span> | 
+                  <a href="https://www.twitch.tv/random_rules" target="_blank" rel="noopener noreferrer"> Youtube</a> |
+                  <a href="https://www.youtube.com/randomrulez" target="_blank" rel="noopener noreferrer"> Twitch</a> 
+                  <Streams/>
+                </div>
+                <div className="mb-5">
                   <span className="text-success">
                   <FaGamepad size="1.5em"/> Игры</span> | <Link to="/games">Все игры</Link>
                   <Games />
                 </div>
                 <div className="mb-5">
-                  <span className="text-danger">
-                  <FaYoutube size="1.5em"/> Стримы</span> | <Link to="/games">Все видео</Link>
-                  <Streams/>
-                </div>
-                <div className="mb-5">
                   <span className="text-info">
-                  <FaGlobe size="1.5em"/> Социальные сети</span>
+                  <FaGlobe size="1.5em"/> Random Rules </span><span className="text-white">в социальных сетях</span>
                   <Social />
                 </div>
           </div>
