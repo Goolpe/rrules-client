@@ -76,13 +76,11 @@ class CarouselBlock extends Component {
         </CarouselItem>
       ).slice(0,3);
     return (
-    	<div>
-        <div id="headerCarousel">
+    	<div className="pt-3 pb-3">
 	    	  <Carousel	activeIndex={activeIndex}	next={this.next} previous={this.previous}	interval="5000">
 		       {slides}
 	      	</Carousel>
-        </div>
-		</div>
+		  </div>
     )
   }
 }

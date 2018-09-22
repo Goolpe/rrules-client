@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Games from './games';
 import CarouselBlock from './carousel';
-import { FaYoutube, FaGamepad, FaNewspaper } from 'react-icons/fa';
+import Social from './social';
+import { FaYoutube, FaGamepad, FaNewspaper, FaGlobe } from 'react-icons/fa';
+import Streams from './streams';
 
 class HomePage extends Component {
 
@@ -11,41 +13,27 @@ class HomePage extends Component {
     	<section id="HomePage">
         <div className="container-fluid">
             <div className="container text-white">
-              <div className="row">
-                <div className="col-12 mb-4">
-                  <p><span className="text-warning" >
+                <div className="mb-5">
+                  <span className="text-warning" >
                   <FaNewspaper size="1.5em"/> Новости </span>
                      | <Link to="/articles">Все новости</Link>
-                  </p>
                     <CarouselBlock />
                 </div>
-                <div className="col-12 mb-4">
-                  <p><span className="text-success">
+                <div className="mb-5">
+                  <span className="text-success">
                   <FaGamepad size="1.5em"/> Игры</span> | <Link to="/games">Все игры</Link>
-                  </p>
-                    <Games />
+                  <Games />
                 </div>
-                <div className="col-12">
-                  <p>
-                    <span className="text-danger">
-                    <FaYoutube size="1.5em"/> Стримы</span> | <Link to="/games">Все видео</Link>
-                  </p>
-                  <div className="row text-white">
-                    <div className="col-12 col-md-6 col-lg-3 mt-2">
-                      <iframe width="100%" title="video1" height="300" src="https://www.youtube.com/embed/videoseries?list=UU-Hexiu7bmDvDlE6tA7LECw" frameBorder="0" allowFullScreen></iframe>
-                      </div>
-                      <div className="col-12 col-md-6 col-lg-3 mt-2">
-                      <iframe width="100%" title="video2" height="300" src="https://www.youtube.com/embed/videoseries?list=UU-Hexiu7bmDvDlE6tA7LECw&index=1" frameBorder="0" allowFullScreen></iframe>
-                      </div>
-                    <div className="col-12 col-md-6 col-lg-3 mt-2">
-                      <iframe width="100%" title="video3" height="300" src="https://www.youtube.com/embed/videoseries?list=UU-Hexiu7bmDvDlE6tA7LECw&index=2" frameBorder="0" allowFullScreen></iframe>
-                    </div>
-                    <div className="col-12 col-md-6 col-lg-3 mt-2">
-                      <iframe width="100%" title="video4" height="300" src="https://www.youtube.com/embed/videoseries?list=UU-Hexiu7bmDvDlE6tA7LECw&index=3" frameBorder="0" allowFullScreen></iframe>
-                    </div>
-                  </div>
+                <div className="mb-5">
+                  <span className="text-danger">
+                  <FaYoutube size="1.5em"/> Стримы</span> | <Link to="/games">Все видео</Link>
+                  <Streams/>
                 </div>
-              </div>
+                <div className="mb-5">
+                  <span className="text-info">
+                  <FaGlobe size="1.5em"/> Социальные сети</span>
+                  <Social />
+                </div>
           </div>
         </div>
 		  </section>

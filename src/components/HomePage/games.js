@@ -67,9 +67,9 @@ class Games extends Component {
 	 		</Link>
 	 		).slice(0,2)
 	return (
-		<React.Fragment>
+		<div className="pt-3 pb-3">
 			{listGames}
-		</React.Fragment>
+		</div>
 	)
 	}
 }

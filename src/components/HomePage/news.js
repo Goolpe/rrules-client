@@ -40,7 +40,7 @@ class News extends Component {
 				</Link>
 		).slice(0,5);
 	return (
-		<div className="shadow news_card bg_card">
+		<div className="shadow bg_card">
 			{listItems}
 		</div>
 	)
