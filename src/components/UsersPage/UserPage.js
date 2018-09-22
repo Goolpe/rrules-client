@@ -6,7 +6,8 @@ import { fetchPlayer } from '../actions/playerActions';
 import moment from 'moment';
 import Msgs from './msgs';
 import Games from '../HomePage/games';
-import { FaStar, FaCog } from "react-icons/fa";
+import { FaStar, FaCog, FaAngleLeft } from "react-icons/fa";
+import { UncontrolledTooltip } from 'reactstrap';
 
 class UserPage extends Component {
 
@@ -22,15 +23,32 @@ class UserPage extends Component {
     return (
       <section id="userPage">    
         <div className="container">
+            {this.props.match.params.nickname !== user.name && <p className="text-white pb-4">
+              <Link to="/masters" className="p-0 btn">
+                <FaAngleLeft size="1.5em"/> Все игры&nbsp;
+              </Link>
+            </p>}
             <div className="shadow bg_card">
               <div className="w-100 position-relative border-bottom" style={{height:"200px", overflow:"hidden"}}>
                 <img style={{width:"100%"}} src="https://cdn.pixabay.com/photo/2016/09/29/13/08/planet-1702788_960_720.jpg" />
                 <div className="position-absolute border" style={{bottom:"10px",left:"10px"}}>
-                    <div className="userpage__avatar" style={{backgroundImage: `url(${"https://cdn.pixabay.com/photo/2016/08/28/13/12/secondlife-1625903_960_720.jpg"})`}}></div>
+                    <div className="userpage__avatar" style={{backgroundImage: `url(${player.photo})`}}></div>
                 </div>
               </div>
                   <ul className="p-4">
-                    <div className="d-flex justify-content-between"><h2>{player.username || ""} {player.master && <p>мастер</p>}</h2>{isAuthenticated &&<Link className="userpage__facog" to={`/edit/@${player.username}`}><FaCog size="1.5em"/></Link>}</div>
+                    <div className="d-flex justify-content-between">
+                      <h2>{player.username || ""} {player.master && <p>мастер</p>}</h2>
+                      {isAuthenticated &&
+                        <React.Fragment>
+                        <Link className="userpage__facog" style={{height:"1.5em"}} id="TooltipSetting" to={`/edit/@${player.username}`}>
+                          <FaCog size="1.5em"/>
+                        </Link>
+                        <UncontrolledTooltip className="mr-2" placement="left" target="TooltipSetting">
+                          Настройка профиля
+                        </UncontrolledTooltip>
+                        </React.Fragment>
+                      }
+                    </div>
                     <li>Рейтинг: <FaStar className="text-warning" /> - {player.rating}/5</li>
                     <li>Зарегистрирован: {moment(player.dateReg).format('LL')}</li>
                     <hr/>

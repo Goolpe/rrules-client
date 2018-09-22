@@ -248,10 +248,14 @@ svg,
     background-size: cover;
 }
 
+.userpage__facog svg{
+    transition: .7s;
+}
+
 .userpage__facog:hover svg{
     transform: rotate(90deg);
-    transition: .7s;
-}   
+}
+   
 .userCard{
     background-color: #fff
 }
