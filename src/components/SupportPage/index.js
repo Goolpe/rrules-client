@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { FaHandsHelping } from 'react-icons/fa';
 
 class SupportPage extends Component{
 	componentDidMount() {
@@ -7,9 +8,10 @@ class SupportPage extends Component{
 	render(){
 	    return (
 	    	<section>
-	    		<div className="container pt-5 pb-5" style={{minHeight:"100vh"}}>
-		    		<h1 className="text-center mb-5">ПОДДЕРЖАТЬ ПРОЕКТ</h1>
-		    		<p className="text-justify">Patreon</p>
+	    		<div className="container">
+		    		<span className="text-white">
+                  		<FaHandsHelping size="1.5em"/> Поддержать проект 
+                	</span>
 				</div>
 			</section>
 	    )

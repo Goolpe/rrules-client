@@ -48,12 +48,12 @@ button
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+    background: #27292c; 
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #888; 
+    background: #3b3c40; 
 }
 
 /* Handle on hover */

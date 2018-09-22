@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { FiLogIn, FiShoppingBag, FiChevronsLeft, FiChevronsRight, FiBookOpen,FiUsers, FiUser, FiFileText, FiImage, FiCode, FiPlay } from "react-icons/fi";
-import { FaHome } from 'react-icons/fa';
+import { FaHome, FaHandsHelping } from 'react-icons/fa';
 import { Badge,  UncontrolledTooltip } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -156,6 +156,10 @@ class Navigation extends Component{
             <Link to="/shop" id="TooltipShop" name="/shop" onClick={this.handleClick}><li className={this.state.active === "/shop" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FiShoppingBag/></li></Link>
             <UncontrolledTooltip className="ml-2" placement="right" target="TooltipShop">
               Магазин
+            </UncontrolledTooltip>
+            <Link to="/support" id="TooltipSupport" name="/support" onClick={this.handleClick}><li className={this.state.active === "/support" ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}><FaHandsHelping/></li></Link>
+            <UncontrolledTooltip className="ml-2" placement="right" target="TooltipSupport">
+              Поддержать проект
             </UncontrolledTooltip>
             <a className="btn bg-transparent border-0 text-white" onClick={this.handleToggle} id="TooltipNavToggle">{this.state.nav ? <FiChevronsLeft/> : <FiChevronsRight/>}</a>
             <UncontrolledTooltip className="ml-2" placement="right" target="TooltipNavToggle">
