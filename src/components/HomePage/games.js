@@ -7,15 +7,25 @@ import { fetchPlayers } from '../actions/playerActions';
 import { fetchGames } from '../actions/gameActions';
 import moment from 'moment';
 import { FaStar } from "react-icons/fa";
+import { Tooltip } from 'reactstrap';
 
 class Games extends Component {
 	constructor(props) {
 	    super(props);
+
+	    this.toggle = this.toggle.bind(this);
 	    this.state = {
-	      	dropdownOpen: false
-	    }
-	  }
-	  componentDidMount() {
+	      tooltipOpen: false
+	    };
+	}
+
+	toggle() {
+	    this.setState({
+	      tooltipOpen: !this.state.tooltipOpen
+	    });
+	}
+
+	componentDidMount() {
 	    window.scrollTo(0,0);
 	}
 
@@ -33,16 +43,16 @@ class Games extends Component {
  				<div className="shadow page_card bg_card">
                   		<p className="mb-0">{game.nameGame}</p>  
                   	<div className="row">
-		              	<div className="col-12 col-md-3 mt-3">
+		              	<div className="col-12 col-md-2 mt-3">
 			                {this.props.players.filter(master => game.masterName === master.username)
 			                  .map(master => 
 			                  	<React.Fragment key={master._id}>
 			                    <p> {master.username}</p>
-			                    <p><FaStar className="text-warning" /> - {master.rating}/5</p>
+        			            <p><FaStar className="text-warning" /> - {master.rating}/5</p>
 			                    </React.Fragment>
 			                )}
 			            </div>
-		              	<div className="col-12 col-md-5 mt-3">
+		              	<div className="col-12 col-md-6 mt-3">
 			                <p>{moment(game.from).format('lll')}</p>
 			                <p>{game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}
 			                 {game.selectedOption === "sortByTypeIRL" && <span className="ml-3">Город: {game.cityGame}</span>}</p>

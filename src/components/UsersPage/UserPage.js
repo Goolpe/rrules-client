@@ -6,7 +6,7 @@ import { fetchPlayer } from '../actions/playerActions';
 import moment from 'moment';
 import Msgs from './msgs';
 import Games from '../HomePage/games';
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaCog } from "react-icons/fa";
 
 class UserPage extends Component {
 
@@ -17,66 +17,54 @@ class UserPage extends Component {
     window.scrollTo(0,0);
   }
   render() {
-    const {user} = this.props.auth;
     const player = this.props.player;
-
+    const {isAuthenticated, user} = this.props.auth;
     return (
       <section id="userPage">    
         <div className="container">
-          <div className="row">
-            <div className="col-12 col-md-3">
-            </div>
-            <div className="col-12 col-md-6 shadow bg_card pt-4 pb-4">
-              <span className="text-center"><p>{player.username || ""} <FaStar className="text-warning" /> - {player.rating}/5</p>{player.master && <p>мастер</p>}</span>
-              <h4 className="mb-4 mt-4">Основная информация:</h4>
-              <ul>
-                {player.fullName && player.fullName.length > 0 && <li>Имя: {player.fullName}</li>}
-                <li>Пол: {player.gender ? "Мужской" : "Женский"}</li>
-                {player.dateBirth && <li>День рождения: {moment(player.dateBirth).format('LL')}</li>}
-                <li>Зарегистрирован: {moment(player.dateReg).format('LL')}</li>
-                <li>{player.master && <p>{player.paidGames ? "Водит" : "Не водит"} платные игры</p>}</li>
-              </ul>
-              <hr/>
-              <h4 className="mb-4 mt-4">Контакты:</h4>
-              <ul>
-                {player.discord && <li><span className="font-weight-bold">Discord</span> - {player.discord}</li>}
-                {player.skype && <li><span className="font-weight-bold">Skype</span> - {player.skype}</li>}
-                {player.otherContacts && <li><span className="font-weight-bold">Доп. контакты</span> - {player.otherContacts}</li>}
-              </ul>
-              <hr />
-              <h4 className="mb-4 mt-4">О себе:</h4>
-              
-              <p>{player.about || "Обычный кот: сплю, ем, ловлю мышей"}</p>
-              <hr />
-              <h4 className="mb-4 mt-4">Любимые системы:</h4>
-
-              <p>{player.systems || "Нет"}</p>
-              <hr />
-
-              <h4 className="mb-4 mt-4">Любимые сеттинги:</h4>
-              <p>{player.setting || "Нет"}</p>
-                {(player.example1 || player.example2 || player.example3 || player.example4) &&
-              <React.Fragment>
-                <h4 className="mb-4 mt-4">Примеры игр</h4><hr />
-                <div className="row">
-                  {player.example1 && <div className="col-12 col-md-6 mb-3">
-                    <iframe width="100%" title="sample1" height="300" src={player.example1} frameBorder="0" allowFullScreen></iframe>
-                  </div>}
-                  {player.example2 && <div className="col-12 col-md-6 mb-3">
-                    <iframe width="100%" title="sample2" height="300" src={player.example2} frameBorder="0" allowFullScreen></iframe>
-                  </div>}
-                  {player.example3 && <div className="col-12 col-md-6 mb-3">
-                    <iframe width="100%" title="sample3" height="300" src={player.example3} frameBorder="0" allowFullScreen></iframe>
-                  </div>}
-                  {player.example4 && <div className="col-12 col-md-6 mb-3">
-                    <iframe width="100%" title="sample4" height="300" src={player.example4} frameBorder="0" allowFullScreen></iframe>
-                  </div>}
+            <div className="shadow bg_card">
+              <div className="w-100 position-relative border-bottom" style={{height:"200px", overflow:"hidden"}}>
+                <img style={{width:"100%"}} src="https://cdn.pixabay.com/photo/2016/09/29/13/08/planet-1702788_960_720.jpg" />
+                <div className="position-absolute border" style={{bottom:"10px",left:"10px"}}>
+                    <div className="userpage__avatar" style={{backgroundImage: `url(${"https://cdn.pixabay.com/photo/2016/08/28/13/12/secondlife-1625903_960_720.jpg"})`}}></div>
                 </div>
-              </React.Fragment>}
-            </div>
-            <div className="col-12 col-md-3">
-            </div>
-      	</div>
+              </div>
+                  <ul className="p-4">
+                    <div className="d-flex justify-content-between"><h2>{player.username || ""} {player.master && <p>мастер</p>}</h2>{isAuthenticated &&<Link className="userpage__facog" to={`/edit/@${player.username}`}><FaCog size="1.5em"/></Link>}</div>
+                    <li>Рейтинг: <FaStar className="text-warning" /> - {player.rating}/5</li>
+                    <li>Зарегистрирован: {moment(player.dateReg).format('LL')}</li>
+                    <hr/>
+                    <li>Имя: {player.fullName ? player.fullName : "-"}</li>
+                    <li>Пол: {player.gender ? "Мужской" : "Женский"}</li>
+                    {player.dateBirth && <li>День рождения: {moment(player.dateBirth).format('LL')}</li>}
+                    <hr/>
+                    <li>{player.master && <p>{player.paidGames ? "Водит" : "Не водит"} платные игры</p>}</li>
+                    {player.discord && <li><span className="font-weight-bold">Discord</span> - {player.discord}</li>}
+                    {player.skype && <li><span className="font-weight-bold">Skype</span> - {player.skype}</li>}
+                    {player.otherContacts && <li><span className="font-weight-bold">Доп. контакты</span> - {player.otherContacts}</li>}
+                    <li>О себе: {player.about || "-"}</li>
+                    <li>Любимые системы: {player.systems || "-"}</li>
+                    <li>Любимые сеттинги: {player.setting || "-"}</li>
+                    {(player.example1 || player.example2 || player.example3 || player.example4) &&
+                      <React.Fragment>
+                      <li>Примеры игр: {player.setting}</li>
+                      <div className="row">
+                        {player.example1 && <div className="col-12 col-md-6 mb-3">
+                          <iframe width="100%" title="sample1" height="300" src={player.example1} frameBorder="0" allowFullScreen></iframe>
+                        </div>}
+                        {player.example2 && <div className="col-12 col-md-6 mb-3">
+                          <iframe width="100%" title="sample2" height="300" src={player.example2} frameBorder="0" allowFullScreen></iframe>
+                        </div>}
+                        {player.example3 && <div className="col-12 col-md-6 mb-3">
+                          <iframe width="100%" title="sample3" height="300" src={player.example3} frameBorder="0" allowFullScreen></iframe>
+                        </div>}
+                        {player.example4 && <div className="col-12 col-md-6 mb-3">
+                          <iframe width="100%" title="sample4" height="300" src={player.example4} frameBorder="0" allowFullScreen></iframe>
+                        </div>}
+                        </div>
+                      </React.Fragment>}
+                  </ul>                
+          </div>
         </div>
     	</section>
 	  )
