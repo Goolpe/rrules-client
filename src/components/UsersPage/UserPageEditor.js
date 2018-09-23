@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchPlayer, changePlayerData } from "../actions/playerActions";
-import { Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { withRouter } from "react-router-dom";
+import { Col, Button, Form, FormGroup, Label, Input, UncontrolledTooltip } from "reactstrap";
+import { FaTimes } from "react-icons/fa";
+import { withRouter, Link } from "react-router-dom";
 import moment from "moment";
 import 'moment/locale/ru';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
@@ -115,10 +116,18 @@ class UserPageEditor extends Component {
   }
   render() {
     return (
-      <section id="userEditPage" style={{minHeight: "100vh"}}>    
-        <div className="container pt-5 pb-5">
-          <Form style={{maxWidth: "700px"}} onSubmit={this.handleSubmit} className="pl-5 pr-5 pt-3 pb-3 mx-auto shadow bg-white">
-            <h4 className="text-muted">Информация о себе</h4>
+      <section id="userEditPage">    
+        <div className="container">
+          <Form style={{maxWidth: "700px"}} onSubmit={this.handleSubmit} className="pl-5 pr-5 pt-3 pb-3 mx-auto shadow bg_card">
+            <div className="d-flex justify-content-between">
+              <h2>Информация</h2>
+                <Link className="userpage__facog mt-2" style={{height:"1.5em"}} id="TooltipSetting" to={`/@${this.props.auth.user.name}`}>
+                  <FaTimes size="1.5em"/>
+                </Link>
+                <UncontrolledTooltip className="mr-2" placement="left" target="TooltipSetting">
+                  Выйти из настройки
+                </UncontrolledTooltip>
+            </div>
             <hr />
             <FormGroup className="pt-3" row>
               <Label sm={4}>Имя:</Label>

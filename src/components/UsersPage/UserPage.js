@@ -25,7 +25,7 @@ class UserPage extends Component {
         <div className="container">
             {this.props.match.params.nickname !== user.name && <p className="text-white pb-4">
               <Link to="/masters" className="p-0 btn">
-                <FaAngleLeft size="1.5em"/> Все игры&nbsp;
+                <FaAngleLeft size="1.5em"/> Все мастера&nbsp;
               </Link>
             </p>}
             <div className="shadow bg_card">
