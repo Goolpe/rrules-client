@@ -118,118 +118,116 @@ class UserPageEditor extends Component {
     return (
       <section id="userEditPage">    
         <div className="container">
-          <Form style={{maxWidth: "700px"}} onSubmit={this.handleSubmit} className="pl-5 pr-5 pt-3 pb-3 mx-auto shadow bg_card">
-            <div className="d-flex justify-content-between">
-              <h2>Информация</h2>
-                <Link className="userpage__facog mt-2" style={{height:"1.5em"}} id="TooltipSetting" to={`/@${this.props.auth.user.name}`}>
-                  <FaTimes size="1.5em"/>
-                </Link>
-                <UncontrolledTooltip className="mr-2" placement="left" target="TooltipSetting">
-                  Выйти из настройки
-                </UncontrolledTooltip>
+          <Form style={{maxWidth: "700px"}} onSubmit={this.handleSubmit} className="pl-5 pr-5 pb-3 mx-auto shadow bg_card">
+            <div className="d-flex justify-content-end w-100 pt-3 pb-3" >
+              <Link className="userpage__facog mt-2" style={{height:"1.5em"}} id="TooltipSetting" to={`/@${this.props.auth.user.name}`}>
+                <FaTimes size="1.5em"/>
+              </Link>
+              <UncontrolledTooltip className="mr-2" placement="left" target="TooltipSetting">
+                Выйти из настройки
+              </UncontrolledTooltip>
             </div>
-            <hr />
-            <FormGroup className="pt-3" row>
-              <Label sm={4}>Имя:</Label>
-              <Col sm={8}>
-                <Input type="text" value={this.state.fullName || ""} onChange={this.onChange} name="fullName"/>
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-                  <Label sm={4}>Пол:</Label>
-                  <Col sm={8}>
-                    <div className="custom-control custom-radio">
-                        <input type="radio" className="custom-control-input" value={true} onChange={()=>{this.setState({gender: true})}} checked={this.state.gender === true} id="radioGender1" />
-                        <label className="custom-control-label" htmlFor="radioGender1">Мужской</label>
-                    </div>
-                    <div className="custom-control custom-radio">
-                        <input type="radio" className="custom-control-input" value={false} onChange={()=>{this.setState({gender: false})}} checked={this.state.gender === false} id="radioGender2" />
-                        <label className="custom-control-label" htmlFor="radioGender2">Женский</label>
-                    </div>
-                  </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label sm={4}>День рождения:</Label>
-              <Col sm={8}>
-              <DayPickerInput value={moment(this.state.selectedDay).format("L")} dayPickerProps={{
-            locale: 'ru', localeUtils: MomentLocaleUtils
-          }} onDayChange={(selectedDay)=> {this.setState({selectedDay})}}
-            />
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label sm={4}>Город:</Label>
-              <Col sm={8}>
-                <Input type="text" value={this.state.cityLive || ""} onChange={this.onChange} name="cityLive" />
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label sm={4}>О себе:</Label>
-              <Col sm={8}>
-                <Input type="textarea" value={this.state.about || ""} onChange={this.onChange} name="about" />
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label sm={4}>Любимые системы:</Label>
-              <Col sm={8}>
-                <Input type="textarea" value={this.state.systems || ""} onChange={this.onChange} name="systems"/>
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label sm={4}>Любимые сеттинги:</Label>
-              <Col sm={8}>
-                <Input type="textarea" value={this.state.setting || ""} onChange={this.onChange} name="setting"/>
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label sm={4}>Аватар:</Label>
-              <Col sm={8}>
-                <Input type="text" value={this.state.photo || ""} onChange={this.onChange} name="photo"/>
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-                  <Label sm={4}>Водишь игры?</Label>
-                  <Col sm={8}>
-                    <div className="custom-control custom-radio">
-                        <input type="radio" className="custom-control-input" value={true} onChange={()=>{this.setState({leading: "yesMaster"})}} checked={this.state.leading === "yesMaster"} id="radio1" />
-                        <label className="custom-control-label" htmlFor="radio1">Да</label>
-                    </div>
-                    <div className="custom-control custom-radio">
-                        <input type="radio" className="custom-control-input" value={false} onChange={()=>{this.setState({leading: "noMaster"})}} checked={this.state.leading === "noMaster"} id="radio2" />
-                        <label className="custom-control-label" htmlFor="radio2">Нет</label>
-                    </div>
-                  </Col>
-            </FormGroup>
-           {this.state.leading === "yesMaster" && <FormGroup row>
-              <Label sm={4}>Примеры игр:</Label>
-              <Col sm={8}>
-                <Input type="text" value={this.state.example1} onChange={this.onChange} className="mb-3" name="example1" />
-                <Input type="text" value={this.state.example2} onChange={this.onChange} className="mb-3" name="example2" />
-                <Input type="text" value={this.state.example3} onChange={this.onChange} className="mb-3" name="example3" />
-                <Input type="text" value={this.state.example4} onChange={this.onChange} className="mb-3" name="example4" />
-              </Col>
-            </FormGroup>}
-            <FormGroup row>
-              <Label sm={4}>Skype:</Label>
-              <Col sm={8}>
-                <Input type="text" value={this.state.skype || ""} onChange={this.onChange} name="skype" />
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label sm={4}>Discord:</Label>
-              <Col sm={8}>
-                <Input type="text" value={this.state.discord || ""} onChange={this.onChange} name="discord"/>
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label sm={4}>Доп. контакты:</Label>
-              <Col sm={8}>
-                <Input type="text" value={this.state.otherContacts || ""} onChange={this.onChange} name="otherContacts"/>
-              </Col>
-            </FormGroup>
-            <FormGroup className="mt-5 mb-4" row>
-              <Button type="submit" color="info" className="mx-auto pl-5 pr-5">Сохранить</Button>
-            </FormGroup>
+              <FormGroup className="pt-3" row>
+                <Label sm={4}>Имя:</Label>
+                <Col sm={8}>
+                  <Input type="text" value={this.state.fullName || ""} onChange={this.onChange} name="fullName"/>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                    <Label sm={4}>Пол:</Label>
+                    <Col sm={8}>
+                      <div className="custom-control custom-radio">
+                          <input type="radio" className="custom-control-input" value={true} onChange={()=>{this.setState({gender: true})}} checked={this.state.gender === true} id="radioGender1" />
+                          <label className="custom-control-label" htmlFor="radioGender1">Мужской</label>
+                      </div>
+                      <div className="custom-control custom-radio">
+                          <input type="radio" className="custom-control-input" value={false} onChange={()=>{this.setState({gender: false})}} checked={this.state.gender === false} id="radioGender2" />
+                          <label className="custom-control-label" htmlFor="radioGender2">Женский</label>
+                      </div>
+                    </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={4}>День рождения:</Label>
+                <Col sm={8}>
+                <DayPickerInput value={moment(this.state.selectedDay).format("L")} dayPickerProps={{
+              locale: 'ru', localeUtils: MomentLocaleUtils
+            }} onDayChange={(selectedDay)=> {this.setState({selectedDay})}}
+              />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={4}>Город:</Label>
+                <Col sm={8}>
+                  <Input type="text" value={this.state.cityLive || ""} onChange={this.onChange} name="cityLive" />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={4}>О себе:</Label>
+                <Col sm={8}>
+                  <Input type="textarea" value={this.state.about || ""} onChange={this.onChange} name="about" />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={4}>Любимые системы:</Label>
+                <Col sm={8}>
+                  <Input type="textarea" value={this.state.systems || ""} onChange={this.onChange} name="systems"/>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={4}>Любимые сеттинги:</Label>
+                <Col sm={8}>
+                  <Input type="textarea" value={this.state.setting || ""} onChange={this.onChange} name="setting"/>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={4}>Аватар:</Label>
+                <Col sm={8}>
+                  <Input type="text" value={this.state.photo || ""} onChange={this.onChange} name="photo"/>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                    <Label sm={4}>Водишь игры?</Label>
+                    <Col sm={8}>
+                      <div className="custom-control custom-radio">
+                          <input type="radio" className="custom-control-input" value={true} onChange={()=>{this.setState({leading: "yesMaster"})}} checked={this.state.leading === "yesMaster"} id="radio1" />
+                          <label className="custom-control-label" htmlFor="radio1">Да</label>
+                      </div>
+                      <div className="custom-control custom-radio">
+                          <input type="radio" className="custom-control-input" value={false} onChange={()=>{this.setState({leading: "noMaster"})}} checked={this.state.leading === "noMaster"} id="radio2" />
+                          <label className="custom-control-label" htmlFor="radio2">Нет</label>
+                      </div>
+                    </Col>
+              </FormGroup>
+             {this.state.leading === "yesMaster" && <FormGroup row>
+                <Label sm={4}>Примеры игр:</Label>
+                <Col sm={8}>
+                  <Input type="text" value={this.state.example1} onChange={this.onChange} className="mb-3" name="example1" />
+                  <Input type="text" value={this.state.example2} onChange={this.onChange} className="mb-3" name="example2" />
+                  <Input type="text" value={this.state.example3} onChange={this.onChange} className="mb-3" name="example3" />
+                  <Input type="text" value={this.state.example4} onChange={this.onChange} className="mb-3" name="example4" />
+                </Col>
+              </FormGroup>}
+              <FormGroup row>
+                <Label sm={4}>Skype:</Label>
+                <Col sm={8}>
+                  <Input type="text" value={this.state.skype || ""} onChange={this.onChange} name="skype" />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={4}>Discord:</Label>
+                <Col sm={8}>
+                  <Input type="text" value={this.state.discord || ""} onChange={this.onChange} name="discord"/>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={4}>Доп. контакты:</Label>
+                <Col sm={8}>
+                  <Input type="text" value={this.state.otherContacts || ""} onChange={this.onChange} name="otherContacts"/>
+                </Col>
+              </FormGroup>
+              <FormGroup className="mt-5 mb-4" row>
+                <Button type="submit" color="info" className="mx-auto pl-5 pr-5">Сохранить</Button>
+              </FormGroup>
           </Form>
         </div>
       </section>
