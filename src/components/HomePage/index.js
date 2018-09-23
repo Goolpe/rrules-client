@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Games from './games';
+import Games from '../GamesPage/GamesBlock';
 import CarouselBlock from './carousel';
 import Social from './social';
 import { FaYoutube, FaGamepad, FaNewspaper, FaGlobe } from 'react-icons/fa';
@@ -29,7 +29,9 @@ class HomePage extends Component {
                 <div className="mb-5">
                   <span className="text-success">
                   <FaGamepad size="1.5em"/> Игры</span> | <Link to="/games" className="text_card">Все игры</Link>
-                  <Games />
+                  <div className="pt-3">
+                    <Games />
+                  </div>
                 </div>
                 <div className="mb-5">
                   <span className="text-info">

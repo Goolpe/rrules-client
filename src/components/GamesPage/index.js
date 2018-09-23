@@ -13,6 +13,7 @@ import { MomentLocaleUtils, formatDate, parseDate } from 'react-day-picker/momen
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import { FaStar, FaGamepad  } from "react-icons/fa";
+import Games from './GamesBlock';
 
  class GamesPage extends Component {
       constructor() {
@@ -82,7 +83,7 @@ import { FaStar, FaGamepad  } from "react-icons/fa";
 	}
 
     render() {
-      	const {user} = this.props.auth;
+      const {user} = this.props.auth;
 
 	//datepiceker consts
 	    const { from, to } = this.state;
@@ -134,35 +135,6 @@ import { FaStar, FaGamepad  } from "react-icons/fa";
           pageNumbers.push(i);
         }
 
-        const renderTodos = currentTodos.filter(game=> game.archive === false).map((game,index) => 
-          <Link to={`/game/${game._id}`} className="m-0 p-0 mb-4 btn text-left text_card w-100" key={index}>
-          <div className="p-3 bg_card shadow" >  
-            <p className="pb-3 border-bottom">{game.nameGame}</p>       
-            <div className="row">
-              <div className="col-12 col-md-3">
-                {this.props.players.filter(master => game.masterName === master.username)
-                  .map(master => 
-                  <div key={master._id}>
-                    <p>Мастер: {master.username}</p>
-                    <p><FaStar className="text-warning" /> - {master.rating}/5</p>
-                  </div>
-                )}
-              </div>
-              <div className="col-12 col-md-5">
-                <p>Дата игры: {moment(game.from).format('lll')}</p>
-                <p>Тип игры: {game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}
-                 {game.selectedOption === "sortByTypeIRL" && <span className="ml-3">Город: {game.cityGame}</span>}</p>
-                
-              </div>
-              <div className="col-12 col-md-4">
-                <p className="d-flex-wrap" style={{wordWrap: "break-word"}}>Всего мест: {game.placeAll - game.gamersInsideId.length} / {game.placeAll}
-                </p>
-                <p>Стоимость: {game.priceGame.length === 0 ? "Бесплатно" : game.priceGame}</p>
-              </div>
-            </div>
-          </div>
-          </Link>
-          )
 
         const renderPageNumbers = pageNumbers.map(number => {
           return (
@@ -262,7 +234,7 @@ import { FaStar, FaGamepad  } from "react-icons/fa";
                       </div>
                   </div>
                   <div className="col-12 col-lg-9 mt-2">
-                    <div style={{height:"600px"}}>{renderTodos}</div>
+                    <Games currentTodos={currentTodos} />
                   	<Pagination aria-label="Page navigation">
       			    	    {renderPageNumbers}
       		    	    </Pagination>

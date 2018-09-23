@@ -42,13 +42,10 @@ class UserPageEditor extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillMount() {
-      this.props.fetchPlayer(this.props.auth.user.name)
-    }
-
   componentDidMount() {
     window.scrollTo(0,0);
     if(this.props.auth.isAuthenticated){
+      this.props.fetchPlayer(this.props.auth.user.name)
       this.props.history.push(`/edit/${this.props.auth.user.name}`)
     }
     else{

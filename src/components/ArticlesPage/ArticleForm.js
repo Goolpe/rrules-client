@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createArticle } from '../actions/postActions';
-import { FaTimesCircle } from "react-icons/fa";
+import { FaAngleLeft } from "react-icons/fa";
 
 class ArticleForm extends Component {
 	constructor(props){
@@ -47,21 +47,12 @@ class ArticleForm extends Component {
 	}
   render() {
 	  return (
-	  	<section id="articleform" style={{minHeight: "100vh"}}>	 
-		  	<div className="container text-right pt-5 pb-5">
-		  		<div className="row">
-					<div className="col-3"></div>
-					<div className="col-6">
-						<h1 className="text-center mb-5">СОЗДАТЬ СТАТЬЮ
-						</h1>
-					</div>
-					<div className="col-3">
-						<Link to="/articles" className="btn btn-link bg-transparent border-0" >
-							<FaTimesCircle size="3em" className="text-info" />
-						</Link>
-					</div>
-				</div>		  	
-	    		<form onSubmit={this.onSubmit} >
+	  	<section id="articleform">	 
+		  	<div className="container text_card">
+					<Link to="/articles">
+						<FaAngleLeft size="1.5em"/> Выйти
+					</Link>	
+	    		<form onSubmit={this.onSubmit} className="pt-3">
 	    			<div className="form-group text-left">
 	                	<label>Картинка</label>
 	                	<input type="text" value={this.state.picture} onChange={this.onChange} name="picture" className="form-control" placeholder="" required />

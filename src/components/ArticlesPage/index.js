@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { fetchArticles } from '../actions/postActions';
 import { fetchPlayers } from '../actions/playerActions';
 import moment from 'moment';
-import { FaPlusCircle, FaNewspaper} from "react-icons/fa";
+import { FaPlus, FaNewspaper} from "react-icons/fa";
 
 class ArticlesPage extends Component {
 	constructor(props){
@@ -78,11 +78,11 @@ class ArticlesPage extends Component {
 			<section id="articlesPage">	  
 				<div className="container text-left">
 					<span className="text_card">
-						<FaNewspaper size="1.5em"/> Новости 
-					</span>
-					{user.moderator && <Link to="/article-new" className="btn btn-link bg-transparent border-0" >
-						<FaPlusCircle size="3em" className="text-info" />
+						<FaNewspaper size="1.5em"/> Новости | 
+					{user.moderator && <Link to="/article-new" className="ml-2" >
+						<FaPlus  />
 					</Link>}
+					</span>
 					<ul className="pt-5">{listItems}</ul>
 					<Pagination aria-label="Page navigation">
       			    	{renderPageNumbers}

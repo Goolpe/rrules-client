@@ -23,6 +23,9 @@ a{
     color: #fff !important;   
 }
 
+.bg_card{
+    background: #3b3c40 !important;  
+}
 @font-face
 {
     font-family: Albertusfont;
@@ -100,54 +103,6 @@ svg,
 
 /*HomePage*/
 
-.bg_card{
-    background: #3b3c40 !important;  
-}
-
-
-.homepage__news{
-    display: none;
-}
-
-.carousel,
-.carousel-inner
-{
-    height: 100%;
-}
-
-#videos,
-#schedule
-{
-    background-color: #20232c;
-}
-
-#arts .wrapper
-{
-    height: 50vh;
-
-    background: no-repeat;
-    background-position: top;
-    background-size: cover;
-}
-
-#arts .wrapper:hover .card
-{
-    background: rgba(0,0,0,.5);
-}
-#arts .card
-{
-    height: 50vh;
-
-    cursor: pointer;
-    transition: .5s;
-
-    background: transparent;
-}
-#arts .text-white
-{
-    text-decoration: none;
-}
-
 #social a{
   border-radius: 10px;
   margin:20px;
@@ -185,25 +140,7 @@ svg,
     color: #c54a9a !important;
 }
 
-#reviews img
-{
-    height: 200px;
-}
-
-#reviews .carousel-inner
-{
-    height: 300px;
-}
-
 /*About*/
-
-#aboutPage p
-{
-    text-align: justify;
-    text-indent: 1.5em;
-}
-
-
 
 #library .wrapper{
     height: 300px;
@@ -246,15 +183,7 @@ svg,
 .userpage__facog:hover svg{
     transform: rotate(90deg);
 }
-   
-.userCard{
-    background-color: #fff
-}
 
-.userCard:hover{
-    background-color: #587ea2;
-    color:#fff
-}
 
 #masters .wrapper:hover,
 #library .wrapper:hover,
@@ -297,19 +226,6 @@ svg,
     width: 100%;
 }
 
-.blackBG
-{
-    position: fixed;
-    z-index: 20;
-
-    width: 100%;
-    height: 100%;
-
-    transition: 1s;
-
-    background-color: rgba(0,0,0,.9);
-}
-
 .form-inline .form-control
 {
     width: 700px !important;
@@ -346,6 +262,7 @@ footer ul
     color: #fff;
     background-color: rgba(0,0,0,.7);
 }
+
 #arrowUp:hover
 {
     width: 50px;
@@ -355,6 +272,7 @@ footer ul
 
     background-color: rgba(0,0,0,1);
 }
+
 @media (max-width: 1199.98px)
 {
     h1
@@ -386,10 +304,6 @@ footer ul
     h2
     {
         font-size: 15px !important;
-    }
-
-    #colNav{
-        height: 100vh;
     }
 
     .navbar-toggler
@@ -482,10 +396,38 @@ footer ul
 }
 @media (max-width: 767.98px)
 {
-    #reviews .carousel-inner
-    {
-        height: 200px;
+    #Navigation{
+        height:40px;
+        display: inline-block;
+        width: 100%;
+        background: #181818;
+        z-index: 999;
+        overflow: hidden;
+    }   
+    #Navigation .flex-column{
+        flex-direction: row!important;
     }
+    #Navigation ul{
+        padding-top: 5px;
+        display: flex;
+    }
+    #Navigation li{
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+    .display-1{
+        font-size: 3em !important;
+    }
+    #TooltipNavToggle{
+        display: none;
+    }
+    section{
+        padding-top: 50px;
+    }
+    .tooltip {
+        display: none !important;
+    }
+
     #articlesPage .text-right
     {
         text-align: left !important;

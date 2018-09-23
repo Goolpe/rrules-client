@@ -19,14 +19,13 @@ export const fetchPlayer = (playerData, history) => dispatch => {
   fetch(server.online + '/players/one/' + playerData)
       .then(
         res => res.json(),
-        err => console.log(err)
+        err => history.push('/404')
       )
       .then(player => 
       dispatch({
         type: FETCH_PLAYER,
         payload: player
       }))
-      .catch(err => history.push('/404'))
 };
 
 export const changePlayerData = (playerData) => dispatch => {

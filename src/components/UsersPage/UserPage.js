@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { fetchPlayer } from '../actions/playerActions';
 import moment from 'moment';
 import Msgs from './msgs';
-import Games from '../HomePage/games';
 import { FaStar, FaCog, FaAngleLeft, FaSignOutAlt } from "react-icons/fa";
 import { UncontrolledTooltip } from 'reactstrap';
 import { logoutUser } from '../actions/authActions';
@@ -58,7 +57,7 @@ class UserPage extends Component {
                         </React.Fragment>
                       }
                     </div>
-                    <li>{player.master && "Мастер"}</li>
+                    <li>Статус: {player.master ? "Мастер" : "Мастер"}</li>
                     <li>Рейтинг: <FaStar className="text-warning" /> - {player.rating}/5</li>
                     <li>Зарегистрирован: {moment(player.dateReg).format('LL')}</li>
                     <hr/>

@@ -16,7 +16,7 @@ class AgreementPage extends Component {
 	                <FaTimes size="1.5em"/>
 	              </Link>
 	              <UncontrolledTooltip className="mr-2" placement="left" target="TooltipSetting">
-	                Авторизация
+	                Авторизация	
 	              </UncontrolledTooltip>
 	            </div>
 		    	<div className="shadow bg_card text_card p-5 w-100 m-auto">
