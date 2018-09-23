@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { FaTimes } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+import { UncontrolledTooltip } from "reactstrap";
 
 class AgreementPage extends Component {
 	componentDidMount() {
@@ -6,9 +9,17 @@ class AgreementPage extends Component {
 	}
   render() {
     return (
-    	<section id="agreement" style={{minHeight: "100vh"}}>
-	    	<div className="container pt-5 pb-5">
-		    	<div className="shadow-sm bg-white p-5 w-100 m-auto">
+    	<section id="agreement">
+	    	<div className="container">
+				<div className="d-flex justify-content-end w-100 pt-3 pb-3" >
+	              <Link className="userpage__facog mt-2 text_card" style={{height:"1.5em"}} id="TooltipSetting" to="/auth">
+	                <FaTimes size="1.5em"/>
+	              </Link>
+	              <UncontrolledTooltip className="mr-2" placement="left" target="TooltipSetting">
+	                Авторизация
+	              </UncontrolledTooltip>
+	            </div>
+		    	<div className="shadow bg_card text_card p-5 w-100 m-auto">
 		    		<h2>Пользовательское соглашение (далее соглашение)</h2>
 		    		<hr />
 		    		<p className="text-justify"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo sint, obcaecati tenetur aperiam iusto tempore nobis, amet, temporibus natus corporis ad doloremque. Ut eos est beatae dolore quia consequatur earum.</span>

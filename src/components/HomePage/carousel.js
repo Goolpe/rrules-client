@@ -60,8 +60,7 @@ class CarouselBlock extends Component {
           onExiting={this.onExiting}
           onExited={this.onExited}
         >
-            <div className="container pt-5 pb-5">
-              <div className="row text-white text-center justify-content-between">
+              <div className="row pt-4 text_card pb-4 justify-content-between">
                 <div className="col-12 col-lg-8 text-left">
                   <p>{moment(article.date).format('LL')}</p>
                   <h1 className="text-center">{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
@@ -72,7 +71,6 @@ class CarouselBlock extends Component {
                   <img alt={article.title} className="img-fluid" style={{backgroundSize: "contain", height:"400px"}} src={article.picture} />
                 </div>
               </div>
-            </div>
         </CarouselItem>
       ).slice(0,3);
     return (

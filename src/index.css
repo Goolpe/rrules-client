@@ -16,7 +16,11 @@ section{
 }
 
 a{
-    color:#fff !important;
+    text-decoration: none !important;
+}
+
+.text_card, a{
+    color: #fff !important;   
 }
 
 @font-face
@@ -61,6 +65,7 @@ button
     background: #555; 
 }
 
+
 /*Navigation */
 
 #Navigation{
@@ -96,15 +101,9 @@ svg,
 /*HomePage*/
 
 .bg_card{
-    background: #3b3c40 !important; 
-    color: #fff !important;   
+    background: #3b3c40 !important;  
 }
 
-.page_card{
-    padding: 10px;
-    color:#fff;
-    overflow: hidden;
-}
 
 .homepage__news{
     display: none;
@@ -154,7 +153,6 @@ svg,
   margin:20px;
   padding: 20px;
   text-decoration: none;
-  color:#fff !important;
 }
 
 #social svg{

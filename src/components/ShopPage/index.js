@@ -9,7 +9,7 @@ class ShopPage extends Component {
 	 render(){
 	const listItems = shop.map((thing) =>
 		<div className="col-12 col-md-4 mb-4" key={thing.id}>
-			<div className="bg_card text-center text-white border-0 shadow">
+			<div className="bg_card text-center text_card border-0 shadow">
 			  <img className="card-img-top" src={thing.picture} alt={thing.title} />
 			  <i className="fas fa-external-link-alt text-dark position-absolute fa-2x" style={{top:"5%",left:"85%"}}></i>
 			  <div className="card-body">
@@ -23,7 +23,7 @@ class ShopPage extends Component {
 	return (
 	<section id="shop">
 			<div className="container">
-				<span className="text-white">
+				<span className="text_card">
 		            <FaShoppingBag size="1.5em"/> Товары Random Rules
 		        </span> 
 				<div className="row pt-5">

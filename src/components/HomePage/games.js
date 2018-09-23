@@ -39,8 +39,8 @@ class Games extends Component {
 	 	let gamesSort = _.sortBy(this.props.games, ['from'])
 
 	 	const listGames = gamesSort.map(game => 
-	 		<Link to={`/game/${game._id}`} className="m-0 p-0 mb-2 btn text-left text-dark w-100" key={game._id}>
- 				<div className="shadow page_card bg_card">
+	 		<Link to={`/game/${game._id}`} className="m-0 p-0 mb-2 btn text-left w-100" key={game._id}>
+ 				<div className="shadow bg_card p-3">
                   		<p className="mb-0">{game.nameGame}</p>  
                   	<div className="row">
 		              	<div className="col-12 col-md-2 mt-3">
@@ -67,7 +67,7 @@ class Games extends Component {
 	 		</Link>
 	 		).slice(0,2)
 	return (
-		<div className="pt-3 pb-3">
+		<div className="pt-3 pb-3 text_card">
 			{listGames}
 		</div>
 	)

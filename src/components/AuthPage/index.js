@@ -38,9 +38,9 @@ class AuthPage extends Component{
   }
   render(){	
       return ( <div>     
-		  <section id="login" style={{minHeight:"100vh"}} className="pt-5">
+		  <section id="login" className="pt-5">
         <div className="container" >
-        <div className="container shadow-lg bg-white pt-5 pb-5 text-center" style={{maxWidth: "400px"}}>
+        <div className="container shadow bg-white pt-5 pb-5 text-center" style={{maxWidth: "400px"}}>
           <a href='https://randomrulesdb.herokuapp.com/auth/vkontakte' className="btn btn-dark m-2"> <FaVk /></a>
           <a href='https://randomrulesdb.herokuapp.com/auth/facebook' className="btn btn-dark m-2 pr-3 pl-3"> <FaFacebookF /></a>  
           <a href='https://randomrulesdb.herokuapp.com/auth/google' className="btn btn-dark m-2"> <FaGoogle /></a> 
@@ -48,7 +48,7 @@ class AuthPage extends Component{
            <Nav tabs style={{cursor: "pointer"}} className="justify-content-center">
             <NavItem>
               <NavLink
-                className={classnames({ active: this.state.activeTab === 'login' })}
+                className={"text-dark " + classnames({ active: this.state.activeTab === 'login' })}
                 onClick={() => { this.toggle('login'); }}
               >
                 ВХОД
@@ -56,7 +56,7 @@ class AuthPage extends Component{
             </NavItem>
             <NavItem>
               <NavLink 
-                className={classnames({ active: this.state.activeTab === 'register' })}
+                className={"text-dark " + classnames({ active: this.state.activeTab === 'register' })}
                 onClick={() => { this.toggle('register'); }}
               >
                 РЕГИСТРАЦИЯ

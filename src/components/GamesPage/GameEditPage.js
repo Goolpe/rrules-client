@@ -80,8 +80,8 @@ class GameEditPage extends Component {
   render() {
 	  return (
 	  	<section id="createGame">
-			<div className="container">
-				<p className="text-white pb-4"><Link to={`/game/${this.props.match.params.id}`} className="p-0 btn">
+			<div className="container text_card">
+				<p className="text_card pb-4"><Link to={`/game/${this.props.match.params.id}`} className="text_card p-0 btn">
 			        <FaAngleLeft size="1.5em"/> Назад&nbsp;
 			    </Link> 
 			    | Редактировать игру</p>

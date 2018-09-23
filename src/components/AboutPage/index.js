@@ -20,14 +20,14 @@ class AboutPage extends Component {
     return (
     	<section id="aboutPage">
     		<div className="container">
-	    		<span className="text-white">
+	    		<span className="text_card">
 		            <FiCode size="1.5em"/> О проекте 
 		        </span>
-	    		<button id="toggler1" className="bg_card btn shadow text-white p-4 mt-5 mb-3 w-100 text-left">
+	    		<button id="toggler1" className="bg_card text_card btn shadow p-4 mt-5 mb-3 w-100 text-left">
 			      - Что такое настольные ролевые игры?
 			    </button>
 			    <UncontrolledCollapse toggler="#toggler1">
-			      <Card>
+			      <Card className="rounded-0">
 			        <CardBody>
 			         <p>Если вы хоть раз играли в компьютерные RPG, то без особых проблем поймете, что тут к чему. "Настолки" по сути являются прародителями RPG, такие игры как Baldurs Gate, Neverwinter Nights, Tides Of Numenera и пр. основаны на них. В роли компьютера выступает "Мастер". Этот человек рассказывает сюжет, описывает, что происходит вокруг игроков и выдает им "квесты". Остальные участники управляют своими игровыми персонажами, описывая их действия, успешность которых определяется бросками игральных кубиков по специальным системам.</p><br />
 
@@ -38,22 +38,22 @@ class AboutPage extends Component {
 			      </Card>
 			    </UncontrolledCollapse><br />
 
-	    		<button id="toggler2" className="bg_card btn shadow text-white p-4 mb-3 w-100 text-left">
+	    		<button id="toggler2" className="bg_card text_card btn shadow p-4 mb-3 w-100 text-left">
 			      - Когда проходят игры/стримы?
 			    </button>
 			    <UncontrolledCollapse toggler="#toggler2">
-			      <Card>
+			      <Card className="rounded-0">
 			        <CardBody>
 			         <p>Расписание можно найти в ссылках группы или в информации о канале на Twitch.</p>
 			        </CardBody>
 			      </Card>
 			    </UncontrolledCollapse><br />
 
-		        <button id="toggler3" className="bg_card btn shadow text-white p-4 mb-3 w-100 text-left">
+		        <button id="toggler3" className="bg_card text_card btn shadow p-4 mb-3 w-100 text-left">
 			      - Как принять участие?
 			    </button>
 			    <UncontrolledCollapse toggler="#toggler3">
-			      <Card>
+			      <Card className="rounded-0">
 			        <CardBody>
 			         <p>Примерно раз в неделю у нас проходит игра OneShot - короткий сюжет на 3-4 часа. За пару дней до нее мы даем объявление группу и набираем несколько человек по заявкам на участие.</p><br />
 					<p>Если вы не хотите ждать, надеясь, что именно вашу заявку одобрят, можете ознакомиться с этой темой и поучаствовать в платных играх:
@@ -64,11 +64,11 @@ class AboutPage extends Component {
 			      </Card>
 			    </UncontrolledCollapse><br />
 
-		        <button id="toggler4" className="bg_card btn shadow text-white p-4 mb-3 w-100 text-left">
+		        <button id="toggler4" className="bg_card text_card btn shadow p-4 mb-3 w-100 text-left">
 			      - Что нужно, чтобы играть?
 			    </button>
 			    <UncontrolledCollapse toggler="#toggler4">
-			      <Card>
+			      <Card className="rounded-0">
 			        <CardBody>
 			        	<ListGroup flush>
 			         <ListGroupItem>1) Микрофон. Строго обязательно. Вся игра идет голосом.</ListGroupItem>

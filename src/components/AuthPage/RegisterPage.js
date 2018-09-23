@@ -102,7 +102,7 @@ class RegisterPage extends Component{
                 </InputGroup>
                 <div className="mb-3 custom-control custom-checkbox my-1 mr-sm-2">
                   <input type="checkbox" className="custom-control-input" id="customControlInline" required/>
-                  <label style={{fontSize: "14px"}} className="custom-control-label" htmlFor="customControlInline">Я принимаю <Link to="/agreement" className="btn-link">пользовательскоe соглашениe</Link></label>
+                  <label style={{fontSize: "14px"}} className="custom-control-label" htmlFor="customControlInline">Я принимаю <Link to="/agreement" className="btn-link text-dark">пользовательскоe соглашениe</Link></label>
                 </div>
                 <button type="submit" onClick={this.checkLetters} className="btn btn-info w-100 p-3">Зарегистрироваться</button>
               </form> 

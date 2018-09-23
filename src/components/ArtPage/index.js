@@ -49,12 +49,12 @@ class ArtPage extends Component{
 
   render () {
     return (
-      <section id="artpage" className="p-0">
+      <section id="artpage">
        {this.state.bigPicture && 
         <div className="blackBG" style={{zIndex: "999"}}>
-          <div className="row text-center text-white" style={{height: "100%"}}>
+          <div className="row text-center text_card" style={{height: "100%"}}>
             <div className="col-2 col-md-4 d-flex align-items-center justify-content-center " style={{height: "100%", cursor: "pointer"}}  onClick={this._TogglePrev}>
-               <button className="bg-transparent text-center text-white border-0 p-0"><FaChevronLeft size="3em" /></button>
+               <button className="bg-transparent text-center text_card border-0 p-0"><FaChevronLeft size="3em" /></button>
             </div>
             <div className="col-8 col-md-4 d-flex align-items-center justify-content-center" style={{height: "100%", cursor: "pointer"}}>    
                         
@@ -70,13 +70,13 @@ class ArtPage extends Component{
 
             </div> 
             <div className="col-2 col-md-4 d-flex align-items-center justify-content-center"  style={{height: "100%", cursor: "pointer"}} onClick={this._ToggleNext}>
-              <button className="bg-transparent text-center text-white border-0 p-0"><FaChevronRight size="3em" /></button> 
+              <button className="bg-transparent text-center text_card border-0 p-0"><FaChevronRight size="3em" /></button> 
             </div>
           </div>
         </div>}
 
-        <div className="container pt-5 pb-5">
-          <span className="text-white">
+        <div className="container">
+          <span className="text_card">
             <FiImage size="1.5em"/> Фан-арт 
           </span>
           <div className="row pt-5">

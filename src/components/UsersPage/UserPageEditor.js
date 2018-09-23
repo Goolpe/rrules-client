@@ -18,6 +18,7 @@ class UserPageEditor extends Component {
       username: this.props.player.username,
       fullName: this.props.player.fullName,
       photo: this.props.player.photo,
+      bgphoto: this.props.player.bgphoto,
       selectedDay: this.props.player.dateBirth,
       rating: this.props.player.rating,
       gamesCount: this.props.player.gamesCount,
@@ -60,6 +61,7 @@ class UserPageEditor extends Component {
       username: data.player.username,
       fullName: data.player.fullName,
       photo: data.player.photo,
+      bgphoto: data.player.bgphoto,
       selectedDay: data.player.dateBirth,
       rating: data.player.rating,
       gamesCount: data.player.gamesCount,
@@ -92,6 +94,7 @@ class UserPageEditor extends Component {
           id: this.props.player._id,
           fullName: this.state.fullName,
           photo: this.state.photo,
+          bgphoto: this.state.bgphoto,
           dateBirth: this.state.selectedDay,
           rating: this.state.rating,
           gamesCount: this.state.gamesCount,
@@ -117,10 +120,10 @@ class UserPageEditor extends Component {
   render() {
     return (
       <section id="userEditPage">    
-        <div className="container">
+        <div className="container text_card">
           <Form style={{maxWidth: "700px"}} onSubmit={this.handleSubmit} className="pl-5 pr-5 pb-3 mx-auto shadow bg_card">
             <div className="d-flex justify-content-end w-100 pt-3 pb-3" >
-              <Link className="userpage__facog mt-2" style={{height:"1.5em"}} id="TooltipSetting" to={`/@${this.props.auth.user.name}`}>
+              <Link className="userpage__facog mt-2 text_card" style={{height:"1.5em"}} id="TooltipSetting" to={`/@${this.props.auth.user.name}`}>
                 <FaTimes size="1.5em"/>
               </Link>
               <UncontrolledTooltip className="mr-2" placement="left" target="TooltipSetting">
@@ -148,7 +151,7 @@ class UserPageEditor extends Component {
               </FormGroup>
               <FormGroup row>
                 <Label sm={4}>День рождения:</Label>
-                <Col sm={8}>
+                <Col sm={8} className="text-dark">
                 <DayPickerInput value={moment(this.state.selectedDay).format("L")} dayPickerProps={{
               locale: 'ru', localeUtils: MomentLocaleUtils
             }} onDayChange={(selectedDay)=> {this.setState({selectedDay})}}
@@ -183,6 +186,12 @@ class UserPageEditor extends Component {
                 <Label sm={4}>Аватар:</Label>
                 <Col sm={8}>
                   <Input type="text" value={this.state.photo || ""} onChange={this.onChange} name="photo"/>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={4}>Фон:</Label>
+                <Col sm={8}>
+                  <Input type="text" value={this.state.bgphoto || ""} onChange={this.onChange} name="bgphoto"/>
                 </Col>
               </FormGroup>
               <FormGroup row>

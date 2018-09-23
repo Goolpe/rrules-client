@@ -19,19 +19,19 @@ class ArticlePage extends Component {
 
 	  return (
 	  <section id="articlePage">
-      <div className="container">	 
-      <Link to="/articles" className="btn p-0 text-white">
-        <FaAngleLeft size="1.5em"/> Все статьи 
-      </Link> 
-	  	<div className="m-auto pb-5 pt-5 text-light text-left" style={{width:"70%"}}>
-          <div className="bg_card">
-            <h1 className="text-center mb-5 pt-5">{article.title}</h1>
-            <div className="w-100 text-center" style={{height:"300px", overflow: "hidden"}}><img className="img-fluid" style={{height:"300px"}} alt={article.title} src={article.picture} /></div>
-            <div className="container">
-              <p className="pt-5">{article.text}</p>
-              <p className="pt-5 pb-5">{moment(article.date).format('LL')}</p>
+      <div className="container text_card">	 
+        <Link to="/articles" className="btn p-0">
+          <FaAngleLeft size="1.5em"/> Все статьи 
+        </Link> 
+  	  	<div className="m-auto pb-5 pt-5 text-left" style={{width:"70%"}}>
+            <div className="bg_card">
+              <h1 className="text-center mb-5 pt-5">{article.title}</h1>
+              <div className="w-100 text-center" style={{height:"300px", overflow: "hidden"}}><img className="img-fluid" style={{height:"300px"}} alt={article.title} src={article.picture} /></div>
+              <div className="container">
+                <p className="pt-5">{article.text}</p>
+                <p className="pt-5 pb-5">{moment(article.date).format('LL')}</p>
+              </div>
             </div>
-          </div>
         </div>
       </div>
     	</section>

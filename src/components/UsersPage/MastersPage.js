@@ -62,13 +62,13 @@ class MastersPage extends Component {
 	    return (
 	    	<section id="masters">
 	    		<div className="container">
-					<span className="text-white">
+					<span className="text_card">
 			            <FiUsers size="1.5em"/> Мастера канала 
 			        </span>
-					<div className="d-flex justify-content-end align-items-center text-white pb-2">
+					<div className="d-flex justify-content-end align-items-center text_card pb-2">
 						<p className="m-0">Вид:</p>
-						<button className="btn bg-transparent ml-2" onClick={()=>this.setState({viewList: false})}><i className={this.state.viewList ? "text-white text-secondary fas fa-th-large fa-2x" : "text-white fas fa-th-large fa-2x"}></i></button>
-						<button className="btn bg-transparent" onClick={()=>this.setState({viewList: true})}><i  className={this.state.viewList ? "text-white fas fa-th-list fa-2x" : "text-secondary fas fa-th-list fa-2x"}></i></button>
+						<button className="btn bg-transparent ml-2" onClick={()=>this.setState({viewList: false})}><i className={this.state.viewList ? "text-secondary fas fa-th-large fa-2x" : "text_card fas fa-th-large fa-2x"}></i></button>
+						<button className="btn bg-transparent" onClick={()=>this.setState({viewList: true})}><i  className={this.state.viewList ? "text_card fas fa-th-list fa-2x" : "text-secondary fas fa-th-list fa-2x"}></i></button>
 				    </div>
 				    <div className="row">
 					 	{this.state.viewList ? mastersList : mastersView  }

@@ -9,7 +9,7 @@ class SupportPage extends Component{
 	    return (
 	    	<section>
 	    		<div className="container">
-		    		<span className="text-white">
+		    		<span className="text_card">
                   		<FaHandsHelping size="1.5em"/> Поддержать проект 
                 	</span>
 				</div>

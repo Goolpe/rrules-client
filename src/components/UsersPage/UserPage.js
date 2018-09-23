@@ -6,16 +6,25 @@ import { fetchPlayer } from '../actions/playerActions';
 import moment from 'moment';
 import Msgs from './msgs';
 import Games from '../HomePage/games';
-import { FaStar, FaCog, FaAngleLeft } from "react-icons/fa";
+import { FaStar, FaCog, FaAngleLeft, FaSignOutAlt } from "react-icons/fa";
 import { UncontrolledTooltip } from 'reactstrap';
+import { logoutUser } from '../actions/authActions';
+import { fetchMsgs } from '../actions/msgActions';
 
 class UserPage extends Component {
-
+  constructor(props) {
+    super(props);
+    this.onLogout = this.onLogout.bind(this);
+  }
   componentWillMount() {
       this.props.fetchPlayer(this.props.match.params.nickname, this.props.history);
     }
   componentDidMount() {
     window.scrollTo(0,0);
+  }
+  onLogout(e) {
+    e.preventDefault();
+    this.props.logoutUser(this.props.history);
   }
   render() {
     const player = this.props.player;
@@ -35,12 +44,12 @@ class UserPage extends Component {
                     <div className="userpage__avatar" style={{backgroundImage: `url(${player.photo})`}}></div>
                 </div>
               </div>
-                  <ul className="p-4">
+                  <ul className="p-4 text_card">
                     <div className="d-flex justify-content-between">
-                      <h2>{player.username || ""} {player.master && <p>мастер</p>}</h2>
+                      <h2>{player.username || ""} {isAuthenticated && this.props.match.params.nickname === user.name && <button onClick={this.onLogout.bind(this)} className="btn btn-outline-danger text-white"><FaSignOutAlt /> Выйти</button>}</h2>
                       {isAuthenticated &&
                         <React.Fragment>
-                        <Link className="userpage__facog" style={{height:"1.5em"}} id="TooltipSetting" to={`/edit/@${player.username}`}>
+                        <Link className="userpage__facog text_card" style={{height:"1.5em"}} id="TooltipSetting" to={`/edit/@${player.username}`}>
                           <FaCog size="1.5em"/>
                         </Link>
                         <UncontrolledTooltip className="mr-2" placement="left" target="TooltipSetting">
@@ -49,6 +58,7 @@ class UserPage extends Component {
                         </React.Fragment>
                       }
                     </div>
+                    <li>{player.master && "Мастер"}</li>
                     <li>Рейтинг: <FaStar className="text-warning" /> - {player.rating}/5</li>
                     <li>Зарегистрирован: {moment(player.dateReg).format('LL')}</li>
                     <hr/>
@@ -92,14 +102,16 @@ class UserPage extends Component {
 UserPage.propTypes = {
   fetchPlayer: PropTypes.func.isRequired,
   player: PropTypes.object.isRequired,
+  fetchMsgs: PropTypes.func.isRequired,
+  logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
-};
+  msgs: PropTypes.array.isRequired
+}
 
-const mapStateToProps = state => ({
-  player: state.player.item,
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  errors: state.errors
+  player: state.player.item,
+  msgs: state.msgs.items
 })
 
-export default connect(mapStateToProps, { fetchPlayer })(UserPage);
+export default connect(mapStateToProps, { fetchMsgs, fetchPlayer, logoutUser })(UserPage);

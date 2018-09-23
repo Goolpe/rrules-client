@@ -117,8 +117,8 @@ class GamePage extends Component {
 
 	  return (
 	  	<section id="createGame">
-			<div className="container">
-				<p className="text-white pb-4"><Link to="/games" className="p-0 btn">
+			<div className="container text_card">
+				<p className="text_card pb-4"><Link to="/games" className="text_card p-0 btn">
 			        <FaAngleLeft size="1.5em"/> Все игры&nbsp;
 			    </Link> 
 			    | {game.nameGame || "Игра"}</p>

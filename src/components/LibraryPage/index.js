@@ -9,7 +9,7 @@ class LibraryPage extends Component{
   render(){	
     const libraryBooks = books.map((book, index)=>
       <div className="col-12 col-md-6 col-lg-3 mb-5" key={book.id}>
-        <a href={book.url} target="_blank" className="text-white">
+        <a href={book.url} target="_blank">
           <div className="wrapper bg_card shadow">
             <div className="pt-5 pb-5 card d-flex align-items-center justify-content-around rounded-0" >
               <h3 className="text-center pl-3 pr-3">{book.name.toUpperCase()}</h3>
@@ -21,10 +21,8 @@ class LibraryPage extends Component{
     )
     return (
     	<section id="library" >
-        <div className="container">
-          <span className="text-white">
-            <FiBookOpen size="1.5em"/> Библиотека 
-          </span>
+        <div className="container text_card">
+          <FiBookOpen size="1.5em"/> Библиотека 
           <div className="row pt-5">
             {libraryBooks}
           </div>
