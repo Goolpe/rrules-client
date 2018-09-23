@@ -16,8 +16,8 @@ class UserPage extends Component {
     this.onLogout = this.onLogout.bind(this);
   }
   componentWillMount() {
-      this.props.fetchPlayer(this.props.match.params.nickname, this.props.history);
-    }
+    this.props.fetchPlayer(this.props.match.params.nickname, this.props.history);
+  }
   componentDidMount() {
     window.scrollTo(0,0);
   }

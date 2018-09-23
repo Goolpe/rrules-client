@@ -66,8 +66,8 @@ class SocialAuth extends Component{
         <div className="container shadow-lg bg-white pt-5 pb-5 text-center" style={{maxWidth: "400px"}}>
          <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId="soclogin">
-              <Row>
-                <Col sm="12">
+              <Row >
+                <Col sm="12" className="text-dark">
                   {this.props.match.params.id === "vk" && <FaVk />}
                   {this.props.match.params.id === "google" && <FaGoogle />}
                   {this.props.match.params.id === "facebook" && <FaFacebookF />}
@@ -90,7 +90,7 @@ class SocialAuth extends Component{
             </TabPane>
             <TabPane tabId="login">
               <Row>
-                <Col sm="12">
+                <Col sm="12" className="text-dark">
                   <p>Войдите в аккаунт</p>
                   <LoginPage />
                   <p className="text-muted m-auto" style={{cursor: "pointer"}} onClick={()=> this.setState({activeTab: 'forgot'})}>Не могу войти</p>
@@ -100,7 +100,7 @@ class SocialAuth extends Component{
             </TabPane>
             <TabPane tabId="forgot">
               <Row>
-                <Col sm="12">
+                <Col sm="12"  className="text-dark">
                   <div>
                     <form>
                       <p>Восстановление аккаунта</p>

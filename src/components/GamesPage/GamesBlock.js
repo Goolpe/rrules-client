@@ -60,7 +60,7 @@ class Games extends Component {
               <div className="col-12 col-md-4">
                 <p className="d-flex-wrap" style={{wordWrap: "break-word"}}>Всего мест: {game.placeAll - game.gamersInsideId.length} / {game.placeAll}
                 </p>
-                <p>Стоимость: {game.priceGame.length === 0 ? "Бесплатно" : game.priceGame}</p>
+                <p>Стоимость: {game.priceGame === 0 ? "Бесплатно" : game.priceGame}</p>
               </div>
             </div>
           </div>
