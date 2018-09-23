@@ -44,8 +44,24 @@ button
     cursor: pointer;
 }
 
-.btn:focus {
+input{
+    background: transparent; 
+    border:0;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+}
+
+textarea{
+    border:0;
+    border-bottom: 1px solid #fff;
+    background: transparent; 
+    color: #fff;
+    height: 32px;
+}
+
+*:focus {
     box-shadow: none !important;
+    outline: none !important;
 }
 
 /* width */

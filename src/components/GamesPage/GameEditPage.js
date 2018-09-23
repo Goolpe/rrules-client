@@ -129,7 +129,7 @@ class GameEditPage extends Component {
 	{/*Price*/}
 			 					<div>
 			 						<label className="mr-2 mt-3">Стоимость: </label>
-			 						<input type="string" value={this.state.priceGame} onChange={this.onChange} name="priceGame"/><br />
+			 						<input type="number" value={this.state.priceGame} onChange={this.onChange} name="priceGame"/><br />
 			 					</div>
 			 					<div>
 			 						<label className="mr-2 mt-3">Ссылка на стрим: </label>
@@ -139,8 +139,8 @@ class GameEditPage extends Component {
 			 					<label className="mr-2 mt-3">Количество мест: </label>
 			 					<input type="number" min="1" max="20" value={this.state.placeAll} onChange={this.onChange} name="placeAll" /><br />
 	{/*Additionally info*/}		 					
-			 					<label className="mt-3">Превью:</label>
-			 					<textarea type="text" value={this.state.infoGame} style={{resize: "both", width: "100%", minHeight: "200px"}} onChange={this.onChange} name="infoGame" />
+			 					<label className="mr-2 mt-3">Превью:</label>
+			 					<textarea className="w-100" value={this.state.infoGame} onChange={this.onChange} name="infoGame" />
 			 				</div> 	
 			 			</div>	
 			 		</div>		

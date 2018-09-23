@@ -130,16 +130,18 @@ class UserPageEditor extends Component {
               <FormGroup className="pt-3" row>
                 <Label sm={4}>Имя:</Label>
                 <Col sm={8}>
-                  <Input type="text" value={this.state.fullName || ""} onChange={this.onChange} name="fullName"/>
+                  <input type="text" className="w-100" value={this.state.fullName || ""} onChange={this.onChange} name="fullName"/>
                 </Col>
               </FormGroup>
-              <FormGroup row>
+              <FormGroup className="pt-3" row>
                     <Label sm={4}>Пол:</Label>
-                    <Col sm={8}>
+                    <Col sm={3}>
                       <div className="custom-control custom-radio">
                           <input type="radio" className="custom-control-input" value={true} onChange={()=>{this.setState({gender: true})}} checked={this.state.gender === true} id="radioGender1" />
                           <label className="custom-control-label" htmlFor="radioGender1">Мужской</label>
                       </div>
+                    </Col>
+                    <Col sm={5}>
                       <div className="custom-control custom-radio">
                           <input type="radio" className="custom-control-input" value={false} onChange={()=>{this.setState({gender: false})}} checked={this.state.gender === false} id="radioGender2" />
                           <label className="custom-control-label" htmlFor="radioGender2">Женский</label>
@@ -148,7 +150,7 @@ class UserPageEditor extends Component {
               </FormGroup>
               <FormGroup row>
                 <Label sm={4}>День рождения:</Label>
-                <Col sm={8} className="text-dark">
+                <Col sm={8} className="text-dark ">
                 <DayPickerInput value={moment(this.state.selectedDay).format("L")} dayPickerProps={{
               locale: 'ru', localeUtils: MomentLocaleUtils
             }} onDayChange={(selectedDay)=> {this.setState({selectedDay})}}
@@ -158,77 +160,77 @@ class UserPageEditor extends Component {
               <FormGroup row>
                 <Label sm={4}>Город:</Label>
                 <Col sm={8}>
-                  <Input type="text" value={this.state.cityLive || ""} onChange={this.onChange} name="cityLive" />
+                  <input type="text" className="w-100" value={this.state.cityLive || ""} onChange={this.onChange} name="cityLive" />
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label sm={4}>О себе:</Label>
                 <Col sm={8}>
-                  <Input type="textarea" value={this.state.about || ""} onChange={this.onChange} name="about" />
+                  <textarea className="w-100" value={this.state.about || ""} onChange={this.onChange} name="about" />
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label sm={4}>Любимые системы:</Label>
                 <Col sm={8}>
-                  <Input type="textarea" value={this.state.systems || ""} onChange={this.onChange} name="systems"/>
+                  <textarea className="w-100" value={this.state.systems || ""} onChange={this.onChange} name="systems"/>
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label sm={4}>Любимые сеттинги:</Label>
                 <Col sm={8}>
-                  <Input type="textarea" value={this.state.setting || ""} onChange={this.onChange} name="setting"/>
+                  <textarea className="w-100" value={this.state.setting || ""} onChange={this.onChange} name="setting"/>
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label sm={4}>Аватар:</Label>
                 <Col sm={8}>
-                  <Input type="text" value={this.state.photo || ""} onChange={this.onChange} name="photo"/>
+                  <input type="text" className="w-100" value={this.state.photo || ""} onChange={this.onChange} name="photo"/>
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label sm={4}>Фон:</Label>
                 <Col sm={8}>
-                  <Input type="text" value={this.state.bgphoto || ""} onChange={this.onChange} name="bgphoto"/>
+                  <input type="text" className="w-100" value={this.state.bgphoto || ""} onChange={this.onChange} name="bgphoto"/>
                 </Col>
               </FormGroup>
               <FormGroup row>
-                    <Label sm={4}>Водишь игры?</Label>
-                    <Col sm={8}>
-                      <div className="custom-control custom-radio">
-                          <input type="radio" className="custom-control-input" value={true} onChange={()=>{this.setState({leading: "yesMaster"})}} checked={this.state.leading === "yesMaster"} id="radio1" />
-                          <label className="custom-control-label" htmlFor="radio1">Да</label>
-                      </div>
-                      <div className="custom-control custom-radio">
-                          <input type="radio" className="custom-control-input" value={false} onChange={()=>{this.setState({leading: "noMaster"})}} checked={this.state.leading === "noMaster"} id="radio2" />
-                          <label className="custom-control-label" htmlFor="radio2">Нет</label>
-                      </div>
-                    </Col>
-              </FormGroup>
-             {this.state.leading === "yesMaster" && <FormGroup row>
-                <Label sm={4}>Примеры игр:</Label>
-                <Col sm={8}>
-                  <Input type="text" value={this.state.example1} onChange={this.onChange} className="mb-3" name="example1" />
-                  <Input type="text" value={this.state.example2} onChange={this.onChange} className="mb-3" name="example2" />
-                  <Input type="text" value={this.state.example3} onChange={this.onChange} className="mb-3" name="example3" />
-                  <Input type="text" value={this.state.example4} onChange={this.onChange} className="mb-3" name="example4" />
+                <Label sm={4}>Водишь игры?</Label>
+                <Col sm={2}>
+                  <div className="custom-control custom-radio">
+                      <input type="radio" className="custom-control-input" value={true} onChange={()=>{this.setState({leading: "yesMaster"})}} checked={this.state.leading === "yesMaster"} id="radio1" />
+                      <label className="custom-control-label" htmlFor="radio1">Да</label>
+                  </div>
                 </Col>
+                <Col sm={6}>
+                  <div className="custom-control custom-radio">
+                      <input type="radio" className="custom-control-input" value={false} onChange={()=>{this.setState({leading: "noMaster"})}} checked={this.state.leading === "noMaster"} id="radio2" />
+                      <label className="custom-control-label" htmlFor="radio2">Нет</label>
+                  </div>
+                </Col>
+              </FormGroup>
+             {this.state.leading === "yesMaster" && <FormGroup>
+                <Label>Примеры игр:</Label>
+                  <input type="text" className="w-100 mb-3" value={this.state.example1} onChange={this.onChange} name="example1" />
+                  <input type="text" className="w-100 mb-3" value={this.state.example2} onChange={this.onChange} name="example2" />
+                  <input type="text" className="w-100 mb-3" value={this.state.example3} onChange={this.onChange} name="example3" />
+                  <input type="text" className="w-100 mb-3" value={this.state.example4} onChange={this.onChange} name="example4" />
               </FormGroup>}
               <FormGroup row>
                 <Label sm={4}>Skype:</Label>
                 <Col sm={8}>
-                  <Input type="text" value={this.state.skype || ""} onChange={this.onChange} name="skype" />
+                  <input type="text" className="w-100" value={this.state.skype || ""} onChange={this.onChange} name="skype" />
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label sm={4}>Discord:</Label>
                 <Col sm={8}>
-                  <Input type="text" value={this.state.discord || ""} onChange={this.onChange} name="discord"/>
+                  <input type="text" className="w-100" value={this.state.discord || ""} onChange={this.onChange} name="discord"/>
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label sm={4}>Доп. контакты:</Label>
                 <Col sm={8}>
-                  <Input type="text" value={this.state.otherContacts || ""} onChange={this.onChange} name="otherContacts"/>
+                  <input type="text" className="w-100" value={this.state.otherContacts || ""} onChange={this.onChange} name="otherContacts"/>
                 </Col>
               </FormGroup>
               <FormGroup className="mt-5 mb-4" row>

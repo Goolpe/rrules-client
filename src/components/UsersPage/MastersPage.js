@@ -31,9 +31,9 @@ class MastersPage extends Component {
 
 		const mastersView = mastersSort.filter(master => master.master === true)
 		.map(master => 
-				<div className="col-12 col-md-6 col-lg-4 mb-5" key={master._id}>
-					<Link to={`/@${master.username}`} className="text-white">
-						<div className="wrapper bg-white"  style={ { backgroundImage: `url(${master.photo})`} }>
+				<div className="col-12 col-md-6 col-lg-4 p-0 mb-5 shadow" key={master._id}>
+					<Link to={`/@${master.username}`}>
+						<div className="wrapper" style={ { backgroundImage: `url(${master.photo})`} }>
 							<div className="card d-flex align-items-center justify-content-center rounded-0" >
 							  	<h1 style={{textShadow: 'black 0 0 20px'}}>{master.username.toUpperCase()}</h1>
 							</div>
@@ -53,7 +53,7 @@ class MastersPage extends Component {
 		 							<i className="fas fa-star text-warning fa-1x"></i> - {master.rating}/5
 		 						</div>
 		 						<div className="col-12 col-md-4">
-		 							<p className="m-0">Количество игр: {master.gamesCount}</p>
+		 							<p className="m-0">Количество игр: {master.gamesCount || "0"}</p>
 		 						</div>
 		 					</div> 					
 	 					</Link>			

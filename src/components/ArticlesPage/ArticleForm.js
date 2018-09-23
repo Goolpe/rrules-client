@@ -52,7 +52,7 @@ class ArticleForm extends Component {
 					<Link to="/articles">
 						<FaAngleLeft size="1.5em"/> Выйти
 					</Link>	
-	    		<form onSubmit={this.onSubmit} className="pt-3">
+	    		<form onSubmit={this.onSubmit} className="pt-5">
 	    			<div className="form-group text-left">
 	                	<label>Картинка</label>
 	                	<input type="text" value={this.state.picture} onChange={this.onChange} name="picture" className="form-control" placeholder="" required />

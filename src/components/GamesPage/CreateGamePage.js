@@ -166,6 +166,7 @@ class CreateGamePage extends Component {
 		 					<input type="text" value={this.state.nameGame} className="w-100" onChange={this.onChange} name="nameGame" placeholder="" required/><br />
 {/*Date and time*/}
 		 					<label className="mr-2 mt-3">Дата и время игры: </label>
+		 					<div className="text-dark">
 		 					<DayPickerInput
 					          value={from}
 					          placeholder="Начало"
@@ -206,8 +207,8 @@ class CreateGamePage extends Component {
 					            }}
 					            onDayChange={this.handleToChange}
 					          />
-					        <br />
-{/*Type of the game*/}
+					        </div>
+{/*Type of the game*/}			
 					        <label className="mr-2 mt-3">Тип игры: </label>
 					        <div className="custom-control custom-radio mb-2">
 							    <input type="radio" className="custom-control-input" value="sortByTypeOnline" onChange={()=>{this.setState({selectedOption: 'sortByTypeOnline'})}} checked={this.state.selectedOption === 'sortByTypeOnline'} id="radio1" />
@@ -228,7 +229,7 @@ class CreateGamePage extends Component {
 {/*Price*/}
 		 					<div>
 		 						<label className="mr-2 mt-3">Стоимость: </label>
-		 						<input type="string" value={this.state.priceGame} onChange={this.onChange} name="priceGame" placeholder=""/><br />
+		 						<input type="number" value={this.state.priceGame} onChange={this.onChange} name="priceGame" placeholder=""/><br />
 		 					</div>
 		 					<div>
 		 						<label className="mr-2 mt-3">Ссылка на стрим: </label>
@@ -238,8 +239,8 @@ class CreateGamePage extends Component {
 		 					<label className="mr-2 mt-3">Количество мест: </label>
 		 					<input type="number" min="1" max="20" value={this.state.placeAll} onChange={this.onChange} name="placeAll" placeholder="" required/><br />
 {/*Additionally info*/}		 					
-		 					<label className="mt-3">Превью:</label>
-		 					<textarea type="text" value={this.state.infoGame} style={{resize: "both", width: "100%", minHeight: "200px"}} onChange={this.onChange} name="infoGame" placeholder="" />
+		 					<label className="mr-2 mt-3">Превью: </label>
+		 					<textarea className="w-100" value={this.state.infoGame} onChange={this.onChange} name="infoGame" placeholder="" />
 		 				</div> 	
 		 			</div>	
 		 		</div>		
