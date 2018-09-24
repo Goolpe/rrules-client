@@ -137,13 +137,13 @@ class UserPageEditor extends Component {
                     <Label sm={4}>Пол:</Label>
                     <Col sm={3}>
                       <div className="custom-control custom-radio">
-                          <input type="radio" className="custom-control-input" value={true} onChange={()=>{this.setState({gender: true})}} checked={this.state.gender === true} id="radioGender1" />
+                          <input type="radio" className="custom-control-input" value={true} onChange={()=>{this.setState({gender: "Мужской"})}} checked={this.state.gender === "Мужской"} id="radioGender1" />
                           <label className="custom-control-label" htmlFor="radioGender1">Мужской</label>
                       </div>
                     </Col>
                     <Col sm={5}>
                       <div className="custom-control custom-radio">
-                          <input type="radio" className="custom-control-input" value={false} onChange={()=>{this.setState({gender: false})}} checked={this.state.gender === false} id="radioGender2" />
+                          <input type="radio" className="custom-control-input" value={false} onChange={()=>{this.setState({gender: "Женский"})}} checked={this.state.gender === "Женский"} id="radioGender2" />
                           <label className="custom-control-label" htmlFor="radioGender2">Женский</label>
                       </div>
                     </Col>
@@ -151,7 +151,7 @@ class UserPageEditor extends Component {
               <FormGroup row>
                 <Label sm={4}>День рождения:</Label>
                 <Col sm={8} className="text-dark ">
-                <DayPickerInput value={moment(this.state.selectedDay).format("L")} dayPickerProps={{
+                <DayPickerInput value={moment(this.state.selectedDay).isValid() ? moment(this.state.selectedDay).format("L") : moment().format("L")} dayPickerProps={{
               locale: 'ru', localeUtils: MomentLocaleUtils
             }} onDayChange={(selectedDay)=> {this.setState({selectedDay})}}
               />

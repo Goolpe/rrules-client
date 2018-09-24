@@ -15,12 +15,12 @@ class UserPage extends Component {
     super(props);
     this.onLogout = this.onLogout.bind(this);
   }
-  componentWillMount() {
-    this.props.fetchPlayer(this.props.match.params.nickname, this.props.history);
-  }
+
   componentDidMount() {
     window.scrollTo(0,0);
+    this.props.fetchPlayer(this.props.match.params.nickname, this.props.history);
   }
+
   onLogout(e) {
     e.preventDefault();
     this.props.logoutUser(this.props.history);
@@ -31,14 +31,9 @@ class UserPage extends Component {
     return (
       <section id="userPage">    
         <div className="container">
-            {this.props.match.params.nickname !== user.name && <p className="text-white pb-4">
-              <Link to="/masters" className="p-0 btn">
-                <FaAngleLeft size="1.5em"/> Все мастера&nbsp;
-              </Link>
-            </p>}
             <div className="shadow bg_card">
               <div className="w-100 position-relative border-bottom" style={{height:"200px", overflow:"hidden"}}>
-                <img style={{width:"100%"}} src="https://images.pexels.com/photos/135018/pexels-photo-135018.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+                <img style={{width:"100%"}} src={player.bgphoto} />
                 <div className="position-absolute border" style={{bottom:"10px",left:"10px"}}>
                     <div className="userpage__avatar" style={{backgroundImage: `url(${player.photo})`}}></div>
                 </div>
@@ -46,7 +41,7 @@ class UserPage extends Component {
                   <ul className="p-4 text_card">
                     <div className="d-flex justify-content-between">
                       <h2>{player.username || ""} {isAuthenticated && this.props.match.params.nickname === user.name && <button onClick={this.onLogout.bind(this)} className="btn btn-outline-danger text-white"><FaSignOutAlt /> Выйти</button>}</h2>
-                      {isAuthenticated &&
+                      {isAuthenticated && this.props.match.params.nickname === user.name &&
                         <React.Fragment>
                         <Link className="userpage__facog text_card" style={{height:"1.5em"}} id="TooltipSetting" to={`/edit/@${player.username}`}>
                           <FaCog size="1.5em"/>
@@ -59,19 +54,21 @@ class UserPage extends Component {
                     </div>
                     <li>Статус: {player.master ? "Мастер" : "Игрок"}</li>
                     <li>Рейтинг: <FaStar className="text-warning" /> - {player.rating}/5</li>
+                    {player.master && <li>Проведенных игр: {player.gamesCount}</li>}
                     <li>Зарегистрирован: {moment(player.dateReg).format('LL')}</li>
                     <hr/>
-                    <li>Имя: {player.fullName ? player.fullName : "-"}</li>
-                    <li>Пол: {player.gender ? "Мужской" : "Женский"}</li>
+                    {player.fullName && <li>Имя: {player.fullName}</li>}
+                    {player.gender && <li>Пол: {player.gender}</li>}
                     {player.dateBirth && <li>День рождения: {moment(player.dateBirth).format('LL')}</li>}
+                    {player.cityLive && <li>Город: {player.cityLive}</li>}
                     <hr/>
                     <li>{player.master && <p>{player.paidGames ? "Водит" : "Не водит"} платные игры</p>}</li>
                     {player.discord && <li><span className="font-weight-bold">Discord</span> - {player.discord}</li>}
                     {player.skype && <li><span className="font-weight-bold">Skype</span> - {player.skype}</li>}
                     {player.otherContacts && <li><span className="font-weight-bold">Доп. контакты</span> - {player.otherContacts}</li>}
-                    <li>О себе: {player.about || "-"}</li>
-                    <li>Любимые системы: {player.systems || "-"}</li>
-                    <li>Любимые сеттинги: {player.setting || "-"}</li>
+                    {player.about && <li>О себе:  {player.about}</li>}
+                    {player.systems && <li>Любимые системы: {player.systems}</li>}
+                    {player.setting && <li>Любимые сеттинги: {player.setting}</li>}
                     {(player.example1 || player.example2 || player.example3 || player.example4) &&
                       <React.Fragment>
                       <li>Примеры игр: {player.setting}</li>
