@@ -22,7 +22,6 @@ class CreateGamePage extends Component {
 		super(props);
 		this.state = {
 			nameGame: '',
-			masterId:'',
 			selectedOption: 'sortByTypeOnline',
 		    cityGame:'',
 		    priceGame:0,

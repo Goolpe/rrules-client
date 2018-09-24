@@ -69,8 +69,10 @@ class GamePage extends Component {
 // Handler of submit
 
 	onSubmit(e){
+		console.log(this.props.game.masterId)
+		console.log(this.props.auth.user.playerId)
 		e.preventDefault();
-		if(this.props.auth.isAuthenticated === false){
+		if(!this.props.auth.isAuthenticated){
     		this.props.history.push('/auth')
     	}
     	else{	

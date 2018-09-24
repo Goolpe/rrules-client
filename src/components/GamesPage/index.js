@@ -5,7 +5,7 @@ import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem,
 Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchPlayers } from '../actions/playerActions';
+import { fetchPlayers, fetchPlayer } from '../actions/playerActions';
 import { fetchGames } from '../actions/gameActions';
 import moment from 'moment';
 import 'moment/locale/ru';
@@ -63,13 +63,15 @@ import Games from './GamesBlock';
 	}
 
 	componentDidMount() {
-	  	window.scrollTo(0,0);
+	  window.scrollTo(0,0);
+    
 	}
 
-	componentWillMount() {
-		this.props.fetchGames();
-		this.props.fetchPlayers();
-	}
+  componentDidMount() {
+    this.props.fetchGames();
+    this.props.fetchPlayers();
+    this.props.fetchPlayer(this.props.auth.user.name, this.props.history);
+  }
 
 	// Handler of change input states  
 	onChange(e){
@@ -135,7 +137,6 @@ import Games from './GamesBlock';
           pageNumbers.push(i);
         }
 
-
         const renderPageNumbers = pageNumbers.map(number => {
           return (
           	<PaginationItem key={number}>
@@ -155,7 +156,7 @@ import Games from './GamesBlock';
                 <div className="row pt-5">
                   <div className="col-12 col-lg-3 mt-2">
                     <div className="container bg_card shadow text_card pt-3 pb-3">
-                      {user.master && <Link to="/game-create" className="btn btn-info mb-2 w-100">Создать игру</Link>}
+                      {this.props.player.master && <Link to="/game-create" className="btn btn-info mb-2 w-100">Создать игру</Link>}
                      <ButtonDropdown isOpen={this.state.dropdownOpen} className="w-100 mb-2" toggle={this.toggle}>
                           <DropdownToggle caret className="btn btn-info w-100">
                             Сортировать: 
@@ -250,6 +251,7 @@ import Games from './GamesBlock';
 
 GamesPage.propTypes = {
   fetchPlayers: PropTypes.func.isRequired,
+  fetchPlayer: PropTypes.func.isRequired,
   players: PropTypes.array.isRequired,
   fetchGames: PropTypes.func.isRequired,
   games: PropTypes.array.isRequired,
@@ -258,8 +260,9 @@ GamesPage.propTypes = {
 
 const mapStateToProps = state => ({
   players: state.players.items,
+  player: state.player.item,
   games: state.games.items,
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { fetchPlayers , fetchGames })(GamesPage);
+export default connect(mapStateToProps, { fetchPlayers, fetchPlayer , fetchGames })(GamesPage);

@@ -39,7 +39,7 @@ class UserPage extends Component {
     return (
       <section id="userPage">    
         <div className="container">
-            <div className="shadow bg_card">
+          <div className="shadow bg_card">
               <div className="w-100 position-relative border-bottom" style={{height:"200px", overflow:"hidden"}}>
                 <img style={{width:"100%"}} src={player.bgphoto} />
                 <div className="position-absolute border" style={{bottom:"10px",left:"10px"}}>
@@ -69,12 +69,16 @@ class UserPage extends Component {
                     <li><span className="text-muted">Рейтинг: </span><FaStar className="text-warning" /> - {player.rating}/5</li>
                     {player.master && <li><span className="text-muted">Проведенных игр: </span>{player.gamesCount}</li>}
                     <li><span className="text-muted">Зарегистрирован: </span>{moment(player.dateReg).format('LL')}</li>
-                    <hr/>
+
+                    {player.fullName || player.gender || player.dateBirth || player.cityLive && <hr/>}
+
                     {player.fullName && <li><span className="text-muted">Имя: </span>{player.fullName}</li>}
                     {player.gender && <li><span className="text-muted">Пол: </span>{player.gender}</li>}
                     {player.dateBirth && <li><span className="text-muted">День рождения: </span>{moment(player.dateBirth).format('LL')}</li>}
                     {player.cityLive && <li><span className="text-muted">Город: </span>{player.cityLive}</li>}
+
                     <hr/>
+                    
                     {player.master && <li>{player.paidGames ? "Водит платные игры" : "Не водит платные игры"}</li>}
                     {player.discord && <li><span className="text-muted">Discord: </span>{player.discord}</li>}
                     {player.skype && <li><span className="text-muted">Skype: </span>{player.skype}</li>}
@@ -102,6 +106,7 @@ class UserPage extends Component {
                       </React.Fragment>}
                   </ul>                
           </div>
+          {isAuthenticated && this.props.match.params.nickname === user.name && <Msgs />}
         </div>
     	</section>
 	  )
