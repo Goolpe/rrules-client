@@ -21,6 +21,11 @@ class UserPage extends Component {
     this.props.fetchPlayer(this.props.match.params.nickname, this.props.history);
   }
 
+  componentWillReceiveProps(nextProps){
+    if(this.props.match.params.nickname !== nextProps.match.params.nickname){
+      this.props.fetchPlayer(nextProps.match.params.nickname, this.props.history);
+    }
+  }
   onLogout(e) {
     e.preventDefault();
     this.props.logoutUser(this.props.history);
@@ -52,23 +57,23 @@ class UserPage extends Component {
                         </React.Fragment>
                       }
                     </div>
-                    <li>Статус: {player.master ? "Мастер" : "Игрок"}</li>
-                    <li>Рейтинг: <FaStar className="text-warning" /> - {player.rating}/5</li>
-                    {player.master && <li>Проведенных игр: {player.gamesCount}</li>}
-                    <li>Зарегистрирован: {moment(player.dateReg).format('LL')}</li>
+                    <li><span className="text-muted">Статус: </span>{player.master ? "Мастер" : "Игрок"}</li>
+                    <li><span className="text-muted">Рейтинг: </span><FaStar className="text-warning" /> - {player.rating}/5</li>
+                    {player.master && <li><span className="text-muted">Проведенных игр: </span>{player.gamesCount}</li>}
+                    <li><span className="text-muted">Зарегистрирован: </span>{moment(player.dateReg).format('LL')}</li>
                     <hr/>
-                    {player.fullName && <li>Имя: {player.fullName}</li>}
-                    {player.gender && <li>Пол: {player.gender}</li>}
-                    {player.dateBirth && <li>День рождения: {moment(player.dateBirth).format('LL')}</li>}
-                    {player.cityLive && <li>Город: {player.cityLive}</li>}
+                    {player.fullName && <li><span className="text-muted">Имя: </span>{player.fullName}</li>}
+                    {player.gender && <li><span className="text-muted">Пол: </span>{player.gender}</li>}
+                    {player.dateBirth && <li><span className="text-muted">День рождения: </span>{moment(player.dateBirth).format('LL')}</li>}
+                    {player.cityLive && <li><span className="text-muted">Город: </span>{player.cityLive}</li>}
                     <hr/>
-                    <li>{player.master && <p>{player.paidGames ? "Водит" : "Не водит"} платные игры</p>}</li>
-                    {player.discord && <li><span className="font-weight-bold">Discord</span> - {player.discord}</li>}
-                    {player.skype && <li><span className="font-weight-bold">Skype</span> - {player.skype}</li>}
-                    {player.otherContacts && <li><span className="font-weight-bold">Доп. контакты</span> - {player.otherContacts}</li>}
-                    {player.about && <li>О себе:  {player.about}</li>}
-                    {player.systems && <li>Любимые системы: {player.systems}</li>}
-                    {player.setting && <li>Любимые сеттинги: {player.setting}</li>}
+                    {player.master && <li>{player.paidGames ? "Водит платные игры" : "Не водит платные игры"}</li>}
+                    {player.discord && <li><span className="text-muted">Discord: </span>{player.discord}</li>}
+                    {player.skype && <li><span className="text-muted">Skype: </span>{player.skype}</li>}
+                    {player.otherContacts && <li><span className="text-muted">Доп. контакты: </span>{player.otherContacts}</li>}
+                    {player.about && <li><span className="text-muted">О себе: </span>{player.about}</li>}
+                    {player.systems && <li><span className="text-muted">Любимые системы: </span>{player.systems}</li>}
+                    {player.setting && <li><span className="text-muted">Любимые сеттинги: </span>{player.setting}</li>}
                     {(player.example1 || player.example2 || player.example3 || player.example4) &&
                       <React.Fragment>
                       <li>Примеры игр: {player.setting}</li>

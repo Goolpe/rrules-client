@@ -69,8 +69,6 @@ class GamePage extends Component {
 // Handler of submit
 
 	onSubmit(e){
-		console.log(this.props.game);
-		console.log(this.props.auth.user);
 		e.preventDefault();
 		if(this.props.auth.isAuthenticated === false){
     		this.props.history.push('/auth')
