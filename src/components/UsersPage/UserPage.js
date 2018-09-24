@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { fetchPlayer } from '../actions/playerActions';
 import moment from 'moment';
 import Msgs from './msgs';
-import { FaStar, FaCog, FaAngleLeft, FaSignOutAlt } from "react-icons/fa";
+import { FaStar, FaCog, FaAngleLeft, FaSignOutAlt, FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { UncontrolledTooltip } from 'reactstrap';
 import { logoutUser } from '../actions/authActions';
 import { fetchMsgs } from '../actions/msgActions';
@@ -13,6 +13,9 @@ import { fetchMsgs } from '../actions/msgActions';
 class UserPage extends Component {
   constructor(props) {
     super(props);
+    this.state={
+      master: this.props.player.master
+    }
     this.onLogout = this.onLogout.bind(this);
   }
 
@@ -27,9 +30,9 @@ class UserPage extends Component {
     }
   }
   onLogout(e) {
-    e.preventDefault();
     this.props.logoutUser(this.props.history);
   }
+
   render() {
     const player = this.props.player;
     const {isAuthenticated, user} = this.props.auth;
@@ -45,7 +48,8 @@ class UserPage extends Component {
               </div>
                   <ul className="p-4 text_card">
                     <div className="d-flex justify-content-between">
-                      <h2>{player.username || ""} {isAuthenticated && this.props.match.params.nickname === user.name && <button onClick={this.onLogout.bind(this)} className="btn btn-outline-danger text-white"><FaSignOutAlt /> Выйти</button>}</h2>
+                      <h2>{player.username || ""} {isAuthenticated && this.props.match.params.nickname === user.name && <button onClick={this.onLogout.bind(this)} className="btn btn-outline-danger text-white"><FaSignOutAlt /> Выйти</button>}
+                      </h2>
                       {isAuthenticated && this.props.match.params.nickname === user.name &&
                         <React.Fragment>
                         <Link className="userpage__facog text_card" style={{height:"1.5em"}} id="TooltipSetting" to={`/edit/@${player.username}`}>
@@ -56,8 +60,12 @@ class UserPage extends Component {
                         </UncontrolledTooltip>
                         </React.Fragment>
                       }
+
                     </div>
-                    <li><span className="text-muted">Статус: </span>{player.master ? "Мастер" : "Игрок"}</li>
+
+                    <li><span className="text-muted">Статус: </span>{player.master ? "Мастер" : "Игрок"} 
+                      
+                    </li>
                     <li><span className="text-muted">Рейтинг: </span><FaStar className="text-warning" /> - {player.rating}/5</li>
                     {player.master && <li><span className="text-muted">Проведенных игр: </span>{player.gamesCount}</li>}
                     <li><span className="text-muted">Зарегистрирован: </span>{moment(player.dateReg).format('LL')}</li>
