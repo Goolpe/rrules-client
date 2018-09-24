@@ -38,7 +38,7 @@ class UserPage extends Component {
             </p>}
             <div className="shadow bg_card">
               <div className="w-100 position-relative border-bottom" style={{height:"200px", overflow:"hidden"}}>
-                <img style={{width:"100%"}} src="https://cdn.pixabay.com/photo/2016/09/29/13/08/planet-1702788_960_720.jpg" />
+                <img style={{width:"100%"}} src="https://images.pexels.com/photos/135018/pexels-photo-135018.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
                 <div className="position-absolute border" style={{bottom:"10px",left:"10px"}}>
                     <div className="userpage__avatar" style={{backgroundImage: `url(${player.photo})`}}></div>
                 </div>
@@ -57,7 +57,7 @@ class UserPage extends Component {
                         </React.Fragment>
                       }
                     </div>
-                    <li>Статус: {player.master ? "Мастер" : "Мастер"}</li>
+                    <li>Статус: {player.master ? "Мастер" : "Игрок"}</li>
                     <li>Рейтинг: <FaStar className="text-warning" /> - {player.rating}/5</li>
                     <li>Зарегистрирован: {moment(player.dateReg).format('LL')}</li>
                     <hr/>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createGame, fetchGame, changeGameData } from '../actions/gameActions';
+import { createGame, fetchGame, changeGameData, deleteGame } from '../actions/gameActions';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaAngleLeft } from "react-icons/fa";
@@ -17,16 +17,15 @@ class GameEditPage extends Component {
 		    cityGame: this.props.game.cityGame,
 		    priceGame: this.props.game.priceGame,
 		    placeAll: this.props.game.placeAll,
-		    gamersInsideId: this.props.game.gamersInsideId,
 		    infoGame: this.props.game.infoGame,
 		    placeGame: this.props.game.placeGame,
 		    videoLink: this.props.game.videoLink,
 		    from: this.props.game.from,
-      		to: this.props.game.to,
-      		archive: this.props.game.archive
+      		to: this.props.game.to
 		}
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+		this.deleteGameData = this.deleteGameData.bind(this);
 	} 
 
 	componentDidMount() {
@@ -51,11 +50,15 @@ class GameEditPage extends Component {
 // Handler of submit
 	notify(word){toast(word)}
 
+	deleteGameData(){
+		this.props.deleteGame(this.props.match.params.id);
+		this.props.history.push('/games')
+	}
+
 	onSubmit(e){
 		e.preventDefault();
 		const gameData = {
 			masterId: this.props.auth.user.id,
-			archive: this.state.archive,
 			id: this.props.match.params.id,
 			nameGame: this.state.nameGame,
 			cityGame: this.state.cityGame,
@@ -66,16 +69,11 @@ class GameEditPage extends Component {
 		    videoLink: this.state.videoLink,
 		    selectedOption: this.state.selectedOption,
 		    placeAll: this.state.placeAll,
-		    gamersInsideId: this.state.gamersInsideId,
 		    from: this.state.from,
 		    to: this.state.to
 	    }
 		this.props.changeGameData(gameData);
 		this.notify("Готово!")
-		if (this.state.archive){
-			this.props.history.push('/games')
-		}
-		
 	}
   render() {
 	  return (
@@ -99,7 +97,7 @@ class GameEditPage extends Component {
 				<form onSubmit={this.onSubmit}>
 	{/*Button to create game and exit*/}
 					<div className="d-flex justify-content-end">
-						<button type="submit" onClick={()=>{this.setState({archive: true})}} className="btn btn-danger rounded-0 mb-2 mr-2">Удалить</button>
+						<button onClick={this.deleteGameData} className="btn btn-danger rounded-0 mb-2 mr-2">Удалить</button>
 						<button type="submit" className="btn btn-info rounded-0 mb-2">Сохранить</button>
 					</div>
 				    <div className="container mb-5">
@@ -155,7 +153,8 @@ GameEditPage.propTypes = {
   fetchGame: PropTypes.func.isRequired,
   createGame: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  changeGameData: PropTypes.func.isRequired
+  changeGameData: PropTypes.func.isRequired,
+  deleteGame: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -163,4 +162,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { changeGameData , createGame, fetchGame })(withRouter(GameEditPage));
+export default connect(mapStateToProps, { changeGameData , createGame, fetchGame, deleteGame })(withRouter(GameEditPage));

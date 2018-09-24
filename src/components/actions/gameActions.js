@@ -72,3 +72,18 @@ export const changeGameData = (gameData) => dispatch => {
       })
     );
 };
+
+export const deleteGame = (gameData) => dispatch => {
+  fetch(server.online + '/games/delete/' + gameData, {
+    method: 'delete',
+    headers: {
+      'Authorization': localStorage.jwtToken,
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    }
+   })
+    .then(
+      res => res.json(),
+      err => console.log(err)
+    )
+};

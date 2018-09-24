@@ -69,12 +69,17 @@ class GamePage extends Component {
 // Handler of submit
 
 	onSubmit(e){
+		console.log(this.props.game);
+		console.log(this.props.auth.user);
 		e.preventDefault();
 		if(this.props.auth.isAuthenticated === false){
     		this.props.history.push('/auth')
     	}
     	else{	
-    		if(this.props.msgs.find(msg => msg.gameId === this.props.game._id && msg.sender === this.props.auth.user.playerId)){
+    		if(this.props.game.masterId === this.props.auth.user.playerId){
+    			this.notify("Вы создатель!")
+    		}
+    		else if(this.props.msgs.find(msg => msg.gameId === this.props.game._id && msg.sender === this.props.auth.user.playerId)){
     			if(this.props.game.gamersInsideId.includes(this.props.auth.user.playerId)){
     				this.notify("Вы уже в игре!")
     			}
@@ -82,10 +87,6 @@ class GamePage extends Component {
     				this.notify("Вы уже отправляли запрос!")
     			}
     		}
-    		else if(this.props.game.masterId === this.props.auth.user.playerId){
-    			this.notify("Вы создатель!")
-    		}
-    		
     		else{
 	    		const msgData = {
 			      	title: this.state.title,
@@ -114,7 +115,6 @@ class GamePage extends Component {
 
   	const {user} = this.props.auth;
   	const game = this.props.game;
-
 	  return (
 	  	<section id="createGame">
 			<div className="container text_card">
@@ -160,7 +160,7 @@ class GamePage extends Component {
 		 							<p>Места: {game.gamersInsideId && (game.placeAll - game.gamersInsideId.length)} / {game.placeAll}</p>
 		 						</div>
 		 						<div className="col-12 col-md-3">
-		 							<p>{game.priceGame === "" ? "Бесплатно" : game.priceGame}</p>
+		 							<p>{game.priceGame === 0 ? "Бесплатно" : game.priceGame}</p>
 		 						</div>
 		 						<div className="col-12 col-md-2">
 		 							<p>Тип: {game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}</p>

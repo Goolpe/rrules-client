@@ -53,7 +53,6 @@ class SocialAuth extends Component{
   }
   render(){ 
     const { errors } = this.state;
-    console.log(this.props)
       return ( 
         <section id="SocialAuth" style={{minHeight:"100vh"}} className="pt-5">
           <div className="container" >

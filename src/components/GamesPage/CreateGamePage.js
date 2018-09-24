@@ -25,7 +25,7 @@ class CreateGamePage extends Component {
 			masterId:'',
 			selectedOption: 'sortByTypeOnline',
 		    cityGame:'',
-		    priceGame:'',
+		    priceGame:0,
 		    placeAll: '',
 		    gamersInsideId: [],
 		    infoGame: '',

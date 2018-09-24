@@ -41,11 +41,12 @@ class AuthPage extends Component{
 		  <section id="login" className="pt-5">
         <div className="container" >
         <div className="container shadow bg-white pt-5 pb-5 text-center" style={{maxWidth: "400px"}}>
-          <a href='http://localhost:5000/auth/vkontakte' className="btn btn-dark m-2"> <FaVk /></a>
+         {/* <a href='http://localhost:5000/auth/vkontakte' className="btn btn-dark m-2"> <FaVk /></a>
           <a href='http://localhost:5000/auth/facebook' className="btn btn-dark m-2 pr-3 pl-3"> <FaFacebookF /></a>  
           <a href='http://localhost:5000/auth/google' className="btn btn-dark m-2"> <FaGoogle /></a> 
           <p className="mt-3 mb-4" style={{borderBottom: "1px solid #ebeced", lineHeight: "0.1em"}}><span style={{background: "#fff", padding: "0 10px"}}>или</span></p>
-           <Nav tabs style={{cursor: "pointer"}} className="justify-content-center">
+           */}
+          <Nav tabs style={{cursor: "pointer"}} className="justify-content-center">
             <NavItem>
               <NavLink
                 className={"text-dark " + classnames({ active: this.state.activeTab === 'login' })}
