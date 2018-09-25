@@ -1,5 +1,4 @@
 import React from 'react';
-import { UncontrolledTooltip } from 'reactstrap';
 import { FaVk, FaDiscord, FaYoutube, FaPatreon, FaTelegram, FaTwitch } from "react-icons/fa";
 
 function Social(){

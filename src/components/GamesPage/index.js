@@ -12,7 +12,7 @@ import 'moment/locale/ru';
 import { MomentLocaleUtils, formatDate, parseDate } from 'react-day-picker/moment';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
-import { FaStar, FaGamepad  } from "react-icons/fa";
+import { FaGamepad  } from "react-icons/fa";
 import Games from './GamesBlock';
 
  class GamesPage extends Component {
@@ -64,10 +64,9 @@ import Games from './GamesBlock';
 
 	componentDidMount() {
 	  window.scrollTo(0,0);
-    
 	}
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchGames();
     this.props.fetchPlayers();
     this.props.fetchPlayer(this.props.auth.user.name, this.props.history);
@@ -85,8 +84,6 @@ import Games from './GamesBlock';
 	}
 
     render() {
-      const {user} = this.props.auth;
-
 	//datepiceker consts
 	    const { from, to } = this.state;
 	    const modifiers = { start: from, end: to };

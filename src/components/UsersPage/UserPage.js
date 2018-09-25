@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { fetchPlayer } from '../actions/playerActions';
 import moment from 'moment';
 import Msgs from './msgs';
-import { FaStar, FaCog, FaAngleLeft, FaSignOutAlt, FaArrowUp, FaArrowDown } from "react-icons/fa";
+import { FaStar, FaCog, FaSignOutAlt } from "react-icons/fa";
 import { UncontrolledTooltip } from 'reactstrap';
 import { logoutUser } from '../actions/authActions';
 import { fetchMsgs } from '../actions/msgActions';
@@ -41,7 +41,7 @@ class UserPage extends Component {
         <div className="container">
           <div className="shadow bg_card">
               <div className="w-100 position-relative border-bottom" style={{height:"200px", overflow:"hidden"}}>
-                <img style={{width:"100%"}} src={player.bgphoto} />
+                <img style={{width:"100%"}} alt="bgphoto" src={player.bgphoto} />
                 <div className="position-absolute border" style={{bottom:"10px",left:"10px"}}>
                     <div className="userpage__avatar" style={{backgroundImage: `url(${player.photo})`}}></div>
                 </div>
@@ -70,7 +70,7 @@ class UserPage extends Component {
                     {player.master && <li><span className="text-muted">Проведенных игр: </span>{player.gamesCount}</li>}
                     <li><span className="text-muted">Зарегистрирован: </span>{moment(player.dateReg).format('LL')}</li>
 
-                    {player.fullName || player.gender || player.dateBirth || player.cityLive && <hr/>}
+                    {(player.fullName || player.gender || player.dateBirth || player.cityLive) && <hr/>}
 
                     {player.fullName && <li><span className="text-muted">Имя: </span>{player.fullName}</li>}
                     {player.gender && <li><span className="text-muted">Пол: </span>{player.gender}</li>}

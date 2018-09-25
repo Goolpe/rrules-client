@@ -1,4 +1,4 @@
-import { FETCH_PLAYERS, FETCH_PLAYER, GET_ERRORS } from './types';
+import { FETCH_PLAYERS, FETCH_PLAYER } from './types';
 import server from "./server.json";
 
 export const fetchPlayers = () => dispatch => {

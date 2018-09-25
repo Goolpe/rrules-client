@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchPlayer, changePlayerData } from "../actions/playerActions";
-import { Col, Button, Form, FormGroup, Label, Input, UncontrolledTooltip } from "reactstrap";
+import { Col, Button, Form, FormGroup, Label, UncontrolledTooltip } from "reactstrap";
 import { FaTimes } from "react-icons/fa";
 import { withRouter, Link } from "react-router-dom";
 import moment from "moment";

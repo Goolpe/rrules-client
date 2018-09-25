@@ -7,7 +7,6 @@ import { fetchPlayers } from '../actions/playerActions';
 import { fetchGames } from '../actions/gameActions';
 import moment from 'moment';
 import { FaStar } from "react-icons/fa";
-import { Tooltip } from 'reactstrap';
 
 class Games extends Component {
 	constructor(props) {
