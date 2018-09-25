@@ -26,15 +26,11 @@ class Games extends Component {
 
 	componentDidMount() {
 	    window.scrollTo(0,0);
+      this.props.fetchGames();
+      this.props.fetchPlayers(); 
 	}
 
-	componentWillMount() {
-	  this.props.fetchGames();
-      this.props.fetchPlayers(); 
-    }
-   
-
-	 render(){ 
+	render(){ 
 	 	const games = this.props.currentTodos || (_.sortBy(this.props.games, ['from']).slice(0,2));
 	 	const renderTodos = games.map((game,index) => 
           <Link to={`/game/${game._id}`} className="m-0 p-0 mb-4 btn text-left text_card w-100" key={index}>

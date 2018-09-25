@@ -45,10 +45,9 @@ class CarouselBlock extends Component {
   }
   componentDidMount() {
     this.setState({ activeIndex: 0 });
+    this.props.fetchArticles();
   }
-  componentWillMount() {
-      this.props.fetchArticles();
-    }
+
   render(){
     let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
 

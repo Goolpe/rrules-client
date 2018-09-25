@@ -25,10 +25,12 @@ class GamePage extends Component {
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 	} 
-	componentWillMount() {
-      this.props.fetchPlayers();
-      this.props.fetchGame(this.props.match.params.id, this.props.history);
-      if(this.props.auth.isAuthenticated){
+
+	componentDidMount() {
+		window.scrollTo(0,0);
+      	this.props.fetchPlayers();
+      	this.props.fetchGame(this.props.match.params.id, this.props.history);
+      	if(this.props.auth.isAuthenticated){
 	      this.props.fetchMsgs(this.props.auth.user.playerId);
 	  }
     }
@@ -48,10 +50,6 @@ class GamePage extends Component {
 	}
 	handleToChange(to) {
 		this.setState({ to }, this.showFromMonth);
-	}
-
-	componentDidMount() {
-	    window.scrollTo(0,0);
 	}
 
     _onReady(event) {

@@ -67,17 +67,14 @@ class Navigation extends Component{
         this.props.auth.isAuthenticated &&
         this.props.fetchMsgs(this.props.auth.user.playerId)
       }, 1000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  componentWillMount(){
     if(this.props.auth.isAuthenticated){
       this.props.fetchMsgs(this.props.auth.user.playerId)
       this.props.fetchPlayer(this.props.auth.user.name, this.props.history)
     }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   handleClick(e){

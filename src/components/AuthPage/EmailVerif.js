@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 class EmailVerif extends Component{
-
   componentDidMount() {
     window.scrollTo(0,0);
     if(this.props.auth.isAuthenticated) {

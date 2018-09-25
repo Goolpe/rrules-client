@@ -9,8 +9,6 @@ import { FaAngleLeft } from "react-icons/fa";
 class ArticlePage extends Component {
   componentDidMount() {
     window.scrollTo(0,0);
-  }
-  componentWillMount(){
     this.props.fetchArticle(this.props.match.params.id, this.props.history);
   }
 

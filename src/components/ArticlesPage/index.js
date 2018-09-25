@@ -20,11 +20,10 @@ class ArticlesPage extends Component {
 	}
 	componentDidMount() {
 		window.scrollTo(0,0);
-	}
-	componentWillMount() {
-	    this.props.fetchArticles();
+		this.props.fetchArticles();
 	    this.props.fetchPlayers();
-	  }
+	}
+
 	handleClick(event) {
 		this.setState({
 		  currentPage: Number(event.target.id)

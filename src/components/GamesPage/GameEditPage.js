@@ -30,6 +30,7 @@ class GameEditPage extends Component {
 
 	componentDidMount() {
 	    window.scrollTo(0,0);
+	    this.props.fetchGame(this.props.match.params.id, this.props.history);
 	    if(this.props.auth.isAuthenticated && this.props.game.masterName === this.props.auth.user.name){
 	    	this.props.history.push(`/game-edit/${this.props.match.params.id}`)
 	    }
@@ -38,9 +39,6 @@ class GameEditPage extends Component {
 	    }
 	}
 
-	componentWillMount() {
-	  this.props.fetchGame(this.props.match.params.id, this.props.history);
-    }
 // Handler of change input states  
 
 	onChange(e){

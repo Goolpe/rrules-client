@@ -16,7 +16,7 @@ import { FaGamepad  } from "react-icons/fa";
 import Games from './GamesBlock';
 
  class GamesPage extends Component {
-      constructor() {
+    constructor() {
         super();
         this.state = {
           currentPage: 1,
@@ -64,13 +64,10 @@ import Games from './GamesBlock';
 
 	componentDidMount() {
 	  window.scrollTo(0,0);
-	}
-
-  componentWillMount() {
     this.props.fetchGames();
     this.props.fetchPlayers();
     this.props.fetchPlayer(this.props.auth.user.name, this.props.history);
-  }
+	}
 
 	// Handler of change input states  
 	onChange(e){
