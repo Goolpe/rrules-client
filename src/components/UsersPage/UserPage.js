@@ -8,7 +8,6 @@ import Msgs from './msgs';
 import { FaStar, FaCog, FaSignOutAlt } from "react-icons/fa";
 import { UncontrolledTooltip } from 'reactstrap';
 import { logoutUser } from '../actions/authActions';
-import { fetchMsgs } from '../actions/msgActions';
 
 class UserPage extends Component {
   constructor(props) {
@@ -36,7 +35,6 @@ class UserPage extends Component {
   render() {
     const player = this.props.player;
     const {isAuthenticated, user} = this.props.auth;
-    console.log(this.props.player)
     return (
       <section id="userPage">    
         <div className="container">
@@ -117,16 +115,13 @@ class UserPage extends Component {
 UserPage.propTypes = {
   fetchPlayer: PropTypes.func.isRequired,
   player: PropTypes.object.isRequired,
-  fetchMsgs: PropTypes.func.isRequired,
   logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  msgs: PropTypes.array.isRequired
+  auth: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  player: state.player.item,
-  msgs: state.msgs.items
+  player: state.player.item
 })
 
-export default connect(mapStateToProps, { fetchMsgs, fetchPlayer, logoutUser })(UserPage);
+export default connect(mapStateToProps, { fetchPlayer, logoutUser })(UserPage);
