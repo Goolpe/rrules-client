@@ -21,7 +21,8 @@ class Navigation extends Component{
     this.state = {
       isOpen: false,
       active: this.props.location.pathname,
-      nav:true
+      nav:true,
+      read: 0
     };
   }
   toggle() {
@@ -52,8 +53,8 @@ class Navigation extends Component{
   componentWillReceiveProps(nextProps){
     if(this.props.auth.isAuthenticated && this.props.msgs !== nextProps.msgs){
       this.setState({
-        read: nextProps.msgs.filter(msg => msg.read === false && msg.receiver === this.props.auth.user.name).length
-      })
+        read: this.props.msgs.filter(msg => msg.read === false && msg.receiver === this.props.auth.user.playerId).length
+      })        
     }
     if(this.props.location.pathname !== nextProps.location.pathname){
       this.setState({
@@ -109,9 +110,9 @@ class Navigation extends Component{
           <ul className="text-center">
             {isAuthenticated ? 
             <React.Fragment>
-              <Link to={`/@${user.name}`} id="TooltipUser" onClick={this.handleClick} name="/@"><li className={this.state.active.includes(user.name) ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}>{this.state.read ? <Badge color="danger" className="ml-2" >{this.state.read}</Badge> : <FiUser />}</li></Link>
+              <Link to={`/@${user.name}`} id="TooltipUser" name="/@" onClick={this.handleClick}><li className={this.state.active.includes(user.name) ? "pb-2 pt-2 active" : "pb-2 pt-2 text-white"}>{this.state.read ? <Badge color="danger">{this.state.read}</Badge> : <FiUser />}</li></Link>
               <UncontrolledTooltip className="ml-2" placement="right" target="TooltipUser">
-                Профиль
+                {this.state.read ? "Новые сообщения" : "Профиль"}
               </UncontrolledTooltip>
             </React.Fragment>
             :

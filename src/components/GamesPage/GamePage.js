@@ -171,7 +171,7 @@ class GamePage extends Component {
 			                {game.videoLink && game.videoLink.length > 0 && <YouTube videoId={game.videoLink} opts={opts} onReady={this._onReady} />}
 		 				</div>
 		 				<div className="col-12 col-md-3 text-center">
-		 					{this.props.players.filter(master => game.masterName === master.username)
+		 					{this.props.players.filter(master => game.masterName === master.name)
 			 						.map(master => 
 			 					<React.Fragment key={master._id} >
 				 					<p>Мастер: <Link to={`/@${game.masterName}`} target="_blank" >{game.masterName}</Link></p>
@@ -184,7 +184,7 @@ class GamePage extends Component {
 					 							.map(gamer => {
 								 					return (
 								 						<React.Fragment key={player._id} >
-								 						<Link to={`/@${player.username}`} target="_blank" >{player.username}</Link><br/>
+								 						<Link to={`/@${player.name}`} target="_blank" >{player.name}</Link><br/>
 								 						</React.Fragment>
 								 						)
 								 				}

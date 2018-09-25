@@ -25,6 +25,7 @@ class Msgs extends Component {
 					Отправитель: <Link target="_blank" className="mr-3" to={`/@${msg.senderName}`}>{msg.senderName}</Link>
 				</div>
 				<div className="col-12 col-md-4">
+					{console.log(this.props.msgs.find(msg => msg.receiver === this.props.auth.user.playerId).gameId)}
 					{(this.props.game.gamersInsideId && this.props.game.gamersInsideId.includes(msg.sender)) ?
 					<React.Fragment>
 						<button type="submit" className="btn btn-info mr-3">Подтвердить</button>

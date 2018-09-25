@@ -15,7 +15,7 @@ class UserPageEditor extends Component {
   constructor(props){
     super(props);
     this.state = {
-      username: this.props.player.username,
+      name: this.props.player.name,
       fullName: this.props.player.fullName,
       photo: this.props.player.photo,
       bgphoto: this.props.player.bgphoto,
@@ -23,7 +23,7 @@ class UserPageEditor extends Component {
       rating: this.props.player.rating,
       gamesCount: this.props.player.gamesCount,
       about: this.props.player.about,
-      master: this.props.player.master,
+      status: this.props.player.status,
       skype: this.props.player.skype,
       discord: this.props.player.discord,
       systems: this.props.player.systems,
@@ -55,7 +55,7 @@ class UserPageEditor extends Component {
 
   componentWillReceiveProps(data) {
     this.setState({ 
-      username: data.player.username,
+      name: data.player.name,
       fullName: data.player.fullName,
       photo: data.player.photo,
       bgphoto: data.player.bgphoto,
@@ -63,7 +63,7 @@ class UserPageEditor extends Component {
       rating: data.player.rating,
       gamesCount: data.player.gamesCount,
       about: data.player.about,
-      master: data.player.master,
+      status: data.player.status,
       skype: data.player.skype,
       discord: data.player.discord,
       systems: data.player.systems,
@@ -96,7 +96,7 @@ class UserPageEditor extends Component {
           rating: this.state.rating,
           gamesCount: this.state.gamesCount,
           about: this.state.about,
-          master: this.state.master,
+          status: this.state.status,
           skype: this.state.skype,
           discord: this.state.discord,
           example1: this.state.example1.replace("watch?v=","embed/"),
@@ -197,18 +197,18 @@ class UserPageEditor extends Component {
                 <Label sm={4}>Водишь игры?</Label>
                 <Col sm={2}>
                   <div className="custom-control custom-radio">
-                      <input type="radio" className="custom-control-input" value={true} onChange={()=>{this.setState({leading: "yesMaster"})}} checked={this.state.leading === "yesMaster"} id="radio1" />
+                      <input type="radio" className="custom-control-input" value={true} onChange={()=>{this.setState({leading: true})}} checked={this.state.leading === true} id="radio1" />
                       <label className="custom-control-label" htmlFor="radio1">Да</label>
                   </div>
                 </Col>
                 <Col sm={6}>
                   <div className="custom-control custom-radio">
-                      <input type="radio" className="custom-control-input" value={false} onChange={()=>{this.setState({leading: "noMaster"})}} checked={this.state.leading === "noMaster"} id="radio2" />
+                      <input type="radio" className="custom-control-input" value={false} onChange={()=>{this.setState({leading: false})}} checked={this.state.leading === false} id="radio2" />
                       <label className="custom-control-label" htmlFor="radio2">Нет</label>
                   </div>
                 </Col>
               </FormGroup>
-             {this.state.leading === "yesMaster" && <FormGroup>
+             {this.state.leading === true && <FormGroup>
                 <Label>Примеры игр:</Label>
                   <input type="text" className="w-100 mb-3" value={this.state.example1} onChange={this.onChange} name="example1" />
                   <input type="text" className="w-100 mb-3" value={this.state.example2} onChange={this.onChange} name="example2" />

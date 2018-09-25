@@ -12,9 +12,6 @@ import { logoutUser } from '../actions/authActions';
 class UserPage extends Component {
   constructor(props) {
     super(props);
-    this.state={
-      master: this.props.player.master
-    }
     this.onLogout = this.onLogout.bind(this);
   }
 
@@ -47,7 +44,7 @@ class UserPage extends Component {
               </div>
                   <ul className="p-4 text_card">
                     <div className="d-flex justify-content-between">
-                      <h2>{player.username || ""} {isAuthenticated && this.props.match.params.nickname === user.name && <button onClick={this.onLogout.bind(this)} className="btn btn-outline-danger text-white"><FaSignOutAlt /> Выйти</button>}
+                      <h2>{player.name || ""} {isAuthenticated && this.props.match.params.nickname === user.name && <button onClick={this.onLogout.bind(this)} className="btn btn-outline-danger text-white"><FaSignOutAlt /> Выйти</button>}
                       </h2>
                       {isAuthenticated && this.props.match.params.nickname === user.name &&
                         <React.Fragment>
@@ -62,11 +59,11 @@ class UserPage extends Component {
 
                     </div>
 
-                    <li><span className="text-muted">Статус: </span>{player.master ? "Мастер" : "Игрок"} 
+                    <li><span className="text-muted">Статус: </span>{player.status} 
                       
                     </li>
                     <li><span className="text-muted">Рейтинг: </span><FaStar className="text-warning" /> - {player.rating}/5</li>
-                    {player.master && <li><span className="text-muted">Проведенных игр: </span>{player.gamesCount}</li>}
+                    {player.status === "мастер" && <li><span className="text-muted">Проведенных игр: </span>{player.gamesCount}</li>}
                     <li><span className="text-muted">Зарегистрирован: </span>{moment(player.dateReg).format('LL')}</li>
 
                     {(player.fullName || player.gender || player.dateBirth || player.cityLive) && <hr/>}
@@ -78,7 +75,7 @@ class UserPage extends Component {
 
                     <hr/>
                     
-                    {player.master && <li>{player.paidGames ? "Водит платные игры" : "Не водит платные игры"}</li>}
+                    {player.status === "мастер" && <li>{player.paidGames ? "Водит платные игры" : "Не водит платные игры"}</li>}
                     {player.discord && <li><span className="text-muted">Discord: </span>{player.discord}</li>}
                     {player.skype && <li><span className="text-muted">Skype: </span>{player.skype}</li>}
                     {player.otherContacts && <li><span className="text-muted">Доп. контакты: </span>{player.otherContacts}</li>}

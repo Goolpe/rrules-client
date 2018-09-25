@@ -38,10 +38,10 @@ class Games extends Component {
             <p className="pb-3 border-bottom">{game.nameGame}</p>       
             <div className="row">
               <div className="col-12 col-md-3">
-                {this.props.players.filter(master => game.masterName === master.username)
+                {this.props.players.filter(master => game.masterName === master.name)
                   .map(master => 
                   <div key={master._id}>
-                    <p>Мастер: {master.username}</p>
+                    <p>Мастер: {master.name}</p>
                     <p><FaStar className="text-warning" /> - {master.rating}/5</p>
                   </div>
                 )}
