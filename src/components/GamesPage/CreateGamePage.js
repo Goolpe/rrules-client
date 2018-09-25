@@ -25,7 +25,7 @@ class CreateGamePage extends Component {
 			selectedOption: 'sortByTypeOnline',
 		    cityGame:'',
 		    priceGame:0,
-		    placeAll: '',
+		    placeAll: 0,
 		    gamersInsideId: [],
 		    infoGame: '',
 		    placeGame:'',
@@ -90,26 +90,25 @@ class CreateGamePage extends Component {
 			}
 		}
 		else{
-			video_id = this.state.videoLink
+			var video_id = this.state.videoLink
 		}
 
 		if(Date.parse(this.state.from) > Date.parse(new Date()) && Date.parse(this.state.from) < Date.parse(this.state.to)){
-			const game = {
+			const gameData = {
 				nameGame: this.state.nameGame,
 				cityGame: this.state.cityGame,
-			    masterName: this.props.auth.user.name,
-			    masterId: this.props.auth.user.playerId,
+			    name: this.props.auth.user.player,
 			    placeGame: this.state.placeGame,
 			    priceGame: this.state.priceGame,
 			    infoGame: this.state.infoGame,
+			    gamersInsideId: this.state.gamersInsideId,
 			    videoLink: video_id,
 			    selectedOption: this.state.selectedOption,
 			    placeAll: this.state.placeAll,
-			    gamersInsideId: this.state.gamersInsideId,
 			    from: this.state.from,
 			    to: this.state.to
 		     }
-			this.props.createGame(game);
+			this.props.createGame(gameData);
 			this.setState({
 				nameGame: '',
 				cityGame: '',

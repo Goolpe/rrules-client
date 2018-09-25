@@ -53,7 +53,7 @@ class Navigation extends Component{
   componentWillReceiveProps(nextProps){
     if(this.props.auth.isAuthenticated && this.props.msgs !== nextProps.msgs){
       this.setState({
-        read: this.props.msgs.filter(msg => msg.read === false && msg.receiver === this.props.auth.user.playerId).length
+        read: this.props.msgs.filter(msg => msg.receiver === this.props.auth.user.player && msg.messages.find(msg => msg.read === false)).length
       })        
     }
     if(this.props.location.pathname !== nextProps.location.pathname){
@@ -64,12 +64,12 @@ class Navigation extends Component{
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => {
-        this.props.auth.isAuthenticated &&
-        this.props.fetchMsgs(this.props.auth.user.playerId)
-      }, 1000);
+    // this.interval = setInterval(() => {
+    //     this.props.auth.isAuthenticated &&
+    //     this.props.fetchMsgs(this.props.auth.user.player)
+    //   }, 1000);
     if(this.props.auth.isAuthenticated){
-      this.props.fetchMsgs(this.props.auth.user.playerId)
+      this.props.fetchMsgs(this.props.auth.user.player)
       this.props.fetchPlayer(this.props.auth.user.name, this.props.history)
     }
   }

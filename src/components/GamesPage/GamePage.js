@@ -16,10 +16,6 @@ import { FaStar, FaAngleLeft } from "react-icons/fa";
 class GamePage extends Component {
 	constructor(props){
 		super(props);
-		this.state = {
-			title: 'уведомление',
-			text: 'игра'
-		}
 		this.handleFromChange = this.handleFromChange.bind(this);
    		this.handleToChange = this.handleToChange.bind(this);
 		this.onChange = this.onChange.bind(this);
@@ -31,7 +27,7 @@ class GamePage extends Component {
       	this.props.fetchPlayers();
       	this.props.fetchGame(this.props.match.params.id, this.props.history);
       	if(this.props.auth.isAuthenticated){
-	      this.props.fetchMsgs(this.props.auth.user.playerId);
+	      this.props.fetchMsgs(this.props.auth.user.player);
 	  }
     }
 // functions for datepicker
@@ -67,18 +63,16 @@ class GamePage extends Component {
 // Handler of submit
 
 	onSubmit(e){
-		console.log(this.props.game.masterId)
-		console.log(this.props.auth.user.playerId)
 		e.preventDefault();
 		if(!this.props.auth.isAuthenticated){
     		this.props.history.push('/auth')
     	}
     	else{	
-    		if(this.props.game.masterId === this.props.auth.user.playerId){
+    		if(this.props.game.name === this.props.auth.user.player){
     			this.notify("Вы создатель!")
     		}
-    		else if(this.props.msgs.find(msg => msg.gameId === this.props.game._id && msg.sender === this.props.auth.user.playerId)){
-    			if(this.props.game.gamersInsideId.includes(this.props.auth.user.playerId)){
+    		else if(this.props.msgs.find(msg => msg.messages.find(msg => msg.message === this.props.game._id) && msg.sender === this.props.auth.user.player)){
+    			if(this.props.game.gamersInsideId.includes(this.props.auth.user.player)){
     				this.notify("Вы уже в игре!")
     			}
     			else{
@@ -87,14 +81,9 @@ class GamePage extends Component {
     		}
     		else{
 	    		const msgData = {
-			      	title: this.state.title,
-					text: this.state.text,
-					sender: this.props.auth.user.playerId,
-					senderName: this.props.auth.user.name,
-					receiverName: this.props.game.masterName,
-					receiver: this.props.game.masterId,
-					gameId: this.props.game._id,
-					date: new Date()
+					sender: this.props.auth.user.player,
+					receiver: this.props.game.name,
+					message: this.props.game._id
 			     }
 				this.props.createMsg(msgData);
 				this.notifySend("Запрос отправлен!")
@@ -135,7 +124,7 @@ class GamePage extends Component {
 				<form onSubmit={this.onSubmit}>
 				<div className="row justify-content-between">
 					<div className="col-12 col-md-6">
-						{game.masterName === user.name && 
+						{game.name === user.player && 
 							<Link to={`/game-edit/${game._id}`} className="btn btn-info mb-2">Редактировать/Удалить</Link>
 						}
 					</div>
@@ -171,26 +160,24 @@ class GamePage extends Component {
 			                {game.videoLink && game.videoLink.length > 0 && <YouTube videoId={game.videoLink} opts={opts} onReady={this._onReady} />}
 		 				</div>
 		 				<div className="col-12 col-md-3 text-center">
-		 					{this.props.players.filter(master => game.masterName === master.name)
+		 					{this.props.players.filter(master => game.name === master._id)
 			 						.map(master => 
 			 					<React.Fragment key={master._id} >
-				 					<p>Мастер: <Link to={`/@${game.masterName}`} target="_blank" >{game.masterName}</Link></p>
+				 					<p>Мастер: <Link to={`/@${master.name}`} target="_blank" >{master.name}</Link></p>
 				 					<p><FaStar className="text-warning" /> - {master.rating}/5</p>					
 			 						<hr />
 			 						<p>Игроки:</p>
 			 						<ul>
-				 						{this.props.players.map(player=> (game.gamersInsideId
-					 							.filter(gamer => gamer === player._id)
-					 							.map(gamer => {
-								 					return (
-								 						<React.Fragment key={player._id} >
-								 						<Link to={`/@${player.name}`} target="_blank" >{player.name}</Link><br/>
-								 						</React.Fragment>
-								 						)
-								 				}
+				 						{this.props.players.filter(player => game.gamersInsideId.includes(player._id))
+				 							.map(player => {
+							 					return (
+							 						<React.Fragment key={player._id} >
+							 							<Link to={`/@${player.name}`} target="_blank" >{player.name}</Link><br/>
+							 						</React.Fragment>
 							 						)
-					 							)
-				 							)}
+							 					}
+						 					)	
+			 							}
 			 						</ul>
 				 				</React.Fragment>
 			 				)}

@@ -15,7 +15,6 @@ class UserPageEditor extends Component {
   constructor(props){
     super(props);
     this.state = {
-      name: this.props.player.name,
       fullName: this.props.player.fullName,
       photo: this.props.player.photo,
       bgphoto: this.props.player.bgphoto,
@@ -55,7 +54,6 @@ class UserPageEditor extends Component {
 
   componentWillReceiveProps(data) {
     this.setState({ 
-      name: data.player.name,
       fullName: data.player.fullName,
       photo: data.player.photo,
       bgphoto: data.player.bgphoto,
@@ -99,10 +97,10 @@ class UserPageEditor extends Component {
           status: this.state.status,
           skype: this.state.skype,
           discord: this.state.discord,
-          example1: this.state.example1.replace("watch?v=","embed/"),
-          example2: this.state.example2.replace("watch?v=","embed/"),
-          example3: this.state.example3.replace("watch?v=","embed/"),
-          example4: this.state.example4.replace("watch?v=","embed/"),
+          example1: this.state.example1,
+          example2: this.state.example2,
+          example3: this.state.example3,
+          example4: this.state.example4,
           systems: this.state.systems,
           setting: this.state.setting,
           paidGames: this.state.paidGames,

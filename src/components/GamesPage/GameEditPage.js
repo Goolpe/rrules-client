@@ -12,7 +12,6 @@ class GameEditPage extends Component {
 		super(props);
 		this.state = {
 			nameGame: this.props.game.nameGame,
-			masterId: this.props.game.masterId,
 			selectedOption: this.props.game.selectedOption,
 		    cityGame: this.props.game.cityGame,
 		    priceGame: this.props.game.priceGame,
@@ -31,7 +30,7 @@ class GameEditPage extends Component {
 	componentDidMount() {
 	    window.scrollTo(0,0);
 	    this.props.fetchGame(this.props.match.params.id, this.props.history);
-	    if(this.props.auth.isAuthenticated && this.props.game.masterName === this.props.auth.user.name){
+	    if(this.props.auth.isAuthenticated && this.props.game.name === this.props.auth.user.player){
 	    	this.props.history.push(`/game-edit/${this.props.match.params.id}`)
 	    }
 	    else{
@@ -56,7 +55,6 @@ class GameEditPage extends Component {
 	onSubmit(e){
 		e.preventDefault();
 		const gameData = {
-			masterId: this.props.auth.user.id,
 			id: this.props.match.params.id,
 			nameGame: this.state.nameGame,
 			cityGame: this.state.cityGame,
