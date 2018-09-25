@@ -17,15 +17,13 @@ class MastersPage extends Component {
 	  }
 	componentDidMount() {
 		window.scrollTo(0,0);
+		this.props.fetchPlayers();
 	}
 	toggle() {
 	    this.setState({
 	      dropdownOpen: !this.state.dropdownOpen
 	    });
 	}
-	componentWillMount() {
-      this.props.fetchPlayers();
-    }
 	render(){
 		var mastersSort = _.sortBy(this.props.players, ['rating']).reverse()
 

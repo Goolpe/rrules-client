@@ -26,7 +26,7 @@ class UserPage extends Component {
 
   componentWillReceiveProps(nextProps){
     if(this.props.match.params.nickname !== nextProps.match.params.nickname){
-      this.props.fetchPlayer(nextProps.match.params.nickname, this.props.history);
+      this.props.fetchPlayer(this.props.match.params.nickname, this.props.history);
     }
   }
   onLogout(e) {
@@ -36,6 +36,7 @@ class UserPage extends Component {
   render() {
     const player = this.props.player;
     const {isAuthenticated, user} = this.props.auth;
+    console.log(this.props.player)
     return (
       <section id="userPage">    
         <div className="container">

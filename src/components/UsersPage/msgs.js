@@ -16,7 +16,6 @@ class Msgs extends Component {
 	      }
     }
 	 render(){ 
-	 	console.log(this.props.msgs.find(msg => msg.receiver === this.props.auth.user.playerId))
 	 	const messagesItems = this.props.msgs.filter(msg => msg.receiver === this.props.auth.user.playerId).map((msg, index)=> 
 			<div className="row align-items-center" key={index}>
 				<div className="col-12 col-md-4">
@@ -25,7 +24,6 @@ class Msgs extends Component {
 				<div className="col-12 col-md-4">
 					Отправитель: <Link target="_blank" className="mr-3" to={`/@${msg.senderName}`}>{msg.senderName}</Link>
 				</div>
-				{console.log(this.props.game.gamersInsideId && this.props.game.gamersInsideId.includes(msg.sender))}
 				<div className="col-12 col-md-4">
 					{(this.props.game.gamersInsideId && this.props.game.gamersInsideId.includes(msg.sender)) ?
 					<React.Fragment>
