@@ -31,7 +31,7 @@ class Games extends Component {
 	}
 
 	render(){ 
-    const {isAuthenticated, user} = this.props.auth;
+    const {user} = this.props.auth;
 	 	const games = this.props.currentTodos || (_.sortBy(this.props.games, ['from']).slice(0,2));
 	 	const renderTodos = games.map((game,index) => 
           <Link to={`/game/${game._id}`} className="m-0 p-0 mb-4 btn text-left text_card w-100" key={index}>

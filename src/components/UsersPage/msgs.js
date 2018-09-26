@@ -14,7 +14,7 @@ class Msgs extends Component {
 	  }
 	componentDidMount() {
 		if(this.props.auth.isAuthenticated){
-			this.props.fetchGames(),
+			this.props.fetchGames();
 			this.props.fetchPlayers()
 		}
 		this.interval = setInterval(() => {

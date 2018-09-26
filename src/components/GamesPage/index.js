@@ -80,7 +80,7 @@ import Games from './GamesBlock';
 	}
 
     render() {
-      const {isAuthenticated, user} = this.props.auth;
+      const {user} = this.props.auth;
 	//datepiceker consts
 	    const { from, to } = this.state;
 	    const modifiers = { start: from, end: to };

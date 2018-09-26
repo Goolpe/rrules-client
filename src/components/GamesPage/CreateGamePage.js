@@ -78,7 +78,7 @@ class CreateGamePage extends Component {
 	notifyError(word){toast.error(word)}
 	onSubmit(e){
 		e.preventDefault();
-
+		var video_id;
 		var reg = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w]+\?v=|embed\/|v\/)?)([\w]+)(\S+)?$/;
 		if(this.state.videoLink.length > 0){
 			if(this.state.videoLink.match(reg) === null){
@@ -86,11 +86,11 @@ class CreateGamePage extends Component {
 				return false
 			}
 			else {
-				var video_id = this.state.videoLink.match(reg)[5]
+				video_id = this.state.videoLink.match(reg)[5]
 			}
 		}
 		else{
-			var video_id = this.state.videoLink
+			video_id = this.state.videoLink
 		}
 
 		if(Date.parse(this.state.from) > Date.parse(new Date()) && Date.parse(this.state.from) < Date.parse(this.state.to)){
