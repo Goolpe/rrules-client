@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import moment from 'moment';
-import 'moment/locale/ru';
 import { Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
-import { fetchMsgs, changeMsgData } from '../actions/msgActions';
 import { changeGameData, fetchGames } from '../actions/gameActions';
 import { FaTimes } from "react-icons/fa";
 
@@ -17,10 +14,19 @@ class Msgs extends Component {
 	  }
 	componentDidMount() {
 		if(this.props.auth.isAuthenticated){
-	      	this.props.fetchPlayers();
-	      	this.props.fetchGames();
-	      }
+			this.props.fetchGames(),
+			this.props.fetchPlayers()
+		}
+		this.interval = setInterval(() => {
+          this.props.auth.isAuthenticated &&
+          this.props.fetchGames() && 
+          this.props.fetchPlayers()
+        }, 1000);
     }
+
+	componentWillUnmount() {
+	    clearInterval(this.interval);
+	}
     handleAccept(game, sender){
 		const gameData = {
 			id: game,
@@ -43,7 +49,6 @@ class Msgs extends Component {
     	if(msgdec === false && msgacc === false){
     		msgdec = true
     	}
-    	console.log(msgacc)
     	const gameData = {
 			id: game,
 		    gamerInsideId: sender,
@@ -59,12 +64,15 @@ class Msgs extends Component {
 	 		.map((msg,index) => 
 	 			<div className="shadow bg_card text_card p-3 mb-3" key={index}>
 		 			<div className="row align-items-center">
-						<div className="col-12 col-md-5">
+						<div className="col-12 col-md-4">
 							{this.props.players.filter(player=> msg.user === player._id).map((player, index)=>
 								<React.Fragment key={index}>Отправитель: <Link target="_blank" className="mr-3" to={`/@${player.name}`}>{player.name}</Link></React.Fragment>
 							)}
 						</div>
-						<div className="col-12 col-md-6">
+						<div className="col-12 col-md-3">
+							Игра: <Link target="_blank" to={`/game/${game._id}`}>{game.nameGame}</Link>
+						</div>
+						<div className="col-12 col-md-4">
 							{!msg.accept && !msg.decline ?
 								<React.Fragment>
 									<button className="btn btn-info mr-3" onClick={()=>{this.handleAccept(game._id, msg.user)}}>Подтвердить</button>
@@ -93,21 +101,16 @@ Msgs.propTypes = {
   auth: PropTypes.object.isRequired,
   fetchPlayers: PropTypes.func.isRequired,
   players: PropTypes.array.isRequired,
-  fetchMsgs: PropTypes.func.isRequired,
-  msgs: PropTypes.array.isRequired,
   changeGameData: PropTypes.func.isRequired,
   fetchGames: PropTypes.func.isRequired,
-  games: PropTypes.array.isRequired,
-  changeMsgData: PropTypes.func.isRequired
+  games: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
   games: state.games.items,
   players: state.players.items,
-  msgs: state.msgs.items,
-  msg: state.msg.item,
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { changeMsgData, changeGameData, fetchGames, fetchMsgs, fetchPlayers })(withRouter(Msgs));
+export default connect(mapStateToProps, { changeGameData, fetchGames, fetchPlayers })(withRouter(Msgs));
 

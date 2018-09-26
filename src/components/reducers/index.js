@@ -4,7 +4,6 @@ import authReducer from './authReducer';
 import playerReducer from './playerReducer';
 import gameReducer from './gameReducer';
 import errorReducer from './errorReducer';
-import msgReducer from './msgReducer';
 
 export default combineReducers({
   articles: postReducer,
@@ -15,9 +14,7 @@ export default combineReducers({
   games: gameReducer,
   game: gameReducer,
   errors: errorReducer,
-  auth: authReducer,
-  msgs: msgReducer,
-  msg: msgReducer
+  auth: authReducer
 });
 
 

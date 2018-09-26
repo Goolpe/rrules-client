@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
 import { fetchGame, changeGameData } from '../actions/gameActions';
 import YouTube from 'react-youtube';
-import { createMsg, fetchMsgs } from '../actions/msgActions';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaStar, FaAngleLeft } from "react-icons/fa";
@@ -26,9 +25,6 @@ class GamePage extends Component {
 		window.scrollTo(0,0);
       	this.props.fetchPlayers();
       	this.props.fetchGame(this.props.match.params.id, this.props.history);
-      	if(this.props.auth.isAuthenticated){
-	      this.props.fetchMsgs(this.props.auth.user.player);
-	  }
     }
 // functions for datepicker
 
@@ -195,22 +191,18 @@ class GamePage extends Component {
 }
 
 GamePage.propTypes = {
-  createMsg: PropTypes.func.isRequired,
-  fetchMsgs: PropTypes.func.isRequired,
   fetchGame: PropTypes.func.isRequired,
   game: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   fetchPlayers: PropTypes.func.isRequired,
   players: PropTypes.array.isRequired,
   changeGameData: PropTypes.func.isRequired
-
 };
 
 const mapStateToProps = state => ({
   game: state.game.item,
-  msgs: state.msgs.items,
   players: state.players.items,
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { changeGameData, createMsg, fetchMsgs, fetchGame, fetchPlayers })(withRouter(GamePage));
+export default connect(mapStateToProps, { changeGameData, fetchGame, fetchPlayers })(withRouter(GamePage));

@@ -64,12 +64,11 @@ class Navigation extends Component{
   }
 
   componentDidMount() {
-    // this.interval = setInterval(() => {
-    //     this.props.auth.isAuthenticated &&
-    //     this.props.fetchMsgs(this.props.auth.user.player)
-    //   }, 1000);
+    this.interval = setInterval(() => {
+        this.props.auth.isAuthenticated &&
+        this.props.fetchGames()
+      }, 1000);
     if(this.props.auth.isAuthenticated){
-      this.props.fetchGames()
       this.props.fetchPlayer(this.props.auth.user.name, this.props.history)
     }
   }

@@ -31,11 +31,13 @@ class Games extends Component {
 	}
 
 	render(){ 
+    const {isAuthenticated, user} = this.props.auth;
 	 	const games = this.props.currentTodos || (_.sortBy(this.props.games, ['from']).slice(0,2));
 	 	const renderTodos = games.map((game,index) => 
           <Link to={`/game/${game._id}`} className="m-0 p-0 mb-4 btn text-left text_card w-100" key={index}>
           <div className="p-3 bg_card shadow" >  
-            <p className="pb-3 border-bottom">{game.nameGame}</p>       
+            <p className="pb-3 border-bottom">{game.nameGame} {game.gamersInsideId.filter(gamerInside => gamerInside.user === user.player && gamerInside.accept === true ).map(gamer=> <span style={{color:"#4caf50"}}>| Вы в игре</span>)}</p>
+            
             <div className="row">
               <div className="col-12 col-md-3">
                 {this.props.players.filter(master => game.name === master._id)
@@ -73,12 +75,14 @@ Games.propTypes = {
   fetchPlayers: PropTypes.func.isRequired,
   players: PropTypes.array.isRequired,
   fetchGames: PropTypes.func.isRequired,
-  games: PropTypes.array.isRequired
+  games: PropTypes.array.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   players: state.players.items,
-  games: state.games.items
+  games: state.games.items,
+  auth: state.auth
 })
 
 

@@ -7,7 +7,7 @@ class error404Page extends Component{
   }
   render(){	
     return (
-    	<section id="error404" className="text-center" style={{backgroundColor: "#fab217",height:"100vh"}}>
+    	<section id="error404" className="text-center" style={{backgroundColor: "#313438"}}>
         <img src="404.svg" style={{height:"100%"}} alt="404 ошибка" />
         <Link to="/" className="btn btn-info position-absolute" style={{top:"88%", left: "48%"}}>ГЛАВНАЯ</Link>
       </section>
