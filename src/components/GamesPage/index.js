@@ -66,7 +66,6 @@ import Games from './GamesBlock';
 	  window.scrollTo(0,0);
     this.props.fetchGames();
     this.props.fetchPlayers();
-    this.props.fetchPlayer(this.props.auth.user.name, this.props.history);
 	}
 
 	// Handler of change input states  
@@ -81,6 +80,7 @@ import Games from './GamesBlock';
 	}
 
     render() {
+      const {isAuthenticated, user} = this.props.auth;
 	//datepiceker consts
 	    const { from, to } = this.state;
 	    const modifiers = { start: from, end: to };
@@ -150,7 +150,7 @@ import Games from './GamesBlock';
                 <div className="row pt-5">
                   <div className="col-12 col-lg-3 mt-2">
                     <div className="container bg_card shadow text_card pt-3 pb-3">
-                      {this.props.player.status !== "игрок" && <Link to="/game-create" className="btn btn-info mb-2 w-100">Создать игру</Link>}
+                      {this.props.players.find(playerUser => user.player === playerUser._id && playerUser.status !== "игрок" ) && <Link to="/game-create" className="btn btn-info mb-2 w-100">Создать игру</Link>}
                      <ButtonDropdown isOpen={this.state.dropdownOpen} className="w-100 mb-2" toggle={this.toggle}>
                           <DropdownToggle caret className="btn btn-info w-100">
                             Сортировать: 
