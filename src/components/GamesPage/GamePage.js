@@ -6,7 +6,7 @@ import { Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
-import { fetchGame } from '../actions/gameActions';
+import { fetchGame, changeGameData } from '../actions/gameActions';
 import YouTube from 'react-youtube';
 import { createMsg, fetchMsgs } from '../actions/msgActions';
 import { ToastContainer, toast } from 'react-toastify';
@@ -71,21 +71,20 @@ class GamePage extends Component {
     		if(this.props.game.name === this.props.auth.user.player){
     			this.notify("Вы создатель!")
     		}
-    		else if(this.props.msgs.find(msg => msg.messages.find(msg => msg.message === this.props.game._id) && msg.sender === this.props.auth.user.player)){
-    			if(this.props.game.gamersInsideId.includes(this.props.auth.user.player)){
-    				this.notify("Вы уже в игре!")
-    			}
-    			else{
-    				this.notify("Вы уже отправляли запрос!")
-    			}
+    		else if(this.props.game.gamersInsideId.find(msg=> msg.user === this.props.auth.user.player && msg.accept === true)){
+    			this.notify("Вы уже в игре!")
+    		}
+    		else if(this.props.game.gamersInsideId.find(msg=> msg.user === this.props.auth.user.player && msg.accept === true && msg.decline === false)){
+    			this.notify("Вы уже отправляли запрос!")
     		}
     		else{
-	    		const msgData = {
-					sender: this.props.auth.user.player,
-					receiver: this.props.game.name,
-					message: this.props.game._id
-			     }
-				this.props.createMsg(msgData);
+	    		const gameData = {
+					id: this.props.game._id,
+				    gamerInsideId: this.props.auth.user.player,
+				    accept: false,
+				    decline: false
+			    };
+				this.props.changeGameData(gameData);
 				this.notifySend("Запрос отправлен!")
 				this.props.history.push(`/game/${this.props.game._id}`)
 			}
@@ -198,7 +197,8 @@ GamePage.propTypes = {
   game: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   fetchPlayers: PropTypes.func.isRequired,
-  players: PropTypes.array.isRequired
+  players: PropTypes.array.isRequired,
+  changeGameData: PropTypes.func.isRequired
 
 };
 
@@ -209,4 +209,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { createMsg, fetchMsgs, fetchGame, fetchPlayers })(withRouter(GamePage));
+export default connect(mapStateToProps, { changeGameData, createMsg, fetchMsgs, fetchGame, fetchPlayers })(withRouter(GamePage));
