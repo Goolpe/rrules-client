@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
 import { fetchMsgs, changeMsgData } from '../actions/msgActions';
 import { changeGameData, fetchGames } from '../actions/gameActions';
+import { FaTimes } from "react-icons/fa";
+import { UncontrolledTooltip } from 'reactstrap';
 
 class Msgs extends Component {
 	constructor(props) {
@@ -20,6 +22,11 @@ class Msgs extends Component {
 	      	this.props.fetchGames();
 	      }
     }
+    componentWillReceiveProps(nextProps){
+	    if(this.props.games !== nextProps.games){
+	      this.props.fetchGames();
+	    }
+	  }
     handleAccept(game, sender){
 		const gameData = {
 			id: game,
@@ -38,37 +45,52 @@ class Msgs extends Component {
 	    };
 		this.props.changeGameData(gameData);
     }
+    handleDelete(game, sender, msgacc, msgdec){
+    	const gameData = {
+			id: game,
+		    gamerInsideId: sender,
+		    accept: msgacc,
+		    decline: msgdec,
+		    show: false
+	    };
+		this.props.changeGameData(gameData);
+    }
 	 render(){ 
 	 	var messagesItems;
-	 	this.props.games.filter(games => games.name === this.props.auth.user.player).map(game=> 
-	 		messagesItems = game.gamersInsideId.map((msg,index) => 
-	 			<div className="row align-items-center" key={index}>
-					<div className="col-12 col-md-6">
-						{this.props.players.filter(player=> msg.user === player._id).map((player, index)=>
-							<React.Fragment key={index}>Отправитель: <Link target="_blank" className="mr-3" to={`/@${player.name}`}>{player.name}</Link></React.Fragment>
-						)}
-					</div>
-					<div className="col-12 col-md-6">
-						{!msg.accept && !msg.decline ?
-							<React.Fragment>
-								<button className="btn btn-info mr-3" onClick={()=>{this.handleAccept(game._id, msg.user)}}>Подтвердить</button>
-								<button className="btn btn-danger mr-3" onClick={()=>{this.handleDecline(game._id, msg.user)}}>Отклонить</button>
-							</React.Fragment>
-						:
-							msg.accept ? "Вы добавили игрока" : "Отклонен"
-						}
+	 	messagesItems = this.props.games.filter(games => games.name === this.props.auth.user.player).map(game=> 
+	 		game.gamersInsideId.filter(gamerInside => gamerInside.show === true).map((msg,index) => 
+	 			<div className="shadow bg_card text_card p-3 mb-3" key={index}>
+		 			<div className="row align-items-center">
+						<div className="col-12 col-md-5">
+							{this.props.players.filter(player=> msg.user === player._id).map((player, index)=>
+								<React.Fragment key={index}>Отправитель: <Link target="_blank" className="mr-3" to={`/@${player.name}`}>{player.name}</Link></React.Fragment>
+							)}
+						</div>
+						<div className="col-12 col-md-6">
+							{!msg.accept && !msg.decline ?
+								<React.Fragment>
+									<button className="btn btn-info mr-3" onClick={()=>{this.handleAccept(game._id, msg.user)}}>Подтвердить</button>
+									<button className="btn btn-danger mr-3" onClick={()=>{this.handleDecline(game._id, msg.user)}}>Отклонить</button>
+								</React.Fragment>
+							:
+								msg.accept ? "Вы добавили игрока" : "Отклонен"
+							}
+						</div>
+						<div className="col-12 col-md-1">
+							<button className="btn bg-transparent text_card userpage__facog" onClick={()=>{this.handleDelete(game._id, msg.user, msg.accept, msg.decline)}}><FaTimes size="1.5em"/></button>
+						</div>
 					</div>
 				</div>
 	 		)
 	 	)
 	return (
-		<div className="shadow bg_card text_card p-5 mb-3">
+		<React.Fragment>
 		{messagesItems ||	
 			<div style={{height: "100%"}} className="d-flex align-items-center justify-content-center">
-				<h1 className="text-center text-muted" >Сообщений нет</h1>
+				<h1 className="text-center text-muted">Сообщений нет</h1>
 			</div>
 		}
-		</div>
+		</React.Fragment>
 	)
 	}
 }

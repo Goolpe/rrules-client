@@ -74,8 +74,11 @@ class GamePage extends Component {
     		else if(this.props.game.gamersInsideId.find(msg=> msg.user === this.props.auth.user.player && msg.accept === true)){
     			this.notify("Вы уже в игре!")
     		}
-    		else if(this.props.game.gamersInsideId.find(msg=> msg.user === this.props.auth.user.player && msg.accept === true && msg.decline === false)){
+    		else if(this.props.game.gamersInsideId.find(msg=> msg.user === this.props.auth.user.player && msg.accept === false && msg.decline === false)){
     			this.notify("Вы уже отправляли запрос!")
+    		}
+    		else if(this.props.game.gamersInsideId.find(msg=> msg.user === this.props.auth.user.player && msg.decline === true)){
+    			this.notify("Мастер отклонил Ваш запрос!")
     		}
     		else{
 	    		const gameData = {
