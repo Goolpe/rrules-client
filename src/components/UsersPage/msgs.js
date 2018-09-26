@@ -8,7 +8,6 @@ import { fetchPlayers } from '../actions/playerActions';
 import { fetchMsgs, changeMsgData } from '../actions/msgActions';
 import { changeGameData, fetchGames } from '../actions/gameActions';
 import { FaTimes } from "react-icons/fa";
-import { UncontrolledTooltip } from 'reactstrap';
 
 class Msgs extends Component {
 	constructor(props) {
@@ -22,11 +21,6 @@ class Msgs extends Component {
 	      	this.props.fetchGames();
 	      }
     }
-    componentWillReceiveProps(nextProps){
-	    if(this.props.games !== nextProps.games){
-	      this.props.fetchGames();
-	    }
-	  }
     handleAccept(game, sender){
 		const gameData = {
 			id: game,
@@ -46,6 +40,10 @@ class Msgs extends Component {
 		this.props.changeGameData(gameData);
     }
     handleDelete(game, sender, msgacc, msgdec){
+    	if(msgdec === false && msgacc === false){
+    		msgdec = true
+    	}
+    	console.log(msgacc)
     	const gameData = {
 			id: game,
 		    gamerInsideId: sender,
@@ -56,9 +54,9 @@ class Msgs extends Component {
 		this.props.changeGameData(gameData);
     }
 	 render(){ 
-	 	var messagesItems;
-	 	messagesItems = this.props.games.filter(games => games.name === this.props.auth.user.player).map(game=> 
-	 		game.gamersInsideId.filter(gamerInside => gamerInside.show === true).map((msg,index) => 
+	 	var messagesItems = this.props.games.filter(game => game.name === this.props.auth.user.player).map(game =>
+	 		game.gamersInsideId.filter(gamer => gamer.show === true)
+	 		.map((msg,index) => 
 	 			<div className="shadow bg_card text_card p-3 mb-3" key={index}>
 		 			<div className="row align-items-center">
 						<div className="col-12 col-md-5">
@@ -85,11 +83,7 @@ class Msgs extends Component {
 	 	)
 	return (
 		<React.Fragment>
-		{messagesItems ||	
-			<div style={{height: "100%"}} className="d-flex align-items-center justify-content-center">
-				<h1 className="text-center text-muted">Сообщений нет</h1>
-			</div>
-		}
+		{messagesItems}
 		</React.Fragment>
 	)
 	}

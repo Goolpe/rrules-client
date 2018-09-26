@@ -53,7 +53,7 @@ class Games extends Component {
                 
               </div>
               <div className="col-12 col-md-4">
-                <p className="d-flex-wrap" style={{wordWrap: "break-word"}}>Всего мест: {game.placeAll - game.gamersInsideId.length} / {game.placeAll}
+                <p className="d-flex-wrap" style={{wordWrap: "break-word"}}>Всего мест: {game.placeAll - (game.gamersInsideId.filter(gamerInside => gamerInside.accept === true).length)} / {game.placeAll}
                 </p>
                 <p>Стоимость: {game.priceGame === 0 ? "Бесплатно" : game.priceGame}</p>
               </div>

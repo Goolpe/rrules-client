@@ -146,7 +146,7 @@ class GamePage extends Component {
 		 							<p>{moment(game.from).format('lll')}</p>
 		 						</div>
 		 						<div className="col-12 col-md-3">
-		 							<p>Места: {game.gamersInsideId && (game.placeAll - game.gamersInsideId.length)} / {game.placeAll}</p>
+		 							<p>Места: {game.gamersInsideId && (game.placeAll - (game.gamersInsideId.filter(gamerInside => gamerInside.accept === true).length))} / {game.placeAll}</p>
 		 						</div>
 		 						<div className="col-12 col-md-3">
 		 							<p>{game.priceGame === 0 ? "Бесплатно" : game.priceGame}</p>
@@ -170,11 +170,12 @@ class GamePage extends Component {
 			 						<hr />
 			 						<p>Игроки:</p>
 			 						<ul>
-				 						{this.props.players.filter(player => game.gamersInsideId.includes(player._id))
-				 							.map(player => {
+				 						{this.props.players.filter(player => game.gamersInsideId
+				 							.find(gamerInside => gamerInside.accept === true && gamerInside.user === player._id))
+				 							.map(gamer => {
 							 					return (
-							 						<React.Fragment key={player._id} >
-							 							<Link to={`/@${player.name}`} target="_blank" >{player.name}</Link><br/>
+							 						<React.Fragment key={gamer._id} >
+							 							<Link to={`/@${gamer.name}`} target="_blank" >{gamer.name}</Link><br/>
 							 						</React.Fragment>
 							 						)
 							 					}
