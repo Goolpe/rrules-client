@@ -183,13 +183,17 @@ svg,
     background-color: rgba(0,0,0,.8);
     box-shadow: 0 0 0 rgba(0,0,0,0);
 }
+.userpage__bg{
+    height: 200px; 
+    background: no-repeat;
+    background-position: center left;
+    background-size: cover;
+}
 
 .userpage__avatar{
-    width: 100px; 
-    height: 100px; 
-    background: no-repeat;
-    background-position: top;
-    background-size: cover;
+    width: 150px; 
+    height: 150px; 
+    overflow: hidden;
 }
 
 .userpage__facog svg{
@@ -463,5 +467,12 @@ footer ul
     }
     #social i.fa-2x{
       font-size: 1em;
+    }
+    .userpage__bg{
+        height: 100px
+    }
+    .userpage__avatar{
+        width: 100px; 
+        height: 100px; 
     }
 }

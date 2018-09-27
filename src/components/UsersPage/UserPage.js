@@ -36,10 +36,9 @@ class UserPage extends Component {
       <section id="userPage">    
         <div className="container">
           <div className="shadow bg_card">
-              <div className="w-100 position-relative border-bottom" style={{height:"200px", overflow:"hidden"}}>
-                <img style={{width:"100%"}} alt="bgphoto" src={player.bgphoto} />
-                <div className="position-absolute border" style={{bottom:"10px",left:"10px"}}>
-                    <div className="userpage__avatar" style={{backgroundImage: `url(${player.photo})`}}></div>
+              <div className="w-100 position-relative border-bottom userpage__bg" style={{backgroundImage: `url(${player.bgphoto})`}}>
+                <div className="position-absolute userpage__avatar" style={{bottom:"0",left:"0"}}>
+                    <img width="100%" alt="player-photo" src={player.photo}/>
                 </div>
               </div>
                   <ul className="p-4 text_card">
