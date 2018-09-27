@@ -38,7 +38,7 @@ class UserPage extends Component {
           <div className="shadow bg_card">
               <div className="w-100 position-relative border-bottom userpage__bg" style={{backgroundImage: `url(${player.bgphoto})`}}>
                 <div className="position-absolute userpage__avatar" style={{bottom:"0",left:"0"}}>
-                    <img width="100%" alt="player-photo" src={player.photo}/>
+                    <img width="100%" alt="player" src={player.photo}/>
                 </div>
               </div>
                   <ul className="p-4 text_card">
