@@ -127,9 +127,11 @@ class GamesPage extends Component {
         const renderPageNumbers = pageNumbers.map(number => {
           return (
           	<PaginationItem key={number}>
-  	          <PaginationLink id={number} className="shadow bg_card text_card rounded-0 border-0 mr-2"  onClick={this.handleClick}>
-  	            {number}
-  	          </PaginationLink>
+              {pageNumbers.length > 1 && 
+    	          <PaginationLink id={number} className="shadow bg_card text_card rounded-0 border-0 mr-2"  onClick={this.handleClick}>
+    	            {number}
+    	          </PaginationLink>
+              }
 	        </PaginationItem>
           );
         });
