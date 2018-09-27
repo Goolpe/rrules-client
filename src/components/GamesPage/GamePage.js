@@ -88,14 +88,8 @@ class GamePage extends Component {
   	const {user} = this.props.auth;
   	const game = this.props.game;
 	  return (
-	  	<section id="createGame">
-			<div className="container text_card">
-				<p className="text_card pb-4"><Link to="/games" className="text_card p-0 btn">
-			        <FaAngleLeft size="1.5em"/> Все игры&nbsp;
-			    </Link> 
-			    | {game.nameGame || "Игра"}</p>
-
-				<ToastContainer
+	  	<section id="gamePage">
+	  		<ToastContainer
 					position="top-center"
 					autoClose={2000}
 					hideProgressBar={false}
@@ -106,30 +100,35 @@ class GamePage extends Component {
 					draggable
 					pauseOnHover
 					/>
+			<div className="text_card container">
 				<form onSubmit={this.onSubmit}>
-				<div className="row justify-content-between">
-					<div className="col-12 col-md-6">
-						{game.name === user.player && 
-							<Link to={`/game-edit/${game._id}`} className="btn btn-info mb-2">Редактировать/Удалить</Link>
-						}
+					<div className="row">
+						<div className="col-auto mr-auto p-0">
+							<p className="text_card pb-4">
+								<Link to="/games" className="text_card p-0 btn">
+							        <FaAngleLeft size="1.5em"/> Все игры&nbsp;
+							    </Link> 
+							    |
+							    {game.name === user.player && 
+									<Link to={`/game-edit/${game._id}`} className="btn text-info bg-transparent">Редактировать/Удалить</Link>
+								}
+							</p>
+						</div>
+						<div className="col-auto p-0">
+							{game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.accept === true) 
+								?
+								<Button className="mb-2 btn-outline-secondary" disabled>Вы в игре</Button>
+								:
+								game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.decline === true) ?
+								<Button color="danger" className="mb-2" disabled>Отклонен</Button>
+								:
+								(game.gamersInsideId && game.placeAll - game.gamersInsideId.length === 0) ? 
+									<Button color="danger" className="mb-2" disabled>Мест нет</Button>
+									:
+									<Button type="submit" color="danger" className="mb-2">Играть</Button>
+								}
+						</div>
 					</div>
-					<div className="col-12 col-md-6 text-right">
-					{console.log(game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.accept === true) )}
-					{game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.accept === true) 
-						?
-						<Button color="success" className="mb-2" disabled>Вы в игре</Button>
-						:
-						game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.decline === true) ?
-						<Button color="danger" className="mb-2" disabled>Отклонен</Button>
-						:
-						(game.gamersInsideId && game.placeAll - game.gamersInsideId.length === 0) ? 
-							<Button color="danger" className="mb-2" disabled>Мест нет</Button>
-							:
-							<Button type="submit" color="danger" className="mb-2">Играть</Button>
-						}
-					</div>
-			    </div>
-			    <div className="container mb-5">
 		 			<div className="row p-3 align-items-begin bg_card shadow">
 		 				<div className="col-12 col-md-9">
 		 					<div className="row text-left justify-content-center">
@@ -178,8 +177,7 @@ class GamePage extends Component {
 				 				</React.Fragment>
 			 				)}
 		 				</div>
-		 			</div>	
-		 		</div>		
+		 			</div>			
 		 		</form>
 			</div>
 		</section>

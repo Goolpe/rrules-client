@@ -54,8 +54,8 @@ class GameEditPage extends Component {
 		const gameData = {
 			id: this.props.match.params.id,
 			nameGame: this.state.nameGame,
+			name: this.props.auth.user.player,
 			cityGame: this.state.cityGame,
-		    masterName: this.props.auth.user.name,
 		    placeGame: this.state.placeGame,
 		    priceGame: this.state.priceGame,
 		    infoGame: this.state.infoGame,

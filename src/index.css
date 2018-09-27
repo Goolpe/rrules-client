@@ -247,6 +247,11 @@ svg,
     width: 700px !important;
 }
 
+.gamepage__container{
+    width: 90%;
+    margin: auto;
+}
+
 footer
 {
     font-family: Arial, Helvetica, sans-serif;
