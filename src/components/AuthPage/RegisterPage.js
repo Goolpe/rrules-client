@@ -21,6 +21,21 @@ class RegisterPage extends Component{
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    if(this.props.auth.isAuthenticated) {
+        this.props.history.push('/');
+    }
+    window.scrollTo(0,0);
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.errors !== this.props.errors) {
+        this.setState({
+            errors: this.props.errors
+        });
+    }
+  }
+  
   handleChange(e){
     this.setState({ 
       [e.target.name]: e.target.value,
@@ -38,21 +53,6 @@ class RegisterPage extends Component{
           password_confirm: this.state.password_confirm
       }
       this.props.registerUser(user, this.props.history);
-  }
-
-  componentDidMount() {
-    window.scrollTo(0,0);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if(this.props.auth.isAuthenticated) {
-        this.props.history.push('/');
-    }
-    if(nextProps.errors) {
-        this.setState({
-            errors: nextProps.errors
-        });
-    }
   }
 
   render(){	

@@ -25,6 +25,21 @@ class Navigation extends Component{
       read: 0
     };
   }
+
+  componentDidMount() {
+    if(this.props.auth.isAuthenticated){
+      this.props.fetchPlayer(this.props.auth.user.name, this.props.history)
+    }
+  }
+
+  componentDidUpdate(prevProps){
+    if(this.props.location.pathname !== prevProps.location.pathname){
+      this.setState({
+        active: this.props.location.pathname
+      })
+    }
+  }
+
   toggle() {
     if(!this.state.isOpen){
       document.getElementById('hr1').classList.add("hr3");
@@ -48,33 +63,6 @@ class Navigation extends Component{
     this.setState({
       isOpen: false
     });
-  }
-
-  componentWillReceiveProps(nextProps){
-    if(this.props.auth.isAuthenticated && this.props.games !== nextProps.games){
-     this.setState({
-        read: this.props.games.filter(games => games.gamersInsideId.find(gamerInside => gamerInside.decline === false && gamerInside.accept === false && games.name === this.props.auth.user.player)).length
-      })        
-    }
-    if(this.props.location.pathname !== nextProps.location.pathname){
-      this.setState({
-        active: nextProps.location.pathname
-      })
-    }
-  }
-
-  componentDidMount() {
-    this.interval = setInterval(() => {
-        this.props.auth.isAuthenticated &&
-        this.props.fetchGames()
-      }, 1000);
-    if(this.props.auth.isAuthenticated){
-      this.props.fetchPlayer(this.props.auth.user.name, this.props.history)
-    }
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
   }
 
   handleClick(e){
@@ -182,6 +170,7 @@ class Navigation extends Component{
     )
   }
 }
+
 Navigation.propTypes = {
   fetchPlayer: PropTypes.func.isRequired,
   player: PropTypes.object.isRequired,

@@ -20,6 +20,12 @@ class CarouselBlock extends Component {
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
   }
+
+  componentDidMount() {
+    this.setState({ activeIndex: 0 });
+    this.props.fetchArticles();
+  }
+  
   onExiting() {
     this.animating = true;
   }
@@ -42,10 +48,6 @@ class CarouselBlock extends Component {
   goToIndex(newIndex) {
     if (this.animating) return;
     this.setState({ activeIndex: newIndex });
-  }
-  componentDidMount() {
-    this.setState({ activeIndex: 0 });
-    this.props.fetchArticles();
   }
 
   render(){

@@ -30,10 +30,7 @@ class GameEditPage extends Component {
 	componentDidMount() {
 	    window.scrollTo(0,0);
 	    this.props.fetchGame(this.props.match.params.id, this.props.history);
-	    if(this.props.auth.isAuthenticated && this.props.game.name === this.props.auth.user.player){
-	    	this.props.history.push(`/game-edit/${this.props.match.params.id}`)
-	    }
-	    else{
+	    if(!this.props.auth.isAuthenticated && this.props.game.name !== this.props.auth.user.player){
 	    	this.props.history.push('/games')
 	    }
 	}

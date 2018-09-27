@@ -39,6 +39,13 @@ class CreateGamePage extends Component {
 		this.onSubmit = this.onSubmit.bind(this);
 	} 
 
+	componentDidMount() {
+	    window.scrollTo(0,0);
+	    if(!this.props.auth.isAuthenticated){
+	    	this.props.history.push("/")
+	    }
+	}
+	
 // functions for datepicker
 
     showFromMonth() {
@@ -56,17 +63,6 @@ class CreateGamePage extends Component {
 	handleToChange(to) {
 		this.setState({ to }, this.showFromMonth);
 	}
-
-	componentDidMount() {
-	    window.scrollTo(0,0);
-	    if(this.props.auth.isAuthenticated){
-	    	this.props.history.push("/game-create")
-	    }
-	    else{
-	    	this.props.history.push("/")
-	    }
-	}
-
 // Handler of change input states  
 
 	onChange(e){

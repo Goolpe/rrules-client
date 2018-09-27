@@ -20,8 +20,8 @@ class UserPage extends Component {
     this.props.fetchPlayer(this.props.match.params.nickname, this.props.history);
   }
 
-  componentWillReceiveProps(nextProps){
-    if(this.props.match.params.nickname !== nextProps.match.params.nickname){
+  componentDidUpdate(prevProps){
+    if(this.props.match.params.nickname !== prevProps.match.params.nickname){
       this.props.fetchPlayer(this.props.match.params.nickname, this.props.history);
     }
   }

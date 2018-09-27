@@ -17,16 +17,11 @@ class Msgs extends Component {
 			this.props.fetchGames();
 			this.props.fetchPlayers()
 		}
-		this.interval = setInterval(() => {
-          this.props.auth.isAuthenticated &&
-          this.props.fetchGames() && 
-          this.props.fetchPlayers()
-        }, 1000);
+		else{
+			this.props.history.push('/auth');
+		}
     }
 
-	componentWillUnmount() {
-	    clearInterval(this.interval);
-	}
     handleAccept(game, sender){
 		const gameData = {
 			id: game,

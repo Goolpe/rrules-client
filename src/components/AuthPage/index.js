@@ -19,16 +19,22 @@ class AuthPage extends Component{
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e){
-    this.setState({ [e.target.name]: e.target.value})
-  }
-
   componentDidMount() {
     window.scrollTo(0,0);
     if(this.props.auth.isAuthenticated) {
         this.props.history.push('/');
     }
   }
+  componentDidUpdate(prevProps){
+    if(this.props.auth.isAuthenticated) {
+        this.props.history.push('/');
+    }
+  }
+  
+  handleChange(e){
+    this.setState({ [e.target.name]: e.target.value})
+  }
+
   toggle(tab) {
     if (this.state.activeTab !== tab) {
       this.setState({

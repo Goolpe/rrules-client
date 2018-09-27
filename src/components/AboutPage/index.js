@@ -9,9 +9,11 @@ class AboutPage extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = { collapse: false };
   }
+  
   componentDidMount() {
     window.scrollTo(0,0);
   }
+
   toggle(id) {
     this.setState({ collapse: !this.state.collapse });
   }

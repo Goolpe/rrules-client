@@ -19,12 +19,22 @@ class SocialAuth extends Component{
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  
   componentDidMount() {
     window.scrollTo(0,0);
     if(this.props.auth.isAuthenticated) {
         this.props.history.push('/');
     }
   }
+
+  componentDidUpdate(prevProps){
+    if(prevProps.errors !== this.props.errors) {
+        this.setState({
+            errors: this.props.errors
+        });
+    }
+  }
+
   handleChange(e){
     this.setState({ 
       [e.target.name]: e.target.value,
@@ -32,25 +42,14 @@ class SocialAuth extends Component{
     })
   }
 
-  componentWillReceiveProps(nextProps) {
-    if(this.props.auth.isAuthenticated) {
-        this.props.history.push('/');
-    }
-    if(nextProps.errors) {
-        this.setState({
-            errors: nextProps.errors
-        });
-    }
-  }
-  
   handleSubmit(e) {
       e.preventDefault();
-
       const user = {
           name: this.state.name
       }
       this.props.registerUser(user, this.props.history);
   }
+
   render(){ 
     const { errors } = this.state;
       return ( 

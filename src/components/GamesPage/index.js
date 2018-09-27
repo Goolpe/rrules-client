@@ -15,26 +15,26 @@ import 'react-day-picker/lib/style.css';
 import { FaGamepad  } from "react-icons/fa";
 import Games from './GamesBlock';
 
- class GamesPage extends Component {
-    constructor() {
-        super();
-        this.state = {
-          currentPage: 1,
-          todosPerPage: 3,
-  	      from: undefined,
-  	      to: undefined,
-  	      sortByDate: true,
-  	      sortByRate: false,
-  	      dropdownOpen: false,
-  	      selectedOption:'sortByTypeAll',
-  	      sortByCityGame: ''
-	      }
-	      this.handleFromChange = this.handleFromChange.bind(this);
-	      this.handleToChange = this.handleToChange.bind(this);
-	      this.toggle = this.toggle.bind(this);
-	      this.onChange = this.onChange.bind(this);
-	      this.handleClick = this.handleClick.bind(this);
-	    }
+class GamesPage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      currentPage: 1,
+      todosPerPage: 3,
+      from: undefined,
+      to: undefined,
+      sortByDate: true,
+      sortByRate: false,
+      dropdownOpen: false,
+      selectedOption:'sortByTypeAll',
+      sortByCityGame: ''
+    }
+    this.handleFromChange = this.handleFromChange.bind(this);
+    this.handleToChange = this.handleToChange.bind(this);
+    this.toggle = this.toggle.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
 	// functions for datepicker
 	showFromMonth() {
@@ -47,6 +47,12 @@ import Games from './GamesBlock';
 		}
 	}
 
+  componentDidMount() {
+    window.scrollTo(0,0);
+    this.props.fetchGames();
+    this.props.fetchPlayers();
+  }
+  
 	handleFromChange(from) {
 		this.setState({ from });
 	}
@@ -62,12 +68,6 @@ import Games from './GamesBlock';
 	  });
 	}
 
-	componentDidMount() {
-	  window.scrollTo(0,0);
-    this.props.fetchGames();
-    this.props.fetchPlayers();
-	}
-
 	// Handler of change input states  
 	onChange(e){
 		this.setState({ [e.target.name]: e.target.value})
@@ -79,7 +79,7 @@ import Games from './GamesBlock';
 		});
 	}
 
-    render() {
+  render() {
       const {user} = this.props.auth;
 	//datepiceker consts
 	    const { from, to } = this.state;

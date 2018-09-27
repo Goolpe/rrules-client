@@ -11,23 +11,22 @@ import { FaStar } from "react-icons/fa";
 class Games extends Component {
 	constructor(props) {
 	    super(props);
-
 	    this.toggle = this.toggle.bind(this);
 	    this.state = {
 	      tooltipOpen: false
 	    };
 	}
 
+  componentDidMount() {
+      window.scrollTo(0,0);
+      this.props.fetchGames();
+      this.props.fetchPlayers(); 
+  }
+
 	toggle() {
 	    this.setState({
 	      tooltipOpen: !this.state.tooltipOpen
 	    });
-	}
-
-	componentDidMount() {
-	    window.scrollTo(0,0);
-      this.props.fetchGames();
-      this.props.fetchPlayers(); 
 	}
 
 	render(){ 
