@@ -78,21 +78,6 @@ class CreateGamePage extends Component {
 	notifyError(word){toast.error(word)}
 	onSubmit(e){
 		e.preventDefault();
-		var video_id;
-		var reg = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w]+\?v=|embed\/|v\/)?)([\w]+)(\S+)?$/;
-		if(this.state.videoLink.length > 0){
-			if(this.state.videoLink.match(reg) === null){
-				alert("Укажите правильную ссылку на видео")
-				return false
-			}
-			else {
-				video_id = this.state.videoLink.match(reg)[5]
-			}
-		}
-		else{
-			video_id = this.state.videoLink
-		}
-
 		if(Date.parse(this.state.from) > Date.parse(new Date()) && Date.parse(this.state.from) < Date.parse(this.state.to)){
 			const gameData = {
 				nameGame: this.state.nameGame,
@@ -102,7 +87,7 @@ class CreateGamePage extends Component {
 			    priceGame: this.state.priceGame,
 			    infoGame: this.state.infoGame,
 			    gamersInsideId: this.state.gamersInsideId,
-			    videoLink: video_id,
+			    videoLink: this.state.videoLink,
 			    selectedOption: this.state.selectedOption,
 			    placeAll: this.state.placeAll,
 			    from: this.state.from,
