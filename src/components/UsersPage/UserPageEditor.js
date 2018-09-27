@@ -33,7 +33,7 @@ class UserPageEditor extends Component {
       example2:this.props.player.example2,
       example3:this.props.player.example3,
       example4:this.props.player.example4,
-      gender:this.props.player.gender
+      sex:this.props.player.sex
     }
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -70,7 +70,7 @@ class UserPageEditor extends Component {
       example2:data.player.example2,
       example3:data.player.example3,
       example4:data.player.example4,
-      gender:data.player.gender
+      sex:data.player.sex
     });
   }
 
@@ -101,7 +101,7 @@ class UserPageEditor extends Component {
           leading: this.state.leading,
           cityLive: this.state.cityLive,
           otherContacts: this.state.otherContacts,
-          gender: this.state.gender
+          sex: this.state.sex
          }
 
     this.props.changePlayerData(playerData);
@@ -129,14 +129,14 @@ class UserPageEditor extends Component {
                     <Label sm={4}>Пол:</Label>
                     <Col sm={3}>
                       <div className="custom-control custom-radio">
-                          <input type="radio" className="custom-control-input" value={true} onChange={()=>{this.setState({gender: "Мужской"})}} checked={this.state.gender === "Мужской"} id="radioGender1" />
-                          <label className="custom-control-label" htmlFor="radioGender1">Мужской</label>
+                          <input type="radio" className="custom-control-input" value={true} onChange={()=>{this.setState({sex: "Мужской"})}} checked={this.state.sex === "Мужской"} id="radiosex1" />
+                          <label className="custom-control-label" htmlFor="radiosex1">Мужской</label>
                       </div>
                     </Col>
                     <Col sm={5}>
                       <div className="custom-control custom-radio">
-                          <input type="radio" className="custom-control-input" value={false} onChange={()=>{this.setState({gender: "Женский"})}} checked={this.state.gender === "Женский"} id="radioGender2" />
-                          <label className="custom-control-label" htmlFor="radioGender2">Женский</label>
+                          <input type="radio" className="custom-control-input" value={false} onChange={()=>{this.setState({sex: "Женский"})}} checked={this.state.sex === "Женский"} id="radiosex2" />
+                          <label className="custom-control-label" htmlFor="radiosex2">Женский</label>
                       </div>
                     </Col>
               </FormGroup>

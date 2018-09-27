@@ -65,10 +65,10 @@ class UserPage extends Component {
                     <li><span className="text-muted">Зарегистрирован: </span>{moment(player.dateReg).format('LL')}</li>
                     {player.status === "мастер" && <li><span className="text-muted">Платные игры: </span>{player.paidGames ? "водит" : "не водит"}</li>}
 
-                    {(player.fullName || player.gender || player.dateBirth || player.cityLive) && <hr/>}
+                    {(player.fullName || player.sex || player.dateBirth || player.cityLive) && <hr/>}
 
                     {player.fullName && <li><span className="text-muted">Имя: </span>{player.fullName}</li>}
-                    {player.gender && <li><span className="text-muted">Пол: </span>{player.gender}</li>}
+                    {player.sex && <li><span className="text-muted">Пол: </span>{player.sex}</li>}
                     {player.dateBirth && <li><span className="text-muted">День рождения: </span>{moment(player.dateBirth).format('LL')}</li>}
                     {player.cityLive && <li><span className="text-muted">Город: </span>{player.cityLive}</li>}
                     {player.discord && <li><span className="text-muted">Discord: </span>{player.discord}</li>}
