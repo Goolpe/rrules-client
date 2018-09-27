@@ -16,11 +16,11 @@ import ArticlesPage from './components/ArticlesPage';
 import ArticlePage from './components/ArticlesPage/ArticlePage';
 import ArticleForm from './components/ArticlesPage/ArticleForm';
 import ShopPage from './components/ShopPage';
-import StreamsPage from './components/StreamsPage';
 
 import MastersPage from './components/UsersPage/MastersPage';
 import UserPage from './components/UsersPage/UserPage';
 import UserPageEditor from './components/UsersPage/UserPageEditor';
+import MessagesPage from './components/MessagesPage';
 
 import AgreementPage from './components/AgreementPage';
 import SupportPage from './components/SupportPage';
@@ -82,13 +82,13 @@ class RoutesPage extends Component {
 				            <Route path="/articles" component={ArticlesPage} />
 				            <Route path="/article/:id" component={ArticlePage} />
 				            <Route path="/shop" component={ShopPage} />
-				            <Route path="/streams" component={StreamsPage} />
 				            <Route path="/masters" component={MastersPage} />
 				            <Route path="/support" component={SupportPage} />   
 				            <Route path="/agreement" component={AgreementPage} />
 				            <Route path="/games" component={GamesPage} />   
 				            <Route path="/game/:id" component={GamePage} /> 
 				            <Route path="/@:nickname" component={UserPage} />
+				            <Route path="/msgs" component={MessagesPage} />
 					        <Route path="/auth" component={AuthPage} />
 					        <Route path="/social-auth/:id" component={SocialAuth} />
 					        <Route path="/email-verification" component={EmailVerif} />

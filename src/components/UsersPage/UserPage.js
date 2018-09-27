@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayer } from '../actions/playerActions';
 import moment from 'moment';
-import Msgs from './msgs';
 import { FaStar, FaCog, FaSignOutAlt } from "react-icons/fa";
 import { UncontrolledTooltip } from 'reactstrap';
 import { logoutUser } from '../actions/authActions';
+import ReactPlayer from 'react-player';
 
 class UserPage extends Component {
   constructor(props) {
@@ -48,7 +48,7 @@ class UserPage extends Component {
                       </h2>
                       {isAuthenticated && this.props.match.params.nickname === user.name &&
                         <React.Fragment>
-                        <Link className="userpage__facog text_card" style={{height:"1.5em"}} id="TooltipSetting" to={`/edit/@${player.username}`}>
+                        <Link className="userpage__facog text_card" style={{height:"1.5em"}} id="TooltipSetting" to={`/edit/@${player.name}`}>
                           <FaCog size="1.5em"/>
                         </Link>
                         <UncontrolledTooltip className="mr-2" placement="left" target="TooltipSetting">
@@ -59,12 +59,11 @@ class UserPage extends Component {
 
                     </div>
 
-                    <li><span className="text-muted">Статус: </span>{player.status} 
-                      
-                    </li>
+                    <li><span className="text-muted">Статус: </span>{player.status}</li>
                     <li><span className="text-muted">Рейтинг: </span><FaStar className="text-warning" /> - {player.rating}/5</li>
                     {player.status === "мастер" && <li><span className="text-muted">Проведенных игр: </span>{player.gamesCount}</li>}
                     <li><span className="text-muted">Зарегистрирован: </span>{moment(player.dateReg).format('LL')}</li>
+                    {player.status === "мастер" && <li><span className="text-muted">Платные игры: </span>{player.paidGames ? "водит" : "не водит"}</li>}
 
                     {(player.fullName || player.gender || player.dateBirth || player.cityLive) && <hr/>}
 
@@ -72,37 +71,36 @@ class UserPage extends Component {
                     {player.gender && <li><span className="text-muted">Пол: </span>{player.gender}</li>}
                     {player.dateBirth && <li><span className="text-muted">День рождения: </span>{moment(player.dateBirth).format('LL')}</li>}
                     {player.cityLive && <li><span className="text-muted">Город: </span>{player.cityLive}</li>}
-
-                    <hr/>
-                    
-                    {player.status === "мастер" && <li>{player.paidGames ? "Водит платные игры" : "Не водит платные игры"}</li>}
                     {player.discord && <li><span className="text-muted">Discord: </span>{player.discord}</li>}
                     {player.skype && <li><span className="text-muted">Skype: </span>{player.skype}</li>}
                     {player.otherContacts && <li><span className="text-muted">Доп. контакты: </span>{player.otherContacts}</li>}
+
+                    {(player.about || player.systems || player.setting) && <hr/>}
+                    
                     {player.about && <li><span className="text-muted">О себе: </span>{player.about}</li>}
                     {player.systems && <li><span className="text-muted">Любимые системы: </span>{player.systems}</li>}
                     {player.setting && <li><span className="text-muted">Любимые сеттинги: </span>{player.setting}</li>}
                     {(player.example1 || player.example2 || player.example3 || player.example4) &&
                       <React.Fragment>
-                      <li>Примеры игр: {player.setting}</li>
-                      <div className="row">
+                      <hr/>
+                      <li><span className="text-muted">Примеры игр: </span></li>
+                      <div className="row mt-3">
                         {player.example1 && <div className="col-12 col-md-6 mb-3">
-                          <iframe width="100%" title="sample1" height="300" src={player.example1} frameBorder="0" allowFullScreen></iframe>
+                          <ReactPlayer url={player.example1} width="100%" height="300px" controls />
                         </div>}
                         {player.example2 && <div className="col-12 col-md-6 mb-3">
-                          <iframe width="100%" title="sample2" height="300" src={player.example2} frameBorder="0" allowFullScreen></iframe>
+                          <ReactPlayer url={player.example2} width="100%" height="300px" controls />
                         </div>}
                         {player.example3 && <div className="col-12 col-md-6 mb-3">
-                          <iframe width="100%" title="sample3" height="300" src={player.example3} frameBorder="0" allowFullScreen></iframe>
+                          <ReactPlayer url={player.example3} width="100%" height="300px" controls />
                         </div>}
                         {player.example4 && <div className="col-12 col-md-6 mb-3">
-                          <iframe width="100%" title="sample4" height="300" src={player.example4} frameBorder="0" allowFullScreen></iframe>
+                          <ReactPlayer url={player.example4} width="100%" height="300px" controls />
                         </div>}
                         </div>
                       </React.Fragment>}
                   </ul>                
           </div>
-          {isAuthenticated && this.props.match.params.nickname === user.name && <Msgs />}
         </div>
     	</section>
 	  )

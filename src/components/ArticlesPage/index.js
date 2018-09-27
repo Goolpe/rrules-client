@@ -77,9 +77,9 @@ class ArticlesPage extends Component {
 			<section id="articlesPage">	  
 				<div className="container text-left">
 					<span className="text_card">
-						<FaNewspaper size="1.5em"/> Новости | 
+						<FaNewspaper size="1.5em"/> Новости
 					{user.moderator && <Link to="/article-new" className="ml-2" >
-						<FaPlus  />
+						 | <FaPlus  />
 					</Link>}
 					</span>
 					<ul className="pt-5">{listItems}</ul>

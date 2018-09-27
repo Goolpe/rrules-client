@@ -18,8 +18,7 @@ export const fetchGames = () => dispatch => {
 export const fetchGame = (gameData, history) => dispatch => {
   fetch(server.online + '/games/one/' + gameData)
     .then(
-      res => res.json(),
-      err => console.log(err)
+      res => res.json()
     )
     .then(game => 
     dispatch({

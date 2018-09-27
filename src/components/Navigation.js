@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import { FiLogIn, FiShoppingBag, FiChevronsLeft, FiChevronsRight, FiBookOpen,FiUsers, FiUser, FiFileText, FiImage, FiCode, FiPlay } from "react-icons/fi";
+import { FiLogIn, FiShoppingBag, FiChevronsLeft, FiMail, FiChevronsRight, FiBookOpen,FiUsers, FiUser, FiFileText, FiImage, FiCode, FiPlay } from "react-icons/fi";
 import { FaHome, FaHandsHelping } from 'react-icons/fa';
 import { Badge,  UncontrolledTooltip } from 'reactstrap';
 import PropTypes from 'prop-types';
@@ -111,11 +111,19 @@ class Navigation extends Component{
             <React.Fragment>
               <Link to={`/@${user.name}`} id="TooltipUser" name="/@" onClick={this.handleClick}>
                 <li className={"pb-2 pt-2 " + (this.state.active.includes(user.name) ? "active" : "text-white")}>
-                  {this.state.read ? <Badge color="danger">{this.state.read}</Badge> : <FiUser />}
+                <FiUser />
                 </li>
               </Link>
               <UncontrolledTooltip className="ml-2" placement="right" target="TooltipUser">
-                {this.state.read ? "Новые сообщения" : "Профиль"}
+                Профиль
+              </UncontrolledTooltip>
+              <Link to="/msgs" id="TooltipMsg" name="/msgs" onClick={this.handleClick}>
+                <li className={"pb-2 pt-2 " + (this.state.active === "/msgs" ? "active" : "text-white")}>
+                  {this.state.read ? <Badge color="danger">{this.state.read}</Badge> : <FiMail />}
+                </li>
+              </Link>
+              <UncontrolledTooltip className="ml-2" placement="right" target="TooltipMsg">
+                {this.state.read === 1 ? "Новое сообщение" : this.state.read > 1 ? "Новые сообщения" : "Сообщения"}
               </UncontrolledTooltip>
             </React.Fragment>
             :

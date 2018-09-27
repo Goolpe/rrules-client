@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
 import { fetchGame, changeGameData } from '../actions/gameActions';
-import YouTube from 'react-youtube';
+import ReactPlayer from 'react-player';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaStar, FaAngleLeft } from "react-icons/fa";
@@ -26,7 +26,8 @@ class GamePage extends Component {
       	this.props.fetchPlayers();
       	this.props.fetchGame(this.props.match.params.id, this.props.history);
     }
-// functions for datepicker
+
+// datepicker methods
 
     showFromMonth() {
     	const { from, to } = this.state;
@@ -43,12 +44,6 @@ class GamePage extends Component {
 	handleToChange(to) {
 		this.setState({ to }, this.showFromMonth);
 	}
-
-    _onReady(event) {
-// access to player in all event handlers via event.target
-	    event.target.pauseVideo();
-	  }
-// Handler of change input states  
 
 	onChange(e){
 		this.setState({ [e.target.name]: e.target.value})
@@ -90,14 +85,6 @@ class GamePage extends Component {
     	}	
 	}
   render() {
-  	const opts = {
-      height: '390',
-      width: '100%',
-      playerVars: { 
-        autoplay: 0
-      }
-    };
-
   	const {user} = this.props.auth;
   	const game = this.props.game;
 	  return (
@@ -155,7 +142,7 @@ class GamePage extends Component {
 			                
 			                <p>Превью: {game.infoGame === "" ? "нет" : game.infoGame}</p>
 			                <hr />
-			                {game.videoLink && game.videoLink.length > 0 && <YouTube videoId={game.videoLink} opts={opts} onReady={this._onReady} />}
+			                {game.videoLink && game.videoLink.length > 0 && <ReactPlayer url={game.videoLink} controls />}
 		 				</div>
 		 				<div className="col-12 col-md-3 text-center">
 		 					{this.props.players.filter(master => game.name === master._id)
@@ -168,13 +155,10 @@ class GamePage extends Component {
 			 						<ul>
 				 						{this.props.players.filter(player => game.gamersInsideId
 				 							.find(gamerInside => gamerInside.accept === true && gamerInside.user === player._id))
-				 							.map(gamer => {
-							 					return (
-							 						<React.Fragment key={gamer._id} >
-							 							<Link to={`/@${gamer.name}`} target="_blank" >{gamer.name}</Link><br/>
-							 						</React.Fragment>
-							 						)
-							 					}
+				 							.map(gamer => 
+						 						<React.Fragment key={gamer._id} >
+						 							<Link to={`/@${gamer.name}`} target="_blank" >{gamer.name}</Link><br/>
+						 						</React.Fragment>
 						 					)	
 			 							}
 			 						</ul>

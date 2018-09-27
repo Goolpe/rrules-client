@@ -90,9 +90,11 @@ class Msgs extends Component {
 	 		)
 	 	)
 	return (
-		<React.Fragment>
-		{messagesItems}
-		</React.Fragment>
+		<section>
+			<div className="container">
+				{messagesItems}
+			</div>
+		</section>
 	)
 	}
 }

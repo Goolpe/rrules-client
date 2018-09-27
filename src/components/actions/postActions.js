@@ -18,8 +18,7 @@ export const fetchArticles = () => dispatch => {
 export const fetchArticle = (articleId,history) => dispatch => {
   fetch(server.online + '/articles/one/' + articleId)
       .then(
-        res => res.json(),
-        err => console.log(err)
+        res => res.json()
       )
       .then(article => 
       dispatch({
