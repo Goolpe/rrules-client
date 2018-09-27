@@ -92,20 +92,13 @@ class GamesPage extends Component {
 	    (gamesSort = _.sortBy(this.props.games, ['placeAll']).reverse())
 
 	//sort by type IRL
-	    this.state.selectedOption === "sortByTypeIRL" && (gamesSort = gamesSort.filter( game => {
-	      if(this.state.sortByCityGame.length === 0){
-	        return game.selectedOption === "sortByTypeIRL" && game.cityGame
-	      }
-	      else{
-	        if(this.state.sortByCityGame.length <= game.cityGame.length ){
-	          if(game.cityGame.toLowerCase().includes(this.state.sortByCityGame.toLowerCase())){
-	            return game.selectedOption === "sortByTypeIRL" && game.cityGame
-	          }   
-	        }else{
-	          return false
-	        } 
-	      }
-	    }))
+	    this.state.selectedOption === "sortByTypeIRL" && (gamesSort = gamesSort.filter( game => 
+	      this.state.sortByCityGame.length === 0 ? game.cityGame
+        :
+	        this.state.sortByCityGame.length <= game.cityGame.length && game.cityGame.toLowerCase().includes(this.state.sortByCityGame.toLowerCase()) 
+          ?
+	          game.cityGame	:	false 
+	    ))
 
 	// sort by type online
 	    this.state.selectedOption === "sortByTypeOnline" && (gamesSort = gamesSort.filter(game => 
