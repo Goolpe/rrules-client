@@ -218,7 +218,7 @@ class CreateGamePage extends Component {
 		 					<label className="mr-2 mt-3">Количество мест: </label>
 		 					<input type="number" min="1" max="20" value={this.state.placeAll} onChange={this.onChange} name="placeAll" placeholder="" required/><br />
 {/*Additionally info*/}		 					
-		 					<label className="mr-2 mt-3">Превью: </label>
+		 					<label className="mr-2 mt-3">Информация: </label>
 		 					<textarea className="w-100" value={this.state.infoGame} onChange={this.onChange} name="infoGame" placeholder="" />
 		 				</div> 	
 		 			</div>	

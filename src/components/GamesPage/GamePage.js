@@ -114,11 +114,19 @@ class GamePage extends Component {
 						}
 					</div>
 					<div className="col-12 col-md-6 text-right">
-					{game.gamersInsideId && (game.placeAll - game.gamersInsideId.length === 0) ? 
-						<Button color="danger" className="mb-2" disabled>Мест нет</Button>
+					{console.log(game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.accept === true) )}
+					{game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.accept === true) 
+						?
+						<Button color="success" className="mb-2" disabled>Вы в игре</Button>
 						:
-						<Button type="submit" color="danger" className="mb-2">Играть</Button>
-					}
+						game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.decline === true) ?
+						<Button color="danger" className="mb-2" disabled>Отклонен</Button>
+						:
+						(game.gamersInsideId && game.placeAll - game.gamersInsideId.length === 0) ? 
+							<Button color="danger" className="mb-2" disabled>Мест нет</Button>
+							:
+							<Button type="submit" color="danger" className="mb-2">Играть</Button>
+						}
 					</div>
 			    </div>
 			    <div className="container mb-5">
@@ -140,8 +148,13 @@ class GamePage extends Component {
 			                </div>
 			                <hr />
 			                
-			                <p>Превью: {game.infoGame === "" ? "нет" : game.infoGame}</p>
-			                <hr />
+			                {game.infoGame !== "" && 
+			                	<React.Fragment>
+				                	<p>Информация: {game.infoGame}</p>
+				                	<hr />
+			                	</React.Fragment>
+			                }
+			                
 			                {game.videoLink && game.videoLink.length > 0 && <ReactPlayer url={game.videoLink} controls />}
 		 				</div>
 		 				<div className="col-12 col-md-3 text-center">
