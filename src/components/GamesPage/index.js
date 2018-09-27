@@ -146,11 +146,11 @@ class GamesPage extends Component {
                   <div className="col-12 col-lg-3 mt-2">
                     <div className="container bg_card shadow text_card pt-3 pb-3">
                       {this.props.players.find(playerUser => user.player === playerUser._id && playerUser.status !== "игрок" ) && <Link to="/game-create" className="btn btn-info mb-2 w-100">Создать игру</Link>}
-                     <ButtonDropdown isOpen={this.state.dropdownOpen} className="w-100 mb-2" toggle={this.toggle}>
+                        <ButtonDropdown isOpen={this.state.dropdownOpen} className="w-100 mb-2" toggle={this.toggle}>
                           <DropdownToggle caret className="btn btn-info w-100">
                             Сортировать: 
                           </DropdownToggle>
-                          <DropdownMenu>
+                          <DropdownMenu className="bg-white">
                             <DropdownItem onClick={()=>{this.setState({sortByDate : true})}}>по дате</DropdownItem>
                             <DropdownItem onClick={()=>{this.setState({sortByDate : false})}}>по количеству мест</DropdownItem>
                           </DropdownMenu>
