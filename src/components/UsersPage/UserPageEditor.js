@@ -5,11 +5,9 @@ import { fetchPlayer, changePlayerData } from "../actions/playerActions";
 import { Col, Button, Form, FormGroup, Label, UncontrolledTooltip } from "reactstrap";
 import { FaTimes } from "react-icons/fa";
 import { withRouter, Link } from "react-router-dom";
-import moment from "moment";
-import 'moment/locale/ru';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
-import 'react-day-picker/lib/style.css';
-import MomentLocaleUtils from 'react-day-picker/moment';
+import 'flatpickr/dist/themes/light.css'; 
+import Flatpickr from 'react-flatpickr';
+import { Russian } from "flatpickr/dist/l10n/ru.js"
 
 class UserPageEditor extends Component {
   constructor(props){
@@ -143,10 +141,11 @@ class UserPageEditor extends Component {
               <FormGroup row>
                 <Label sm={4}>День рождения:</Label>
                 <Col sm={8} className="text-dark ">
-                <DayPickerInput value={moment(this.state.selectedDay).isValid() ? moment(this.state.selectedDay).format("L") : moment().format("L")} dayPickerProps={{
-              locale: 'ru', localeUtils: MomentLocaleUtils
-            }} onDayChange={(selectedDay)=> {this.setState({selectedDay})}}
-              />
+                <Flatpickr
+                  value={this.state.selectedDay}
+                  onChange={selectedDay => { this.setState({selectedDay}) }} 
+                  options={{dateFormat: "d-m-Y", "locale": Russian}}
+                  />
                 </Col>
               </FormGroup>
               <FormGroup row>

@@ -106,11 +106,10 @@ class GamePage extends Component {
 						<div className="col-auto mr-auto p-0">
 							<p className="text_card pb-4">
 								<Link to="/games" className="text_card p-0 btn">
-							        <FaAngleLeft size="1.5em"/> Все игры&nbsp;
+							        <FaAngleLeft size="1.5em"/> Все игры
 							    </Link> 
-							    |
 							    {game.name === user.player && 
-									<Link to={`/game-edit/${game._id}`} className="btn text-info bg-transparent">Редактировать/Удалить</Link>
+									<Link to={`/game-edit/${game._id}`} className="btn text-info bg-transparent">| Редактировать/Удалить</Link>
 								}
 							</p>
 						</div>
