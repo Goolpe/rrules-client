@@ -130,7 +130,10 @@ class GamePage extends Component {
 					</div>
 		 			<div className="row p-3 align-items-begin bg_card shadow">
 		 				<div className="col-12 col-md-9">
-		 					<div className="row text-left justify-content-center">
+		 					<div className="row justify-content-center">
+		 						<div className="col-12 mb-3">
+				 					{game.videoLink && game.videoLink.length > 0 && <ReactPlayer width="100%" height="500px" url={game.videoLink} controls />}
+				 				</div>
 		 						<div className="col-12 col-md-4">
 		 							<p>{moment(game.from).format('lll')}</p>
 		 						</div>
@@ -143,19 +146,18 @@ class GamePage extends Component {
 		 						<div className="col-12 col-md-2">
 		 							<p>Тип: {game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}</p>
 		 						</div>
+		 						<div className="col-12">
+		 							{game.infoGame !== "" && 
+					                	<React.Fragment>
+						                	<p>Информация: {game.infoGame}</p>
+						                	<hr />
+					                	</React.Fragment>
+					                }
+		 						</div>
 			                </div>
 			                <hr />
-			                
-			                {game.infoGame !== "" && 
-			                	<React.Fragment>
-				                	<p>Информация: {game.infoGame}</p>
-				                	<hr />
-			                	</React.Fragment>
-			                }
-			                
-			                {game.videoLink && game.videoLink.length > 0 && <ReactPlayer url={game.videoLink} controls />}
 		 				</div>
-		 				<div className="col-12 col-md-3 text-center">
+		 				<div className="col-12 col-md-3">
 		 					{this.props.players.filter(master => game.name === master._id)
 			 						.map(master => 
 			 					<React.Fragment key={master._id} >
