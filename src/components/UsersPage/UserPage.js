@@ -78,7 +78,7 @@ class UserPage extends Component {
                     {player.about && <li><span className="text-muted">О себе: </span>{player.about}</li>}
                     {player.systems && <li><span className="text-muted">Любимые системы: </span>{player.systems}</li>}
                     {player.setting && <li><span className="text-muted">Любимые сеттинги: </span>{player.setting}</li>}
-                    {(player.example1 || player.example2 || player.example3 || player.example4) &&
+                    {player.leading &&
                       <React.Fragment>
                       <hr/>
                       <li><span className="text-muted">Примеры игр: </span></li>
