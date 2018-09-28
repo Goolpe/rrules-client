@@ -61,7 +61,7 @@ class UserPage extends Component {
                     <li><span className="text-muted">Рейтинг: </span><FaStar className="text-warning" /> - {player.rating}/5</li>
                     {player.status === "мастер" && <li><span className="text-muted">Проведенных игр: </span>{player.gamesCount}</li>}
                     {player.status === "мастер" && <li><span className="text-muted">Платные игры: </span>{player.paidGames ? "водит" : "не водит"}</li>}
-                    <li><span className="text-muted">Зарегистрирован: </span>{moment(player.dateReg).startOf('day').fromNow()}</li>
+                    <li><span className="text-muted">Зарегистрирован: </span>{moment(player.date).startOf('hour').fromNow()}</li>
 
                     {(player.fullName || player.sex || player.dateBirth || player.cityLive) && <hr/>}
 

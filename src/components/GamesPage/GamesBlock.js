@@ -35,7 +35,7 @@ class Games extends Component {
 	 	const renderTodos = games.map((game,index) => 
           <Link to={`/game/${game._id}`} className="m-0 p-0 mb-4 btn text-left text_card w-100" key={index}>
           <div className="p-3 bg_card shadow" >  
-            <p className="pb-3 border-bottom">{game.nameGame} {game.gamersInsideId.filter(gamerInside => gamerInside.user === user.player && gamerInside.accept === true ).map(gamer=> <span style={{color:"#4caf50"}}>| Вы в игре</span>)}</p>
+            <p className="pb-3 border-bottom">{game.nameGame} {game.gamersInsideId.filter(gamerInside => gamerInside.user === user.player && gamerInside.accept === true ).map((gamer, index)=> <span style={{color:"#4caf50"}} key={index}>| Вы в игре</span>)}</p>
             
             <div className="row">
               <div className="col-12 col-md-3">
