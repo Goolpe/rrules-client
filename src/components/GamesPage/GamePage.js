@@ -131,7 +131,7 @@ class GamePage extends Component {
 		 			<div className="row p-3 align-items-begin bg_card shadow">
 		 				<div className="col-12 col-md-9">
 		 					<div className="row justify-content-center">
-		 						<div className="col-12 mb-3">
+		 						<div className="col-12 mb-4">
 				 					{game.videoLink && game.videoLink.length > 0 && <ReactPlayer width="100%" height="500px" url={game.videoLink} controls />}
 				 				</div>
 		 						<div className="col-12 col-md-4">
@@ -155,7 +155,6 @@ class GamePage extends Component {
 					                }
 		 						</div>
 			                </div>
-			                <hr />
 		 				</div>
 		 				<div className="col-12 col-md-3">
 		 					{this.props.players.filter(master => game.name === master._id)
