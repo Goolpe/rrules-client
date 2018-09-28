@@ -134,6 +134,10 @@ class GamePage extends Component {
 		 						<div className="col-12 mb-4">
 				 					{game.videoLink && game.videoLink.length > 0 && <ReactPlayer width="100%" height="500px" url={game.videoLink} controls />}
 				 				</div>
+				 				<div className="col-12">
+				 					<p>{game.nameGame}</p>
+				 					<hr/>
+				 				</div>
 		 						<div className="col-12 col-md-4">
 		 							<p>{moment(game.from).format('lll')}</p>
 		 						</div>
