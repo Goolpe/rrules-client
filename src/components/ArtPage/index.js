@@ -49,7 +49,7 @@ class ArtPage extends Component{
 
   render () {
     return (
-      <section id="artpage">
+      <div id="artpage">
        {this.state.bigPicture && 
         <div className="blackBG" style={{zIndex: "999"}}>
           <div className="row text-center text_card" style={{height: "100%"}}>
@@ -75,7 +75,7 @@ class ArtPage extends Component{
           </div>
         </div>}
 
-        <div className="container">
+        <div className="container pt-5">
           <span className="text_card">
             <FiImage size="1.5em"/> Фан-арт 
           </span>
@@ -95,7 +95,7 @@ class ArtPage extends Component{
           </div>
            
         </div>
-      </section>
+      </div>
     )
   }
 }
