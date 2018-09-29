@@ -43,7 +43,7 @@ class Games extends Component {
                 {this.props.players.filter(master => game.name === master._id)
                   .map(master => 
                   <div key={master._id}>
-                    <p>Мастер: {master.name}</p>
+                    <p className="text-info">{master.name}</p>
                     <p><FaStar className="text-warning" /> - {master.rating}/5</p>
                   </div>
                 )}

@@ -21,7 +21,6 @@ class Msgs extends Component {
 			this.props.history.push('/auth');
 		}
     }
-
     handleAccept(game, sender){
 		const gameData = {
 			id: game,
