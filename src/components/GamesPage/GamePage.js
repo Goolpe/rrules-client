@@ -126,7 +126,7 @@ class GamePage extends Component {
 										<Button color="btn-outline-secondary" className="mb-2" disabled>Мест нет</Button>
 										:
 										<Button onClick={this.handlePlayer} color="danger" className="mb-2">Играть</Button>
-								}
+							}
 						</div>
 					</div>
 		 			<div className="row p-3 align-items-begin bg_card shadow">
@@ -170,8 +170,8 @@ class GamePage extends Component {
 		 					{this.props.players.filter(master => game.name === master._id)
 			 						.map(master => 
 			 					<React.Fragment key={master._id} >
-				 					<p>Мастер: <Link to={`/@${master.name}`} className="text-success" target="_blank" >{master.name}</Link></p>
-				 					<p><FaStar className="text-warning" /> - {master.rating}/5</p>
+				 					<p><Link to={`/@${master.name}`} className="text-success" target="_blank" >{master.name} </Link>
+				 					<FaStar className="text-warning" /> - {master.rating}/5</p>
 			 						<hr />
 			 						<p>Игроки:</p>
 			 						<ul>
