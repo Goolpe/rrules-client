@@ -32,17 +32,7 @@ class Msgs extends Component {
 	    }
 		this.props.addPlayerGameData(gameData)
     }
-    handleDecline(game, sender){
-		const gameData = {
-			id: game,
-		    gamerInsideId: sender,
-		    accept: false,
-		    decline: true,
-		    show: true
-	    };
-		this.props.addPlayerGameData(gameData);
-    }
-    handleDelete(game, sender, msgacc, msgdec){
+    handleDecline(game, sender, msgacc, msgdec){
     	if(msgdec === false && msgacc === false){
     		msgdec = true
     	}
@@ -66,21 +56,20 @@ class Msgs extends Component {
 								<React.Fragment key={index}><Link target="_blank" className="mr-3" to={`/@${player.name}`}>{player.name}</Link></React.Fragment>
 							)}
 						</div>
-						<div className="col-12 col-md-6 mt-2">
+						<div className="col-12 col-md-8 mt-2">
 							<Link target="_blank" to={`/game/${game._id}`}>{game.nameGame}</Link>
 						</div>
-						<div className="col-12 col-md-3 mt-2">
-							{!msg.accept && !msg.decline ?
+						<div className="col-12 col-md-2 mt-2 text-right">
+							{!msg.accept && !msg.decline ? 
 								<React.Fragment>
-									<button className="btn btn-success mr-3" onClick={()=>{this.handleAccept(game._id, msg.user)}}><FaPlus /></button>
-									<button className="btn btn-danger mr-3" onClick={()=>{this.handleDecline(game._id, msg.user)}}><FaMinus /></button>
+									<button className="btn bg-transparent text_card userpage__facog" onClick={()=>{this.handleAccept(game._id, msg.user)}}><FaPlus size="1.5em"/></button>
 								</React.Fragment>
 							:
-								msg.accept ? "Добавлен" : "Отклонен"
+								<React.Fragment>
+									{msg.accept && "Добавлен"}
+								</React.Fragment>
 							}
-						</div>
-						<div className="col-12 col-md-1 mt-2">
-							<button className="btn bg-transparent text_card userpage__facog" onClick={()=>{this.handleDelete(game._id, msg.user, msg.accept, msg.decline)}}><FaTimes size="1.5em"/></button>
+							<button className="btn bg-transparent text_card userpage__facog" onClick={()=>{this.handleDecline(game._id, msg.user, msg.accept, msg.decline)}}><FaTimes size="1.5em"/></button>
 						</div>
 					</div>
 				</div>

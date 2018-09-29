@@ -50,9 +50,11 @@ class Games extends Component {
               </div>
               <div className="col-12 col-md-5">
                 <p>Дата игры: {moment(game.from).format('lll')}</p>
-                <p>Тип игры: {game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}
-                 {game.selectedOption === "sortByTypeIRL" && <span className="ml-3">Город: {game.cityGame}</span>}</p>
-                
+                <p>{game.selectedOption === "sortByTypeOnline" ? 
+                  <span>Online</span>
+                  : 
+                  <span>IRL | {game.cityGame}</span>}
+                </p>
               </div>
               <div className="col-12 col-md-4">
                 <p className="d-flex-wrap" style={{wordWrap: "break-word"}}>Всего мест: {game.placeAll - (game.gamersInsideId.filter(gamerInside => gamerInside.accept === true).length)} / {game.placeAll}

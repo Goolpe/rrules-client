@@ -121,7 +121,7 @@ class GamePage extends Component {
 								<Button color="danger" className="mb-2" disabled>Отклонен</Button>
 								:
 								(game.gamersInsideId && game.placeAll - game.gamersInsideId.length === 0) ? 
-									<Button color="danger" className="mb-2" disabled>Мест нет</Button>
+									<Button color="btn-outline-secondary" className="mb-2" disabled>Мест нет</Button>
 									:
 									<Button onClick={this.handlePlayer} color="danger" className="mb-2">Играть</Button>
 								}
@@ -129,7 +129,7 @@ class GamePage extends Component {
 					</div>
 		 			<div className="row p-3 align-items-begin bg_card shadow">
 		 				<div className="col-12 col-md-9">
-		 					<div className="row justify-content-center">
+		 					<div className="row text-center">
 		 						<div className="col-12">
 				 					<p>{game.nameGame}</p>
 				 				</div>
@@ -138,17 +138,21 @@ class GamePage extends Component {
 				 						<ReactPlayer width="100%" height="500px" url={game.videoLink} controls />
 				 						: <img width="100%" src={game.preview} />}
 				 				</div>
-		 						<div className="col-12 col-md-4">
+		 						<div className="col-12 col-lg-4">
 		 							<p>{moment(game.from).format('lll')}</p>
 		 						</div>
-		 						<div className="col-12 col-md-3">
-		 							<p>Места: {game.gamersInsideId && (game.placeAll - (game.gamersInsideId.filter(gamerInside => gamerInside.accept === true).length))} / {game.placeAll}</p>
+		 						<div className="col-12 col-lg-2">
+		 							<p>{game.gamersInsideId && (game.placeAll - (game.gamersInsideId.filter(gamerInside => gamerInside.accept === true).length))} / {game.placeAll}</p>
 		 						</div>
-		 						<div className="col-12 col-md-3">
+		 						<div className="col-12 col-lg-2">
 		 							<p>{game.priceGame === 0 ? "Бесплатно" : game.priceGame}</p>
 		 						</div>
-		 						<div className="col-12 col-md-2">
-		 							<p>Тип: {game.selectedOption === "sortByTypeOnline" ? "Online" : "IRL"}</p>
+		 						<div className="col-12 col-lg-4">
+		 							<p>{game.selectedOption === "sortByTypeOnline" ? 
+					                  <span>Online</span>
+					                  : 
+					                  <span>IRL | {game.cityGame}</span>}
+					                </p>
 		 						</div>
 		 						<div className="col-12">
 		 							{game.infoGame !== "" && 

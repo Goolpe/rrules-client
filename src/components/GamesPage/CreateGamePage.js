@@ -23,8 +23,8 @@ class CreateGamePage extends Component {
 		this.state = {
 			nameGame: '',
 			selectedOption: 'sortByTypeOnline',
-		    cityGame:'',
-		    priceGame:0,
+		    cityGame: '',
+		    priceGame: 0,
 		    placeAll: 0,
 		    gamersInsideId: [],
 		    preview: '',
@@ -85,7 +85,7 @@ class CreateGamePage extends Component {
 			    infoGame: this.state.infoGame,
 			    gamersInsideId: this.state.gamersInsideId,
 			    videoLink: this.state.videoLink,
-			    preview: this.state.preiew,
+			    preview: this.state.preview,
 			    selectedOption: this.state.selectedOption,
 			    placeAll: this.state.placeAll,
 			    from: this.state.from,
@@ -95,8 +95,8 @@ class CreateGamePage extends Component {
 			this.setState({
 				nameGame: '',
 				cityGame: '',
-				priceGame:'',
-			    placeAll: '',
+				priceGame: 0,
+			    placeAll: 0,
 			    selectedOption: 'sortByTypeOnline',
 			    preview: '',
 			    infoGame: '',
@@ -190,6 +190,9 @@ class CreateGamePage extends Component {
 					            onDayChange={this.handleToChange}
 					          />
 					        </div>
+{/*Number of seats*/}
+		 					<label className="mr-2 mt-3">Количество мест: </label>
+		 					<input type="number" min="1" max="20" value={this.state.placeAll} onChange={this.onChange} name="placeAll" placeholder="" required/><br />
 {/*Type of the game*/}			
 					        <label className="mr-2 mt-3">Тип игры: </label>
 					        <div className="custom-control custom-radio mb-2">
@@ -221,9 +224,6 @@ class CreateGamePage extends Component {
 		 						<label className="mr-2 mt-3">Ссылка на стрим: </label>
 		 						<input type="string" value={this.state.videoLink} className="w-100" onChange={this.onChange} name="videoLink" placeholder="YouTube" /><br />
 		 					</div> 
-{/*Number of seats*/}
-		 					<label className="mr-2 mt-3">Количество мест: </label>
-		 					<input type="number" min="1" max="20" value={this.state.placeAll} onChange={this.onChange} name="placeAll" placeholder="" required/><br />
 {/*Additionally info*/}		 					
 		 					<label className="mr-2 mt-3">Информация: </label>
 		 					<textarea className="w-100" value={this.state.infoGame} onChange={this.onChange} name="infoGame" placeholder="" />

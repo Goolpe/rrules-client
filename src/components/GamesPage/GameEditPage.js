@@ -53,7 +53,7 @@ class GameEditPage extends Component {
 	onSubmit(e){
 		e.preventDefault();
 		const gameData = {
-			id: this.props.match.params.id,
+			id: this.props.game._id,
 			nameGame: this.state.nameGame,
 			name: this.props.auth.user.player,
 			cityGame: this.state.cityGame,
@@ -101,6 +101,9 @@ class GameEditPage extends Component {
 	{/*Name of the game*/}
 			 					<label className="mr-2">Название: </label>
 			 					<input type="text" value={this.state.nameGame} className="w-100" onChange={this.onChange} name="nameGame" /><br />
+	{/*Number of seats*/}
+			 					<label className="mr-2 mt-3">Количество мест: </label>
+			 					<input type="number" min="1" max="20" value={this.state.placeAll} onChange={this.onChange} name="placeAll" /><br />
 	{/*Type of the game*/}
 						        <label className="mr-2 mt-3">Тип игры: </label>
 						        <div className="custom-control custom-radio mb-2">
@@ -119,7 +122,7 @@ class GameEditPage extends Component {
 			 							<input type="string" value={this.state.placeGame} style={{width:"50%"}} onChange={this.onChange} name="placeGame"/>
 			 						</div> 
 			 					}
-	{/*Price*/}
+{/*Price*/}
 			 					<div>
 			 						<label className="mr-2 mt-3">Стоимость: </label>
 			 						<input type="number" value={this.state.priceGame} onChange={this.onChange} name="priceGame"/><br />
@@ -132,10 +135,7 @@ class GameEditPage extends Component {
 			 						<label className="mr-2 mt-3">Ссылка на стрим: </label>
 			 						<input type="string" value={this.state.videoLink} className="w-100" onChange={this.onChange} name="videoLink" /><br />
 			 					</div> 
-	{/*Number of seats*/}
-			 					<label className="mr-2 mt-3">Количество мест: </label>
-			 					<input type="number" min="1" max="20" value={this.state.placeAll} onChange={this.onChange} name="placeAll" /><br />
-	{/*Additionally info*/}		 					
+{/*Additionally info*/}		 					
 			 					<label className="mr-2 mt-3">Информация:</label>
 			 					<textarea className="w-100" value={this.state.infoGame} onChange={this.onChange} name="infoGame" />
 			 				</div> 	
