@@ -72,6 +72,28 @@ export const changeGameData = (gameData) => dispatch => {
     );
 };
 
+export const addPlayerGameData = (gameData) => dispatch => {
+  fetch(server.online + '/games/addplayer/' + gameData.id, {
+    method: 'put',
+    headers: {
+      'Authorization': localStorage.jwtToken,
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    },
+     body: JSON.stringify(gameData)
+   })
+    .then(
+      res => res.json(),
+      err => console.log(err)
+    )
+    .then(game => 
+      dispatch({
+        type: FETCH_GAME, 
+        payload: game
+      })
+    );
+};
+
 export const deleteGame = (gameData) => dispatch => {
   fetch(server.online + '/games/delete/' + gameData, {
     method: 'delete',

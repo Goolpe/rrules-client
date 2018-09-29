@@ -3,7 +3,7 @@ import { Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
-import { changeGameData, fetchGames } from '../actions/gameActions';
+import { addPlayerGameData, fetchGames } from '../actions/gameActions';
 import { FaTimes, FaPlus, FaMinus } from "react-icons/fa";
 
 class Msgs extends Component {
@@ -27,18 +27,20 @@ class Msgs extends Component {
 			id: game,
 		    gamerInsideId: sender,
 		    accept: true,
-		    decline: false
+		    decline: false,
+		    show: true
 	    }
-		this.props.changeGameData(gameData)
+		this.props.addPlayerGameData(gameData)
     }
     handleDecline(game, sender){
 		const gameData = {
 			id: game,
 		    gamerInsideId: sender,
 		    accept: false,
-		    decline: true
+		    decline: true,
+		    show: true
 	    };
-		this.props.changeGameData(gameData);
+		this.props.addPlayerGameData(gameData);
     }
     handleDelete(game, sender, msgacc, msgdec){
     	if(msgdec === false && msgacc === false){
@@ -51,7 +53,7 @@ class Msgs extends Component {
 		    decline: msgdec,
 		    show: false
 	    };
-		this.props.changeGameData(gameData);
+		this.props.addPlayerGameData(gameData);
     }
 	 render(){ 
 	 	var messagesItems = this.props.games.filter(game => game.name === this.props.auth.user.player).map(game =>
@@ -98,7 +100,7 @@ Msgs.propTypes = {
   auth: PropTypes.object.isRequired,
   fetchPlayers: PropTypes.func.isRequired,
   players: PropTypes.array.isRequired,
-  changeGameData: PropTypes.func.isRequired,
+  addPlayerGameData: PropTypes.func.isRequired,
   fetchGames: PropTypes.func.isRequired,
   games: PropTypes.array.isRequired
 };
@@ -109,5 +111,5 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { changeGameData, fetchGames, fetchPlayers })(withRouter(Msgs));
+export default connect(mapStateToProps, { addPlayerGameData, fetchGames, fetchPlayers })(withRouter(Msgs));
 

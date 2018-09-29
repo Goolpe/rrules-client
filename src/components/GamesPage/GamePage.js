@@ -6,7 +6,7 @@ import { Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
-import { fetchGame, changeGameData } from '../actions/gameActions';
+import { fetchGame, addPlayerGameData } from '../actions/gameActions';
 import ReactPlayer from 'react-player';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,7 +18,7 @@ class GamePage extends Component {
 		this.handleFromChange = this.handleFromChange.bind(this);
    		this.handleToChange = this.handleToChange.bind(this);
 		this.onChange = this.onChange.bind(this);
-		this.onSubmit = this.onSubmit.bind(this);
+		this.handlePlayer = this.handlePlayer.bind(this);
 	} 
 
 	componentDidMount() {
@@ -53,8 +53,7 @@ class GamePage extends Component {
 	notifySend(word){toast(word)}
 // Handler of submit
 
-	onSubmit(e){
-		e.preventDefault();
+	handlePlayer(e){
 		if(!this.props.auth.isAuthenticated){
     		this.props.history.push('/auth')
     	}
@@ -76,9 +75,10 @@ class GamePage extends Component {
 					id: this.props.game._id,
 				    gamerInsideId: this.props.auth.user.player,
 				    accept: false,
-				    decline: false
+				    decline: false,
+				    show: true
 			    };
-				this.props.changeGameData(gameData);
+				this.props.addPlayerGameData(gameData);
 				this.notifySend("Запрос отправлен!")
 				this.props.history.push(`/game/${this.props.game._id}`)
 			}
@@ -101,7 +101,6 @@ class GamePage extends Component {
 					pauseOnHover
 					/>
 			<div className="text_card container">
-				<form onSubmit={this.onSubmit}>
 					<div className="row">
 						<div className="col-auto mr-auto p-0">
 							<p className="text_card pb-4">
@@ -124,19 +123,20 @@ class GamePage extends Component {
 								(game.gamersInsideId && game.placeAll - game.gamersInsideId.length === 0) ? 
 									<Button color="danger" className="mb-2" disabled>Мест нет</Button>
 									:
-									<Button type="submit" color="danger" className="mb-2">Играть</Button>
+									<Button onClick={this.handlePlayer} color="danger" className="mb-2">Играть</Button>
 								}
 						</div>
 					</div>
 		 			<div className="row p-3 align-items-begin bg_card shadow">
 		 				<div className="col-12 col-md-9">
 		 					<div className="row justify-content-center">
-		 						<div className="col-12 mb-4">
-				 					{game.videoLink && game.videoLink.length > 0 && <ReactPlayer width="100%" height="500px" url={game.videoLink} controls />}
-				 				</div>
-				 				<div className="col-12">
+		 						<div className="col-12">
 				 					<p>{game.nameGame}</p>
-				 					<hr/>
+				 				</div>
+		 						<div className="col-12 mb-4">
+				 					{game.videoLink && game.videoLink.length > 0 ? 
+				 						<ReactPlayer width="100%" height="500px" url={game.videoLink} controls />
+				 						: <img width="100%" src={game.preview} />}
 				 				</div>
 		 						<div className="col-12 col-md-4">
 		 							<p>{moment(game.from).format('lll')}</p>
@@ -182,7 +182,6 @@ class GamePage extends Component {
 			 				)}
 		 				</div>
 		 			</div>			
-		 		</form>
 			</div>
 		</section>
 	  )
@@ -195,7 +194,7 @@ GamePage.propTypes = {
   auth: PropTypes.object.isRequired,
   fetchPlayers: PropTypes.func.isRequired,
   players: PropTypes.array.isRequired,
-  changeGameData: PropTypes.func.isRequired
+  addPlayerGameData: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -204,4 +203,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { changeGameData, fetchGame, fetchPlayers })(withRouter(GamePage));
+export default connect(mapStateToProps, { addPlayerGameData, fetchGame, fetchPlayers })(withRouter(GamePage));

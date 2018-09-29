@@ -9,6 +9,13 @@ body
     letter-spacing: 1px;
 }
 
+@font-face
+{
+    font-family: Albertusfont;
+
+    src: url(Albertusfont.otf);
+}
+
 section{
     height:100vh;
     overflow-y: scroll;
@@ -17,20 +24,6 @@ section{
 
 a{
     text-decoration: none !important;
-}
-
-.text_card, a{
-    color: #fff !important;   
-}
-
-.bg_card{
-    background: #3b3c40 !important;  
-}
-@font-face
-{
-    font-family: Albertusfont;
-
-    src: url(Albertusfont.otf);
 }
 
 ul
@@ -64,26 +57,31 @@ textarea{
     outline: none !important;
 }
 
-/* width */
+/*scrollbar*/
+
 ::-webkit-scrollbar {
     width: 10px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
     background: #27292c; 
 }
- 
-/* Handle */
+
 ::-webkit-scrollbar-thumb {
     background: #3b3c40; 
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555; 
 }
 
+.text_card, a{
+    color: #fff !important;   
+}
+
+.bg_card{
+    background: #3b3c40 !important;  
+}
 
 /*Navigation */
 
@@ -254,7 +252,8 @@ svg,
     height: 100vh;
     overflow-y: scroll;
 }
-.blackBG
+
+.art_bg
 {
     position: fixed;
     z-index: 20;
@@ -286,32 +285,6 @@ footer a
 footer ul
 {
     list-style-type: none;
-}
-
-#arrowUp
-{
-    position: fixed;
-    right: 50px;
-    bottom: 40px;
-
-    width: 50px;
-    height: 50px;
-
-    cursor: pointer;
-    text-align: center;
-
-    color: #fff;
-    background-color: rgba(0,0,0,.7);
-}
-
-#arrowUp:hover
-{
-    width: 50px;
-    height: 50px;
-
-    text-align: center;
-
-    background-color: rgba(0,0,0,1);
 }
 
 @media (max-width: 1199.98px)
@@ -437,6 +410,9 @@ footer ul
 }
 @media (max-width: 767.98px)
 {
+    section{
+        padding-top: 50px;
+    }
     #Navigation{
         height:40px;
         display: inline-block;
@@ -461,9 +437,6 @@ footer ul
     }
     #TooltipNavToggle{
         display: none;
-    }
-    section{
-        padding-top: 50px;
     }
     .tooltip {
         display: none !important;

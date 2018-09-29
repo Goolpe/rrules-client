@@ -27,6 +27,7 @@ class CreateGamePage extends Component {
 		    priceGame:0,
 		    placeAll: 0,
 		    gamersInsideId: [],
+		    preview: '',
 		    infoGame: '',
 		    placeGame:'',
 		    videoLink:'',
@@ -84,6 +85,7 @@ class CreateGamePage extends Component {
 			    infoGame: this.state.infoGame,
 			    gamersInsideId: this.state.gamersInsideId,
 			    videoLink: this.state.videoLink,
+			    preview: this.state.preiew,
 			    selectedOption: this.state.selectedOption,
 			    placeAll: this.state.placeAll,
 			    from: this.state.from,
@@ -96,6 +98,7 @@ class CreateGamePage extends Component {
 				priceGame:'',
 			    placeAll: '',
 			    selectedOption: 'sortByTypeOnline',
+			    preview: '',
 			    infoGame: '',
 			    placeGame: '',
 			    from: undefined,
@@ -210,6 +213,10 @@ class CreateGamePage extends Component {
 		 						<label className="mr-2 mt-3">Стоимость: </label>
 		 						<input type="number" value={this.state.priceGame} onChange={this.onChange} name="priceGame" placeholder=""/><br />
 		 					</div>
+		 					<div>
+		 						<label className="mr-2 mt-3">Превью: </label>
+		 						<input type="string" value={this.state.preview} className="w-100" onChange={this.onChange} name="preview" /><br />
+		 					</div> 
 		 					<div>
 		 						<label className="mr-2 mt-3">Ссылка на стрим: </label>
 		 						<input type="string" value={this.state.videoLink} className="w-100" onChange={this.onChange} name="videoLink" placeholder="YouTube" /><br />

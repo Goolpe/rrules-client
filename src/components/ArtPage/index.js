@@ -51,7 +51,7 @@ class ArtPage extends Component{
     return (
       <div id="artpage">
        {this.state.bigPicture && 
-        <div className="blackBG" style={{zIndex: "999"}}>
+        <div className="art_bg" style={{zIndex: "999"}}>
           <div className="row text-center text_card" style={{height: "100%"}}>
             <div className="col-2 col-md-4 d-flex align-items-center justify-content-center " style={{height: "100%", cursor: "pointer"}}  onClick={this._TogglePrev}>
                <button className="bg-transparent text-center text_card border-0 p-0"><FaChevronLeft size="3em" /></button>

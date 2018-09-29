@@ -19,6 +19,7 @@ class GameEditPage extends Component {
 		    infoGame: this.props.game.infoGame,
 		    placeGame: this.props.game.placeGame,
 		    videoLink: this.props.game.videoLink,
+		    preview: this.props.game.preview,
 		    from: this.props.game.from,
       		to: this.props.game.to
 		}
@@ -60,6 +61,7 @@ class GameEditPage extends Component {
 		    priceGame: this.state.priceGame,
 		    infoGame: this.state.infoGame,
 		    videoLink: this.state.videoLink,
+		    preview: this.state.preview,
 		    selectedOption: this.state.selectedOption,
 		    placeAll: this.state.placeAll,
 		    from: this.state.from,
@@ -122,6 +124,10 @@ class GameEditPage extends Component {
 			 						<label className="mr-2 mt-3">Стоимость: </label>
 			 						<input type="number" value={this.state.priceGame} onChange={this.onChange} name="priceGame"/><br />
 			 					</div>
+			 					<div>
+			 						<label className="mr-2 mt-3">Превью: </label>
+			 						<input type="string" value={this.state.preview} className="w-100" onChange={this.onChange} name="preview" /><br />
+			 					</div> 
 			 					<div>
 			 						<label className="mr-2 mt-3">Ссылка на стрим: </label>
 			 						<input type="string" value={this.state.videoLink} className="w-100" onChange={this.onChange} name="videoLink" /><br />
