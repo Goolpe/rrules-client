@@ -170,7 +170,7 @@ class GamePage extends Component {
 		 					{this.props.players.filter(master => game.name === master._id)
 			 						.map(master => 
 			 					<React.Fragment key={master._id} >
-				 					<p><Link to={`/@${master.name}`} className="text-success" target="_blank" >{master.name} </Link>
+				 					<p><Link to={`/@${master.name}`} className="text-info" target="_blank" >{master.name} </Link>
 				 					<FaStar className="text-warning" /> - {master.rating}/5</p>
 			 						<hr />
 			 						<p>Игроки:</p>
@@ -179,7 +179,7 @@ class GamePage extends Component {
 				 							.find(gamerInside => gamerInside.accept === true && gamerInside.user === player._id))
 				 							.map(gamer => 
 						 						<React.Fragment key={gamer._id} >
-						 							<Link to={`/@${gamer.name}`} className="text-success" target="_blank" >{gamer.name}</Link><br/>
+						 							<Link to={`/@${gamer.name}`} className="text-info" target="_blank" >{gamer.name}</Link><br/>
 						 						</React.Fragment>
 						 					)	
 			 							}
