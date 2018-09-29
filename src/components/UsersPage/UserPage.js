@@ -55,7 +55,6 @@ class UserPage extends Component {
                         </UncontrolledTooltip>
                         </React.Fragment>
                       }
-
                     </div>
                     <li><span className="text-muted">Статус: </span>{player.status}</li>
                     <li><span className="text-muted">Рейтинг: </span><FaStar className="text-warning" /> - {player.rating}/5</li>
