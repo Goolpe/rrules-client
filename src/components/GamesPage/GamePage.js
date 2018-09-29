@@ -107,12 +107,12 @@ class GamePage extends Component {
 								<Link to="/games" className="text_card p-0 btn">
 							        <FaAngleLeft size="1.5em"/> Все игры
 							    </Link> 
-							    {game.name === user.player && 
-									<Link to={`/game-edit/${game._id}`} className="btn text-info bg-transparent">| Редактировать/Удалить</Link>
-								}
 							</p>
 						</div>
 						<div className="col-auto p-0">
+							{game.name === user.player && 
+								<Link to={`/game-edit/${game._id}`} className="btn btn-info rounded-0 mb-2 mr-2">Редактировать</Link>
+							}
 							{game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.accept === true) 
 								?
 								<Button className="mb-2 btn-outline-secondary" disabled>Вы в игре</Button>

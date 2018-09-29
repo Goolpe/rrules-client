@@ -120,10 +120,6 @@ class CreateGamePage extends Component {
 	  return (
 	  	<section id="createGame">
 			<div className="container text_card">
-				<p className="text_card pb-4"><Link to="games" className="p-0 btn text_card">
-			        <FaAngleLeft size="1.5em"/> Назад&nbsp;
-			    </Link> 
-			    | Создать игру</p>
 				<ToastContainer
 					position="top-center"
 					autoClose={2000}
@@ -136,11 +132,17 @@ class CreateGamePage extends Component {
 					pauseOnHover
 					/>
 				<form onSubmit={this.onSubmit}>
+				<div className="row">
+					<div className="col-auto mr-auto p-0">
+						<p className="text_card pb-4"><Link to="games" className="p-0 btn text_card">
+					        <FaAngleLeft size="1.5em"/> Назад&nbsp;
+					    </Link></p>
+				    </div>
+				    <div className="col-auto p-0">
+				    	<button type="submit" className="btn btn-info rounded-0 mb-2">Создать игру</button>
+				    </div>
+				</div>
 {/*Button to create game and exit*/}
-				<div className="d-flex justify-content-end">
-					<button type="submit" className="btn btn-info rounded-0 mb-2">Создать игру</button>
-			    </div>
-			    <div className="container mb-5">
 		 			<div className="row p-3 align-items-begin bg_card shadow">
 		 				<div className="col-12">
 {/*Name of the game*/}
@@ -228,9 +230,8 @@ class CreateGamePage extends Component {
 		 					<label className="mr-2 mt-3">Информация: </label>
 		 					<textarea className="w-100" value={this.state.infoGame} onChange={this.onChange} name="infoGame" placeholder="" />
 		 				</div> 	
-		 			</div>	
-		 		</div>		
-		 		</form>
+		 			</div>			
+		 		</form>	
 			</div>
 		</section>
 	  )

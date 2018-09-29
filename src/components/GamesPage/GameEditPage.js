@@ -74,10 +74,6 @@ class GameEditPage extends Component {
 	  return (
 	  	<section id="createGame">
 			<div className="container text_card">
-				<p className="text_card pb-4"><Link to={`/game/${this.props.match.params.id}`} className="text_card p-0 btn">
-			        <FaAngleLeft size="1.5em"/> Назад&nbsp;
-			    </Link> 
-			    | Редактировать игру</p>
 				<ToastContainer
 					position="top-center"
 					autoClose={2000}
@@ -91,11 +87,18 @@ class GameEditPage extends Component {
 					/>
 				<form onSubmit={this.onSubmit}>
 	{/*Button to create game and exit*/}
-					<div className="d-flex justify-content-end">
-						<button onClick={this.deleteGameData} className="btn btn-danger rounded-0 mb-2 mr-2">Удалить</button>
-						<button type="submit" className="btn btn-info rounded-0 mb-2">Сохранить</button>
-					</div>
-				    <div className="container mb-5">
+						<div className="row">
+							<div className="col-auto mr-auto p-0">
+								<p className="text_card pb-4"><Link to={`/game/${this.props.match.params.id}`} className="text_card p-0 btn">
+							        <FaAngleLeft size="1.5em"/> Назад&nbsp;
+							    </Link> 
+							    </p>
+							</div>
+							<div className="col-auto p-0">
+									<button onClick={this.deleteGameData} className="btn btn-danger rounded-0 mb-2 mr-2">Удалить</button>
+									<button type="submit" className="btn btn-info rounded-0 mb-2">Сохранить</button>
+							</div>
+						</div>
 			 			<div className="row p-3 align-items-begin bg_card shadow">
 			 				<div className="col-12">
 	{/*Name of the game*/}
@@ -139,8 +142,7 @@ class GameEditPage extends Component {
 			 					<label className="mr-2 mt-3">Информация:</label>
 			 					<textarea className="w-100" value={this.state.infoGame} onChange={this.onChange} name="infoGame" />
 			 				</div> 	
-			 			</div>	
-			 		</div>		
+			 			</div>		
 		 		</form>
 			</div>
 		</section>
