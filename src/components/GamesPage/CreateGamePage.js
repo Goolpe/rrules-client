@@ -216,7 +216,7 @@ class CreateGamePage extends Component {
 {/*Price*/}
 		 					<div>
 		 						<label className="mr-2 mt-3">Стоимость: </label>
-		 						<input type="number" value={this.state.priceGame} onChange={this.onChange} name="priceGame" placeholder=""/><br />
+		 						<input type="number" min="0" max="10000" value={this.state.priceGame} onChange={this.onChange} name="priceGame" placeholder="" required/><br />
 		 					</div>
 		 					<div>
 		 						<label className="mr-2 mt-3">Превью: </label>
