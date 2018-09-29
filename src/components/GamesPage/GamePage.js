@@ -111,19 +111,21 @@ class GamePage extends Component {
 						</div>
 						<div className="col-auto p-0">
 							{game.name === user.player && 
-								<Link to={`/game-edit/${game._id}`} className="btn btn-info rounded-0 mb-2 mr-2">Редактировать</Link>
+								<Link to={`/game-edit/${game._id}`} className="btn btn-outline-info rounded-0 mb-2 mr-2">Редактировать</Link>
 							}
-							{game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.accept === true) 
+							{(game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.accept === true) || game.name === user.player) 
 								?
 								<Button className="mb-2 btn-outline-secondary" disabled>Вы в игре</Button>
 								:
-								game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.decline === true) ?
-								<Button color="danger" className="mb-2" disabled>Отклонен</Button>
-								:
-								(game.gamersInsideId && game.placeAll - game.gamersInsideId.length === 0) ? 
-									<Button color="btn-outline-secondary" className="mb-2" disabled>Мест нет</Button>
+								game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.decline === true) 
+									?
+									<Button color="danger" className="mb-2" disabled>Отклонен</Button>
 									:
-									<Button onClick={this.handlePlayer} color="danger" className="mb-2">Играть</Button>
+									(game.gamersInsideId && game.placeAll - game.gamersInsideId.length === 0) 
+										? 
+										<Button color="btn-outline-secondary" className="mb-2" disabled>Мест нет</Button>
+										:
+										<Button onClick={this.handlePlayer} color="danger" className="mb-2">Играть</Button>
 								}
 						</div>
 					</div>
