@@ -103,7 +103,7 @@ class GameEditPage extends Component {
 			 				<div className="col-12">
 	{/*Name of the game*/}
 			 					<label className="mr-2">Название: </label>
-			 					<input type="text" value={this.state.nameGame} className="w-100" onChange={this.onChange} name="nameGame" /><br />
+			 					<input type="text" value={this.state.nameGame} maxlength="100" className="w-100" onChange={this.onChange} name="nameGame" /><br />
 	{/*Number of seats*/}
 			 					<label className="mr-2 mt-3">Количество мест: </label>
 			 					<input type="number" min="1" max="20" value={this.state.placeAll} onChange={this.onChange} name="placeAll" /><br />
@@ -140,7 +140,7 @@ class GameEditPage extends Component {
 			 					</div> 
 {/*Additionally info*/}		 					
 			 					<label className="mr-2 mt-3">Информация:</label>
-			 					<textarea className="w-100" value={this.state.infoGame} onChange={this.onChange} name="infoGame" />
+			 					<textarea className="w-100" maxlength="1000" value={this.state.infoGame} onChange={this.onChange} name="infoGame" />
 			 				</div> 	
 			 			</div>		
 		 		</form>

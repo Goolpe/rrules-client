@@ -147,7 +147,7 @@ class CreateGamePage extends Component {
 		 				<div className="col-12">
 {/*Name of the game*/}
 		 					<label className="mr-2">Название: </label>
-		 					<input type="text" value={this.state.nameGame} className="w-100" onChange={this.onChange} name="nameGame" placeholder="" required/><br />
+		 					<input type="text" value={this.state.nameGame} maxlength="100" className="w-100" onChange={this.onChange} name="nameGame" placeholder="" required/><br />
 {/*Date and time*/}
 		 					<label className="mr-2 mt-3">Дата и время игры: </label>
 		 					<div className="text-dark">
@@ -228,7 +228,7 @@ class CreateGamePage extends Component {
 		 					</div> 
 {/*Additionally info*/}		 					
 		 					<label className="mr-2 mt-3">Информация: </label>
-		 					<textarea className="w-100" value={this.state.infoGame} onChange={this.onChange} name="infoGame" placeholder="" />
+		 					<textarea className="w-100" maxlength="1000" value={this.state.infoGame} onChange={this.onChange} name="infoGame" placeholder="" />
 		 				</div> 	
 		 			</div>			
 		 		</form>	
