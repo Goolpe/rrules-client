@@ -21,7 +21,7 @@ class UserPage extends Component {
   }
 
   componentDidUpdate(prevProps){
-    if(this.props.match.params.nickname !== prevProps.match.params.nickname){
+    if(this.props.player.name !== prevProps.player.name){
       this.props.fetchPlayer(this.props.match.params.nickname, this.props.history);
     }
   }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
 import { addPlayerGameData, fetchGames } from '../actions/gameActions';
-import { FaTimes, FaPlus, FaMinus } from "react-icons/fa";
+import { FaTimes, FaPlus } from "react-icons/fa";
 
 class Msgs extends Component {
 	constructor(props) {

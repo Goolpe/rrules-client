@@ -49,7 +49,7 @@ class Games extends Component {
                 )}
               </div>
               <div className="col-12 col-md-5">
-                <p>Дата игры: {moment(game.from).format('lll')}</p>
+                <p>{moment(game.from).format('lll')}</p>
                 <p>{game.selectedOption === "sortByTypeOnline" ? 
                   <span>Online</span>
                   : 

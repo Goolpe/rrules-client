@@ -14,9 +14,6 @@ class HomePage extends Component {
         <div className="container-fluid">
             <div className="container text_card">
                 <div className="mb-5">
-                  <span className="text-warning" >
-                  <FaNewspaper size="1.5em"/> Новости </span>
-                     | <Link to="/articles" className="text_card">Все новости</Link>
                     <CarouselBlock />
                 </div>
                 <div className="mb-5">
