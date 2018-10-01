@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Games from '../GamesPage/GamesBlock';
 import CarouselBlock from './carousel';
 import Social from './social';
-import { FaYoutube, FaGamepad, FaNewspaper, FaGlobe } from 'react-icons/fa';
+import { FaYoutube, FaGamepad, FaGlobe } from 'react-icons/fa';
 import Streams from './streams';
 
 class HomePage extends Component {

@@ -14,8 +14,7 @@ class LoginPage extends Component{
     this.state = {
       email: '',
       password: '',
-      errors: {},
-      redirect: false
+      errors: {}
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -51,7 +50,7 @@ class LoginPage extends Component{
     }
     this.props.loginUser(user)
     if(this.props.loginUser(user)){
-      this.setState({redirect: true})
+      this.props.history.push('/')
     };  
   }
 
@@ -80,8 +79,6 @@ class LoginPage extends Component{
               </InputGroup>
               <button className="btn btn-info  mt-3 w-100 p-3" type="submit">Войти</button>
             </form> 
-
-           {this.state.redirect && <Redirect to="/"/>}  
           </div>
     );
   }
