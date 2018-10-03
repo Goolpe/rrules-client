@@ -21,7 +21,7 @@ Pages:
 - Shop
 - Support
 
-Main features / 
+Main features: 
 
 - Authorization
 - Changing data about yourself(name, date of birth, games etc.)
