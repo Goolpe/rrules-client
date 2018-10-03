@@ -323,45 +323,6 @@ footer ul
         font-size: 15px !important;
     }
 
-    .navbar-toggler
-    {
-        display: block;
-        position: absolute;
-        right: 10px;
-        top:10px;
-        z-index: 999;
-
-        width: 50px;
-        height: 50px;
-
-        border-color: transparent !important;
-        outline: none;
-        background: transparent;
-    }
-
-    .navbar-toggler hr
-    {
-        width: 20px;
-        margin: 5px auto;
-
-        transition: .3s ease;
-
-        border: 1px solid #fff;
-    }
-
-    .hr1
-    {
-        transition: .3s ease;
-        -webkit-transform: skewY(-45deg);
-                transform: skewY(-45deg);
-    }
-    .hr3
-    {
-        transition: .3s ease;
-        -webkit-transform: skewY(45deg);
-                transform: skewY(45deg);
-    }
-    
     .navbar-nav li
     {
         width: 300px;
@@ -417,6 +378,46 @@ footer ul
     section{
         padding-top: 50px;
     }
+    
+    .navbar-toggler
+    {
+        display: block;
+        position: absolute;
+        right: 10px;
+        top:10px;
+        z-index: 999;
+
+        width: 50px;
+        height: 50px;
+
+        border-color: transparent !important;
+        outline: none;
+        background: transparent;
+    }
+
+    .navbar-toggler hr
+    {
+        width: 20px;
+        margin: 5px auto;
+
+        transition: .3s ease;
+
+        border: 1px solid #fff;
+    }
+
+    .hr1
+    {
+        transition: .3s ease;
+        -webkit-transform: skewY(-45deg);
+                transform: skewY(-45deg);
+    }
+    .hr3
+    {
+        transition: .3s ease;
+        -webkit-transform: skewY(45deg);
+                transform: skewY(45deg);
+    }
+    
     #Navigation{
         width: 100%;
         background: #181818;
