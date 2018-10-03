@@ -13,9 +13,9 @@ class EmailVerif extends Component{
   render(){ 
       return ( 
       <section id="emailVerification" >
-            <div className="container shadow bg_card text_card pt-5 pb-5 text-center">
-              <p>Мы выслали ссылку на Вашу почту. Если её нет, проверьте в папке "спам".</p>
-            </div>
+        <div className="container shadow bg_card text_card pt-5 pb-5 text-center">
+          <p>Мы выслали ссылку на Вашу почту. Если её нет, проверьте в папке "спам".</p>
+        </div>
       </section>
     )
   }
