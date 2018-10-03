@@ -94,7 +94,6 @@ textarea{
     width: 40px;
     background: #181818;
     z-index: 990;
-    overflow: hidden;
     transition: .5s;
 }
 
@@ -419,7 +418,6 @@ footer ul
         padding-top: 50px;
     }
     #Navigation{
-        height: auto;
         width: 100%;
         background: #181818;
         z-index: 900;
