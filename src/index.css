@@ -323,33 +323,6 @@ footer ul
         font-size: 15px !important;
     }
 
-    .navbar-nav li
-    {
-        width: 300px;
-        margin: auto;
-    }
-    
-    .navbar-nav li svg
-    {
-        width: 300px;
-        margin:auto;
-    }
-
-    .dropdown-menu{
-        background-color: transparent !important;
-        text-align: center !important;
-    } 
-
-    .nav-item{
-        margin-top: 8px !important;
-    }       
-    
-    .dropdown-menu a{
-        margin-top: 10px !important;
-        font-size: 0.9em;
-        color: #fff;
-    }
-
     #channels iframe
     {
         width: 100%;
@@ -368,17 +341,13 @@ footer ul
     {
         text-align: center;
     }
-    #arrowUp
-    {
-        font-size: 14px !important;
-    }
 }
 @media (max-width: 767.98px)
 {
     section{
         padding-top: 50px;
     }
-    
+
     .navbar-toggler
     {
         display: block;
@@ -420,11 +389,11 @@ footer ul
     
     #Navigation{
         width: 100%;
-        background: #181818;
         z-index: 900;
         height: 100%;
         padding-top: 40px;
         animation: nav 1s ease;
+        background-color: #27292c;
     }   
     
     #Navigation .d-flex{
@@ -434,7 +403,6 @@ footer ul
     #Navigation ul{
         padding-top: 5px;   
         text-align: left !important;
-        height: 100%;
         align-items: center;
     }
 
@@ -473,7 +441,7 @@ footer ul
         width: 100%;
     }
     #social i.fa-2x{
-      font-size: 1em;
+        font-size: 1em;
     }
     .userpage__bg{
         height: 100px
