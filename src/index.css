@@ -425,6 +425,7 @@ footer ul
         z-index: 900;
         height: 100%;
         padding-top: 40px;
+        animation: nav 1s ease;
     }   
     
     #Navigation .d-flex{
@@ -481,5 +482,14 @@ footer ul
     .userpage__avatar{
         width: 100px; 
         height: 100px; 
+    }
+
+    @keyframes nav{
+        0%{
+            margin-left: 100%;
+        }
+        100%{
+            margin-left: 0;
+        }
     }
 }
