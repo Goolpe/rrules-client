@@ -51,7 +51,6 @@ class GamePage extends Component {
 
 	notify(word){toast.error(word)}
 	notifySend(word){toast(word)}
-// Handler of submit
 
 	handlePlayer(e){
 		if(!this.props.auth.isAuthenticated){
@@ -113,7 +112,7 @@ class GamePage extends Component {
 							{game.name === user.player && 
 								<Link to={`/game-edit/${game._id}`} className="btn btn-outline-info rounded-0 mb-2 mr-2">Редактировать</Link>
 							}
-							{(game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.accept === true) || game.name === user.player) 
+							{(game.name === user.player  || (game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.accept === true))) 
 								?
 								<Button className="mb-2 btn-outline-secondary" disabled>Вы в игре</Button>
 								:
@@ -138,7 +137,7 @@ class GamePage extends Component {
 		 						<div className="col-12 mb-4">
 				 					{game.videoLink && game.videoLink.length > 0 ? 
 				 						<ReactPlayer width="100%" height="500px" url={game.videoLink} controls />
-				 						: <img width="100%" src={game.preview} />}
+				 						: <img width="100%" alt={game.name} src={game.preview} />}
 				 				</div>
 		 						<div className="col-12 col-lg-4">
 		 							<p>{moment(game.from).format('lll')}</p>
