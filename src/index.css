@@ -332,11 +332,6 @@ footer ul
     {
         font-size: 12px;
     }
-    #headerCarousel
-    {
-        height: auto;
-        min-height: 200px;
-    }
     .keyAuth
     {
         text-align: center;
@@ -355,9 +350,6 @@ footer ul
         right: 10px;
         top:10px;
         z-index: 999;
-
-        width: 50px;
-        height: 50px;
         
         outline: none;
         background: rgba(169,169,169,0.2) !important;
@@ -409,8 +401,8 @@ footer ul
     }
 
     #Navigation li{
-        margin: 10px 0;
-        font-size: 20px;
+        margin: 5px 0;
+        font-size: 18px;
         display: flex;
         align-items: center;
      }
