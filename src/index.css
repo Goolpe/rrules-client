@@ -290,6 +290,7 @@ svg,
 {
     html
     {
+        position:relative;
         font-size: 14px;
     }
 
@@ -323,9 +324,6 @@ svg,
 }
 @media (max-width: 767.98px)
 {
-    html{
-        height: 100%;
-    }
     section{
         padding-top: 50px;
     }
