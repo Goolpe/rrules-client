@@ -332,9 +332,6 @@ svg,
     {
         position:relative;
     }
-    #root{
-        overflow: hidden;
-    }
     .navbar-toggler
     {
         display: block;
@@ -459,13 +456,13 @@ svg,
             right: 0;
         }
         100%{
-            right: -100%;
+            right: 100%;
         }
     }
 
     @keyframes open{
         0%{
-            right: -100%;
+            right: 100%;
         }
         100%{
             right: 0;
