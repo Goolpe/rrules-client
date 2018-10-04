@@ -242,6 +242,8 @@ svg,
     box-shadow: 0 0 0 rgba(0,0,0,0);
 }
 
+/*news page*/
+
 #articlesPage .card-body img
 {
     width: 100%;
@@ -251,6 +253,9 @@ svg,
 {
     width: 700px !important;
 }
+
+/*art page*/
+
 #artpage{
     height: 100vh;
     overflow-y: scroll;
@@ -328,10 +333,6 @@ svg,
         position:relative;
     }
 
-    section{
-        padding: 30px 0;
-    }
-
     .navbar-toggler
     {
         display: block;
@@ -348,22 +349,25 @@ svg,
 
     .navbar-toggler hr
     {
+        display: block;
         width: 20px;
         margin: 5px auto;
-
         transition: .3s ease;
-
         border: 1px solid #fff;
     }
 
     .hr1
     {
+        top:35%;
+        left:25%;
         transition: .3s ease;
         -webkit-transform: skewY(-45deg);
                 transform: skewY(-45deg);
     }
     .hr3
     {
+        top:35%;
+        left:25%;
         transition: .3s ease;
         -webkit-transform: skewY(45deg);
                 transform: skewY(45deg);
@@ -374,10 +378,23 @@ svg,
         z-index: 900;
         height: 100%;
         padding-top: 40px;
-        animation: nav 1s ease;
         background-color: #27292c;
     }   
     
+    #Navigation:hover{
+        margin-left: 100% !important;
+    }
+
+    .close_nav{
+        margin-left: 100% !important;
+        animation: close 1s ease;
+    }
+
+    .open_nav{
+        margin-left: 0 !important;
+        animation: open 1s ease;
+    }
+
     #Navigation .d-flex{
         align-items:center;
     }
@@ -403,6 +420,7 @@ svg,
     .display-1{
         font-size: 3em !important;
     }
+
     #TooltipNavToggle{
         display: none;
     }
@@ -433,7 +451,16 @@ svg,
         height: 100px; 
     }
 
-    @keyframes nav{
+    @keyframes close{
+        0%{
+            margin-left: 0;
+        }
+        100%{
+            margin-left: 100%;
+        }
+    }
+
+    @keyframes open{
         0%{
             margin-left: 100%;
         }

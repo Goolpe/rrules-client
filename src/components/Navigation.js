@@ -12,14 +12,15 @@ import { fetchGames } from './actions/gameActions';
 
 const MQ = window.matchMedia( "(min-width: 767.98px)" );
 
+
 class Navigation extends Component{
   constructor(props) {
     super(props);
     this.onLogout = this.onLogout.bind(this);
     this.toggle = this.toggle.bind(this);
-    this.closeNav = this.closeNav.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.getById = this.getById.bind(this);
     this.state = {
       isOpen: false,
       active: this.props.location.pathname,
@@ -44,7 +45,7 @@ class Navigation extends Component{
     }
   }
 
-  componentDidUpdate(prevProps){
+  componentDidUpdate(prevProps, prevState){
     if(this.props.location.pathname !== prevProps.location.pathname){
       this.setState({
         active: this.props.location.pathname
@@ -52,28 +53,32 @@ class Navigation extends Component{
     }
   }
 
+  getById(value){
+    return document.getElementById(value).classList
+  }
+
   toggle() {
     if(!this.state.isOpen){
-      document.getElementById('hr1').classList.add("hr3");
-      document.getElementById('hr2').classList.add("collapse");
-      document.getElementById('hr3').classList.add("hr1");
+      this.getById('hr1').add("hr3");
+      this.getById('hr1').add("position-absolute");
+      this.getById('hr2').add("collapse");
+      this.getById('hr3').add("hr1");
+      this.getById('hr3').add("position-absolute");
+      this.getById('Navigation').remove("close_nav");
+      this.getById('Navigation').add("open_nav");
     }
     else{
-      document.getElementById('hr1').classList.remove("hr3");
-      document.getElementById('hr2').classList.remove("collapse");
-      document.getElementById('hr3').classList.remove("hr1");
+      this.getById('hr1').remove("hr3");
+      this.getById('hr1').remove("position-absolute");
+      this.getById('hr2').remove("collapse");
+      this.getById('hr3').remove("hr1");
+      this.getById('hr3').remove("position-absolute");
+      this.getById('Navigation').add("close_nav");
+      this.getById('Navigation').remove("open_nav");
+      
     }
     this.setState({
       isOpen: !this.state.isOpen
-    });
-  }
-
-  closeNav(){
-    document.getElementById('hr1').classList.remove("hr3");
-    document.getElementById('hr2').classList.remove("collapse");
-    document.getElementById('hr3').classList.remove("hr1");
-    this.setState({
-      isOpen: false
     });
   }
 
@@ -111,7 +116,7 @@ class Navigation extends Component{
     return(
       <React.Fragment>
         <button className="navbar-toggler position-absolute" onClick={this.toggle}><hr id="hr1" /><hr id="hr2" /><hr id="hr3" /></button>
-        {this.state.isOpen && <div id="Navigation" className="position-absolute">
+        <div id="Navigation" className="position-absolute close_nav">
           <div className="d-flex flex-column justify-content-between w-100" style={{height: "100%"}}>
             <ul className="text-center">
               {isAuthenticated ? 
@@ -223,7 +228,7 @@ class Navigation extends Component{
               </UncontrolledTooltip>
             </ul>
           </div>
-        </div>}
+        </div>
       </React.Fragment>
     )
   }
