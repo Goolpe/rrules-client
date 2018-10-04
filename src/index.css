@@ -332,6 +332,9 @@ svg,
     {
         position:relative;
     }
+    #root{
+        overflow: hidden;
+    }
     .navbar-toggler
     {
         display: block;
@@ -386,14 +389,12 @@ svg,
     }
 
     .close_nav{
-        width: 0 !important;
-        margin-left: 100%;
+        right: 100%;
         animation: close 1s ease;
     }
 
     .open_nav{
-        width: 100% !important;
-        margin-left: 0;
+        right: 0;
         animation: open 1s ease;
     }
 
@@ -455,23 +456,19 @@ svg,
 
     @keyframes close{
         0%{
-            margin-left: 0;
-            width: 100%;
+            right: 0;
         }
         100%{
-            margin-left: 100%;
-            width: 0;
+            right: -100%;
         }
     }
 
     @keyframes open{
         0%{
-            width: 0;
-            margin-left: 100%;
+            right: -100%;
         }
         100%{
-            margin-left: 0;
-            width: 100%;
+            right: 0;
         }
     }
 }
