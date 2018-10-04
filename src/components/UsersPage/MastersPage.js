@@ -29,7 +29,7 @@ class MastersPage extends Component {
 
 		const mastersView = mastersSort.filter(master => master.status === "мастер")
 		.map(master => 
-				<div className="col-12 col-md-6 col-lg-4 p-0 mb-5 shadow" key={master._id}>
+				<div className="col-12 col-md-6 col-lg-4 p-0 mb-5  shadow" key={master._id}>
 					<Link to={`/@${master.name}`}>
 						<div className="wrapper" style={ { backgroundImage: `url(${master.photo})`} }>
 							<div className="card d-flex align-items-center justify-content-center rounded-0" >
@@ -68,7 +68,7 @@ class MastersPage extends Component {
 						<button className="btn bg-transparent ml-2" onClick={()=>this.setState({viewList: false})}><i className={"fas fa-th-large fa-2x " + (this.state.viewList ? "text-secondary" : "text_card")}></i></button>
 						<button className="btn bg-transparent" onClick={()=>this.setState({viewList: true})}><i  className={"fas fa-th-list fa-2x " + (this.state.viewList ? "text_card" : "text-secondary")}></i></button>
 				    </div>
-				    <div className="row">
+				    <div className="row m-0">
 					 	{this.state.viewList ? mastersList : mastersView  }
 					</div>
 				</div>
