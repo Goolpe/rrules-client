@@ -332,7 +332,6 @@ svg,
     {
         position:relative;
     }
-
     .navbar-toggler
     {
         display: block;
@@ -379,6 +378,7 @@ svg,
         height: 100%;
         padding-top: 40px;
         background-color: #27292c;
+        overflow: hidden;
     }   
     
     #Navigation:hover{
@@ -386,12 +386,14 @@ svg,
     }
 
     .close_nav{
-        margin-left: 100% !important;
+        width: 0 !important;
+        margin-left: 100%;
         animation: close 1s ease;
     }
 
     .open_nav{
-        margin-left: 0 !important;
+        width: 100% !important;
+        margin-left: 0;
         animation: open 1s ease;
     }
 
@@ -454,18 +456,22 @@ svg,
     @keyframes close{
         0%{
             margin-left: 0;
+            width: 100%;
         }
         100%{
             margin-left: 100%;
+            width: 0;
         }
     }
 
     @keyframes open{
         0%{
+            width: 0;
             margin-left: 100%;
         }
         100%{
             margin-left: 0;
+            width: 100%;
         }
     }
 }

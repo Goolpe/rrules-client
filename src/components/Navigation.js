@@ -30,6 +30,8 @@ class Navigation extends Component{
   }
 
   componentDidMount() {
+
+//checking media query and navigation
     if(MQ.matches){
       this.setState({
         isOpen: true
@@ -40,6 +42,8 @@ class Navigation extends Component{
         isOpen: false
       })
     }
+
+// checking user
     if(this.props.auth.isAuthenticated){
       this.props.fetchPlayer(this.props.auth.user.name, this.props.history)
     }
@@ -57,6 +61,7 @@ class Navigation extends Component{
     return document.getElementById(value).classList
   }
 
+//handling navigation toggle in media query
   toggle() {
     if(!this.state.isOpen){
       this.getById('hr1').add("hr3");
@@ -82,6 +87,7 @@ class Navigation extends Component{
     });
   }
 
+//handling every link in nav
   handleClick(e){
     if(!MQ.matches){
       this.toggle();
@@ -94,6 +100,7 @@ class Navigation extends Component{
     })
   }
 
+//handling fixed nav toggle
   handleToggle(){
     if(!this.state.nav){
       document.getElementById("Navigation").style.marginLeft = "0"; 
@@ -106,6 +113,7 @@ class Navigation extends Component{
     })
   }
 
+// handling logout button
   onLogout(e) {
     e.preventDefault();
     this.props.logoutUser(this.props.history);
