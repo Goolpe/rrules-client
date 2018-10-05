@@ -100,93 +100,93 @@ class GamePage extends Component {
 					pauseOnHover
 					/>
 			<div className="text_card container">
-					<div className="row">
-						<div className="col-auto mr-auto p-0">
-							<p className="text_card pb-4">
-								<Link to="/games" className="text_card p-0 btn">
-							        <FaAngleLeft size="1.5em"/> Все игры
-							    </Link> 
-							</p>
-						</div>
-						<div className="col-auto p-0">
-							{game.name === user.player && 
-								<Link to={`/game-edit/${game._id}`} className="btn btn-outline-info rounded-0 mb-2 mr-2">Редактировать</Link>
-							}
-							{(game.name === user.player  || (game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.accept === true))) 
-								?
-								<Button className="mb-2 btn-outline-secondary" disabled>Вы в игре</Button>
-								:
-								game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.decline === true) 
-									?
-									<Button color="danger" className="mb-2" disabled>Отклонен</Button>
-									:
-									(game.gamersInsideId && game.placeAll - game.gamersInsideId.length === 0) 
-										? 
-										<Button color="btn-outline-secondary" className="mb-2" disabled>Мест нет</Button>
-										:
-										<Button onClick={this.handlePlayer} color="danger" className="mb-2">Играть</Button>
-							}
-						</div>
+				<div className="row">
+					<div className="col-auto mr-auto p-0">
+						<p className="text_card pb-4">
+							<Link to="/games" className="text_card p-0 btn">
+						        <FaAngleLeft size="1.5em"/> Все игры
+						    </Link> 
+						</p>
 					</div>
-		 			<div className="row p-3 align-items-begin bg_card shadow">
-		 				<div className="col-12 col-md-9">
-		 					<div className="row text-center">
-		 						<div className="col-12">
-				 					<p>{game.nameGame}</p>
-				 				</div>
-		 						<div className="col-12 mb-4">
-				 					{game.videoLink && game.videoLink.length > 0 ? 
-				 						<ReactPlayer width="100%" height="500px" url={game.videoLink} controls />
-				 						: <img width="100%" alt={game.name} src={game.preview} />}
-				 				</div>
-		 						<div className="col-12 col-lg-4">
-		 							<p>{moment(game.from).format('lll')}</p>
-		 						</div>
-		 						<div className="col-12 col-lg-2">
-		 							<p>{game.gamersInsideId && (game.placeAll - (game.gamersInsideId.filter(gamerInside => gamerInside.accept === true).length))} / {game.placeAll}</p>
-		 						</div>
-		 						<div className="col-12 col-lg-2">
-		 							<p>{game.priceGame === 0 ? "Бесплатно" : game.priceGame}</p>
-		 						</div>
-		 						<div className="col-12 col-lg-4">
-		 							<p>{game.selectedOption === "sortByTypeOnline" ? 
-					                  <span>Online</span>
-					                  : 
-					                  <span>IRL | {game.cityGame}</span>}
-					                </p>
-		 						</div>
-		 						<div className="col-12">
-		 							{game.infoGame !== "" && 
-					                	<React.Fragment>
-						                	<p>Информация: {game.infoGame}</p>
-						                	<hr />
-					                	</React.Fragment>
-					                }
-		 						</div>
-			                </div>
-		 				</div>
-		 				<div className="col-12 col-md-3">
-		 					{this.props.players.filter(master => game.name === master._id)
-			 						.map(master => 
-			 					<React.Fragment key={master._id} >
-				 					<p><Link to={`/@${master.name}`} className="text-info" target="_blank" >{master.name} </Link>
-				 					<FaStar className="text-warning" /> - {master.rating}/5</p>
-			 						<hr />
-			 						<p>Игроки:</p>
-			 						<ul>
-				 						{this.props.players.filter(player => game.gamersInsideId
-				 							.find(gamerInside => gamerInside.accept === true && gamerInside.user === player._id))
-				 							.map(gamer => 
-						 						<React.Fragment key={gamer._id} >
-						 							<Link to={`/@${gamer.name}`} className="text-info" target="_blank" >{gamer.name}</Link><br/>
-						 						</React.Fragment>
-						 					)	
-			 							}
-			 						</ul>
-				 				</React.Fragment>
-			 				)}
-		 				</div>
-		 			</div>			
+					<div className="col-auto p-0">
+						{game.name === user.player && 
+							<Link to={`/game-edit/${game._id}`} className="btn btn-outline-info rounded-0 mb-2 mr-2">Редактировать</Link>
+						}
+						{(game.name === user.player  || (game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.accept === true))) 
+							?
+							<Button className="mb-2 btn-outline-secondary" disabled>Вы в игре</Button>
+							:
+							game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.decline === true) 
+								?
+								<Button color="danger" className="mb-2" disabled>Отклонен</Button>
+								:
+								(game.gamersInsideId && game.placeAll - game.gamersInsideId.length === 0) 
+									? 
+									<Button color="btn-outline-secondary" className="mb-2" disabled>Мест нет</Button>
+									:
+									<Button onClick={this.handlePlayer} color="danger" className="mb-2">Играть</Button>
+						}
+					</div>
+				</div>
+	 			<div className="row p-3 align-items-begin bg_card shadow">
+	 				<div className="col-12 col-md-9">
+	 					<div className="row">
+	 						<div className="col-12">
+			 					<p>{game.nameGame}</p>
+			 				</div>
+	 						<div className="col-12 mb-4">
+			 					{game.videoLink && game.videoLink.length > 0 ? 
+			 						<ReactPlayer width="100%" height="500px" url={game.videoLink} controls />
+			 						: <img width="100%" alt={game.name} src={game.preview} />}
+			 				</div>
+	 						<div className="col-12 col-lg-4">
+	 							<p>{moment(game.from).format('lll')}</p>
+	 						</div>
+	 						<div className="col-12 col-lg-2">
+	 							<p>{game.gamersInsideId && (game.placeAll - (game.gamersInsideId.filter(gamerInside => gamerInside.accept === true).length))} / {game.placeAll}</p>
+	 						</div>
+	 						<div className="col-12 col-lg-2">
+	 							<p>{game.priceGame === 0 ? "Бесплатно" : game.priceGame}</p>
+	 						</div>
+	 						<div className="col-12 col-lg-4">
+	 							<p>{game.selectedOption === "sortByTypeOnline" ? 
+				                  <span>Online</span>
+				                  : 
+				                  <span>IRL | {game.cityGame}</span>}
+				                </p>
+	 						</div>
+	 						<div className="col-12">
+	 							{game.infoGame !== "" && 
+				                	<React.Fragment>
+					                	<p>Информация: {game.infoGame}</p>
+					                	<hr />
+				                	</React.Fragment>
+				                }
+	 						</div>
+		                </div>
+	 				</div>
+	 				<div className="col-12 col-md-3">
+	 					{this.props.players.filter(master => game.name === master._id)
+		 						.map(master => 
+		 					<React.Fragment key={master._id} >
+			 					<p><Link to={`/@${master.name}`} className="text-info" target="_blank" >{master.name} </Link>
+			 					<FaStar className="text-warning" /> - {master.rating}/5</p>
+		 						<hr />
+		 						<p>Игроки:</p>
+		 						<ul>
+			 						{this.props.players.filter(player => game.gamersInsideId
+			 							.find(gamerInside => gamerInside.accept === true && gamerInside.user === player._id))
+			 							.map(gamer => 
+					 						<React.Fragment key={gamer._id} >
+					 							<Link to={`/@${gamer.name}`} className="text-info" target="_blank" >{gamer.name}</Link><br/>
+					 						</React.Fragment>
+					 					)	
+		 							}
+		 						</ul>
+			 				</React.Fragment>
+		 				)}
+	 				</div>
+	 			</div>			
 			</div>
 		</section>
 	  )
