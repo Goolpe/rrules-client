@@ -23,87 +23,95 @@ class CreateGamePage extends Component {
 		this.state = {
 			nameGame: '',
 			selectedOption: 'sortByTypeOnline',
-		    cityGame: '',
-		    priceGame: 0,
-		    placeAll: 0,
-		    gamersInsideId: [],
-		    preview: '',
-		    infoGame: '',
-		    placeGame:'',
-		    videoLink:'',
-		    from: undefined,
-      		to: undefined
+	    cityGame: '',
+	    priceGame: 0,
+	    placeAll: 0,
+	    gamersInsideId: [],
+	    preview: '',
+	    infoGame: '',
+	    placeGame:'',
+	    videoLink:'',
+	    from: undefined,
+    		to: undefined
 		}
 		this.handleFromChange = this.handleFromChange.bind(this);
-   		this.handleToChange = this.handleToChange.bind(this);
+   	this.handleToChange = this.handleToChange.bind(this);
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 	} 
 
 	componentDidMount() {
-	    window.scrollTo(0,0);
-	    if(!this.props.auth.isAuthenticated){
-	    	this.props.history.push("/")
-	    }
+    window.scrollTo(0,0);
+    if(!this.props.auth.isAuthenticated){
+    	this.props.history.push("/")
+    }
 	}
 	
 // functions for datepicker
 
-    showFromMonth() {
-    	const { from, to } = this.state;
-	    if (!from) {
-	      return;
-	    }
-	    if (moment(to).diff(moment(from), 'months') < 2) {
-	      this.to.getDayPicker().showMonth(from);
-	    }
+  showFromMonth() {
+  	const { from, to } = this.state;
+    if (!from) {
+      return;
+    }
+    if (moment(to).diff(moment(from), 'months') < 2) {
+      this.to.getDayPicker().showMonth(from);
+    }
 	}
+
 	handleFromChange(from) {
 		this.setState({ from });
 	}
+
 	handleToChange(to) {
 		this.setState({ to }, this.showFromMonth);
 	}
-// Handler of change input states  
 
+// Handler of change input states  
 	onChange(e){
 		this.setState({ [e.target.name]: e.target.value})
 	}
 
 // Handler of submit
-	notify(word){toast(word)}
-	notifyError(word){toast.error(word)}
+	notify(word){
+		toast(word)
+	}
+
+	notifyError(word){
+		toast.error(word)
+	}
+
 	onSubmit(e){
 		e.preventDefault();
 		if(Date.parse(this.state.from) > Date.parse(new Date()) && Date.parse(this.state.from) < Date.parse(this.state.to)){
 			const gameData = {
 				nameGame: this.state.nameGame,
 				cityGame: this.state.cityGame,
-			    name: this.props.auth.user.player,
-			    placeGame: this.state.placeGame,
-			    priceGame: this.state.priceGame,
-			    infoGame: this.state.infoGame,
-			    gamersInsideId: this.state.gamersInsideId,
-			    videoLink: this.state.videoLink,
-			    preview: this.state.preview,
-			    selectedOption: this.state.selectedOption,
-			    placeAll: this.state.placeAll,
-			    from: this.state.from,
-			    to: this.state.to
-		     }
+		    name: this.props.auth.user.player,
+		    placeGame: this.state.placeGame,
+		    priceGame: this.state.priceGame,
+		    infoGame: this.state.infoGame,
+		    gamersInsideId: this.state.gamersInsideId,
+		    videoLink: this.state.videoLink,
+		    preview: this.state.preview,
+		    selectedOption: this.state.selectedOption,
+		    placeAll: this.state.placeAll,
+		    from: this.state.from,
+		    to: this.state.to
+		  }
 			this.props.createGame(gameData);
 			this.setState({
 				nameGame: '',
 				cityGame: '',
 				priceGame: 0,
-			    placeAll: 0,
-			    selectedOption: 'sortByTypeOnline',
-			    preview: '',
-			    infoGame: '',
-			    placeGame: '',
-			    from: undefined,
-			    to: undefined,
-			    videoLink: ''
+		    placeAll: 0,
+		    selectedOption: 'sortByTypeOnline',
+		    preview: '',
+		    infoGame: '',
+		    placeGame: '',
+		    from: undefined,
+		    to: undefined,
+		    videoLink: ''
 			})
 			this.notify("Готово!")
 		}
@@ -112,39 +120,37 @@ class CreateGamePage extends Component {
 		}
 	}
   render() {
-
 //declare consts for Datepicker  	
    	const { from, to } = this.state;
     const modifiers = { start: from, end: to };
-
 	  return (
-	  	<section id="createGame">
-			<div className="container text_card">
-				<ToastContainer
-					position="top-center"
-					autoClose={2000}
-					hideProgressBar={false}
-					newestOnTop={false}
-					closeOnClick
-					rtl={false}
-					pauseOnVisibilityChange
-					draggable
-					pauseOnHover
-					/>
-				<form onSubmit={this.onSubmit}>
-				<div className="row">
-					<div className="col-auto mr-auto p-0">
-						<p className="text_card pb-4"><Link to="games" className="p-0 btn text_card">
-					        <FaAngleLeft size="1.5em"/> Назад&nbsp;
-					    </Link></p>
-				    </div>
-				    <div className="col-auto p-0">
-				    	<button type="submit" className="btn btn-info rounded-0 mb-2">Создать игру</button>
-				    </div>
-				</div>
+	  	<main id="createGame">
+				<section className="container text_card">
+					<ToastContainer
+						position="top-center"
+						autoClose={2000}
+						hideProgressBar={false}
+						newestOnTop={false}
+						closeOnClick
+						rtl={false}
+						pauseOnVisibilityChange
+						draggable
+						pauseOnHover
+						/>
+					<form onSubmit={this.onSubmit}>
+						<div className="row">
+							<div className="col-auto mr-auto p-0">
+								<p className="text_card pb-4"><Link to="games" className="p-0 btn text_card">
+							        <FaAngleLeft size="1.5em"/> Назад&nbsp;
+							    </Link></p>
+						    </div>
+						    <div className="col-auto p-0">
+						    	<button type="submit" className="btn btn-info rounded-0 mb-2">Создать игру</button>
+						    </div>
+						</div>
 {/*Button to create game and exit*/}
-		 			<div className="row p-3 align-items-begin bg_card shadow">
-		 				<div className="col-12">
+			 			<div className="row p-3 align-items-begin bg_card shadow">
+			 				<div className="col-12">
 {/*Name of the game*/}
 		 					<label className="mr-2">Название: </label>
 		 					<input type="text" value={this.state.nameGame} maxLength="100" className="w-100" onChange={this.onChange} name="nameGame" placeholder="" required/><br />
@@ -232,8 +238,8 @@ class CreateGamePage extends Component {
 		 				</div> 	
 		 			</div>			
 		 		</form>	
-			</div>
-		</section>
+			</section>
+		</main>
 	  )
 	}
 }

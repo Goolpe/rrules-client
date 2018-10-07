@@ -28,9 +28,9 @@ class LoginPage extends Component{
 
   componentDidUpdate(prevProps) {
     if(prevProps.errors !== this.props.errors) {
-        this.setState({
-            errors: this.props.errors
-        });
+      this.setState({
+          errors: this.props.errors
+      });
     }
   }
   
@@ -44,8 +44,8 @@ class LoginPage extends Component{
   handleSubmit(e){ 
     e.preventDefault();
     const user = {
-        email: this.state.email,
-        password: this.state.password,
+      email: this.state.email,
+      password: this.state.password,
     }
     this.props.loginUser(user)
     if(this.props.loginUser(user)){
@@ -56,29 +56,27 @@ class LoginPage extends Component{
   render(){	
       const {errors} = this.state;
       return (
-          <div className="mt-3 mb-3">
-            <form onSubmit={this.handleSubmit} style={{maxWidth:"400px", margin: "auto"}}>
-              <InputGroup className="mt-3 mb-3">
-                <InputGroupAddon addonType="prepend">@</InputGroupAddon>
-                <input type="email" value={this.state.email} onChange={this.handleChange} name="email" className={classnames('form-control', {
-                        'is-invalid': errors.email
-                    })} placeholder="E-mail" required/>
-                {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
-              </InputGroup>
-              <InputGroup className="mt-3 mb-3">
-                <InputGroupAddon addonType="prepend">
-                  <InputGroupText>
-                    <FaKey />
-                  </InputGroupText>
-                </InputGroupAddon>
-                <input type="password" value={this.state.password} onChange={this.handleChange} name="password" className={classnames('form-control', {
-                        'is-invalid': errors.password
-                    })} placeholder="Пароль" required/>
-                {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
-              </InputGroup>
-              <button className="btn btn-info  mt-3 w-100 p-3" type="submit">Войти</button>
-            </form> 
-          </div>
+        <form onSubmit={this.handleSubmit} style={{maxWidth:"400px", margin: "auto"}}>
+          <InputGroup className="mt-3 mb-3">
+            <InputGroupAddon addonType="prepend">@</InputGroupAddon>
+            <input type="email" value={this.state.email} onChange={this.handleChange} name="email" className={classnames('form-control', {
+              'is-invalid': errors.email
+              })} placeholder="E-mail" required/>
+            {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
+          </InputGroup>
+          <InputGroup className="mt-3 mb-3">
+            <InputGroupAddon addonType="prepend">
+              <InputGroupText>
+                <FaKey />
+              </InputGroupText>
+            </InputGroupAddon>
+            <input type="password" value={this.state.password} onChange={this.handleChange} name="password" className={classnames('form-control', {
+              'is-invalid': errors.password
+              })} placeholder="Пароль" required/>
+            {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
+          </InputGroup>
+          <button className="btn btn-info  mt-3 w-100 p-3" type="submit">Войти</button>
+        </form> 
     );
   }
 }

@@ -1,0 +1,40 @@
+
+.userpage__bg
+{
+    height: 200px;
+
+    background: no-repeat;
+    background-position: center left;
+    background-size: cover;
+}
+
+.userpage__avatar
+{
+    overflow: hidden;
+
+    width: 150px;
+    height: 150px;
+}
+
+.userpage__facog svg
+{
+    transition: .7s;
+}
+
+.userpage__facog:hover svg
+{
+    transform: rotate(90deg);
+}
+
+@media (max-width: 767.98px)
+{
+    .userpage__bg
+    {
+        height: 100px;
+    }
+    .userpage__avatar
+    {
+        width: 100px;
+        height: 100px;
+    }
+}

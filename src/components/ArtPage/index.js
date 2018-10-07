@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Card } from 'reactstrap';
 import fetchJsonp from 'fetch-jsonp';
-import LazyLoad from 'react-lazy-load';
 import { FaChevronLeft, FaChevronRight, FaTimesCircle } from "react-icons/fa";
 import { FiImage } from "react-icons/fi";
+import moment from 'moment';
+import '../style/art.css';
 
 class ArtPage extends Component{
  	constructor (props) {
@@ -30,72 +30,65 @@ class ArtPage extends Component{
   }
 
   _ToggleNext() {
-      if(this.state.selectedIndex === this.state.pictures.length - 1)
-        return;
+    if(this.state.selectedIndex === this.state.pictures.length - 1)
+      return;
 
-      this.setState(prevState => ({
-          selectedIndex: prevState.selectedIndex + 1
-      }))
+    this.setState(prevState => ({
+        selectedIndex: prevState.selectedIndex + 1
+    }))
   }
 
   _TogglePrev() {
-      if(this.state.selectedIndex === 0)
-       return;
+    if(this.state.selectedIndex === 0)
+     return;
 
-      this.setState(prevState => ({
-          selectedIndex: prevState.selectedIndex - 1
-      }))
+    this.setState(prevState => ({
+        selectedIndex: prevState.selectedIndex - 1
+    }))
   }
 
   render () {
     return (
-      <div id="artpage">
-       {this.state.bigPicture && 
-        <div className="art_bg" style={{zIndex: "999"}}>
+      <main className="art">
+        {this.state.bigPicture && 
+        <section className="art__open-picture">
           <div className="row text-center text_card" style={{height: "100%"}}>
             <div className="col-2 col-md-4 d-flex align-items-center justify-content-center " style={{height: "100%", cursor: "pointer"}}  onClick={this._TogglePrev}>
-               <button className="bg-transparent text-center text_card border-0 p-0"><FaChevronLeft size="3em" /></button>
+              <button className="bg-transparent text-center text_card border-0 p-0"><FaChevronLeft size="3em" /></button>
             </div>
-            <div className="col-8 col-md-4 d-flex align-items-center justify-content-center" style={{height: "100%", cursor: "pointer"}}>    
-                        
-              <div className="row"> 
-                <div className="col-12">
+            <div className="col-8 col-md-4 d-flex align-items-center justify-content-center" style={{height: "100%", cursor: "pointer"}}>      
+                <figure>
                   <img src={this.state.pictures[this.state.selectedIndex].photo_604} alt={this.state.pictures[this.state.selectedIndex].text} className="img-fluid"/>
-                  <div onClick={()=>{this.setState({bigPicture: false})}} className="fixed-top text-center text-white bg-transparent border-0 p-0" style={{top: "50px", left: "60%"}}><FaTimesCircle size="3em" /></div>
-                </div>
-                <div className="col-12">
-                  <p className=" mt-2">{this.state.pictures[this.state.selectedIndex].text}</p>
-                </div>
-              </div>
-
+                  <figcaption className="mt-2">{this.state.pictures[this.state.selectedIndex].text}</figcaption>
+                </figure> 
             </div> 
             <div className="col-2 col-md-4 d-flex align-items-center justify-content-center"  style={{height: "100%", cursor: "pointer"}} onClick={this._ToggleNext}>
               <button className="bg-transparent text-center text_card border-0 p-0"><FaChevronRight size="3em" /></button> 
             </div>
+            <button onClick={()=>{this.setState({bigPicture: false})}} className="fixed-top text-center text-white bg-transparent border-0 p-0" style={{top: "50px", left: "80%"}}><FaTimesCircle size="3em" /></button>
           </div>
-        </div>}
-
-        <div className="container pt-5">
-          <span className="text_card">
+        </section>
+        }
+        <section className="images">
+          <h1 className="text_card">
             <FiImage size="1.5em"/> Фан-арт 
-          </span>
-          <div className="row pt-5">
+          </h1>
+          <section className="image-block image-block--cards">
             {this.state.pictures.map((img, index) => 
-              <div className="col-12 col-md-6 col-lg-3" key={img.id}>
-                <LazyLoad height={350}>
-                <Card className="shadow border-0" style={{height: "300px"}}>
-                  <button onClick={()=>{
-                  this.setState({ bigPicture: true, selectedIndex: index })}} className="text-center border-0" title={img.text}  style={{ height:"100%", backgroundPosition: "top", backgroundImage: `url(${img.photo_604})` }}></button>
-                </Card>  
-                </LazyLoad>         
-              </div>
-              
-
-              )}
-          </div>
-           
-        </div>
-      </div>
+              <figure className="image-block__card m-1" key={index}>
+                <img  
+                  className="card__image" 
+                  alt={img.text} 
+                  src={img.photo_604} />
+                <figcaption className="card__caption" onClick={()=>{this.setState({ bigPicture: true, selectedIndex: index })}}>
+                  <time className="card__date">{moment(img.date*1000).format('LL')}</time>
+                  <p className="card__description">{img.text || "-"}</p>
+                </figcaption>
+              </figure>
+            )}
+          </section>
+        </section>
+      </main>
     )
   }
 }

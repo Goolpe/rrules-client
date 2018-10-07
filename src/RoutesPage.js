@@ -75,20 +75,20 @@ class RoutesPage extends Component {
 					<React.Fragment>	
 						<Navigation/>
 				        <Switch>
-				            <Route path="/" exact={true} component={HomePage} />
-				            <Route path="/about-project" component={AboutPage} />
-				            <Route path="/library" component={LibraryPage} />
-				            <Route path="/art" component={ArtPage} />
-				            <Route path="/articles" component={ArticlesPage} />
-				            <Route path="/article/:id" component={ArticlePage} />
-				            <Route path="/shop" component={ShopPage} />
-				            <Route path="/masters" component={MastersPage} />
-				            <Route path="/support" component={SupportPage} />   
-				            <Route path="/agreement" component={AgreementPage} />
-				            <Route path="/games" component={GamesPage} />   
-				            <Route path="/game/:id" component={GamePage} /> 
-				            <Route path="/@:nickname" component={UserPage} />
-				            <Route path="/msgs" component={MessagesPage} />
+			            <Route path="/" exact={true} component={HomePage} />
+			            <Route path="/about-project" component={AboutPage} />
+			            <Route path="/library" component={LibraryPage} />
+			            <Route path="/art" component={ArtPage} />
+			            <Route path="/articles" component={ArticlesPage} />
+			            <Route path="/article/:id" component={ArticlePage} />
+			            <Route path="/shop" component={ShopPage} />
+			            <Route path="/masters" component={MastersPage} />
+			            <Route path="/support" component={SupportPage} />   
+			            <Route path="/agreement" component={AgreementPage} />
+			            <Route path="/games" component={GamesPage} />   
+			            <Route path="/game/:id" component={GamePage} /> 
+			            <Route path="/@:nickname" component={UserPage} />
+			            <Route path="/msgs" component={MessagesPage} />
 					        <Route path="/auth" component={AuthPage} />
 					        <Route path="/social-auth/:id" component={SocialAuth} />
 					        <Route path="/email-verification" component={EmailVerif} />

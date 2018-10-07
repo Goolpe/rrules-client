@@ -1,0 +1,99 @@
+.art__open-picture
+{
+    position: fixed;
+    z-index: 999;
+
+    overflow: none;
+
+    width: 100%;
+    height: 100%;
+
+    transition: 1s;
+
+    background-color: rgba(0,0,0,.9);
+}
+
+.images
+{
+    width: 80%;
+}
+
+.image-block
+{
+    font-size: 20px;
+
+    display: flex;
+
+    height: 200px;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.image-block--cards
+{
+    font-size: 16px;
+
+    height: auto;
+
+    flex-wrap: wrap;
+}
+
+.image-block__card
+{
+    position: relative;
+
+    overflow: hidden;
+
+    height: 300px;
+    margin: 2px;
+
+    cursor: pointer;
+    text-align: left;
+
+    flex-grow: 1;
+}
+
+.card__image
+{
+    min-width: 100%;
+    max-width: 100%;
+    height: inherit;
+
+    object-fit: cover;
+}
+
+.card__caption
+{
+    position: absolute;
+    z-index: 900;
+    top: 0;
+    left: 0;
+
+    display: none;
+
+    width: 100%;
+    height: 100%;
+}
+
+.image-block__card:hover .card__caption
+{
+    display: block;
+
+    color: #fff;
+    background-color: rgba(0,0,0,.3);
+}
+
+.card__date
+{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.card__description
+{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}

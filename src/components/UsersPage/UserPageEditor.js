@@ -80,34 +80,34 @@ class UserPageEditor extends Component {
     e.preventDefault();
 
     const playerData = {
-          id: this.props.player._id,
-          fullName: this.state.fullName,
-          photo: this.state.photo,
-          bgphoto: this.state.bgphoto,
-          dateBirth: this.state.selectedDay,
-          gamesCount: this.state.gamesCount,
-          about: this.state.about,
-          skype: this.state.skype,
-          discord: this.state.discord,
-          example1: this.state.example1,
-          example2: this.state.example2,
-          example3: this.state.example3,
-          example4: this.state.example4,
-          systems: this.state.systems,
-          setting: this.state.setting,
-          paidGames: this.state.paidGames,
-          leading: this.state.leading,
-          cityLive: this.state.cityLive,
-          otherContacts: this.state.otherContacts,
-          sex: this.state.sex
-         }
+      id: this.props.player._id,
+      fullName: this.state.fullName,
+      photo: this.state.photo,
+      bgphoto: this.state.bgphoto,
+      dateBirth: this.state.selectedDay,
+      gamesCount: this.state.gamesCount,
+      about: this.state.about,
+      skype: this.state.skype,
+      discord: this.state.discord,
+      example1: this.state.example1,
+      example2: this.state.example2,
+      example3: this.state.example3,
+      example4: this.state.example4,
+      systems: this.state.systems,
+      setting: this.state.setting,
+      paidGames: this.state.paidGames,
+      leading: this.state.leading,
+      cityLive: this.state.cityLive,
+      otherContacts: this.state.otherContacts,
+      sex: this.state.sex
+    }
 
     this.props.changePlayerData(playerData);
   }
   render() {
     return (
-      <section id="userEditPage">    
-        <div className="container text_card">
+      <main >    
+        <section className="container text_card">
           <Form style={{maxWidth: "700px"}} onSubmit={this.handleSubmit} className="pl-5 pr-5 pb-3 mx-auto shadow bg_card">
             <div className="d-flex justify-content-end w-100 pt-3 pb-3" >
               <Link className="userpage__facog mt-2 text_card" style={{height:"1.5em"}} id="TooltipSetting" to={`/@${this.props.auth.user.name}`}>
@@ -228,8 +228,8 @@ class UserPageEditor extends Component {
                 <Button type="submit" color="info" className="mx-auto pl-5 pr-5">Сохранить</Button>
               </FormGroup>
           </Form>
-        </div>
-      </section>
+        </section>
+      </main>
     )
   }
 }

@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { fetchArticles } from '../actions/postActions';
 import moment from 'moment';
 
-class CarouselBlock extends Component {
+class NewsBlock extends Component {
   constructor(props){
     super(props);
     this.state = { activeIndex: 0 };
@@ -56,34 +56,32 @@ class CarouselBlock extends Component {
   	const { activeIndex } = this.state;
 
     const slides = articleSort.map((article, index)=>
-        <CarouselItem
-          key={article._id}
-          onExiting={this.onExiting}
-          onExited={this.onExited}
-        >
-              <div className="row pt-4 text_card pb-4 justify-content-between">
-                <div className="col-12 col-lg-8 text-left">
-                  <p>{moment(article.date).format('LL')}</p>
-                  <h1 className="text-center">{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
-                  <p className="text-justify">{article.text.length > 800 ? article.text.slice(0,800) + "..." : article.text}</p>
-                  <Link to={`/article/${article._id}`} className="btn btn-info mt-2">Читать дальше</Link>
-                </div>
-                <div className="d-none d-lg-block col-lg-4">
-                  <img alt={article.title} className="img-fluid" style={{backgroundSize: "contain", height:"400px"}} src={article.picture} />
-                </div>
-              </div>
-        </CarouselItem>
+      <CarouselItem
+        key={article._id}
+        onExiting={this.onExiting}
+        onExited={this.onExited}
+      >
+        <div className="row text_card justify-content-between">
+          <section className="col-12 col-lg-8 text-left">
+            <time>{moment(article.date).format('LL')}</time>
+            <h1 className="text-center">{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
+            <article className="text-justify">{article.text.length > 800 ? article.text.slice(0,800) + "..." : article.text}</article>
+            <Link to={`/article/${article._id}`} className="btn btn-info mt-2">Читать дальше</Link>
+          </section>
+          <figure className="d-none d-lg-block col-lg-4">
+            <img alt={article.title} className="img-fluid" style={{backgroundSize: "contain", height:"400px"}} src={article.picture} />
+          </figure>
+        </div>
+      </CarouselItem>
       ).slice(0,3);
     return (
-    	<div className="pt-3 pb-3">
-	    	  <Carousel	activeIndex={activeIndex}	next={this.next} previous={this.previous}	interval="5000">
-		       {slides}
-	      	</Carousel>
-		  </div>
+	    <Carousel	activeIndex={activeIndex}	next={this.next} previous={this.previous}	interval="5000">
+		    {slides}
+	    </Carousel>
     )
   }
 }
-CarouselBlock.propTypes = {
+NewsBlock.propTypes = {
   fetchArticles: PropTypes.func.isRequired,
   articles: PropTypes.array.isRequired
 };
@@ -92,4 +90,4 @@ const mapStateToProps = state => ({
   articles: state.articles.items
 })
 
-export default connect(mapStateToProps, { fetchArticles })(CarouselBlock);
+export default connect(mapStateToProps, { fetchArticles })(NewsBlock);

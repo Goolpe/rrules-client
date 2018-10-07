@@ -43,70 +43,69 @@ class AuthPage extends Component{
     }
   }
   render(){	
-      return ( <div>     
-		  <section id="login" className="pt-5">
-        <div className="container" >
-        <div className="container shadow bg-white pt-5 pb-5 text-center" style={{maxWidth: "400px"}}>
-          {/*<a href='http://localhost:5000/auth/vkontakte' className="btn btn-dark m-2"> <FaVk /></a>
-          <a href='http://localhost:5000/auth/facebook' className="btn btn-dark m-2 pr-3 pl-3"> <FaFacebookF /></a>  
-          <a href='http://localhost:5000/auth/google' className="btn btn-dark m-2"> <FaGoogle /></a> 
-          <p className="mt-3 mb-4" style={{borderBottom: "1px solid #ebeced", lineHeight: "0.1em"}}><span style={{background: "#fff", padding: "0 10px"}}>или</span></p>
-          */}
-          <Nav tabs style={{cursor: "pointer"}} className="justify-content-center">
-            <NavItem>
-              <NavLink
-                className={"text-dark " + classnames({ active: this.state.activeTab === 'login' })}
-                onClick={() => { this.toggle('login'); }}
-              >
-                ВХОД
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink 
-                className={"text-dark " + classnames({ active: this.state.activeTab === 'register' })}
-                onClick={() => { this.toggle('register'); }}
-              >
-                РЕГИСТРАЦИЯ
-              </NavLink>
-            </NavItem>
-          </Nav>
-          <TabContent activeTab={this.state.activeTab}>
-            <TabPane tabId="login">
-              <Row>
-                <Col sm="12">
-                  <LoginPage />
-                  <p className="text-dark m-auto" style={{cursor: "pointer"}} onClick={()=> this.setState({activeTab: 'forgot'})}>Не могу войти</p>
-                </Col>
-              </Row>
-            </TabPane>
-            <TabPane tabId="register">
-              <Row>
-                <Col sm="12">
-                  <RegisterPage />
-                </Col>
-              </Row>
-            </TabPane>
-            <TabPane tabId="forgot">
-              <Row>
-                <Col sm="12">
-                  <div>
-                    <form>
-                      <p className="mt-3">Восстановление аккаунта</p>
-                      <InputGroup className="mt-3 mb-3">
-                        <InputGroupAddon addonType="prepend">@</InputGroupAddon>
-                        <input type="email" value={this.state.logemail} onChange={this.handleChange} name="logemail" className="form-control" placeholder="E-mail" required/>
-                     </InputGroup>
-                      <button type="submit" onClick={this.checkLetters} className="btn btn-info w-100 p-3">Восстановить пароль</button>
-                    </form> 
-                  </div>
-                </Col>
-              </Row>
-            </TabPane>
-          </TabContent>
-        </div>
-        </div>
-      </section>
-      </div>
+      return (     
+		  <main>
+        <section className="container">
+          <div className="m-auto p-5 shadow bg-white text-center" style={{maxWidth: "400px"}}>
+            {/*<a href='http://localhost:5000/auth/vkontakte' className="btn btn-dark m-2"> <FaVk /></a>
+            <a href='http://localhost:5000/auth/facebook' className="btn btn-dark m-2 pr-3 pl-3"> <FaFacebookF /></a>  
+            <a href='http://localhost:5000/auth/google' className="btn btn-dark m-2"> <FaGoogle /></a> 
+            <p className="mt-3 mb-4" style={{borderBottom: "1px solid #ebeced", lineHeight: "0.1em"}}><span style={{background: "#fff", padding: "0 10px"}}>или</span></p>
+            */}
+            <Nav tabs style={{cursor: "pointer"}} className="justify-content-center">
+              <NavItem>
+                <NavLink
+                  className={"text-dark " + classnames({ active: this.state.activeTab === 'login' })}
+                  onClick={() => { this.toggle('login'); }}
+                >
+                  ВХОД
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink 
+                  className={"text-dark " + classnames({ active: this.state.activeTab === 'register' })}
+                  onClick={() => { this.toggle('register'); }}
+                >
+                  РЕГИСТРАЦИЯ
+                </NavLink>
+              </NavItem>
+            </Nav>
+            <TabContent activeTab={this.state.activeTab}>
+              <TabPane tabId="login">
+                <Row>
+                  <Col sm="12">
+                    <LoginPage />
+                    <p className="text-dark m-auto" style={{cursor: "pointer"}} onClick={()=> this.setState({activeTab: 'forgot'})}>Не могу войти</p>
+                  </Col>
+                </Row>
+              </TabPane>
+              <TabPane tabId="register">
+                <Row>
+                  <Col sm="12">
+                    <RegisterPage />
+                  </Col>
+                </Row>
+              </TabPane>
+              <TabPane tabId="forgot">
+                <Row>
+                  <Col sm="12">
+                    <div>
+                      <form>
+                        <p className="mt-3">Восстановление аккаунта</p>
+                        <InputGroup className="mt-3 mb-3">
+                          <InputGroupAddon addonType="prepend">@</InputGroupAddon>
+                          <input type="email" value={this.state.logemail} onChange={this.handleChange} name="logemail" className="form-control" placeholder="E-mail" required/>
+                       </InputGroup>
+                        <button type="submit" onClick={this.checkLetters} className="btn btn-info w-100 p-3">Восстановить пароль</button>
+                      </form> 
+                    </div>
+                  </Col>
+                </Row>
+              </TabPane>
+            </TabContent>
+          </div>
+        </section>
+      </main>
     );
   }
 }

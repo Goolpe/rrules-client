@@ -11,17 +11,17 @@ import { FaPlus, FaNewspaper} from "react-icons/fa";
 
 class ArticlesPage extends Component {
 	constructor(props){
-    	super(props);
-    	this.state = {
-    		currentPage: 1,
-          	todosPerPage: 4
-    	}
-    	this.handleClick = this.handleClick.bind(this);
+  	super(props);
+  	this.state = {
+  		currentPage: 1,
+      todosPerPage: 4
+  	}
+  	this.handleClick = this.handleClick.bind(this);
 	}
 	componentDidMount() {
 		window.scrollTo(0,0);
 		this.props.fetchArticles();
-	    this.props.fetchPlayers();
+	  this.props.fetchPlayers();
 	}
 
 	handleClick(event) {
@@ -37,59 +37,63 @@ class ArticlesPage extends Component {
 
 		const {currentPage, todosPerPage } = this.state;
 
-        // Logic for displaying page numbers
-        const indexOfLastTodo = currentPage * todosPerPage;
-        const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
-        const currentTodos = articleSort.slice(indexOfFirstTodo, indexOfLastTodo);
+    // Logic for displaying page numbers
+    const indexOfLastTodo = currentPage * todosPerPage;
+    const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
+    const currentTodos = articleSort.slice(indexOfFirstTodo, indexOfLastTodo);
 
-        const pageNumbers = [];
-        for (let i = 1; i <= Math.ceil(articleSort.length / todosPerPage); i++) {
-          pageNumbers.push(i);
-        }
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(articleSort.length / todosPerPage); i++) {
+      pageNumbers.push(i);
+    }
 
-	  	const listItems = currentTodos.map((article, index) =>
-	    	<div className="container pt-5 pb-5 mb-3 bg_card text_card shadow" key={index}>
-              <div className="row text-center justify-content-between">
-                <div className="col-12 col-lg-8 text-left">
-                  <p>{moment(article.date).format('LL')}</p>
-                  <h1 className="text-center">{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
-                  <p className="text-justify">{article.text.length > 800 ? article.text.slice(0,800) + "..." : article.text}</p>
-                  <Link to={`/article/${article._id}`} className="btn btn-info mt-2">Читать дальше</Link>
-                </div>
-                <div className="d-none d-lg-block col-lg-4">
-                  <img alt={article.title} className="img-fluid" style={{backgroundSize: "contain", height:"400px"}} src={article.picture} />
-                </div>
-              </div>
-            </div>
+		const listItems = currentTodos.map((article, index) =>
+	  	<div className="container pt-5 pb-5 mb-3 bg_card text_card shadow" key={index}>
+        <div className="row text-center justify-content-between">
+          <div className="col-12 col-lg-8 text-left">
+            <p>{moment(article.date).format('LL')}</p>
+            <h1 className="text-center">{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
+            <p className="text-justify">{article.text.length > 800 ? article.text.slice(0,800) + "..." : article.text}</p>
+            <Link to={`/article/${article._id}`} className="btn btn-info mt-2">Читать дальше</Link>
+          </div>
+          <div className="d-none d-lg-block col-lg-4">
+            <img alt={article.title} className="img-fluid" style={{backgroundSize: "contain", height:"400px"}} src={article.picture} />
+          </div>
+        </div>
+      </div>
 		);
 
 		const renderPageNumbers = pageNumbers.map(number => {
-          return (
-          	<PaginationItem key={number} >
-          	{pageNumbers.length > 1 && 
-  	          <PaginationLink id={number} className="shadow bg_card text_card rounded-0 border-0 mr-2"  onClick={this.handleClick}>
-  	            {number}
-  	          </PaginationLink>
-  	        }
-	        </PaginationItem>
-          );
-        });
+      return (
+      	<PaginationItem key={number} >
+      	{pageNumbers.length > 1 && 
+          <PaginationLink id={number} className="shadow bg_card text_card rounded-0 border-0 mr-2"  onClick={this.handleClick}>
+            {number}
+          </PaginationLink>
+        }
+      	</PaginationItem>
+      );
+    });
 
 		return (
-			<section id="articlesPage">	  
-				<div className="container text-left">
-					<span className="text_card">
+			<main>	  
+				<section className="container text-left">
+					<h1 className="text_card">
 						<FaNewspaper size="1.5em"/> Новости
-					{user.moderator && <Link to="/article-new" className="ml-2" >
-						 | <FaPlus  />
-					</Link>}
-					</span>
-					<ul className="pt-5">{listItems}</ul>
+						{user.moderator && 
+							<Link to="/article-new" className="ml-2" >
+								 | <FaPlus  />
+							</Link>
+						}
+					</h1>
+					<section>
+						{listItems}
+					</section>
 					<Pagination aria-label="Page navigation">
-      			    	{renderPageNumbers}
-      		    	</Pagination>				
-				</div>
-			</section>
+      			{renderPageNumbers}
+      		</Pagination>				
+				</section>
+			</main>
 		)
 	}
 }

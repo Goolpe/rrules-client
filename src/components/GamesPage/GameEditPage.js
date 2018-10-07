@@ -13,15 +13,15 @@ class GameEditPage extends Component {
 		this.state = {
 			nameGame: this.props.game.nameGame,
 			selectedOption: this.props.game.selectedOption,
-		    cityGame: this.props.game.cityGame,
-		    priceGame: this.props.game.priceGame,
-		    placeAll: this.props.game.placeAll,
-		    infoGame: this.props.game.infoGame,
-		    placeGame: this.props.game.placeGame,
-		    videoLink: this.props.game.videoLink,
-		    preview: this.props.game.preview,
-		    from: this.props.game.from,
-      		to: this.props.game.to
+	    cityGame: this.props.game.cityGame,
+	    priceGame: this.props.game.priceGame,
+	    placeAll: this.props.game.placeAll,
+	    infoGame: this.props.game.infoGame,
+	    placeGame: this.props.game.placeGame,
+	    videoLink: this.props.game.videoLink,
+	    preview: this.props.game.preview,
+	    from: this.props.game.from,
+    	to: this.props.game.to
 		}
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
@@ -29,11 +29,11 @@ class GameEditPage extends Component {
 	} 
 
 	componentDidMount() {
-	    window.scrollTo(0,0);
-	    this.props.fetchGame(this.props.match.params.id, this.props.history);
-	    if(!this.props.auth.isAuthenticated && this.props.game.name !== this.props.auth.user.player){
-	    	this.props.history.push('/games')
-	    }
+    window.scrollTo(0,0);
+    this.props.fetchGame(this.props.match.params.id, this.props.history);
+    if(!this.props.auth.isAuthenticated && this.props.game.name !== this.props.auth.user.player){
+    	this.props.history.push('/games')
+    }
 	}
 
 // Handler of change input states  
@@ -43,7 +43,9 @@ class GameEditPage extends Component {
 	}
 
 // Handler of submit
-	notify(word){toast(word)}
+	notify(word){
+		toast(word)
+	}
 
 	deleteGameData(){
 		this.props.deleteGame(this.props.match.params.id);
@@ -57,35 +59,35 @@ class GameEditPage extends Component {
 			nameGame: this.state.nameGame,
 			name: this.props.auth.user.player,
 			cityGame: this.state.cityGame,
-		    placeGame: this.state.placeGame,
-		    priceGame: this.state.priceGame,
-		    infoGame: this.state.infoGame,
-		    videoLink: this.state.videoLink,
-		    preview: this.state.preview,
-		    selectedOption: this.state.selectedOption,
-		    placeAll: this.state.placeAll,
-		    from: this.state.from,
-		    to: this.state.to
+	    placeGame: this.state.placeGame,
+	    priceGame: this.state.priceGame,
+	    infoGame: this.state.infoGame,
+	    videoLink: this.state.videoLink,
+	    preview: this.state.preview,
+	    selectedOption: this.state.selectedOption,
+	    placeAll: this.state.placeAll,
+	    from: this.state.from,
+	    to: this.state.to
 	    }
 		this.props.changeGameData(gameData);
 		this.notify("Готово!")
 	}
   render() {
 	  return (
-	  	<section id="createGame">
-			<div className="container text_card">
-				<ToastContainer
-					position="top-center"
-					autoClose={2000}
-					hideProgressBar={false}
-					newestOnTop={false}
-					closeOnClick
-					rtl={false}
-					pauseOnVisibilityChange
-					draggable
-					pauseOnHover
-					/>
-				<form onSubmit={this.onSubmit}>
+	  	<main id="createGame">
+				<section className="container text_card">
+					<ToastContainer
+						position="top-center"
+						autoClose={2000}
+						hideProgressBar={false}
+						newestOnTop={false}
+						closeOnClick
+						rtl={false}
+						pauseOnVisibilityChange
+						draggable
+						pauseOnHover
+						/>
+					<form onSubmit={this.onSubmit}>
 	{/*Button to create game and exit*/}
 						<div className="row">
 							<div className="col-auto mr-auto p-0">
@@ -117,14 +119,14 @@ class GameEditPage extends Component {
 								    <input type="radio" className="custom-control-input" value="sortByTypeIRL" onChange={()=>{this.setState({selectedOption: 'sortByTypeIRL'})}} checked={this.state.selectedOption === 'sortByTypeIRL'} id="radio2" />
 								    <label className="custom-control-label" htmlFor="radio2">IRL</label>
 								</div>
-						        {this.state.selectedOption === "sortByTypeIRL"  &&
-			 						<div>
-			 							<label className="mr-2 mt-3">Город: </label>
-			 							<input type="string" value={this.state.cityGame} style={{width:"50%"}} onChange={this.onChange} name="cityGame"/><br/>
-			 							<label className="mr-2 mt-3">Место проведения: </label>
-			 							<input type="string" value={this.state.placeGame} style={{width:"50%"}} onChange={this.onChange} name="placeGame"/>
-			 						</div> 
-			 					}
+					        {this.state.selectedOption === "sortByTypeIRL"  &&
+		 						<div>
+		 							<label className="mr-2 mt-3">Город: </label>
+		 							<input type="string" value={this.state.cityGame} style={{width:"50%"}} onChange={this.onChange} name="cityGame"/><br/>
+		 							<label className="mr-2 mt-3">Место проведения: </label>
+		 							<input type="string" value={this.state.placeGame} style={{width:"50%"}} onChange={this.onChange} name="placeGame"/>
+		 						</div> 
+		 					}
 {/*Price*/}
 			 					<div>
 			 						<label className="mr-2 mt-3">Стоимость: </label>
@@ -138,14 +140,14 @@ class GameEditPage extends Component {
 			 						<label className="mr-2 mt-3">Ссылка на стрим: </label>
 			 						<input type="string" value={this.state.videoLink} className="w-100" onChange={this.onChange} name="videoLink" /><br />
 			 					</div> 
-{/*Additionally info*/}		 					
+	{/*Additionally info*/}		 					
 			 					<label className="mr-2 mt-3">Информация:</label>
 			 					<textarea className="w-100" maxLength="1000" value={this.state.infoGame} onChange={this.onChange} name="infoGame" />
-			 				</div> 	
-			 			</div>		
-		 		</form>
-			</div>
-		</section>
+				 			</div> 	
+				 		</div>		
+			 		</form>
+				</section>
+			</main>
 	  )
 	}
 }

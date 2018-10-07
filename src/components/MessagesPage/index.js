@@ -5,13 +5,15 @@ import { connect } from 'react-redux';
 import { fetchPlayers } from '../actions/playerActions';
 import { addPlayerGameData, fetchGames } from '../actions/gameActions';
 import { FaTimes, FaPlus } from "react-icons/fa";
+import { FiMail } from "react-icons/fi";
 
 class Msgs extends Component {
 	constructor(props) {
-	    super(props);
-	    this.handleAccept = this.handleAccept.bind(this);
-	    this.handleDecline = this.handleDecline.bind(this);
-	  }
+    super(props);
+    this.handleAccept = this.handleAccept.bind(this);
+    this.handleDecline = this.handleDecline.bind(this);
+  }
+
 	componentDidMount() {
 		if(this.props.auth.isAuthenticated){
 			this.props.fetchGames();
@@ -20,8 +22,9 @@ class Msgs extends Component {
 		else{
 			this.props.history.push('/auth');
 		}
-    }
-    handleAccept(game, sender){
+  }
+
+  handleAccept(game, sender){
 		const gameData = {
 			id: game,
 		    gamerInsideId: sender,
@@ -30,21 +33,23 @@ class Msgs extends Component {
 		    show: true
 	    }
 		this.props.addPlayerGameData(gameData)
-    }
-    handleDecline(game, sender, msgacc, msgdec){
-    	if(msgdec === false && msgacc === false){
-    		msgdec = true
-    	}
-    	const gameData = {
-			id: game,
-		    gamerInsideId: sender,
-		    accept: msgacc,
-		    decline: msgdec,
-		    show: false
-	    };
+  }
+
+  handleDecline(game, sender, msgacc, msgdec){
+  	if(msgdec === false && msgacc === false){
+  		msgdec = true
+  	}
+  	const gameData = {
+		id: game,
+	    gamerInsideId: sender,
+	    accept: msgacc,
+	    decline: msgdec,
+	    show: false
+    };
 		this.props.addPlayerGameData(gameData);
-    }
-	 render(){ 
+  }
+
+	render(){ 
 	 	var messagesItems = this.props.games.filter(game => game.name === this.props.auth.user.player).map(game =>
 	 		game.gamersInsideId.filter(gamer => gamer.show === true)
 	 		.map((msg,index) => 
@@ -75,11 +80,16 @@ class Msgs extends Component {
 	 		)
 	 	)
 	return (
-		<section>
-			<div className="container">
+		<main>
+			<section className="container">
+				<h1 className="text_card">
+          <FiMail size="1.5em"/> Сообщения 
+        </h1>
+        <section>
 				{messagesItems}
-			</div>
-		</section>
+				</section>
+			</section>
+		</main>
 	)
 	}
 }

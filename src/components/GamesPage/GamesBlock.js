@@ -33,42 +33,42 @@ class Games extends Component {
     const {user} = this.props.auth;
 	 	const games = this.props.currentTodos || (_.sortBy(this.props.games, ['from']).slice(0,2));
 	 	const renderTodos = games.map((game,index) => 
-          <Link to={`/game/${game._id}`} className="m-0 p-0 mb-4 btn text-left text_card w-100" key={index}>
-          <div className="p-3 bg_card shadow" style={{whiteSpace: "normal"}}>  
-            <div className="row">
-              <div className="col-12">
-                <p className="pb-3 border-bottom">{game.nameGame} {game.gamersInsideId.filter(gamerInside => gamerInside.user === user.player && gamerInside.accept === true ).map((gamer, index)=> <span style={{color:"#4caf50"}} key={index}>| Вы в игре</span>)}</p>
-              </div>
-              <div className="col-12 col-md-3">
-                {this.props.players.filter(master => game.name === master._id)
-                  .map(master => 
-                  <div key={master._id}>
-                    <p className="text-info">{master.name}</p>
-                    <p><FaStar className="text-warning" /> - {master.rating}/5</p>
-                  </div>
-                )}
-              </div>
-              <div className="col-12 col-md-5">
-                <p>{moment(game.from).format('lll')}</p>
-                <p>{game.selectedOption === "sortByTypeOnline" ? 
-                  <span>Online</span>
-                  : 
-                  <span>IRL | {game.cityGame}</span>}
-                </p>
-              </div>
-              <div className="col-12 col-md-4">
-                <p className="d-flex-wrap" style={{wordWrap: "break-word"}}>Всего мест: {game.placeAll - (game.gamersInsideId.filter(gamerInside => gamerInside.accept === true).length)} / {game.placeAll}
-                </p>
-                <p>Стоимость: {game.priceGame === 0 ? "Бесплатно" : game.priceGame}</p>
-              </div>
+      <Link to={`/game/${game._id}`} className="m-0 p-0 mb-4 btn text-left text_card w-100" key={index}>
+        <div className="p-3 bg_card shadow" style={{whiteSpace: "normal"}}>  
+          <div className="row">
+            <div className="col-12">
+              <p className="pb-3 border-bottom">{game.nameGame} {game.gamersInsideId.filter(gamerInside => gamerInside.user === user.player && gamerInside.accept === true ).map((gamer, index)=> <span style={{color:"#4caf50"}} key={index}>| Вы в игре</span>)}</p>
+            </div>
+            <div className="col-12 col-md-3">
+              {this.props.players.filter(master => game.name === master._id)
+                .map(master => 
+                <div key={master._id}>
+                  <p className="text-info">{master.name}</p>
+                  <p><FaStar className="text-warning" /> - {master.rating}/5</p>
+                </div>
+              )}
+            </div>
+            <div className="col-12 col-md-5">
+              <p>{moment(game.from).format('lll')}</p>
+              <p>{game.selectedOption === "sortByTypeOnline" ? 
+                <span>Online</span>
+                : 
+                <span>IRL | {game.cityGame}</span>}
+              </p>
+            </div>
+            <div className="col-12 col-md-4">
+              <p className="d-flex-wrap" style={{wordWrap: "break-word"}}>Всего мест: {game.placeAll - (game.gamersInsideId.filter(gamerInside => gamerInside.accept === true).length)} / {game.placeAll}
+              </p>
+              <p>Стоимость: {game.priceGame === 0 ? "Бесплатно" : game.priceGame}</p>
             </div>
           </div>
-          </Link>
+        </div>
+      </Link>
         )
 	return (
-		<div>
+		<React.Fragment>
 			{renderTodos}
-		</div>
+		</React.Fragment>
 	)
 	}
 }
