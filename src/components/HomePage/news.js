@@ -57,7 +57,7 @@ class NewsBlock extends Component {
 
     const slides = articleSort.map((article, index)=>
       <CarouselItem
-        key={article._id}
+        key={index}
         onExiting={this.onExiting}
         onExited={this.onExited}
       >

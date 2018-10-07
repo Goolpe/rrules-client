@@ -48,6 +48,12 @@ a
     text-decoration: none !important;
 }
 
+
+svg
+{
+    pointer-events: none;
+}
+
 ul
 {
     padding: 0;
@@ -140,6 +146,9 @@ a
 }
 @media (max-width: 767.98px)
 {
+    html{
+        position:relative;
+    }
     section
     {
         padding: 20px 0;
@@ -149,4 +158,8 @@ a
         font-size: 16px !important;
     }
 
+    ::-webkit-scrollbar-thumb
+    {
+        background: #27292c;
+    }
 }

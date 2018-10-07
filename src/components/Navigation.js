@@ -125,23 +125,18 @@ class Navigation extends Component{
     return(
       <React.Fragment>
         <button className="navbar-toggler position-absolute" onClick={this.toggle}><hr id="hr1" /><hr id="hr2" /><hr id="hr3" /></button>
-        <div id="Navigation" className="navigation position-absolute close_nav">
-          <nav className="d-flex flex-column justify-content-between w-100" style={{height: "100%"}}>
-            <ul className="text-center">
+        <div id="Navigation" className="navigation close_nav">
+          <nav className="navigation__nav">
               {isAuthenticated ? 
               <React.Fragment>
-                <Link to={`/@${user.name}`} id="TooltipUser" name="/@" onClick={this.handleClick}>
-                  <li className={"navigation__link " + (this.state.active.includes(user.name) ? "navigation__link--active" : "text-white")}>
+                <Link to={`/@${user.name}`} id="TooltipUser" name="/@" onClick={this.handleClick} className={"navigation__link " + (this.state.active.includes(user.name) ? "navigation__link--active" : "text-white")}>
                   <FiUser /><span className="collapse link__text">{user.name}</span>
-                  </li>
                 </Link>
                 <UncontrolledTooltip className="ml-2" placement="right" target="TooltipUser">
                   Профиль
                 </UncontrolledTooltip>
-                <Link to="/msgs" id="TooltipMsg" name="/msgs" onClick={this.handleClick}>
-                  <li className={"navigation__link " + (this.state.active === "/msgs" ? "navigation__link--active" : "text-white")}>
+                <Link to="/msgs" id="TooltipMsg" name="/msgs" onClick={this.handleClick} className={"navigation__link " + (this.state.active === "/msgs" ? "navigation__link--active" : "text-white")}>
                     {this.state.read ? <Badge color="danger">{this.state.read}</Badge> : <FiMail />}<span className="collapse link__text">Сообщения</span>
-                  </li>
                 </Link>
                 <UncontrolledTooltip className="ml-2" placement="right" target="TooltipMsg">
                   {this.state.read === 1 ? "Новое сообщение" : this.state.read > 1 ? "Новые сообщения" : "Сообщения"}
@@ -149,84 +144,64 @@ class Navigation extends Component{
               </React.Fragment>
               :
               <React.Fragment>
-                <Link to="/auth" id="TooltipAuth" onClick={this.handleClick} name="/auth">
-                  <li className={"navigation__link " + (this.state.active === "/auth" ? "navigation__link--active" : "text-white")}>
-                    <FiLogIn /><span className="collapse link__text">Авторизация</span>
-                  </li>
+                <Link to="/auth" id="TooltipAuth" onClick={this.handleClick} name="/auth" className={"navigation__link " + (this.state.active === "/auth" ? "navigation__link--active" : "text-white")}>
+                  <FiLogIn /><span className="collapse link__text">Авторизация</span>
                 </Link>
                 <UncontrolledTooltip className="ml-2" placement="right" target="TooltipAuth">
                   Авторизация
                 </UncontrolledTooltip>
               </React.Fragment>
             }
-              <Link to="/" id="TooltipHome" onClick={this.handleClick} name="/">
-                <li className={"navigation__link " + (this.state.active === "/" ? "navigation__link--active" : "text-white")}>
-                  <FaHome/><span className="collapse link__text">Главная</span>
-                </li>
+              <Link to="/" id="TooltipHome" onClick={this.handleClick} name="/" className={"navigation__link " + (this.state.active === "/" ? "navigation__link--active" : "text-white")}>
+                <FaHome/><span className="collapse link__text">Главная</span>
               </Link>
               <UncontrolledTooltip className="ml-2" placement="right" target="TooltipHome">
                 Главная
               </UncontrolledTooltip>
-              <Link to="/about-project" id="TooltipAbout" onClick={this.handleClick} name="/about-project">
-                <li className={"navigation__link " + (this.state.active === "/about-project" ? "navigation__link--active" : "text-white")}>
-                  <FiCode/><span className="collapse link__text">О проекте</span>
-                </li>
+              <Link to="/about-project" id="TooltipAbout" onClick={this.handleClick} name="/about-project" className={"navigation__link " + (this.state.active === "/about-project" ? "navigation__link--active" : "text-white")}>
+                <FiCode/><span className="collapse link__text">О проекте</span>
               </Link>
               <UncontrolledTooltip className="ml-2" placement="right" target="TooltipAbout">
                 О проекте
               </UncontrolledTooltip>
-              <Link to="/games" id="TooltipGames" onClick={this.handleClick} name="/game">
-                <li className={"navigation__link " + (this.state.active.includes("/game") ? "navigation__link--active" : "text-white")}>
-                  <FiPlay/><span className="collapse link__text">Игры</span>
-                </li>
+              <Link to="/games" id="TooltipGames" onClick={this.handleClick} name="/game" className={"navigation__link " + (this.state.active.includes("/game") ? "navigation__link--active" : "text-white")}>
+                <FiPlay/><span className="collapse link__text">Игры</span>
               </Link>
               <UncontrolledTooltip className="ml-2" placement="right" target="TooltipGames">
                 Игры
               </UncontrolledTooltip>
-              <Link to="/library" id="TooltipLibrary" onClick={this.handleClick} name="/library">
-                <li className={"navigation__link " + (this.state.active === "/library" ? "navigation__link--active" : "text-white")}>
-                  <FiBookOpen/><span className="collapse link__text">Библиотека</span>
-                </li>
+              <Link to="/library" id="TooltipLibrary" onClick={this.handleClick} name="/library" className={"navigation__link " + (this.state.active === "/library" ? "navigation__link--active" : "text-white")}>
+                <FiBookOpen/><span className="collapse link__text">Библиотека</span>
               </Link>
               <UncontrolledTooltip className="ml-2" placement="right" target="TooltipLibrary">
                 Библиотека
               </UncontrolledTooltip>
-              <Link to="/masters" id="TooltipMasters" onClick={this.handleClick} name="/masters">
-                <li className={"navigation__link " + (this.state.active === "/masters" || (this.state.active.includes("/@") && this.state.active.includes(!user.name)) ? "navigation__link--active" : "text-white")}>
-                  <FiUsers/><span className="collapse link__text">Мастера канала</span>
-                </li>
+              <Link to="/masters" id="TooltipMasters" onClick={this.handleClick} name="/masters" className={"navigation__link " + (this.state.active === "/masters" || (this.state.active.includes("/@") && this.state.active.includes(!user.name)) ? "navigation__link--active" : "text-white")}>
+                <FiUsers/><span className="collapse link__text">Мастера канала</span>
               </Link>
               <UncontrolledTooltip className="ml-2" placement="right" target="TooltipMasters">
                 Мастера канала
               </UncontrolledTooltip>
-              <Link to="/articles" id="TooltipNews" onClick={this.handleClick} name="/article">
-                <li className={"navigation__link " + (this.state.active.includes("/article") ? "navigation__link--active" : "text-white")}>
-                  <FiFileText/><span className="collapse link__text">Новости</span>
-                </li>
+              <Link to="/articles" id="TooltipNews" onClick={this.handleClick} name="/article" className={"navigation__link " + (this.state.active.includes("/article") ? "navigation__link--active" : "text-white")}>
+                <FiFileText/><span className="collapse link__text">Новости</span>
               </Link>
               <UncontrolledTooltip className="ml-2" placement="right" target="TooltipNews">
                 Новости
               </UncontrolledTooltip>
-              <Link to="/art" id="TooltipArt" onClick={this.handleClick} name="/art">
-                <li className={"navigation__link " + (this.state.active === "/art" ? "navigation__link--active" : "text-white")}>
-                  <FiImage/><span className="collapse link__text">Фан-арт</span>
-                </li>
+              <Link to="/art" id="TooltipArt" onClick={this.handleClick} name="/art" className={"navigation__link " + (this.state.active === "/art" ? "navigation__link--active" : "text-white")}>
+                <FiImage/><span className="collapse link__text">Фан-арт</span>
               </Link>
               <UncontrolledTooltip className="ml-2" placement="right" target="TooltipArt">
                 Фан-арт
               </UncontrolledTooltip> 
-              <Link to="/shop" id="TooltipShop" onClick={this.handleClick} name="/shop">
-                <li className={"navigation__link " + (this.state.active === "/shop" ? "navigation__link--active" : "text-white")}>
-                  <FiShoppingBag/><span className="collapse link__text">Магазин</span>
-                </li>
+              <Link to="/shop" id="TooltipShop" onClick={this.handleClick} name="/shop" className={"navigation__link " + (this.state.active === "/shop" ? "navigation__link--active" : "text-white")}>
+                <FiShoppingBag/><span className="collapse link__text">Магазин</span>
               </Link>
               <UncontrolledTooltip className="ml-2" placement="right" target="TooltipShop">
                 Магазин
               </UncontrolledTooltip>
-              <Link to="/support" id="TooltipSupport" onClick={this.handleClick} name="/support">
-                <li className={"navigation__link " + (this.state.active === "/support" ? "navigation__link--active" : "text-white")}>
-                  <FaHandsHelping/><span className="collapse link__text">Поддержать проект</span>
-                </li>
+              <Link to="/support" id="TooltipSupport" onClick={this.handleClick} name="/support" className={"navigation__link " + (this.state.active === "/support" ? "navigation__link--active" : "text-white")}>
+                <FaHandsHelping/><span className="collapse link__text">Поддержать проект</span>
               </Link>
               <UncontrolledTooltip className="ml-2" placement="right" target="TooltipSupport">
                 Поддержать проект
@@ -235,7 +210,6 @@ class Navigation extends Component{
               <UncontrolledTooltip className="ml-2" placement="right" target="TooltipNavToggle">
                 {this.state.nav ? "Скрыть меню" : "Зафиксировать меню"}
               </UncontrolledTooltip>
-            </ul>
           </nav>
         </div>
       </React.Fragment>

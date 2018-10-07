@@ -6,13 +6,19 @@
 .navigation
 {
     z-index: 990;
-
+    position: absolute;
     width: 40px;
     height: 100vh;
 
     transition: .5s;
 
     background: #181818;
+}
+
+.navigation__nav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .navigation:hover
@@ -25,12 +31,6 @@
     font-size: 1.1em;
 }
 
-svg,
-.navigation li
-{
-    pointer-events: none;
-}
-
 .navigation a:hover svg
 {
     color: #55bbeb;
@@ -38,8 +38,7 @@ svg,
 
 .navigation__link
 {
-    padding-top: 7px;
-    padding-bottom: 7px;
+    padding: 7px 0;
 }
 
 .navigation__link--active
@@ -100,12 +99,22 @@ svg,
     .navigation
     {
         z-index: 900;
-
+        display: flex;
         width: 100%;
         height: 100%;
         padding-top: 40px;
-
+        justify-content: center;
+        align-items: center;
         background-color: #27292c;
+        text-align: center;
+    }
+    
+    .navigation__link > * {
+        pointer-events: none;
+    }
+
+    .navigation__link--active > * {
+        color: #55bbeb;
     }
 
     .navigation:hover
@@ -132,24 +141,10 @@ svg,
         align-items: center;
     }
 
-    .navigation ul
+    .navigation__nav
     {
-        padding-top: 5px;
-
-        text-align: left !important;
-
-        align-items: center;
-    }
-
-    .navigation li
-    {
-        font-size: 18px;
-
-        display: flex;
-
-        margin: 5px 0;
-
-        align-items: center;
+        margin: 0 auto;
+        align-items: start;
     }
 
     .link__text
