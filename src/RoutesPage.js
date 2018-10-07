@@ -65,7 +65,7 @@ class RoutesPage extends Component {
 
     return (
 	      <Router>
-		      <div>
+		      <React.Fragment>
 				 {this.state.techs ? 
 				 	<Switch>
 					 	<Route path="/" exact={true} component={TechWorksPage} />
@@ -100,7 +100,7 @@ class RoutesPage extends Component {
 					    </Switch>
 				    </React.Fragment>	
 			        } 
-		      </div>
+		      </React.Fragment>
 	      </Router>
     );
   }
