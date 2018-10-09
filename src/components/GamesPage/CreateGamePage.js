@@ -245,10 +245,10 @@ class CreateGamePage extends Component {
 }
 
 CreateGamePage.propTypes = {
-  createGame: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  fetchPlayers: PropTypes.func.isRequired,
-  players: PropTypes.array.isRequired,
+  createGame: PropTypes.func,
+  auth: PropTypes.object,
+  fetchPlayers: PropTypes.func,
+  players: PropTypes.array,
 };
 
 const mapStateToProps = state => ({

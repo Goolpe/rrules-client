@@ -40,7 +40,7 @@ class Games extends Component {
               <p className="pb-3 border-bottom">{game.nameGame} {game.gamersInsideId.filter(gamerInside => gamerInside.user === user.player && gamerInside.accept === true ).map((gamer, index)=> <span style={{color:"#4caf50"}} key={index}>| Вы в игре</span>)}</p>
             </div>
             <div className="col-12 col-md-3">
-              {this.props.players.filter(master => game.name === master._id)
+              {this.props.players && this.props.players.filter(master => game.name === master._id)
                 .map(master => 
                 <div key={master._id}>
                   <p className="text-white">{master.name}</p>
@@ -74,11 +74,11 @@ class Games extends Component {
 }
 
 Games.propTypes = {
-  fetchPlayers: PropTypes.func.isRequired,
-  players: PropTypes.array.isRequired,
-  fetchGames: PropTypes.func.isRequired,
-  games: PropTypes.array.isRequired,
-  auth: PropTypes.object.isRequired
+  fetchPlayers: PropTypes.func,
+  players: PropTypes.array,
+  fetchGames: PropTypes.func,
+  games: PropTypes.array,
+  auth: PropTypes.object
 };
 
 const mapStateToProps = state => ({

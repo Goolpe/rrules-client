@@ -218,12 +218,12 @@ class Navigation extends Component{
 }
 
 Navigation.propTypes = {
-  fetchPlayer: PropTypes.func.isRequired,
-  player: PropTypes.object.isRequired,
-  fetchGames: PropTypes.func.isRequired,
-  logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  games: PropTypes.array.isRequired
+  fetchPlayer: PropTypes.func,
+  player: PropTypes.object,
+  fetchGames: PropTypes.func,
+  logoutUser: PropTypes.func,
+  auth: PropTypes.object,
+  games: PropTypes.array
 }
 
 const mapStateToProps = (state) => ({

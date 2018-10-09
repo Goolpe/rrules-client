@@ -115,9 +115,9 @@ class SocialAuth extends Component{
 }
 
 SocialAuth.propTypes = {
-  registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  registerUser: PropTypes.func,
+  auth: PropTypes.object,
+  errors: PropTypes.object
 }
 
 const mapStateToProps = (state) => ({

@@ -145,7 +145,7 @@ class GamesPage extends Component {
             <section className="row pt-5">
               <div className="col-12 col-lg-3 mt-2">
                 <div className="container bg_card shadow text_card pt-3 pb-3">
-                  {this.props.players.find(playerUser => user.player === playerUser._id && playerUser.status !== "игрок" ) && <Link to="/game-create" className="btn btn-info mb-2 w-100">Создать игру</Link>}
+                  {this.props.players && this.props.players.find(playerUser => user.player === playerUser._id && playerUser.status !== "игрок" ) && <Link to="/game-create" className="btn btn-info mb-2 w-100">Создать игру</Link>}
                     <ButtonDropdown isOpen={this.state.dropdownOpen} className="w-100 mb-2" toggle={this.toggle}>
                       <DropdownToggle caret className="btn btn-info w-100">
                         Сортировать: 
@@ -238,12 +238,12 @@ class GamesPage extends Component {
 
 
 GamesPage.propTypes = {
-  fetchPlayers: PropTypes.func.isRequired,
-  fetchPlayer: PropTypes.func.isRequired,
-  players: PropTypes.array.isRequired,
-  fetchGames: PropTypes.func.isRequired,
-  games: PropTypes.array.isRequired,
-  auth: PropTypes.object.isRequired
+  fetchPlayers: PropTypes.func,
+  fetchPlayer: PropTypes.func,
+  players: PropTypes.array,
+  fetchGames: PropTypes.func,
+  games: PropTypes.array,
+  auth: PropTypes.object
 };
 
 const mapStateToProps = state => ({

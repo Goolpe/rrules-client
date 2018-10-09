@@ -27,11 +27,11 @@ class Msgs extends Component {
   handleAccept(game, sender){
 		const gameData = {
 			id: game,
-		    gamerInsideId: sender,
-		    accept: true,
-		    decline: false,
-		    show: true
-	    }
+	    gamerInsideId: sender,
+	    accept: true,
+	    decline: false,
+	    show: true
+    }
 		this.props.addPlayerGameData(gameData)
   }
 
@@ -95,12 +95,12 @@ class Msgs extends Component {
 }
 
 Msgs.propTypes = {
-  auth: PropTypes.object.isRequired,
-  fetchPlayers: PropTypes.func.isRequired,
-  players: PropTypes.array.isRequired,
-  addPlayerGameData: PropTypes.func.isRequired,
-  fetchGames: PropTypes.func.isRequired,
-  games: PropTypes.array.isRequired
+  auth: PropTypes.object,
+  fetchPlayers: PropTypes.func,
+  players: PropTypes.array,
+  addPlayerGameData: PropTypes.func,
+  fetchGames: PropTypes.func,
+  games: PropTypes.array
 };
 
 const mapStateToProps = state => ({

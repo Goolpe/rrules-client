@@ -110,8 +110,8 @@ class RegisterPage extends Component{
 }
 
 RegisterPage.propTypes = {
-    registerUser: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
+    registerUser: PropTypes.func,
+    auth: PropTypes.object
 };
 
 const mapStateToProps = state => ({

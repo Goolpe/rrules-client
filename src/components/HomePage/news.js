@@ -75,15 +75,26 @@ class NewsBlock extends Component {
       </CarouselItem>
       ).slice(0,3);
     return (
-	    <Carousel	activeIndex={activeIndex}	next={this.next} previous={this.previous}	interval="5000">
-		    {slides}
-	    </Carousel>
+      <React.Fragment>
+  	    <Carousel	activeIndex={activeIndex}	next={this.next} previous={this.previous}	interval="5000">
+  		    {slides}
+  	    </Carousel>
+        <div className="row text_card justify-content-between">
+          <section className="col-12 col-lg-8 text-left">
+            123
+          </section>
+          <figure className="d-none d-lg-block col-lg-4">
+          123
+          </figure>
+        </div>
+      </React.Fragment>
     )
   }
 }
+
 NewsBlock.propTypes = {
-  fetchArticles: PropTypes.func.isRequired,
-  articles: PropTypes.array.isRequired
+  fetchArticles: PropTypes.func,
+  articles: PropTypes.array
 };
 
 const mapStateToProps = state => ({

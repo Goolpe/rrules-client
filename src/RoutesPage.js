@@ -107,7 +107,7 @@ class RoutesPage extends Component {
 }
 
 RoutesPage.propTypes = {
-    auth: PropTypes.object.isRequired
+    auth: PropTypes.object
 }
 
 const mapStateToProps = (state) => ({

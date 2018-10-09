@@ -99,11 +99,11 @@ class ArticlesPage extends Component {
 }
 
 ArticlesPage.propTypes = {
-	fetchPlayers: PropTypes.func.isRequired,
-  	players: PropTypes.array.isRequired,
-  	fetchArticles: PropTypes.func.isRequired,
-  	articles: PropTypes.array.isRequired,
-  	auth: PropTypes.object.isRequired
+	fetchPlayers: PropTypes.func,
+  	players: PropTypes.array,
+  	fetchArticles: PropTypes.func,
+  	articles: PropTypes.array,
+  	auth: PropTypes.object
 };
 
 const mapStateToProps = state => ({

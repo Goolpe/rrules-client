@@ -83,8 +83,8 @@ class MastersPage extends Component {
 }
 
 MastersPage.propTypes = {
-  fetchPlayers: PropTypes.func.isRequired,
-  players: PropTypes.array.isRequired
+  fetchPlayers: PropTypes.func,
+  players: PropTypes.array
 };
 
 const mapStateToProps = state => ({

@@ -35,9 +35,9 @@ class ArticlePage extends Component {
 }
 
 ArticlePage.propTypes = {
-  fetchArticle: PropTypes.func.isRequired,
-  article: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  fetchArticle: PropTypes.func,
+  article: PropTypes.object,
+  auth: PropTypes.object
 };
 
 const mapStateToProps = state => ({

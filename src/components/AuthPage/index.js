@@ -111,8 +111,8 @@ class AuthPage extends Component{
 }
 
 AuthPage.propTypes = {
-    auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+    auth: PropTypes.object,
+    errors: PropTypes.object
 }
 
 const mapStateToProps = (state) => ({

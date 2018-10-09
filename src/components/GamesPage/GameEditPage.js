@@ -153,11 +153,11 @@ class GameEditPage extends Component {
 }
 
 GameEditPage.propTypes = {
-  fetchGame: PropTypes.func.isRequired,
-  createGame: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  changeGameData: PropTypes.func.isRequired,
-  deleteGame: PropTypes.func.isRequired
+  fetchGame: PropTypes.func,
+  createGame: PropTypes.func,
+  auth: PropTypes.object,
+  changeGameData: PropTypes.func,
+  deleteGame: PropTypes.func
 };
 
 const mapStateToProps = state => ({

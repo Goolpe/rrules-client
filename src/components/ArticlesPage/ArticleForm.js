@@ -80,8 +80,8 @@ class ArticleForm extends Component {
 }
 
 ArticleForm.propTypes = {
-  createArticle: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  createArticle: PropTypes.func,
+  auth: PropTypes.object
 };
 
 const mapStateToProps = state => ({

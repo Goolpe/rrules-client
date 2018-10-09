@@ -235,9 +235,9 @@ class UserPageEditor extends Component {
 }
 
 UserPageEditor.propTypes = {
-  fetchPlayer: PropTypes.func.isRequired,
-  changePlayerData: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  fetchPlayer: PropTypes.func,
+  changePlayerData: PropTypes.func,
+  auth: PropTypes.object
 };
 
 const mapStateToProps = state => ({

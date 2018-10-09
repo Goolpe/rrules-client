@@ -201,12 +201,12 @@ class GamePage extends Component {
 }
 
 GamePage.propTypes = {
-  fetchGame: PropTypes.func.isRequired,
-  game: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
-  fetchPlayers: PropTypes.func.isRequired,
-  players: PropTypes.array.isRequired,
-  addPlayerGameData: PropTypes.func.isRequired
+  fetchGame: PropTypes.func,
+  game: PropTypes.object,
+  auth: PropTypes.object,
+  fetchPlayers: PropTypes.func,
+  players: PropTypes.array,
+  addPlayerGameData: PropTypes.func
 };
 
 const mapStateToProps = state => ({

@@ -111,10 +111,10 @@ class UserPage extends Component {
 }
 
 UserPage.propTypes = {
-  fetchPlayer: PropTypes.func.isRequired,
-  player: PropTypes.object.isRequired,
-  logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  fetchPlayer: PropTypes.func,
+  player: PropTypes.object,
+  logoutUser: PropTypes.func,
+  auth: PropTypes.object
 }
 
 const mapStateToProps = (state) => ({
