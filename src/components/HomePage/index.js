@@ -8,7 +8,7 @@ import Streams from './streams';
 import '../style/home.css';
 
 class HomePage extends Component {
-
+  
   render(){
     return (
     	<main id="HomePage">

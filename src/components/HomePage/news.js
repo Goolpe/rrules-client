@@ -13,7 +13,9 @@ import moment from 'moment';
 class NewsBlock extends Component {
   constructor(props){
     super(props);
-    this.state = { activeIndex: 0 };
+    this.state = { 
+      activeIndex: 0
+     };
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
     this.goToIndex = this.goToIndex.bind(this);
@@ -22,7 +24,8 @@ class NewsBlock extends Component {
   }
 
   componentDidMount() {
-    this.setState({ activeIndex: 0 });
+    this.setState({ 
+      activeIndex: 0 });
     this.props.fetchArticles();
   }
   
@@ -79,14 +82,6 @@ class NewsBlock extends Component {
   	    <Carousel	activeIndex={activeIndex}	next={this.next} previous={this.previous}	interval="5000">
   		    {slides}
   	    </Carousel>
-        <div className="row text_card justify-content-between">
-          <section className="col-12 col-lg-8 text-left">
-            123
-          </section>
-          <figure className="d-none d-lg-block col-lg-4">
-          123
-          </figure>
-        </div>
       </React.Fragment>
     )
   }

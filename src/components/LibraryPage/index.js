@@ -9,7 +9,7 @@ class LibraryPage extends Component{
   }
   render(){	
     const libraryBooks = books.map((book, index)=>
-      <div className="col-12 col-md-6 col-lg-3 mb-5" key={book.id}>
+      <div className="col-12 col-md-6 col-lg-3 mb-5" key={index}>
         <a href={book.url} target="_blank">
           <div className="library__wrapper bg_card shadow">
             <div className="pt-5 pb-5 library__card d-flex flex-column align-items-center justify-content-around rounded-0" >
