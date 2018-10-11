@@ -119,7 +119,7 @@ class Navigation extends Component{
                       НАСТРОЙКИ
                     </DropdownItem>
                     <DropdownItem divider />
-                    <DropdownItem >
+                    <DropdownItem onClick={this.closeNav}>
                       ВЫЙТИ
                     </DropdownItem>
                   </DropdownMenu>
