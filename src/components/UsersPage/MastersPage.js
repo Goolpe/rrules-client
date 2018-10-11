@@ -33,9 +33,9 @@ class MastersPage extends Component {
 
 		const mastersView = mastersSort.filter(master => master.status === "мастер")
 			.map(master => 
-				<div className="col-12 col-md-6 col-lg-4 p-0 mb-5  shadow" key={master._id}>
+				<div className="col-12 col-md-6 col-lg-4 mb-5" key={master._id}>
 					<Link to={`/@${master.name}`}>
-						<div className="master__wrapper" style={ { backgroundImage: `url(${master.photo})`} }>
+						<div className="master__wrapper shadow" style={ { backgroundImage: `url(${master.photo})`} }>
 							<div className="master__card text_card d-flex align-items-center justify-content-center rounded-0" >
 							  <h1 style={{textShadow: 'black 0 0 20px'}}>{master.name.toUpperCase()}</h1>
 							</div>

@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom';
 import _ from "lodash";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import {fetchPlayers} from './actions/playerActions';
+import {fetchArticles} from './actions/postActions';
 
 class Footer extends Component{
   componentDidMount() {
     window.scrollTo(0,0);
+    this.props.fetchArticles();
+    this.props.fetchPlayers();
   }
   render(){	
     let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
@@ -70,6 +74,8 @@ class Footer extends Component{
 }
 
 Footer.propTypes = {
+  fetchArticles: PropTypes.func,
+  fetchPlayers: PropTypes.func,
   articles: PropTypes.array,
   players: PropTypes.array
 
@@ -77,10 +83,10 @@ Footer.propTypes = {
 
 const mapStateToProps = state => ({
   articles: state.articles.items,
-    players: state.players.items
+  players: state.players.items
 })
 
-export default connect(mapStateToProps, {})(Footer);
+export default connect(mapStateToProps, {fetchPlayers, fetchArticles})(Footer);
 
 
 
