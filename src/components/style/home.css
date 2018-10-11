@@ -3,11 +3,10 @@
 }
 .news__carousel{
     height: calc(100vh - 80px);
-
 }
 .news__item{
     align-items: center;
-    width: 80%;
+    width: 75%;
     margin:auto;
     height: 100%;
     justify-content: center;

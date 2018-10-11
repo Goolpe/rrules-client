@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import _ from "lodash";
 import {
   Carousel,
+  CarouselControl,
   CarouselItem
 } from 'reactstrap';
 import PropTypes from 'prop-types';
@@ -26,7 +27,7 @@ class NewsBlock extends Component {
   componentDidMount() {
     this.setState({ 
       activeIndex: 0 });
-    this.props.fetchArticles();
+    this.props.fetchArticles()
   }
   
   onExiting() {
@@ -69,9 +70,9 @@ class NewsBlock extends Component {
         <div className="news__item">
         <div className="row text_card justify-content-between align-items-center" style={{height:"100%"}}>
           <section className="col-12 col-lg-8 text-left">
-            <time>{moment(article.date).format('LL')}</time>
-            <h1 className="text-center">{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
-            <article className="text-justify">{article.text.length > 800 ? article.text.slice(0,800) + "..." : article.text}</article>
+            {/*<time>{moment(article.date).format('LL')}</time>*/}
+            <h1 className="text-left">{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
+            <article className="text-justify">{article.text.length > 800 ? article.text.slice(0,300) + "..." : article.text}</article>
             <Link to={`/article/${article._id}`} className="btn btn-info mt-2">Читать дальше</Link>
           </section>
           <figure className="d-none d-lg-block col-lg-4">
@@ -86,6 +87,8 @@ class NewsBlock extends Component {
       <div className="homepage__news d-flex align-items-center" >
     	   <Carousel activeIndex={activeIndex}	next={this.next} previous={this.previous}	interval="5000" >
     		  {slides}
+          <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
+          <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
     	   </Carousel>
       </div>
     )

@@ -10,7 +10,7 @@ class Footer extends Component{
   }
   render(){	
     let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
-    let mastersSort = _.sortBy(this.props.players.filter(player => player.status === "мастер"
+    let mastersSort = _.sortBy(this.props.players && this.props.players.filter(player => player.status === "мастер"
         ), ['rating']).reverse();
 
     const listItems = articleSort.map((article, index)=>
