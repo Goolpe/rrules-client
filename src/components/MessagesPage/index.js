@@ -50,7 +50,8 @@ class Msgs extends Component {
   }
 
 	render(){ 
-	 	var messagesItems = this.props.games.filter(game => game.name === this.props.auth.user.player).map(game =>
+		var messagesItems;
+	 	this.props.games && (messagesItems = this.props.games.filter(game => game.name === this.props.auth.user.player).map(game =>
 	 		game.gamersInsideId.filter(gamer => gamer.show === true)
 	 		.map((msg,index) => 
 	 			<div className="shadow bg_card text_card pb-2 pl-2 pr-2 mb-3" key={index}>
@@ -78,7 +79,7 @@ class Msgs extends Component {
 					</div>
 				</div>
 	 		)
-	 	)
+	 	))
 	return (
 		<main>
 			<section className="container">

@@ -63,8 +63,11 @@ class NewsBlock extends Component {
         key={index}
         onExiting={this.onExiting}
         onExited={this.onExited}
+        className="news__carousel"
       >
-        <div className="row text_card justify-content-between">
+      <div  style={{height:"100%", background: "url(https://images4.alphacoders.com/823/thumb-1920-82368.jpg)"}}>
+        <div className="news__item">
+        <div className="row text_card justify-content-between align-items-center" style={{height:"100%"}}>
           <section className="col-12 col-lg-8 text-left">
             <time>{moment(article.date).format('LL')}</time>
             <h1 className="text-center">{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
@@ -75,14 +78,16 @@ class NewsBlock extends Component {
             <img alt={article.title} className="img-fluid" style={{backgroundSize: "contain", height:"400px"}} src={article.picture} />
           </figure>
         </div>
+        </div>
+      </div>
       </CarouselItem>
       ).slice(0,3);
     return (
-      <React.Fragment>
-  	    <Carousel	activeIndex={activeIndex}	next={this.next} previous={this.previous}	interval="5000">
-  		    {slides}
-  	    </Carousel>
-      </React.Fragment>
+      <div className="homepage__news d-flex align-items-center" >
+    	   <Carousel activeIndex={activeIndex}	next={this.next} previous={this.previous}	interval="5000" >
+    		  {slides}
+    	   </Carousel>
+      </div>
     )
   }
 }

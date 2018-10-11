@@ -12,10 +12,8 @@ class HomePage extends Component {
   render(){
     return (
     	<main id="HomePage">
+        <NewsBlock />
         <section className="container text_card">
-          <section>
-              <NewsBlock />
-          </section>
           <section>
             <h1>
               <span className="text-danger">

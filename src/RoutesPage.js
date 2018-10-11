@@ -8,6 +8,8 @@ import {
 
 import HomePage from './components/HomePage';
 import Navigation from './components/Navigation';
+import Footer from './components/Footer';
+import ArrowUp from './components/ArrowUp';
 import error404Page from './components/error404Page';
 import AboutPage from './components/AboutPage';
 import LibraryPage from './components/LibraryPage';
@@ -64,8 +66,8 @@ class RoutesPage extends Component {
   render(){  
 
     return (
-	      <Router>
-		      <React.Fragment>
+	    <Router>
+		    <React.Fragment>
 				 {this.state.techs ? 
 				 	<Switch>
 					 	<Route path="/" exact={true} component={TechWorksPage} />
@@ -74,34 +76,36 @@ class RoutesPage extends Component {
 			      :
 					<React.Fragment>	
 						<Navigation/>
-				        <Switch>
-			            <Route path="/" exact={true} component={HomePage} />
-			            <Route path="/about-project" component={AboutPage} />
-			            <Route path="/library" component={LibraryPage} />
-			            <Route path="/art" component={ArtPage} />
-			            <Route path="/articles" component={ArticlesPage} />
-			            <Route path="/article/:id" component={ArticlePage} />
-			            <Route path="/shop" component={ShopPage} />
-			            <Route path="/masters" component={MastersPage} />
-			            <Route path="/support" component={SupportPage} />   
-			            <Route path="/agreement" component={AgreementPage} />
-			            <Route path="/games" component={GamesPage} />   
-			            <Route path="/game/:id" component={GamePage} /> 
-			            <Route path="/@:nickname" component={UserPage} />
-			            <Route path="/msgs" component={MessagesPage} />
-					        <Route path="/auth" component={AuthPage} />
-					        <Route path="/social-auth/:id" component={SocialAuth} />
-					        <Route path="/email-verification" component={EmailVerif} />
-					        <Route path="/article-new" component={ArticleForm} />
-					        <Route path="/edit/:nickname" component={UserPageEditor} />
-					        <Route path="/game-create" component={CreateGamePage} />
-					        <Route path="/game-edit/:id" component={GameEditPage} />
-					        <Route path="*" component={error404Page} />
-					    </Switch>
-				    </React.Fragment>	
-			        } 
-		      </React.Fragment>
-	      </Router>
+		        <Switch>
+	            <Route path="/" exact={true} component={HomePage} />
+	            <Route path="/about-project" component={AboutPage} />
+	            <Route path="/library" component={LibraryPage} />
+	            <Route path="/art" component={ArtPage} />
+	            <Route path="/articles" component={ArticlesPage} />
+	            <Route path="/article/:id" component={ArticlePage} />
+	            <Route path="/shop" component={ShopPage} />
+	            <Route path="/masters" component={MastersPage} />
+	            <Route path="/support" component={SupportPage} />   
+	            <Route path="/agreement" component={AgreementPage} />
+	            <Route path="/games" component={GamesPage} />   
+	            <Route path="/game/:id" component={GamePage} /> 
+	            <Route path="/@:nickname" component={UserPage} />
+	            <Route path="/msgs" component={MessagesPage} />
+			        <Route path="/auth" component={AuthPage} />
+			        <Route path="/social-auth/:id" component={SocialAuth} />
+			        <Route path="/email-verification" component={EmailVerif} />
+			        <Route path="/article-new" component={ArticleForm} />
+			        <Route path="/edit/:nickname" component={UserPageEditor} />
+			        <Route path="/game-create" component={CreateGamePage} />
+			        <Route path="/game-edit/:id" component={GameEditPage} />
+			        <Route path="*" component={error404Page} />
+				    </Switch>
+				    <Footer />
+				    <ArrowUp />
+				  </React.Fragment>	
+			    } 
+	    	</React.Fragment>
+    	</Router>
     );
   }
 }

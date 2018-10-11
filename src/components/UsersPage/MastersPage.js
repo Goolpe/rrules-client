@@ -36,7 +36,7 @@ class MastersPage extends Component {
 				<div className="col-12 col-md-6 col-lg-4 p-0 mb-5  shadow" key={master._id}>
 					<Link to={`/@${master.name}`}>
 						<div className="master__wrapper" style={ { backgroundImage: `url(${master.photo})`} }>
-							<div className="master__card d-flex align-items-center justify-content-center rounded-0" >
+							<div className="master__card text_card d-flex align-items-center justify-content-center rounded-0" >
 							  <h1 style={{textShadow: 'black 0 0 20px'}}>{master.name.toUpperCase()}</h1>
 							</div>
 						</div>
@@ -48,7 +48,7 @@ class MastersPage extends Component {
 			.map(master => 
 				<div className="col-12" key={master._id}>
 					<Link to={`/@${master.name}`}>	
-						<div className="row p-3 text-left align-items-start bg_card mb-4 shadow">
+						<div className="row p-3 text-left align-items-start text_card bg_card mb-4 shadow">
 							<div className="col-12 col-md-4">
 								<p className="m-0">{master.name}</p>
 							</div>

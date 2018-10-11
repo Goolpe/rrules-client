@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayer } from '../actions/playerActions';
 import moment from 'moment';
-import { FaStar, FaCog, FaSignOutAlt } from "react-icons/fa";
-import { UncontrolledTooltip } from 'reactstrap';
+import { FaStar } from "react-icons/fa";
 import { logoutUser } from '../actions/authActions';
 import ReactPlayer from 'react-player';
 import '../style/user.css';
@@ -32,7 +30,6 @@ class UserPage extends Component {
 
   render() {
     const player = this.props.player;
-    const {isAuthenticated, user} = this.props.auth;
     return (
       <main id="userPage">    
         <section className="container">
@@ -43,25 +40,7 @@ class UserPage extends Component {
               </figure>
             </div>
             <ul className="p-4 text_card">
-              <div className="d-flex justify-content-between">
-                <h1>
-                  {player.name || ""} {isAuthenticated && this.props.match.params.nickname === user.name && 
-                    <button onClick={this.onLogout.bind(this)} className="btn btn-outline-danger text-white">
-                      <FaSignOutAlt /> Выйти
-                    </button>
-                  }
-                </h1>
-                {isAuthenticated && this.props.match.params.nickname === user.name &&
-                  <React.Fragment>
-                  <Link className="userpage__facog text_card" style={{height:"1.5em"}} id="TooltipSetting" to={`/edit/@${player.name}`}>
-                    <FaCog size="1.5em"/>
-                  </Link>
-                  <UncontrolledTooltip className="mr-2" placement="left" target="TooltipSetting">
-                    Настройка профиля
-                  </UncontrolledTooltip>
-                  </React.Fragment>
-                }
-              </div>
+              <h1>{player.name || ""}</h1>
               <li><span className="text-muted">Статус: </span>{player.status}</li>
               <li><span className="text-muted">Рейтинг: </span><FaStar className="text-warning" /> - {player.rating}/5</li>
               {player.status === "мастер" && <li><span className="text-muted">Проведенных игр: </span>{player.gamesCount}</li>}

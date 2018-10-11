@@ -11,6 +11,7 @@ import ReactPlayer from 'react-player';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaStar, FaAngleLeft } from "react-icons/fa";
+import '../style/games.css';
 
 class GamePage extends Component {
 	constructor(props){
@@ -94,7 +95,7 @@ class GamePage extends Component {
   	const {user} = this.props.auth;
   	const game = this.props.game;
 	  return (
-	  	<main className="mt-5">
+	  	<main className="game-page">
 	  		<ToastContainer
 					position="top-center"
 					autoClose={2000}

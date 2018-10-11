@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { UncontrolledCollapse, CardBody, Card } from 'reactstrap';
 import { FiCode } from "react-icons/fi";
+import {withTheme} from 'styled-components';
 
 class AboutPage extends Component {
   constructor(props) {
@@ -25,11 +26,11 @@ class AboutPage extends Component {
 	    		<h1 className="text_card">
 		        <FiCode size="1.5em"/> О проекте 
 		      </h1>
-	    		<button id="toggler1" className="bg_card text_card btn shadow p-4 mt-5 mb-3 w-100 text-left">
+	    		<button id="toggler1" className="text_card btn shadow p-4 mt-5 mb-3 w-100 text-left bg_card">
 			      - Что такое настольные ролевые игры?
 			    </button>
 			    <UncontrolledCollapse toggler="#toggler1">
-			      <Card className="rounded-0">
+			      <Card className="rounded-0 bg_card">
 			        <CardBody>
 			        	<p>Если вы хоть раз играли в компьютерные RPG, то без особых проблем поймете, что тут к чему. "Настолки" по сути являются прародителями RPG, такие игры как Baldurs Gate, Neverwinter Nights, Tides Of Numenera и пр. основаны на них. В роли компьютера выступает "Мастер". Этот человек рассказывает сюжет, описывает, что происходит вокруг игроков и выдает им "квесты". Остальные участники управляют своими игровыми персонажами, описывая их действия, успешность которых определяется бросками игральных кубиков по специальным системам.</p><br />
 								<p>Если этого объяснения вам не достаточно - просто загуглите "настольные ролевые игры" и немного посмотрите наши стримы. Вскоре вы все поймете.</p><br />
@@ -41,7 +42,7 @@ class AboutPage extends Component {
 			      - Когда проходят игры/стримы?
 			    </button>
 			    <UncontrolledCollapse toggler="#toggler2">
-			      <Card className="rounded-0">
+			      <Card className="rounded-0 bg_card">
 			        <CardBody>
 			         	<p>Расписание можно найти в ссылках группы или в информации о канале на Twitch.</p>
 			        </CardBody>
@@ -51,7 +52,7 @@ class AboutPage extends Component {
 			      - Как принять участие?
 			    </button>
 			    <UncontrolledCollapse toggler="#toggler3">
-			      <Card className="rounded-0">
+			      <Card className="rounded-0 bg_card">
 			        <CardBody>
 			         	<p>Примерно раз в неделю у нас проходит игра OneShot - короткий сюжет на 3-4 часа. За пару дней до нее мы даем объявление группу и набираем несколько человек по заявкам на участие.</p><br />
 								<p>Если вы не хотите ждать, надеясь, что именно вашу заявку одобрят, можете ознакомиться с этой темой и поучаствовать в платных играх:
@@ -64,7 +65,7 @@ class AboutPage extends Component {
 			        - Что нужно, чтобы играть?
 			    	</button>
 			    <UncontrolledCollapse toggler="#toggler4">
-			      <Card className="rounded-0">
+			      <Card className="rounded-0 bg_card">
 			        <CardBody>
 			        	<ListGroup flush>
 				         	<ListGroupItem>1) Микрофон. Строго обязательно. Вся игра идет голосом.</ListGroupItem>
@@ -82,4 +83,4 @@ class AboutPage extends Component {
 	}
 }
 
-export default AboutPage;
+export default withTheme(AboutPage);

@@ -5,7 +5,7 @@ body
 
     margin: 0;
     padding: 0;
-
+    color:#fff !important;
     letter-spacing: 1px;
 
     background-color: #27292c !important;
@@ -25,9 +25,7 @@ figure
 
 main
 {
-    overflow-y: scroll;
-
-    height: 100vh;
+    min-height: 100vh;
     margin: 0 auto;
     padding: 0;
 }
@@ -112,15 +110,37 @@ textarea
     background: #555;
 }
 
-.text_card,
-a
-{
-    color: #fff !important;
+.text_card{
+    color:#fff !important;
 }
-
 .bg_card
 {
     background: #3b3c40 !important;
+}
+
+.arrow-up
+{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+
+    width: 50px;
+    height: 50px;
+
+    cursor: pointer;
+    text-align: center;
+
+    color: #fff;
+    background-color: rgba(0,0,0,.7);
+}
+.arrow-up:hover
+{
+    width: 50px;
+    height: 50px;
+
+    text-align: center;
+
+    background-color: rgba(0,0,0,1);
 }
 
 @media (max-width: 1199.98px)
@@ -141,6 +161,9 @@ a
     }
     h2
     {
+        font-size: 15px !important;
+    }
+    .arrow-up{
         font-size: 15px !important;
     }
 }

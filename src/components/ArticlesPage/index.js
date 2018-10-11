@@ -46,9 +46,8 @@ class ArticlesPage extends Component {
     for (let i = 1; i <= Math.ceil(articleSort.length / todosPerPage); i++) {
       pageNumbers.push(i);
     }
-
 		const listItems = currentTodos.map((article, index) =>
-	  	<div className="container pt-5 pb-5 mb-3 bg_card text_card shadow" key={index}>
+	  	<div className="container pt-5 pb-5 mb-3 text_card shadow bg_card" key={index}>
         <div className="row text-center justify-content-between">
           <div className="col-12 col-lg-8 text-left">
             <p>{moment(article.date).format('LL')}</p>

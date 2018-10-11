@@ -11,7 +11,7 @@ class LibraryPage extends Component{
     const libraryBooks = books.map((book, index)=>
       <div className="col-12 col-md-6 col-lg-3 mb-5" key={index}>
         <a href={book.url} target="_blank">
-          <div className="library__wrapper bg_card shadow">
+          <div className="library__wrapper text_card bg_card shadow">
             <div className="pt-5 pb-5 library__card d-flex flex-column align-items-center justify-content-around rounded-0" >
               <h3 className="text-center pl-3 pr-3">{book.name.toUpperCase()}</h3>
               <i className={book.picture}></i>

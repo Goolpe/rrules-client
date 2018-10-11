@@ -17,7 +17,7 @@ class ArticlePage extends Component {
 	  return (
   	  <main>
         <section className="container text_card">	 
-          <Link to="/articles" className="btn p-0">
+          <Link to="/articles" className="btn p-0 text_card">
             <FaAngleLeft size="1.5em"/> Все статьи 
           </Link> 
     	  	<section className="text-left bg_card mt-3">
