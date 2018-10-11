@@ -64,15 +64,15 @@ class AboutPage extends Component {
 		        <button id="toggler4" className="bg_card text_card btn shadow p-4 mb-3 w-100 text-left">
 			        - Что нужно, чтобы играть?
 			    	</button>
-			    <UncontrolledCollapse toggler="#toggler4">
+			    <UncontrolledCollapse toggler="#toggler4" >
 			      <Card className="rounded-0 bg_card">
 			        <CardBody>
 			        	<ListGroup flush>
-				         	<ListGroupItem>1) Микрофон. Строго обязательно. Вся игра идет голосом.</ListGroupItem>
-					        <ListGroupItem>2) Программа Discord и/или Skype. Голосовая конференция собирается именно там.</ListGroupItem>
-					        <ListGroupItem>3) Регистрация на сайте https://roll20.net/ - это виртуальный стол, который мы используем для игры.</ListGroupItem>
-					        <ListGroupItem>4) Необходимо ознакомиться с игровой системой. Книги по D&D прикреплены к этому посту. "Книга правил" - минимальные знания, необходимые для игры. "Книга игрока" - полные правила. Учтите, что мы изменяем часть правил под сеттинги (особенно магию).</ListGroupItem>
-					        <ListGroupItem>5) По желанию вы можете использовать веб-камеру. Ее наличие не обязательно.</ListGroupItem>
+				         	<ListGroupItem className="bg_card text_card">1) Микрофон. Строго обязательно. Вся игра идет голосом.</ListGroupItem>
+					        <ListGroupItem className="bg_card text_card">2) Программа Discord и/или Skype. Голосовая конференция собирается именно там.</ListGroupItem>
+					        <ListGroupItem className="bg_card text_card">3) Регистрация на сайте https://roll20.net/ - это виртуальный стол, который мы используем для игры.</ListGroupItem>
+					        <ListGroupItem className="bg_card text_card">4) Необходимо ознакомиться с игровой системой. Книги по D&D прикреплены к этому посту. "Книга правил" - минимальные знания, необходимые для игры. "Книга игрока" - полные правила. Учтите, что мы изменяем часть правил под сеттинги (особенно магию).</ListGroupItem>
+					        <ListGroupItem className="bg_card text_card">5) По желанию вы можете использовать веб-камеру. Ее наличие не обязательно.</ListGroupItem>
 				        </ListGroup>
 			        </CardBody>
 			      </Card>
