@@ -2,7 +2,7 @@
 {
     position: fixed;
     z-index: 999;
-
+    margin-top: -85px;
     overflow: none;
 
     width: 100%;
