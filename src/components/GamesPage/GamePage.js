@@ -65,22 +65,13 @@ class GamePage extends Component {
     		this.props.history.push('/auth')
     	}
     else{	
-  		if(this.props.game.name === this.props.auth.user.player){
-  			this.notify("Вы создатель!")
-  		}
-  		else if(this.props.game.gamersInsideId.find(msg=> msg.user === this.props.auth.user.player && msg.accept === true)){
-  			this.notify("Вы уже в игре!")
-  		}
-  		else if(this.props.game.gamersInsideId.find(msg=> msg.user === this.props.auth.user.player && msg.accept === false && msg.decline === false)){
-  			this.notify("Вы уже отправляли запрос!")
-  		}
-  		else if(this.props.game.gamersInsideId.find(msg=> msg.user === this.props.auth.user.player && msg.decline === true)){
+  		if(this.props.game.gamersInsideId.find(msg=> msg.user === this.props.auth.user.id && msg.decline === true)){
   			this.notify("Мастер отклонил Ваш запрос!")
   		}
   		else{
     		const gameData = {
 				id: this.props.game._id,
-			    gamerInsideId: this.props.auth.user.player,
+			    gamerInsideId: this.props.auth.user.id,
 			    accept: false,
 			    decline: false,
 			    show: true
@@ -117,14 +108,14 @@ class GamePage extends Component {
 							</p>
 						</div>
 						<div className="col-auto p-0">
-							{game.name === user.player && 
+							{game.name === user.id && 
 								<Link to={`/game-edit/${game._id}`} className="btn btn-outline-info rounded-0 mb-2 mr-2">Редактировать</Link>
 							}
-							{(game.name === user.player  || (game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.accept === true))) 
+							{(game.name === user.id  || (game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.id && gamer.accept === true))) 
 								?
 								<Button className="mb-2 btn-outline-secondary" disabled>Вы в игре</Button>
 								:
-								game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.player && gamer.decline === true) 
+								game.gamersInsideId && game.gamersInsideId.find(gamer => gamer.user === user.id && gamer.decline === true) 
 									?
 									<Button color="danger" className="mb-2" disabled>Отклонен</Button>
 									:
@@ -145,7 +136,7 @@ class GamePage extends Component {
 		 						<figure className="col-12 mb-4">
 				 					{game.videoLink && game.videoLink.length > 0 ? 
 				 						<ReactPlayer width="100%" height="500px" url={game.videoLink} controls />
-				 						: <img width="100%" alt={game.name} src={game.preview} />}
+				 						: game.preview && <img width="100%" alt={game.name} src={game.preview} />}
 				 				</figure>
 		 						<div className="col-12 col-lg-4">
 		 							<time>{moment(game.from).format('lll')}</time>
@@ -174,18 +165,18 @@ class GamePage extends Component {
 			                </div>
 		 				</div>
 		 				<div className="col-12 col-md-3">
-		 					{this.props.players.filter(master => game.name === master._id)
-			 						.map(master => 
-			 					<React.Fragment key={master._id} >
+		 					{this.props.players.filter(master => game.name === master.id)
+			 						.map((master,index) => 
+			 					<React.Fragment key={index} >
 				 					<p><Link to={`/@${master.name}`} className="text-white" target="_blank" >{master.name} </Link>
 				 					<FaStar className="text-warning" /> - {master.rating}/5</p>
 			 						<hr />
 			 						<p>Игроки:</p>
 			 						<ul>
 				 						{this.props.players.filter(player => game.gamersInsideId
-				 							.find(gamerInside => gamerInside.accept === true && gamerInside.user === player._id))
-				 							.map(gamer => 
-						 						<React.Fragment key={gamer._id} >
+				 							.find(gamerInside => gamerInside.accept === true && gamerInside.user === player.id))
+				 							.map((gamer,index) => 
+						 						<React.Fragment key={index} >
 						 							<Link to={`/@${gamer.name}`} className="text-white" target="_blank" >{gamer.name}</Link><br/>
 						 						</React.Fragment>
 						 					)	

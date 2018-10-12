@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPlayer } from '../actions/playerActions';
 import moment from 'moment';
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaAngleLeft } from "react-icons/fa";
 import { logoutUser } from '../actions/authActions';
 import ReactPlayer from 'react-player';
 import '../style/user.css';
@@ -33,7 +34,10 @@ class UserPage extends Component {
     return (
       <main id="userPage">    
         <section className="container">
-          <div className="shadow bg_card">
+          {this.props.auth.user.name !== player.name && player.status === "мастер" && <Link to="/masters" className="btn p-0 text_card">
+            <FaAngleLeft size="1.5em"/> Все мастера 
+          </Link>}
+          <div className="shadow bg_card mt-3">
             <div className="w-100 position-relative border-bottom userpage__bg" style={{backgroundImage: `url(${player.bgphoto})`}}>
               <figure className="position-absolute userpage__avatar" style={{bottom:"0",left:"0"}}>
                   <img width="100%" alt="player" src={player.photo}/>

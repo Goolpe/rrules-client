@@ -18,10 +18,10 @@ class Footer extends Component{
         ), ['rating']).reverse();
 
     const listItems = articleSort.map((article, index)=>
-      <li key={article._id} className="mt-1 mb-1"><Link className="text-white" to={`/article/${article._id}`}>{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</Link></li>
+      <li key={index} className="mt-1 mb-1"><Link className="text-white" to={`/article/${article._id}`}>{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</Link></li>
     ).slice(0,7);
-      const mastersRating = mastersSort.map(master =>
-      <Link  key={master._id} to={`/@${master.name}`} className="text-white"><li><i className="fas fa-star text-warning fa-1x"></i> {master.rating}/5  - {master.name}</li></Link>
+      const mastersRating = mastersSort.map((master, index) =>
+      <Link  key={index} to={`/@${master.name}`} className="text-white"><li><i className="fas fa-star text-warning fa-1x"></i> {master.rating}/5  - {master.name}</li></Link>
     ).slice(0,8)
     return (
       <footer className="pb-5 pt-5" style={{backgroundColor: "#181818"}}>

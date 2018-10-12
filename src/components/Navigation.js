@@ -57,6 +57,9 @@ class Navigation extends Component{
   onLogout(e) {
     e.preventDefault();
     this.props.logoutUser(this.props.history);
+    this.setState({
+      isOpen: false
+    });
   }
 
   render(){
@@ -119,7 +122,7 @@ class Navigation extends Component{
                       НАСТРОЙКИ
                     </DropdownItem>
                     <DropdownItem divider />
-                    <DropdownItem onClick={this.closeNav}>
+                    <DropdownItem onClick={this.onLogout} >
                       ВЫЙТИ
                     </DropdownItem>
                   </DropdownMenu>

@@ -23,7 +23,6 @@ class Msgs extends Component {
 			this.props.history.push('/auth');
 		}
   }
-
   handleAccept(game, sender){
 		const gameData = {
 			id: game,
@@ -32,7 +31,7 @@ class Msgs extends Component {
 	    decline: false,
 	    show: true
     }
-		this.props.addPlayerGameData(gameData)
+		this.props.addPlayerGameData(gameData);
   }
 
   handleDecline(game, sender, msgacc, msgdec){
@@ -40,7 +39,7 @@ class Msgs extends Component {
   		msgdec = true
   	}
   	const gameData = {
-		id: game,
+			id: game,
 	    gamerInsideId: sender,
 	    accept: msgacc,
 	    decline: msgdec,
@@ -51,13 +50,13 @@ class Msgs extends Component {
 
 	render(){ 
 		var messagesItems;
-	 	this.props.games && (messagesItems = this.props.games.filter(game => game.name === this.props.auth.user.player).map(game =>
+	 	this.props.games && (messagesItems = this.props.games.filter(game => game.name === this.props.auth.user.id).map(game =>
 	 		game.gamersInsideId.filter(gamer => gamer.show === true)
 	 		.map((msg,index) => 
 	 			<div className="shadow bg_card text_card pb-2 pl-2 pr-2 mb-3" key={index}>
 		 			<div className="row align-items-center">
 						<div className="col-12 col-md-2 mt-2">
-							{this.props.players.filter(player=> msg.user === player._id).map((player, index)=>
+							{this.props.players.filter(player=> msg.user === player.id).map((player, index)=>
 								<React.Fragment key={index}><Link target="_blank" className="mr-3" to={`/@${player.name}`}>{player.name}</Link></React.Fragment>
 							)}
 						</div>

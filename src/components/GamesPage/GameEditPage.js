@@ -31,7 +31,7 @@ class GameEditPage extends Component {
 	componentDidMount() {
     window.scrollTo(0,0);
     this.props.fetchGame(this.props.match.params.id, this.props.history);
-    if(!this.props.auth.isAuthenticated && this.props.game.name !== this.props.auth.user.player){
+    if(!this.props.auth.isAuthenticated && this.props.game.name !== this.props.auth.user.id){
     	this.props.history.push('/games')
     }
 	}
@@ -57,7 +57,7 @@ class GameEditPage extends Component {
 		const gameData = {
 			id: this.props.game._id,
 			nameGame: this.state.nameGame,
-			name: this.props.auth.user.player,
+			name: this.props.auth.user.id,
 			cityGame: this.state.cityGame,
 	    placeGame: this.state.placeGame,
 	    priceGame: this.state.priceGame,

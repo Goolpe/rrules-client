@@ -87,7 +87,7 @@ class CreateGamePage extends Component {
 			const gameData = {
 				nameGame: this.state.nameGame,
 				cityGame: this.state.cityGame,
-		    name: this.props.auth.user.player,
+		    name: this.props.auth.user.id,
 		    placeGame: this.state.placeGame,
 		    priceGame: this.state.priceGame,
 		    infoGame: this.state.infoGame,

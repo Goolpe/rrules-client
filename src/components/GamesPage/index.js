@@ -124,9 +124,9 @@ class GamesPage extends Component {
         pageNumbers.push(i);
       }
 
-      const renderPageNumbers = pageNumbers.map(number => {
+      const renderPageNumbers = pageNumbers.map((number,index) => {
         return (
-        	<PaginationItem key={number}>
+        	<PaginationItem key={index}>
             {pageNumbers.length > 1 && 
   	          <PaginationLink id={number} className="shadow bg_card text_card rounded-0 border-0 mr-2"  onClick={this.handleClick}>
   	            {number}
@@ -145,7 +145,7 @@ class GamesPage extends Component {
             <section className="row pt-5">
               <div className="col-12 col-lg-3 mt-2">
                 <div className="container bg_card shadow text_card pt-3 pb-3">
-                  {this.props.players && this.props.players.find(playerUser => user.player === playerUser._id && playerUser.status !== "игрок" ) && <Link to="/game-create" className="btn btn-info mb-2 w-100">Создать игру</Link>}
+                  {user.status !== "игрок" && <Link to="/game-create" className="btn btn-info mb-2 w-100">Создать игру</Link>}
                     <ButtonDropdown isOpen={this.state.dropdownOpen} className="w-100 mb-2" toggle={this.toggle}>
                       <DropdownToggle caret className="btn btn-info w-100">
                         Сортировать: 

@@ -40,9 +40,9 @@ class Games extends Component {
               <p className="pb-3 border-bottom">{game.nameGame} {game.gamersInsideId.filter(gamerInside => gamerInside.user === user.player && gamerInside.accept === true ).map((gamer, index)=> <span style={{color:"#4caf50"}} key={index}>| Вы в игре</span>)}</p>
             </div>
             <div className="col-12 col-md-3">
-              {this.props.players && this.props.players.filter(master => game.name === master._id)
-                .map(master => 
-                <div key={master._id}>
+              {this.props.players && this.props.players.filter(master => game.name === master.id)
+                .map((master, index) => 
+                <div key={index}>
                   <p className="text-white">{master.name}</p>
                   <p><FaStar className="text-warning" /> - {master.rating}/5</p>
                 </div>

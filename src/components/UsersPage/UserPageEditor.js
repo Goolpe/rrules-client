@@ -80,7 +80,7 @@ class UserPageEditor extends Component {
     e.preventDefault();
 
     const playerData = {
-      id: this.props.player._id,
+      id: this.props.auth.user.id,
       fullName: this.state.fullName,
       photo: this.state.photo,
       bgphoto: this.state.bgphoto,

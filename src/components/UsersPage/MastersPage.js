@@ -32,8 +32,8 @@ class MastersPage extends Component {
 		var mastersSort = _.sortBy(this.props.players, ['rating']).reverse()
 
 		const mastersView = mastersSort.filter(master => master.status === "мастер")
-			.map(master => 
-				<div className="col-12 col-md-6 col-lg-4 mb-5" key={master._id}>
+			.map((master, index) => 
+				<div className="col-12 col-md-6 col-lg-4 mb-5" key={index}>
 					<Link to={`/@${master.name}`}>
 						<div className="master__wrapper shadow" style={ { backgroundImage: `url(${master.photo})`} }>
 							<div className="master__card text_card d-flex align-items-center justify-content-center rounded-0" >
@@ -45,8 +45,8 @@ class MastersPage extends Component {
 			)
 
 		const mastersList = mastersSort.filter(master => master.status === "мастер")
-			.map(master => 
-				<div className="col-12" key={master._id}>
+			.map((master, index) => 
+				<div className="col-12" key={index}>
 					<Link to={`/@${master.name}`}>	
 						<div className="row p-3 text-left align-items-start text_card bg_card mb-4 shadow">
 							<div className="col-12 col-md-4">
@@ -68,14 +68,14 @@ class MastersPage extends Component {
 					<h1 className="text_card">
 			      <FiUsers size="1.5em"/> Мастера канала 
 			    </h1>
-					<section className="d-flex justify-content-end align-items-center text_card pb-2">
+					<div className="d-flex justify-content-end align-items-center text_card pb-2">
 						<p className="m-0">Вид:</p>
 						<button className="btn bg-transparent ml-2" onClick={()=>this.setState({viewList: false})}><i className={"fas fa-th-large fa-2x " + (this.state.viewList ? "text-secondary" : "text_card")}></i></button>
 						<button className="btn bg-transparent" onClick={()=>this.setState({viewList: true})}><i  className={"fas fa-th-list fa-2x " + (this.state.viewList ? "text_card" : "text-secondary")}></i></button>
-				  </section>
-				  <section className="row">
+				  </div>
+				  <div className="row">
 					 	{this.state.viewList ? mastersList : mastersView  }
-					</section>
+					</div>
 				</section>
     	</main>
     )
