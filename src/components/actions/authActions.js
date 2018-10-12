@@ -36,6 +36,16 @@ export const loginUser = (user) => dispatch => {
         );
 }
 
+// export const loginSocial = () => dispatch => {
+//   fetch(server.online + '/auth/vkontakte')
+//     .then(
+//       res => console.log(res.json())
+//     )
+//     .then(games => 
+//     dispatch()
+//   );
+// };
+
 export const setCurrentUser = decoded => {
     return {
         type: SET_CURRENT_USER,

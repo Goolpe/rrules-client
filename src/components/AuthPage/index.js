@@ -47,10 +47,10 @@ class AuthPage extends Component{
 		  <main>
         <section className="container">
           <div className="m-auto p-5 shadow bg-white text-center" style={{maxWidth: "500px"}}>
-            {/*<a href='http://localhost:5000/auth/vkontakte' className="btn btn-dark m-2"> <FaVk /></a>
+{/*            <a href='http://localhost:5000/auth/vkontakte' className="btn btn-dark m-2"> <FaVk /></a>
             <a href='http://localhost:5000/auth/facebook' className="btn btn-dark m-2 pr-3 pl-3"> <FaFacebookF /></a>  
             <a href='http://localhost:5000/auth/google' className="btn btn-dark m-2"> <FaGoogle /></a> 
-            <p className="mt-3 mb-4" style={{borderBottom: "1px solid #ebeced", lineHeight: "0.1em"}}><span style={{background: "#fff", padding: "0 10px"}}>или</span></p>
+            <p className="mt-3 mb-4 text-dark" style={{borderBottom: "1px solid #ebeced", lineHeight: "0.1em"}}><span style={{background: "#fff", padding: "0 10px"}}>или</span></p>
             */}
             <Nav tabs style={{cursor: "pointer"}} className="justify-content-center">
               <NavItem>

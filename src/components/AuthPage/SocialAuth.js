@@ -51,7 +51,7 @@ class SocialAuth extends Component{
   }
 
   render(){ 
-    console.log(this.props)
+    console.log(this)
     const { errors } = this.state;
     return ( 
       <section id="SocialAuth" style={{minHeight:"100vh"}} className="pt-5">
