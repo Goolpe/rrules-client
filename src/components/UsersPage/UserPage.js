@@ -7,7 +7,7 @@ import moment from 'moment';
 import { FaStar, FaAngleLeft } from "react-icons/fa";
 import { logoutUser } from '../actions/authActions';
 import ReactPlayer from 'react-player';
-import '../style/user.css';
+import '../styles/user.css';
 
 class UserPage extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class UserPage extends Component {
   render() {
     const person = this.props.person;
     return (
-      <main id="userPage">    
+      <main>    
         <section className="container">
           {this.props.auth.user.name !== person.name && person.status === "мастер" && <Link to="/masters" className="btn p-0 text_card">
             <FaAngleLeft size="1.5em"/> Все мастера 

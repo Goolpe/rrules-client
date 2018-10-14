@@ -5,7 +5,7 @@ import NewsBlock from './news';
 import Social from './social';
 import { FaYoutube, FaGamepad, FaGlobe } from 'react-icons/fa';
 import Streams from './streams';
-import '../style/home.css';
+import '../styles/home.css';
 
 class HomePage extends Component {
   

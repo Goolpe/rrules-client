@@ -19,7 +19,7 @@ import { connect } from 'react-redux';
 import { logoutUser } from './actions/authActions';
 import { withRouter } from 'react-router-dom';
 import { fetchGames } from './actions/gameActions';
-import './style/navigation.css';
+import '../styles/navigation.css';
 
 class Navigation extends Component{
   constructor(props) {

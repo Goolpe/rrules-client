@@ -79,6 +79,8 @@ class Msgs extends Component {
 				</div>
 	 		)
 	 	))
+
+		
 	return (
 		<main>
 			<section className="container">
@@ -86,7 +88,7 @@ class Msgs extends Component {
           <FiMail size="1.5em"/> Сообщения 
         </h1>
         <section>
-				{messagesItems}
+					{messagesItems}
 				</section>
 			</section>
 		</main>
