@@ -15,3 +15,5 @@ export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 
 export const FETCH_MSGS = 'FETCH_MSGS';
 export const FETCH_MSG = 'FETCH_MSG';
+
+export const FETCH_ART = 'FETCH_ART';

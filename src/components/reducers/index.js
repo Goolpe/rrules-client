@@ -4,6 +4,7 @@ import authReducer from './authReducer';
 import personReducer from './personReducer';
 import gameReducer from './gameReducer';
 import errorReducer from './errorReducer';
+import artReducer from './artReducer';
 
 export default combineReducers({
   articles: newsReducer,
@@ -14,7 +15,8 @@ export default combineReducers({
   games: gameReducer,
   game: gameReducer,
   errors: errorReducer,
-  auth: authReducer
+  auth: authReducer,
+  art: artReducer
 });
 
 

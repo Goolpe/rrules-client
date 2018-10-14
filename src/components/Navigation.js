@@ -89,6 +89,9 @@ class Navigation extends Component{
                   </DropdownMenu>
                 </UncontrolledDropdown>
                 <NavItem>
+                  <NavLink tag={Link} to="/streams" onClick={this.closeNav}>СТРИМЫ</NavLink>
+                </NavItem>
+                <NavItem>
                   <NavLink tag={Link} to="/articles" onClick={this.closeNav}>НОВОСТИ</NavLink>
                 </NavItem>
                 <NavItem>

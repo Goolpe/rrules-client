@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import fetchJsonp from 'fetch-jsonp';
 import { FaChevronLeft, FaChevronRight, FaTimesCircle } from "react-icons/fa";
 import { FiImage } from "react-icons/fi";
 import moment from 'moment';
 import '../../styles/art.css';
+import { fetchArt } from '../actions/artActions';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class ArtPage extends Component{
  	constructor (props) {
     super(props)
     this.state = {
       bigPicture: false,
-      pictures: [],
       selectedIndex: 0
     }
     this._TogglePrev = this._TogglePrev.bind(this);
@@ -18,21 +19,11 @@ class ArtPage extends Component{
   }
   componentDidMount () {
     window.scrollTo(0,0);
-
-    fetchJsonp('https://api.vk.com/method/photos.get?owner_id=-117179920&album_id=246570102&access_token=0989ad1e0989ad1e0989ad1ead09ec15a7009890989ad1e52f0d8c1830196143cdb8f23&v=5.52')
-      .then(
-        res => res.json()
-      )
-      .then(json => {
-        this.setState({pictures: json.response.items.reverse()});
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    this.props.fetchArt();
   }
 
   _ToggleNext() {
-    if(this.state.selectedIndex === this.state.pictures.length - 1)
+    if(this.state.selectedIndex === this.props.art.length - 1)
       return;
 
     this.setState(prevState => ({
@@ -60,8 +51,8 @@ class ArtPage extends Component{
             </div>
             <div className="col-8 col-md-4 d-flex align-items-center justify-content-center" style={{height: "100%", cursor: "pointer"}}>      
                 <figure>
-                  <img src={this.state.pictures[this.state.selectedIndex].photo_604} alt={this.state.pictures[this.state.selectedIndex].text} className="img-fluid"/>
-                  <figcaption className="mt-2">{this.state.pictures[this.state.selectedIndex].text}</figcaption>
+                  <img src={this.props.art[this.state.selectedIndex].photo_604} alt={this.props.art[this.state.selectedIndex].text} className="img-fluid"/>
+                  <figcaption className="mt-2">{this.props.art[this.state.selectedIndex].text}</figcaption>
                 </figure> 
             </div> 
             <div className="col-2 col-md-4 d-flex align-items-center justify-content-center"  style={{height: "100%", cursor: "pointer"}} onClick={this._ToggleNext}>
@@ -76,7 +67,7 @@ class ArtPage extends Component{
             <FiImage size="1.5em"/> Фан-арт 
           </h1>
           <section className="image-block image-block--cards">
-            {this.state.pictures.map((img, index) => 
+            {this.props.art.map((img, index) => 
               <figure className="image-block__card m-1" key={index}>
                 <img  
                   className="card__image" 
@@ -95,4 +86,13 @@ class ArtPage extends Component{
   }
 }
 
-export default ArtPage;
+ArtPage.propTypes = {
+  fetchArt: PropTypes.func,
+  art: PropTypes.array
+};
+
+const mapStateToProps = state => ({
+  art: state.art.items,
+})
+
+export default connect(mapStateToProps, { fetchArt })(ArtPage);

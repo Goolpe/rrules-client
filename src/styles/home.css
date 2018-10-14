@@ -22,6 +22,11 @@
     width: 75%
 }
 
+.figure__block{
+    max-height: 300px;
+    overflow: hidden;
+}
+
 .social
 {
     margin: 20px 0;

@@ -34,6 +34,7 @@ import CreateGamePage from './components/GamesPage/CreateGamePage';
 import GamePage from './components/GamesPage/GamePage';
 import GameEditPage from './components/GamesPage/GameEditPage';
 import EmailVerif from './components/AuthPage/EmailVerif';
+import StreamsPage from './components/StreamsPage';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -92,6 +93,7 @@ class RoutesPage extends Component {
 	            <Route path="/@:nickname" component={UserPage} />
 	            <Route path="/msgs" component={MessagesPage} />
 			        <Route path="/auth" component={AuthPage} />
+			        <Route path="/streams" component={StreamsPage} />
 			        <Route path="/social-auth/:id" component={SocialAuth} />
 			        <Route path="/email-verification" component={EmailVerif} />
 			        <Route path="/article-new" component={ArticleForm} />

@@ -31,9 +31,9 @@ class Games extends Component {
 
 	render(){ 
     const {user} = this.props.auth;
-	 	const games = this.props.currentTodos || (_.sortBy(this.props.games, ['from']).slice(0,2));
+	 	const games = this.props.currentTodos || (_.sortBy(this.props.games, ['from']).slice(0,3));
 	 	const renderTodos = games.map((game,index) => 
-      <Link to={`/game/${game._id}`} className="m-0 p-0 mb-4 btn text-left text_card w-100" key={index}>
+      <Link to={`/game/${game._id}`} className="border-0 m-0 p-0 mb-4 btn text-left text_card w-100" key={index}>
         <div className="p-3 bg_card shadow" style={{whiteSpace: "normal"}}>  
           <div className="row">
             <div className="col-12">
