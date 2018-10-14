@@ -12,7 +12,6 @@ import { Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createGame } from '../actions/gameActions';
-import { fetchPlayers } from '../actions/playerActions';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaAngleLeft } from "react-icons/fa";
@@ -247,13 +246,10 @@ class CreateGamePage extends Component {
 CreateGamePage.propTypes = {
   createGame: PropTypes.func,
   auth: PropTypes.object,
-  fetchPlayers: PropTypes.func,
-  players: PropTypes.array,
 };
 
 const mapStateToProps = state => ({
-  players: state.players.items,
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { fetchPlayers , createGame })(withRouter(CreateGamePage));
+export default connect(mapStateToProps, { createGame })(withRouter(CreateGamePage));

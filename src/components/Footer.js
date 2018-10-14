@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 import _ from "lodash";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {fetchPlayers} from './actions/playerActions';
-import {fetchArticles} from './actions/postActions';
+import {fetchPersons} from './actions/personActions';
+import {fetchArticles} from './actions/newsActions';
 
 class Footer extends Component{
   componentDidMount() {
     window.scrollTo(0,0);
     this.props.fetchArticles();
-    this.props.fetchPlayers();
+    this.props.fetchPersons();
   }
   render(){	
     let articleSort = _.sortBy(this.props.articles, ['date']).reverse();
-    let mastersSort = _.sortBy(this.props.players && this.props.players.filter(player => player.status === "мастер"
+    let mastersSort = _.sortBy(this.props.persons && this.props.persons.filter(person => person.status === "мастер"
         ), ['rating']).reverse();
 
     const listItems = articleSort.map((article, index)=>
@@ -75,18 +75,18 @@ class Footer extends Component{
 
 Footer.propTypes = {
   fetchArticles: PropTypes.func,
-  fetchPlayers: PropTypes.func,
+  fetchPersons: PropTypes.func,
   articles: PropTypes.array,
-  players: PropTypes.array
+  persons: PropTypes.array
 
 };
 
 const mapStateToProps = state => ({
   articles: state.articles.items,
-  players: state.players.items
+  persons: state.persons.items
 })
 
-export default connect(mapStateToProps, {fetchPlayers, fetchArticles})(Footer);
+export default connect(mapStateToProps, {fetchPersons, fetchArticles})(Footer);
 
 
 

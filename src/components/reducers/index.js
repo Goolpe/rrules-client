@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
-import postReducer from './postReducer';
+import newsReducer from './newsReducer';
 import authReducer from './authReducer';
-import playerReducer from './playerReducer';
+import personReducer from './personReducer';
 import gameReducer from './gameReducer';
 import errorReducer from './errorReducer';
 
 export default combineReducers({
-  articles: postReducer,
-  article: postReducer,
+  articles: newsReducer,
+  article: newsReducer,
   accounts: authReducer,
-  players: playerReducer,
-  player: playerReducer,
+  persons: personReducer,
+  person: personReducer,
   games: gameReducer,
   game: gameReducer,
   errors: errorReducer,

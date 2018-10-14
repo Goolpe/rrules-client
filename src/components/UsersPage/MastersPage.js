@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import _ from "lodash";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchPlayers } from '../actions/playerActions';
+import { fetchPersons } from '../actions/personActions';
 import { FiUsers} from "react-icons/fi";
 import '../style/masters.css';
 
@@ -19,7 +19,7 @@ class MastersPage extends Component {
 
 	componentDidMount() {
 		window.scrollTo(0,0);
-		this.props.fetchPlayers();
+		this.props.fetchPersons();
 	}
 
 	toggle() {
@@ -29,7 +29,7 @@ class MastersPage extends Component {
 	}
 
 	render(){
-		var mastersSort = _.sortBy(this.props.players, ['rating']).reverse()
+		var mastersSort = _.sortBy(this.props.persons, ['rating']).reverse()
 
 		const mastersView = mastersSort.filter(master => master.status === "мастер")
 			.map((master, index) => 
@@ -83,12 +83,12 @@ class MastersPage extends Component {
 }
 
 MastersPage.propTypes = {
-  fetchPlayers: PropTypes.func,
-  players: PropTypes.array
+  fetchPersons: PropTypes.func,
+  persons: PropTypes.array
 };
 
 const mapStateToProps = state => ({
-  players: state.players.items
+  persons: state.players.items
 })
 
-export default connect(mapStateToProps, { fetchPlayers })(MastersPage);
+export default connect(mapStateToProps, { fetchPersons })(MastersPage);

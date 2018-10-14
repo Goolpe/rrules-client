@@ -8,7 +8,7 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchArticles } from '../actions/postActions';
+import { fetchArticles } from '../actions/newsActions';
 import moment from 'moment';
 
 class NewsBlock extends Component {
@@ -66,21 +66,21 @@ class NewsBlock extends Component {
         onExited={this.onExited}
         className="news__carousel"
       >
-      <div  style={{height:"100%", background: "url(https://images4.alphacoders.com/823/thumb-1920-82368.jpg)"}}>
-        <div className="news__item">
+      
+      <div className="news__item">
         <div className="row text_card justify-content-between align-items-center" style={{height:"100%"}}>
           <section className="col-12 col-lg-8 text-left">
             {/*<time>{moment(article.date).format('LL')}</time>*/}
             <h1 className="text-left">{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
-            <article className="text-justify">{article.text.length > 800 ? article.text.slice(0,300) + "..." : article.text}</article>
+            <article className="text-justify">{article.text.length > 800 ? article.text.slice(0,800) + "..." : article.text}</article>
             <Link to={`/article/${article._id}`} className="btn btn-info mt-2">Читать дальше</Link>
           </section>
           <figure className="d-none d-lg-block col-lg-4">
             <img alt={article.title} className="img-fluid" style={{backgroundSize: "contain", height:"400px"}} src={article.picture} />
           </figure>
         </div>
-        </div>
       </div>
+      
       </CarouselItem>
       ).slice(0,3);
     return (

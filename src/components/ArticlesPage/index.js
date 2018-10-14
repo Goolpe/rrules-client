@@ -4,8 +4,7 @@ import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import _ from "lodash";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchArticles } from '../actions/postActions';
-import { fetchPlayers } from '../actions/playerActions';
+import { fetchArticles } from '../actions/newsActions';
 import moment from 'moment';
 import { FaPlus, FaNewspaper} from "react-icons/fa";
 
@@ -21,7 +20,6 @@ class ArticlesPage extends Component {
 	componentDidMount() {
 		window.scrollTo(0,0);
 		this.props.fetchArticles();
-	  this.props.fetchPlayers();
 	}
 
 	handleClick(event) {
@@ -98,19 +96,16 @@ class ArticlesPage extends Component {
 }
 
 ArticlesPage.propTypes = {
-	fetchPlayers: PropTypes.func,
-  	players: PropTypes.array,
-  	fetchArticles: PropTypes.func,
-  	articles: PropTypes.array,
-  	auth: PropTypes.object
+	fetchArticles: PropTypes.func,
+	articles: PropTypes.array,
+	auth: PropTypes.object
 };
 
 const mapStateToProps = state => ({
-	players: state.players.items,
 	articles: state.articles.items,
 	auth: state.auth
 })
 
-export default connect(mapStateToProps, { fetchArticles, fetchPlayers })(ArticlesPage);
+export default connect(mapStateToProps, { fetchArticles })(ArticlesPage);
 
 

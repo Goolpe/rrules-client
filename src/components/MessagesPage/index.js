@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchPlayers } from '../actions/playerActions';
+import { fetchPersons } from '../actions/personActions';
 import { addPlayerGameData, fetchGames } from '../actions/gameActions';
 import { FaTimes, FaPlus } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
@@ -17,7 +17,7 @@ class Msgs extends Component {
 	componentDidMount() {
 		if(this.props.auth.isAuthenticated){
 			this.props.fetchGames();
-			this.props.fetchPlayers()
+			this.props.fetchPersons()
 		}
 		else{
 			this.props.history.push('/auth');
@@ -56,7 +56,7 @@ class Msgs extends Component {
 	 			<div className="shadow bg_card text_card pb-2 pl-2 pr-2 mb-3" key={index}>
 		 			<div className="row align-items-center">
 						<div className="col-12 col-md-2 mt-2">
-							{this.props.players.filter(player=> msg.user === player.id).map((player, index)=>
+							{this.props.persons.filter(player=> msg.user === player.id).map((player, index)=>
 								<React.Fragment key={index}><Link target="_blank" className="mr-3" to={`/@${player.name}`}>{player.name}</Link></React.Fragment>
 							)}
 						</div>
@@ -96,8 +96,8 @@ class Msgs extends Component {
 
 Msgs.propTypes = {
   auth: PropTypes.object,
-  fetchPlayers: PropTypes.func,
-  players: PropTypes.array,
+  fetchPersons: PropTypes.func,
+  persons: PropTypes.array,
   addPlayerGameData: PropTypes.func,
   fetchGames: PropTypes.func,
   games: PropTypes.array
@@ -105,9 +105,9 @@ Msgs.propTypes = {
 
 const mapStateToProps = state => ({
   games: state.games.items,
-  players: state.players.items,
+  persons: state.players.items,
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { addPlayerGameData, fetchGames, fetchPlayers })(withRouter(Msgs));
+export default connect(mapStateToProps, { addPlayerGameData, fetchGames, fetchPersons })(withRouter(Msgs));
 

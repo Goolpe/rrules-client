@@ -5,7 +5,7 @@ import { Button } from 'reactstrap';
 import { Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchPlayers } from '../actions/playerActions';
+import { fetchPersons } from '../actions/personActions';
 import { fetchGame, addPlayerGameData } from '../actions/gameActions';
 import ReactPlayer from 'react-player';
 import { ToastContainer, toast } from 'react-toastify';
@@ -24,7 +24,7 @@ class GamePage extends Component {
 
 	componentDidMount() {
 		window.scrollTo(0,0);
-      this.props.fetchPlayers();
+      this.props.fetchPersons();
       this.props.fetchGame(this.props.match.params.id, this.props.history);
     }
 
@@ -165,7 +165,7 @@ class GamePage extends Component {
 			                </div>
 		 				</div>
 		 				<div className="col-12 col-md-3">
-		 					{this.props.players.filter(master => game.name === master.id)
+		 					{this.props.persons.filter(master => game.name === master.id)
 			 						.map((master,index) => 
 			 					<React.Fragment key={index} >
 				 					<p><Link to={`/@${master.name}`} className="text-white" target="_blank" >{master.name} </Link>
@@ -173,7 +173,7 @@ class GamePage extends Component {
 			 						<hr />
 			 						<p>Игроки:</p>
 			 						<ul>
-				 						{this.props.players.filter(player => game.gamersInsideId
+				 						{this.props.persons.filter(player => game.gamersInsideId
 				 							.find(gamerInside => gamerInside.accept === true && gamerInside.user === player.id))
 				 							.map((gamer,index) => 
 						 						<React.Fragment key={index} >
@@ -196,15 +196,15 @@ GamePage.propTypes = {
   fetchGame: PropTypes.func,
   game: PropTypes.object,
   auth: PropTypes.object,
-  fetchPlayers: PropTypes.func,
-  players: PropTypes.array,
+  fetchPersons: PropTypes.func,
+  persons: PropTypes.array,
   addPlayerGameData: PropTypes.func
 };
 
 const mapStateToProps = state => ({
   game: state.game.item,
-  players: state.players.items,
+  persons: state.persons.items,
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { addPlayerGameData, fetchGame, fetchPlayers })(withRouter(GamePage));
+export default connect(mapStateToProps, { addPlayerGameData, fetchGame, fetchPersons })(withRouter(GamePage));

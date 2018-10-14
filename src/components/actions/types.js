@@ -4,8 +4,8 @@ export const FETCH_ARTICLE = 'FETCH_ARTICLE';
 export const NEW_ACCOUNT = 'NEW_ACCOUNT';
 export const AUTH_ACCOUNT = 'AUTH_ACCOUNT';
 
-export const FETCH_PLAYERS = 'FETCH_PLAYERS';
-export const FETCH_PLAYER = 'FETCH_PLAYER';
+export const FETCH_PERSONS = 'FETCH_PERSONS';
+export const FETCH_PERSON = 'FETCH_PERSON';
 
 export const FETCH_GAMES = 'FETCH_GAMES';
 export const FETCH_GAME = 'FETCH_GAME';

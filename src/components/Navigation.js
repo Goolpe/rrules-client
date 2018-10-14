@@ -17,7 +17,6 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from './actions/authActions';
-import { fetchPlayer } from './actions/playerActions';
 import { withRouter } from 'react-router-dom';
 import { fetchGames } from './actions/gameActions';
 import './style/navigation.css';
@@ -31,14 +30,6 @@ class Navigation extends Component{
     this.state = {
       isOpen: false
     };
-  }
-
-  componentDidMount() {
-
-// checking user
-    if(this.props.auth.isAuthenticated){
-      this.props.fetchPlayer(this.props.auth.user.name, this.props.history)
-    }
   }
 
 //handling navigation toggle in media query
@@ -144,8 +135,6 @@ class Navigation extends Component{
 }
 
 Navigation.propTypes = {
-  fetchPlayer: PropTypes.func,
-  player: PropTypes.object,
   fetchGames: PropTypes.func,
   logoutUser: PropTypes.func,
   auth: PropTypes.object,
@@ -154,8 +143,7 @@ Navigation.propTypes = {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  player: state.player.item,
   games: state.games.items
 })
 
-export default connect(mapStateToProps, { fetchGames, fetchPlayer, logoutUser })(withRouter(Navigation));
+export default connect(mapStateToProps, { fetchGames, logoutUser })(withRouter(Navigation));

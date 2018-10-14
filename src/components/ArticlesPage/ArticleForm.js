@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createArticle } from '../actions/postActions';
+import { createArticle } from '../actions/newsActions';
 import { FaAngleLeft } from "react-icons/fa";
 
 class ArticleForm extends Component {

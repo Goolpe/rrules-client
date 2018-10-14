@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import _ from "lodash";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchPlayers } from '../actions/playerActions';
+import { fetchPersons } from '../actions/personActions';
 import { fetchGames } from '../actions/gameActions';
 import moment from 'moment';
 import { FaStar } from "react-icons/fa";
@@ -20,7 +20,7 @@ class Games extends Component {
   componentDidMount() {
       window.scrollTo(0,0);
       this.props.fetchGames();
-      this.props.fetchPlayers(); 
+      this.props.fetchPersons(); 
   }
 
 	toggle() {
@@ -40,7 +40,7 @@ class Games extends Component {
               <p className="pb-3 border-bottom">{game.nameGame} {game.gamersInsideId.filter(gamerInside => gamerInside.user === user.player && gamerInside.accept === true ).map((gamer, index)=> <span style={{color:"#4caf50"}} key={index}>| Вы в игре</span>)}</p>
             </div>
             <div className="col-12 col-md-3">
-              {this.props.players && this.props.players.filter(master => game.name === master.id)
+              {this.props.persons && this.props.persons.filter(master => game.name === master.id)
                 .map((master, index) => 
                 <div key={index}>
                   <p className="text-white">{master.name}</p>
@@ -74,19 +74,19 @@ class Games extends Component {
 }
 
 Games.propTypes = {
-  fetchPlayers: PropTypes.func,
-  players: PropTypes.array,
+  fetchPersons: PropTypes.func,
+  persons: PropTypes.array,
   fetchGames: PropTypes.func,
   games: PropTypes.array,
   auth: PropTypes.object
 };
 
 const mapStateToProps = state => ({
-  players: state.players.items,
+  persons: state.persons.items,
   games: state.games.items,
   auth: state.auth
 })
 
 
-export default connect(mapStateToProps, { fetchPlayers , fetchGames })(Games);
+export default connect(mapStateToProps, { fetchPersons , fetchGames })(Games);
 

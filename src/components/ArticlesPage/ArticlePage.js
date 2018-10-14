@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchArticle } from '../actions/postActions';
+import { fetchArticle } from '../actions/newsActions';
 import moment from 'moment';
 import { FaAngleLeft } from "react-icons/fa";
 

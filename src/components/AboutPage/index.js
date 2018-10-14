@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { UncontrolledCollapse, CardBody, Card } from 'reactstrap';
 import { FiCode } from "react-icons/fi";
-import {withTheme} from 'styled-components';
+import { withTheme } from 'styled-components';
 
 class AboutPage extends Component {
   constructor(props) {

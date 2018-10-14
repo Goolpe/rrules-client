@@ -5,7 +5,6 @@ import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem,
 Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchPlayers, fetchPlayer } from '../actions/playerActions';
 import { fetchGames } from '../actions/gameActions';
 import moment from 'moment';
 import 'moment/locale/ru';
@@ -50,7 +49,6 @@ class GamesPage extends Component {
   componentDidMount() {
     window.scrollTo(0,0);
     this.props.fetchGames();
-    this.props.fetchPlayers();
   }
   
 	handleFromChange(from) {
@@ -238,19 +236,14 @@ class GamesPage extends Component {
 
 
 GamesPage.propTypes = {
-  fetchPlayers: PropTypes.func,
-  fetchPlayer: PropTypes.func,
-  players: PropTypes.array,
   fetchGames: PropTypes.func,
   games: PropTypes.array,
   auth: PropTypes.object
 };
 
 const mapStateToProps = state => ({
-  players: state.players.items,
-  player: state.player.item,
   games: state.games.items,
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { fetchPlayers, fetchPlayer , fetchGames })(GamesPage);
+export default connect(mapStateToProps, { fetchGames })(GamesPage);
