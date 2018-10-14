@@ -105,7 +105,7 @@ Msgs.propTypes = {
 
 const mapStateToProps = state => ({
   games: state.games.items,
-  persons: state.players.items,
+  persons: state.persons.items,
   auth: state.auth
 })
 

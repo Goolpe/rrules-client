@@ -22,7 +22,7 @@ class ArticlePage extends Component {
           </Link> 
     	  	<section className="text-left bg_card mt-3">
             <h1 className="text-center mb-5">{article.title}</h1>
-            <div className="w-100 text-center" style={{height:"300px", overflow: "hidden"}}><img className="img-fluid" style={{height:"300px"}} alt={article.title} src={article.picture} /></div>
+            <div className="w-100 text-center" style={{overflow: "hidden"}}><img className="img-fluid" style={{width:"100%"}} alt={article.title} src={article.bgImage} /></div>
             <div className="container">
               <p className="pt-5">{article.text}</p>
               <p className="pt-5 pb-5">{moment(article.date).format('LL')}</p>

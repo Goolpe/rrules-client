@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { fetchArticles } from '../actions/newsActions';
 import moment from 'moment';
 import { FaPlus, FaNewspaper} from "react-icons/fa";
+import '../style/articles.css';
 
 class ArticlesPage extends Component {
 	constructor(props){
@@ -45,17 +46,13 @@ class ArticlesPage extends Component {
       pageNumbers.push(i);
     }
 		const listItems = currentTodos.map((article, index) =>
-	  	<div className="container pt-5 pb-5 mb-3 text_card shadow bg_card" key={index}>
-        <div className="row text-center justify-content-between">
-          <div className="col-12 col-lg-8 text-left">
-            <p>{moment(article.date).format('LL')}</p>
-            <h1 className="text-center">{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
-            <p className="text-justify">{article.text.length > 800 ? article.text.slice(0,800) + "..." : article.text}</p>
-            <Link to={`/article/${article._id}`} className="btn btn-info mt-2">Читать дальше</Link>
-          </div>
-          <div className="d-none d-lg-block col-lg-4">
-            <img alt={article.title} className="img-fluid" style={{backgroundSize: "contain", height:"400px"}} src={article.picture} />
-          </div>
+	  	<div className="container mb-3 p-0 text_card shadow article__background" style={{backgroundImage: `url(${article.bgImage}`}} key={index}>
+        <div className="text-left article__wrapper p-3">
+          <p className="text-right">{moment(article.date).format('LL')}</p>
+          <h1>{article.title.length > 25 ? (article.title.slice(0,25) + "...") : article.title}</h1>
+          <hr color="#fff" width="50%" align="left"/>
+          <p className="text-justify">{article.text.length > 800 ? article.text.slice(0,800) + "..." : article.text}</p>
+          <Link to={`/article/${article._id}`} className="btn btn-outline-light mt-2">Читать дальше</Link>
         </div>
       </div>
 		);
