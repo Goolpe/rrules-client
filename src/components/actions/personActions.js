@@ -2,21 +2,21 @@ import { FETCH_PERSONS, FETCH_PERSON } from './types';
 import server from "./server.json";
 
 export const fetchPersons = () => dispatch => {
-  fetch(server.online + '/players/all')
+  fetch(server.online + '/persons/all')
     .then(
-      res => res.json(),
-      err => console.log(err)
+      res => res.json()
     )
     .then(persons => 
     dispatch({
       type: FETCH_PERSONS,
       payload: persons
     })
-  );
+  )
+    .catch(err => console.log(err));
 };
 
 export const fetchPerson = (personData, history) => dispatch => {
-  fetch(server.online + '/players/one/' + personData)
+  fetch(server.online + '/persons/one/' + personData)
     .then(
       res => res.json()
     )
@@ -29,7 +29,7 @@ export const fetchPerson = (personData, history) => dispatch => {
 };
 
 export const changePersonData = (personData) => dispatch => {
-  fetch(server.online + '/players/edit/' + personData.id, {
+  fetch(server.online + '/persons/edit/' + personData.id, {
     method: 'put',
     headers: {
       'Authorization': localStorage.jwtToken,

@@ -88,7 +88,7 @@ MastersPage.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  persons: state.players.items
+  persons: state.persons.items
 })
 
 export default connect(mapStateToProps, { fetchPersons })(MastersPage);
