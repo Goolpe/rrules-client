@@ -7,7 +7,7 @@ import moment from 'moment';
 import { FaStar, FaAngleLeft } from "react-icons/fa";
 import { logoutUser } from '../actions/authActions';
 import ReactPlayer from 'react-player';
-import '../styles/user.css';
+import '../../styles/user.css';
 
 class UserPage extends Component {
   constructor(props) {

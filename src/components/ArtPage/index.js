@@ -3,7 +3,7 @@ import fetchJsonp from 'fetch-jsonp';
 import { FaChevronLeft, FaChevronRight, FaTimesCircle } from "react-icons/fa";
 import { FiImage } from "react-icons/fi";
 import moment from 'moment';
-import '../styles/art.css';
+import '../../styles/art.css';
 
 class ArtPage extends Component{
  	constructor (props) {

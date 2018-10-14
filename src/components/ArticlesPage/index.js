@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { fetchArticles } from '../actions/newsActions';
 import moment from 'moment';
 import { FaPlus, FaNewspaper} from "react-icons/fa";
-import '../styles/articles.css';
+import '../../styles/articles.css';
 
 class ArticlesPage extends Component {
 	constructor(props){

@@ -11,7 +11,7 @@ import ReactPlayer from 'react-player';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaStar, FaAngleLeft } from "react-icons/fa";
-import '../styles/games.css';
+import '../../styles/games.css';
 
 class GamePage extends Component {
 	constructor(props){

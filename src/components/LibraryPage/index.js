@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import books from './library.json';
 import { FiBookOpen} from "react-icons/fi";
-import '../styles/library.css';
+import '../../styles/library.css';
 
 class LibraryPage extends Component{
   componentDidMount() {

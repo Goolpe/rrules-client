@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPersons } from '../actions/personActions';
 import { FiUsers} from "react-icons/fi";
-import '../styles/masters.css';
+import '../../styles/masters.css';
 
 class MastersPage extends Component {
 	constructor(props) {
