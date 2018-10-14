@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Link, withRouter} from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createGame, fetchGame, changeGameData, deleteGame } from '../actions/gameActions';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { FaAngleLeft } from "react-icons/fa";
+import { toast } from 'react-toastify';
+import GameForm from './GameForm';
+import { fetchGame, changeGameData, deleteGame } from '../actions/gameActions';
 
 class GameEditPage extends Component {
 	constructor(props){
@@ -26,6 +25,7 @@ class GameEditPage extends Component {
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 		this.deleteGameData = this.deleteGameData.bind(this);
+		this.selectOption = this.selectOption.bind(this);
 	} 
 
 	componentDidMount() {
@@ -45,6 +45,12 @@ class GameEditPage extends Component {
 // Handler of submit
 	notify(word){
 		toast(word)
+	}
+
+	selectOption(e){
+		this.setState({
+			selectedOption: e.target.value
+		})
 	}
 
 	deleteGameData(){
@@ -74,79 +80,24 @@ class GameEditPage extends Component {
 	}
   render() {
 	  return (
-	  	<main id="createGame">
-				<section className="container text_card">
-					<ToastContainer
-						position="top-center"
-						autoClose={2000}
-						hideProgressBar={false}
-						newestOnTop={false}
-						closeOnClick
-						rtl={false}
-						pauseOnVisibilityChange
-						draggable
-						pauseOnHover
-						/>
-					<form onSubmit={this.onSubmit}>
-	{/*Button to create game and exit*/}
-						<div className="row">
-							<div className="col-auto mr-auto p-0">
-								<p className="text_card pb-4"><Link to={`/game/${this.props.match.params.id}`} className="text_card p-0 btn">
-							        <FaAngleLeft size="1.5em"/> Назад&nbsp;
-							    </Link> 
-							    </p>
-							</div>
-							<div className="col-auto p-0">
-									<button onClick={this.deleteGameData} className="btn btn-danger rounded-0 mb-2 mr-2">Удалить</button>
-									<button type="submit" className="btn btn-info rounded-0 mb-2">Сохранить</button>
-							</div>
-						</div>
-			 			<div className="row p-3 align-items-begin bg_card shadow">
-			 				<div className="col-12">
-	{/*Name of the game*/}
-			 					<label className="mr-2">Название: </label>
-			 					<input type="text" value={this.state.nameGame} maxLength="100" className="w-100" onChange={this.onChange} name="nameGame" /><br />
-	{/*Number of seats*/}
-			 					<label className="mr-2 mt-3">Количество мест: </label>
-			 					<input type="number" min="1" max="20" value={this.state.placeAll} onChange={this.onChange} name="placeAll" /><br />
-	{/*Type of the game*/}
-						        <label className="mr-2 mt-3">Тип игры: </label>
-						        <div className="custom-control custom-radio mb-2">
-								    <input type="radio" className="custom-control-input" value="sortByTypeOnline" onChange={()=>{this.setState({selectedOption: 'sortByTypeOnline'})}} checked={this.state.selectedOption === 'sortByTypeOnline'} id="radio1" />
-								    <label className="custom-control-label" htmlFor="radio1">Online</label>
-								</div>
-								<div className="custom-control custom-radio mb-2">
-								    <input type="radio" className="custom-control-input" value="sortByTypeIRL" onChange={()=>{this.setState({selectedOption: 'sortByTypeIRL'})}} checked={this.state.selectedOption === 'sortByTypeIRL'} id="radio2" />
-								    <label className="custom-control-label" htmlFor="radio2">IRL</label>
-								</div>
-					        {this.state.selectedOption === "sortByTypeIRL"  &&
-		 						<div>
-		 							<label className="mr-2 mt-3">Город: </label>
-		 							<input type="string" value={this.state.cityGame} style={{width:"50%"}} onChange={this.onChange} name="cityGame"/><br/>
-		 							<label className="mr-2 mt-3">Место проведения: </label>
-		 							<input type="string" value={this.state.placeGame} style={{width:"50%"}} onChange={this.onChange} name="placeGame"/>
-		 						</div> 
-		 					}
-{/*Price*/}
-			 					<div>
-			 						<label className="mr-2 mt-3">Стоимость: </label>
-			 						<input type="number" min="0" max="10000" value={this.state.priceGame} onChange={this.onChange} name="priceGame" required/><br />
-			 					</div>
-			 					<div>
-			 						<label className="mr-2 mt-3">Превью: </label>
-			 						<input type="string" value={this.state.preview} className="w-100" onChange={this.onChange} name="preview" /><br />
-			 					</div> 
-			 					<div>
-			 						<label className="mr-2 mt-3">Ссылка на стрим: </label>
-			 						<input type="string" value={this.state.videoLink} className="w-100" onChange={this.onChange} name="videoLink" /><br />
-			 					</div> 
-	{/*Additionally info*/}		 					
-			 					<label className="mr-2 mt-3">Информация:</label>
-			 					<textarea className="w-100" maxLength="1000" value={this.state.infoGame} onChange={this.onChange} name="infoGame" />
-				 			</div> 	
-				 		</div>		
-			 		</form>
-				</section>
+	  	<main>
+	  		<GameForm 
+	  			nameGame = {this.state.nameGame}
+					selectedOption = {this.state.selectedOption}
+			    cityGame = {this.state.cityGame}
+			    priceGame = {this.state.priceGame}
+			    placeAll = {this.state.placeAll}
+			    infoGame = {this.state.infoGame}
+			    placeGame = {this.state.placeGame}
+			    videoLink = {this.state.videoLink}
+			    preview = {this.state.preview}
+			    from = {this.state.from}
+		    	to = {this.state.to}
+		    	onSubmit = {this.onSubmit}
+		    	onChange = {this.onChange}
+		    	deleteGameData = {this.deleteGameData}
+		    	selectOption = {this.selectOption}
+    		/>
 			</main>
 	  )
 	}
@@ -154,7 +105,6 @@ class GameEditPage extends Component {
 
 GameEditPage.propTypes = {
   fetchGame: PropTypes.func,
-  createGame: PropTypes.func,
   auth: PropTypes.object,
   changeGameData: PropTypes.func,
   deleteGame: PropTypes.func
@@ -165,4 +115,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { changeGameData , createGame, fetchGame, deleteGame })(withRouter(GameEditPage));
+export default connect(mapStateToProps, { changeGameData , fetchGame, deleteGame })(withRouter(GameEditPage));
