@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { changePersonData } from "../actions/personActions";
+import { fetchPerson, changePersonData } from "../actions/personActions";
 import { Col, Button, Form, FormGroup, Label, UncontrolledTooltip } from "reactstrap";
 import { FaTimes } from "react-icons/fa";
 import { withRouter, Link } from "react-router-dom";
@@ -13,25 +13,25 @@ class UserPageEditor extends Component {
   constructor(props){
     super(props);
     this.state = {
-      fullName: this.props.auth.user.fullName,
-      photo: this.props.auth.user.photo,
-      bgphoto: this.props.auth.user.bgphoto,
-      selectedDay: this.props.auth.user.dateBirth,
-      gamesCount: this.props.auth.user.gamesCount,
-      about: this.props.auth.user.about,
-      skype: this.props.auth.user.skype,
-      discord: this.props.auth.user.discord,
-      systems: this.props.auth.user.systems,
-      setting: this.props.auth.user.setting,
-      paidGames: this.props.auth.user.paidGames,
-      leading: this.props.auth.user.leading,
-      cityLive: this.props.auth.user.cityLive,
-      otherContacts: this.props.auth.user.otherContacts,
-      example1:this.props.auth.user.example1,
-      example2:this.props.auth.user.example2,
-      example3:this.props.auth.user.example3,
-      example4:this.props.auth.user.example4,
-      sex:this.props.auth.user.sex
+      fullName: this.props.person.fullName,
+      photo: this.props.person.photo,
+      bgphoto: this.props.person.bgphoto,
+      selectedDay: this.props.person.dateBirth,
+      gamesCount: this.props.person.gamesCount,
+      about: this.props.person.about,
+      skype: this.props.person.skype,
+      discord: this.props.person.discord,
+      systems: this.props.person.systems,
+      setting: this.props.person.setting,
+      paidGames: this.props.person.paidGames,
+      leading: this.props.person.leading,
+      cityLive: this.props.person.cityLive,
+      otherContacts: this.props.person.otherContacts,
+      example1:this.props.person.example1,
+      example2:this.props.person.example2,
+      example3:this.props.person.example3,
+      example4:this.props.person.example4,
+      sex:this.props.person.sex
     }
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,6 +40,7 @@ class UserPageEditor extends Component {
   componentDidMount() {
     window.scrollTo(0,0);
     if(this.props.auth.isAuthenticated){
+      this.props.fetchPerson(this.props.auth.user.name)
       this.props.history.push(`/edit/${this.props.auth.user.name}`)
     }
     else{
@@ -49,25 +50,25 @@ class UserPageEditor extends Component {
 
   componentWillReceiveProps(data) {
     this.setState({ 
-      fullName: data.auth.user.fullName,
-      photo: data.auth.user.photo,
-      bgphoto: data.auth.user.bgphoto,
-      selectedDay: data.auth.user.dateBirth,
-      gamesCount: data.auth.user.gamesCount,
-      about: data.auth.user.about,
-      skype: data.auth.user.skype,
-      discord: data.auth.user.discord,
-      systems: data.auth.user.systems,
-      setting: data.auth.user.setting,
-      paidGames: data.auth.user.paidGames,
-      leading: data.auth.user.leading,
-      cityLive: data.auth.user.cityLive,
-      otherContacts: data.auth.user.otherContacts,
-      example1:data.auth.user.example1,
-      example2:data.auth.user.example2,
-      example3:data.auth.user.example3,
-      example4:data.auth.user.example4,
-      sex:data.auth.user.sex
+      fullName: data.person.fullName,
+      photo: data.person.photo,
+      bgphoto: data.person.bgphoto,
+      selectedDay: data.person.dateBirth,
+      gamesCount: data.person.gamesCount,
+      about: data.person.about,
+      skype: data.person.skype,
+      discord: data.person.discord,
+      systems: data.person.systems,
+      setting: data.person.setting,
+      paidGames: data.person.paidGames,
+      leading: data.person.leading,
+      cityLive: data.person.cityLive,
+      otherContacts: data.person.otherContacts,
+      example1:data.person.example1,
+      example2:data.person.example2,
+      example3:data.person.example3,
+      example4:data.person.example4,
+      sex:data.person.sex
     });
   }
 
@@ -78,7 +79,7 @@ class UserPageEditor extends Component {
   handleSubmit(e){
     e.preventDefault();
 
-    const userData = {
+    const personData = {
       id: this.props.auth.user.id,
       fullName: this.state.fullName,
       photo: this.state.photo,
@@ -101,7 +102,7 @@ class UserPageEditor extends Component {
       sex: this.state.sex
     }
 
-    this.props.changePersonData(userData);
+    this.props.changePersonData(personData);
   }
   render() {
     return (
@@ -234,12 +235,14 @@ class UserPageEditor extends Component {
 }
 
 UserPageEditor.propTypes = {
+  fetchPerson: PropTypes.func,
   changePersonData: PropTypes.func,
   auth: PropTypes.object
 };
 
 const mapStateToProps = state => ({
+  person: state.persons.item,
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { changePersonData })(withRouter(UserPageEditor));
+export default connect(mapStateToProps, { fetchPerson, changePersonData })(withRouter(UserPageEditor));
