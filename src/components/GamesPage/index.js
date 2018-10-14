@@ -88,7 +88,6 @@ class GamesPage extends Component {
 
 	    this.state.sortByDate ? (gamesSort = _.sortBy(this.props.games, ['from'])) :
 	    (gamesSort = _.sortBy(this.props.games, ['placeAll']).reverse())
-
 	//sort by type IRL
 	    this.state.selectedOption === "sortByTypeIRL" && (gamesSort = gamesSort.filter( game => 
 	      this.state.sortByCityGame.length === 0 ? game.cityGame

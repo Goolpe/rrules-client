@@ -48,6 +48,12 @@ class GameEditPage extends Component {
 	}
 
 	selectOption(e){
+		if(e.target.value !== 'sortByTypeIRL'){
+			this.setState({
+				cityGame: '',
+	    	placeGame: ''
+			})
+		}
 		this.setState({
 			selectedOption: e.target.value
 		})

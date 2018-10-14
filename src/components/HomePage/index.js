@@ -42,9 +42,9 @@ class HomePage extends Component {
 				  				<div className="figure__block">
 				  					<img src="https://pp.userapi.com/c846021/v846021388/10f4ea/4TMo1_2jp7A.jpg" alt="streams" className="img-fluid"/>
 				  				</div>
-				  				<figcapion className="bg-info p-3 text-center d-block w-100">
+				  				<figcaption className="bg-info p-3 text-center w-100">
 				  					СТРИМЫ
-				  				</figcapion>
+				  				</figcaption>
 				  			</figure>
 			  			</Link>
 			  			<Link to="/masters">
@@ -52,9 +52,9 @@ class HomePage extends Component {
 				  				<div className="figure__block">
 				  					<img src="https://pp.userapi.com/c840623/v840623180/3e1d8/lOYin3JrLgA.jpg" alt="masters" className="img-fluid"/>
 				  				</div>
-				  				<figcapion className="bg-info p-3 text-center d-block w-100">
+				  				<figcaption className="bg-info p-3 text-center w-100">
 				  					МАСТЕРА
-				  				</figcapion>
+				  				</figcaption>
 				  			</figure>
 			  			</Link>
 			  			<Link to="/library">
@@ -62,9 +62,9 @@ class HomePage extends Component {
 				  				<div className="figure__block">
 				  					<img src="https://image-assets.access.myfave.gdn/attachments/9fb835d8ad0c30a9a0fd64b90329b22ca85b4448/store/fill/800/500/44f292f9c602af7a497a1beb01302417e08902fe2385f7e69e764f4fd223/The+Magic+Library-3.jpg" alt="library" className="img-fluid"/>
 				  				</div>
-				  				<figcapion className="bg-info p-3 text-center d-block w-100">
+				  				<figcaption className="bg-info p-3 text-center w-100">
 				  					БИБЛИОТЕКА
-				  				</figcapion>
+				  				</figcaption>
 				  			</figure>
 			  			</Link>
 			  			<Link to="/shop">
@@ -72,9 +72,9 @@ class HomePage extends Component {
 				  				<div className="figure__block">
 				  					<img src="https://orig00.deviantart.net/60d4/f/2014/239/8/2/82c77da07b7ac9afdc58985ae99a1fd1-d7ww2hj.jpg" alt="shop" className="img-fluid"/>
 				  				</div>
-				  				<figcapion className="bg-info p-3 text-center d-block w-100">
+				  				<figcaption className="bg-info p-3 text-center w-100">
 				  					МАГАЗИН
-				  				</figcapion>
+				  				</figcaption>
 				  			</figure>
 			  			</Link>
         		</section>

@@ -82,6 +82,7 @@ class GamePage extends Component {
 			}
     }	
 	}
+
   render() {
   	const {user} = this.props.auth;
   	const game = this.props.game;
