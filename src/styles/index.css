@@ -1,0 +1,188 @@
+body
+{
+    font-family: Albertusfont, Arial !important;
+    font-weight: 200 !important;
+
+    margin: 0;
+    padding: 0;
+    color:#fff !important;
+    letter-spacing: 1px;
+
+    background-color: #27292c !important;
+}
+
+@font-face
+{
+    font-family: Albertusfont;
+
+    src: url(Albertusfont.otf);
+}
+
+figure
+{
+    margin: 0 !important;
+}
+
+main
+{
+    min-height: calc(100vh - 80px);
+    margin: 0 auto;
+    padding: 0;
+}
+
+section
+{
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+h1
+{
+    font-size: 20px !important;
+}
+
+a
+{
+    text-decoration: none !important;
+}
+
+
+svg
+{
+    pointer-events: none;
+}
+
+ul
+{
+    padding: 0;
+
+    list-style-type: none;
+}
+
+button
+{
+    cursor: pointer;
+}
+
+input
+{
+    color: #fff;
+    border: 0;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+}
+
+textarea
+{
+    height: 32px;
+
+    color: #fff;
+    border: 0;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+}
+
+*:focus
+{
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/*scrollbar*/
+
+::-webkit-scrollbar
+{
+    width: 10px;
+}
+
+::-webkit-scrollbar-track
+{
+    background: #27292c;
+}
+
+::-webkit-scrollbar-thumb
+{
+    background: #3b3c40;
+}
+
+::-webkit-scrollbar-thumb:hover
+{
+    background: #555;
+}
+
+.text_card{
+    color:#fff !important;
+}
+.bg_card
+{
+    background: #3b3c40 !important;
+}
+
+.arrow-up
+{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+
+    width: 50px;
+    height: 50px;
+
+    cursor: pointer;
+    text-align: center;
+
+    color: #fff;
+    background-color: rgba(0,0,0,.7);
+}
+.arrow-up:hover
+{
+    width: 50px;
+    height: 50px;
+
+    text-align: center;
+
+    background-color: rgba(0,0,0,1);
+}
+
+@media (max-width: 1199.98px)
+{
+    h3
+    {
+        font-size: 15px !important;
+    }
+}
+
+@media (max-width: 991.98px)
+{
+
+    body,
+    .btn
+    {
+        font-size: 12px !important;
+    }
+    h2
+    {
+        font-size: 15px !important;
+    }
+    .arrow-up{
+        font-size: 15px !important;
+    }
+}
+@media (max-width: 767.98px)
+{
+    html{
+        position:relative;
+    }
+    section
+    {
+        padding: 20px 0;
+    }
+    h1
+    {
+        font-size: 16px !important;
+    }
+
+    ::-webkit-scrollbar-thumb
+    {
+        background: #27292c;
+    }
+}

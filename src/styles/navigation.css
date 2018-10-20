@@ -1,0 +1,13 @@
+
+.navbar
+{
+    background: #587ea2;
+}
+
+.navbar-brand__img{
+    height: 60px;
+}
+
+.nav-link{
+    color:#fff !important;
+}

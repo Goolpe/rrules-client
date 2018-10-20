@@ -1,0 +1,7 @@
+.article__wrapper{
+	background-color: rgba(0,0,0,0.6);
+}
+.article__background{
+	background-repeat: no-repeat;
+	background-size: cover;
+}
