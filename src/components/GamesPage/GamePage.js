@@ -147,29 +147,10 @@ class GamePage extends Component {
                     <ReactPlayer width='100%' height='500px' url={game.videoLink} controls />
                     : game.preview && <img width='100%' alt={game.name} src={game.preview} />}
                 </figure>
-                <div className='col-12 col-lg-4'>
-                  <time>{moment(game.from).format('lll')}</time>
-                </div>
-                <div className='col-12 col-lg-2'>
-                  <p>{game.gamersInsideId && (game.placeAll - (game.gamersInsideId.filter(
-                    gamerInside => gamerInside.accept === true).length
-                    ))} / {game.placeAll}
-                  </p>
-                </div>
-                <div className='col-12 col-lg-2'>
-                  <p>{game.priceGame === 0 ? 'Бесплатно' : game.priceGame}</p>
-                </div>
-                <div className='col-12 col-lg-4'>
-                  <p>{game.selectedOption === 'sortByTypeOnline' ?
-                    <span>Online</span>
-                    :
-                    <span>IRL | {game.cityGame}</span>}
-                  </p>
-                </div>
                 <div className='col-12'>
                   {game.infoGame !== '' &&
                     <React.Fragment>
-                      <p>Информация: {game.infoGame}</p>
+                      <p>{game.infoGame}</p>
                       <hr />
                     </React.Fragment>
                   }
@@ -180,14 +161,35 @@ class GamePage extends Component {
               {this.props.persons.filter(master =>
                 game.name === master.id).map((master, index) =>
               <React.Fragment key={index} >
+                <h4 className="pt-3">Информация: </h4>
+                <ul>
+                  <li>
+                    Дата: <time>{moment(game.from).format('lll')}</time>
+                  </li>
+                  <li>
+                    Мест: {game.gamersInsideId && (game.placeAll - (game.gamersInsideId.filter(
+                    gamerInside => gamerInside.accept === true).length
+                    ))} / {game.placeAll}
+                  </li>
+                  <li>
+                    Цена: {game.priceGame === 0 ? 'Бесплатно' : game.priceGame}
+                  </li>
+                  <li>
+                    Тип: {game.selectedOption === 'sortByTypeOnline' ?
+                    <span>Online</span>
+                    :
+                    <span>IRL | {game.cityGame}</span>}
+                  </li>
+                </ul>
+                <hr />
+                <h4>Мастер: </h4>
                 <p>
                   <Link to={`/@${master.name}`} className='text-white' target='_blank'>
-                    {master.name}
+                    {master.name} - <FaStar className='text-warning' /> - {master.rating}/5
                   </Link>
-                  <FaStar className='text-warning' /> - {master.rating}/5
                 </p>
                 <hr />
-                <p>Игроки:</p>
+                <h4>Игроки:</h4>
                 <ul>
                   {this.props.persons.filter(player => game.gamersInsideId
                     .find(gamerInside => gamerInside.accept === true && gamerInside.user === player.id))
