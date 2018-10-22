@@ -36,8 +36,8 @@ class GameForm extends Component {
             <div className='row'>
               <div className='col-auto mr-auto p-0'>
                 <p className='text_card pb-4'>
-                  <Link to='/games' className='p-0 btn text_card'>
-                      <FaAngleLeft size='1.5em'/> Назад&nbsp;
+                  <Link to={`${this.props.id}`} className='p-0 btn text_card'>
+                    <FaAngleLeft size='1.5em'/> Назад&nbsp;
                   </Link>
                 </p>
               </div>

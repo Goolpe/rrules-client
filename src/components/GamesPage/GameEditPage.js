@@ -96,6 +96,7 @@ class GameEditPage extends Component {
           preview = {this.state.preview}
           from = {this.state.from}
           to = {this.state.to}
+          id = {`/game/${this.props.game._id}`}
           onSubmit = {this.onSubmit}
           onChange = {this.onChange}
           deleteGameData = {this.deleteGameData}

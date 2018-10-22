@@ -124,6 +124,7 @@ class CreateGamePage extends Component {
           preview = {this.state.preview}
           from = {this.state.from}
           to = {this.state.to}
+          id = {'/games'}
           onSubmit = {this.onSubmit}
           onChange = {this.onChange}
           handleFromChange = {this.handleFromChange}
