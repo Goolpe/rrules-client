@@ -21,8 +21,7 @@ class ArticleForm extends Component {
   }
   componentDidMount() {
     window.scrollTo(0, 0);
-    if (
-      this.props.auth.isAuthenticated &&
+    if (this.props.auth.isAuthenticated &&
       (this.props.auth.user.name === 'moderator' || this.props.auth.user.name === 'admin')
     ) {
       this.props.history.push('/article-new');

@@ -6,43 +6,47 @@ import server from "./server.json";
 
 export const setCurrentUser = decoded => {
   return {
-      type: SET_CURRENT_USER,
-      payload: decoded
+    type: SET_CURRENT_USER,
+    payload: decoded,
   }
 }
 
-export const registerUser = (user, history) => dispatch => {
-    axios.post(server.online + '/auth/register', user)
-        .then(
-            res => history.push('/email-verification'),
-            err => {
-                dispatch({
-                    type: GET_ERRORS,
-                    payload: err.response.data
-                });
-            }
-        );
+export const registerUser = (user, history) => async (dispatch) => {
+  try{
+    await axios.post(server.online + '/auth/register', user);
+    return history.push('/email-verification')
+  }
+  catch(err) {
+    dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+    });
+  }
 }
 
-export const loginUser = (user) => dispatch => {
-    axios.post(server.online + '/auth/login', user)
-        .then(
-            res => {
-                const { token } = res.data;
-                localStorage.setItem('jwtToken', token);
-                setAuthToken(token);
-                const decoded = jwtDecode(token);
-                dispatch(setCurrentUser(decoded));
-            },
-            err => {
-                dispatch({
-                    type: GET_ERRORS,
-                    payload: err.response.data
-                });
-            }
-        );
+export const loginUser = (user) => async (dispatch) => {
+  try{
+    const response = await axios.post(server.online + '/auth/login', user);
+    const { token } = await response.data;
+    localStorage.setItem('jwtToken', token);
+    setAuthToken(token);
+    const decoded = jwtDecode(token);
+    dispatch(setCurrentUser(decoded));
+  }
+  catch(err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    });
+  }
 }
 
+export const logoutUser = (history) => dispatch => {
+  localStorage.removeItem('jwtToken');
+  setAuthToken(false);
+  dispatch(setCurrentUser({}));
+  history.push('/');
+}
 // export const loginSocial = () => dispatch => {
 //   fetch(server.online + '/auth/vkontakte')
 //     .then(
@@ -53,9 +57,3 @@ export const loginUser = (user) => dispatch => {
 //   );
 // };
 
-export const logoutUser = (history) => dispatch => {
-    localStorage.removeItem('jwtToken');
-    setAuthToken(false);
-    dispatch(setCurrentUser({}));
-    history.push('/');
-}

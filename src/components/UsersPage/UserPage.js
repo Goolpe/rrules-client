@@ -85,11 +85,11 @@ class UserPage extends Component {
                 </div>}
               </div>
               </React.Fragment>}
-            </ul>                
+            </ul>
           </div>
         </section>
       </main>
-    )
+    );
   }
 }
 
@@ -97,12 +97,12 @@ UserPage.propTypes = {
   fetchPerson: PropTypes.func,
   person: PropTypes.object,
   logoutUser: PropTypes.func,
-  auth: PropTypes.object
-}
+  auth: PropTypes.object,
+};
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  person: state.person.item
-})
+  person: state.person.item,
+});
 
 export default connect(mapStateToProps, { fetchPerson, logoutUser })(UserPage);

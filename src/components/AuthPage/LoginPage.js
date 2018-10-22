@@ -48,9 +48,6 @@ class LoginPage extends Component {
       password: this.state.password,
     };
     this.props.loginUser(user);
-    if (this.props.loginUser(user)) {
-      this.props.history.push('/');
-    }
   }
 
   render() {

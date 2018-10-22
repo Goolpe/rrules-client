@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import _ from "lodash";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchPersons } from '../actions/personActions';
 import { FiUsers} from "react-icons/fi";
 import '../../styles/masters.css';
+import { fetchPersons } from '../actions/personActions';
 
 class MastersPage extends Component {
   constructor(props) {
@@ -13,18 +13,18 @@ class MastersPage extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       dropdownOpen: false,
-      viewList: true
-    }
+      viewList: true,
+    };
   }
 
   componentDidMount() {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
     this.props.fetchPersons();
   }
 
   toggle() {
     this.setState({
-      dropdownOpen: !this.state.dropdownOpen
+      dropdownOpen: !this.state.dropdownOpen,
     });
   }
 
@@ -32,7 +32,7 @@ class MastersPage extends Component {
     var mastersSort = _.sortBy(this.props.persons, ['rating']).reverse()
 
     const mastersView = mastersSort.filter(master => master.status === "мастер")
-      .map((master, index) => 
+      .map((master, index) =>
         <div className="col-12 col-md-6 col-lg-4 mb-5" key={index}>
           <Link to={`/@${master.name}`}>
             <div className="master__wrapper shadow" style={ { backgroundImage: `url(${master.photo})`} }>
@@ -41,7 +41,7 @@ class MastersPage extends Component {
               </div>
             </div>
           </Link>
-        </div>
+        </div>,
       )
 
     const mastersList = mastersSort.filter(master => master.status === "мастер")
@@ -58,37 +58,43 @@ class MastersPage extends Component {
               <div className="col-12 col-md-4">
                 <p className="m-0">Количество игр: {master.gamesCount || "0"}</p>
               </div>
-            </div>          
-          </Link>     
-        </div>
+            </div>
+          </Link>
+        </div>,
       ) 
     return (
       <main>
         <section className="container">
           <h1 className="text_card">
-            <FiUsers size="1.5em"/> Мастера канала 
+            <FiUsers size="1.5em"/> Мастера канала
           </h1>
           <div className="d-flex justify-content-end align-items-center text_card pb-2">
             <p className="m-0">Вид:</p>
-            <button className="btn bg-transparent ml-2" onClick={()=>this.setState({viewList: false})}><i className={"fas fa-th-large fa-2x " + (this.state.viewList ? "text-secondary" : "text_card")}></i></button>
-            <button className="btn bg-transparent" onClick={()=>this.setState({viewList: true})}><i  className={"fas fa-th-list fa-2x " + (this.state.viewList ? "text_card" : "text-secondary")}></i></button>
+            <button className="btn bg-transparent ml-2" onClick={ () => this.setState({ viewList: false }) }>
+              <i className={"fas fa-th-large fa-2x " + (this.state.viewList ? "text-secondary" : "text_card")}>
+              </i>
+            </button>
+            <button className="btn bg-transparent" onClick={ () => this.setState({ viewList: true }) }>
+              <i  className={"fas fa-th-list fa-2x " + (this.state.viewList ? "text_card" : "text-secondary")}>
+              </i>
+            </button>
           </div>
           <div className="row">
-            {this.state.viewList ? mastersList : mastersView  }
+            {this.state.viewList ? mastersList : mastersView }
           </div>
         </section>
       </main>
-    )
+    );
   }
 }
 
 MastersPage.propTypes = {
   fetchPersons: PropTypes.func,
-  persons: PropTypes.array
+  persons: PropTypes.array,
 };
 
 const mapStateToProps = state => ({
-  persons: state.persons.items
-})
+  persons: state.persons.items,
+});
 
 export default connect(mapStateToProps, { fetchPersons })(MastersPage);
