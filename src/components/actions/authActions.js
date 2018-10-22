@@ -18,8 +18,8 @@ export const registerUser = (user, history) => async (dispatch) => {
   }
   catch(err) {
     dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data,
+      type: GET_ERRORS,
+      payload: err.response.data,
     });
   }
 }
@@ -47,6 +47,7 @@ export const logoutUser = (history) => dispatch => {
   dispatch(setCurrentUser({}));
   history.push('/');
 }
+
 // export const loginSocial = () => dispatch => {
 //   fetch(server.online + '/auth/vkontakte')
 //     .then(

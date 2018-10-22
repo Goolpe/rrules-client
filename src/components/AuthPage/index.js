@@ -14,7 +14,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { FaVk, FaFacebookF, FaGoogle } from 'react-icons/fa';
+// import { FaVk, FaFacebookF, FaGoogle } from 'react-icons/fa';
 import LoginPage from './LoginPage';
 import RegisterPage from './RegisterPage';
 

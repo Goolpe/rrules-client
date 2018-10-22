@@ -8,7 +8,6 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import moment from 'moment';
 import { fetchArticles } from '../actions/newsActions';
 
 class NewsBlock extends Component {

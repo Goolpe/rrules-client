@@ -152,7 +152,7 @@ class GamesPage extends Component {
           <h1 className='text_card'>
             <FaGamepad size='1.5em'/> Игры
           </h1>
-          <section className='row pt-5'>
+          <div className='row'>
             <div className='col-12 col-lg-3 mt-2'>
               <div className='container bg_card shadow text_card pt-3 pb-3'>
                 {isAuthenticated && user.status !== 'игрок' &&
@@ -270,7 +270,7 @@ class GamesPage extends Component {
                   {renderPageNumbers}
                 </Pagination>
               </div>
-            </section>
+            </div>
           </section>
       </main>
     );
