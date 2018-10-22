@@ -88,9 +88,9 @@ class UserPage extends Component {
             </ul>                
           </div>
         </section>
-    	</main>
-	  )
-	}
+      </main>
+    )
+  }
 }
 
 UserPage.propTypes = {

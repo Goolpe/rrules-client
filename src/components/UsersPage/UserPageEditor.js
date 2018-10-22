@@ -7,7 +7,7 @@ import { FaTimes } from "react-icons/fa";
 import { withRouter, Link } from "react-router-dom";
 import 'flatpickr/dist/themes/light.css'; 
 import Flatpickr from 'react-flatpickr';
-import { Russian } from "flatpickr/dist/l10n/ru.js"
+import { Russian } from "flatpickr/dist/l10n/ru";
 
 class UserPageEditor extends Component {
   constructor(props){

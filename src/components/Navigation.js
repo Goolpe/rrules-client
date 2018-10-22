@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link,withRouter } from 'react-router-dom';
 import { FiLogIn, FiUser } from "react-icons/fi";
 import {
   Badge,
@@ -17,7 +17,6 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from './actions/authActions';
-import { withRouter } from 'react-router-dom';
 import { fetchGames } from './actions/gameActions';
 import '../styles/navigation.css';
 
@@ -98,7 +97,9 @@ class Navigation extends Component{
                   <NavLink tag={Link} to="/shop" onClick={this.closeNav}>МАГАЗИН</NavLink>
                 </NavItem>
                 <NavItem >
-                  <NavLink tag={Link} className="btn btn-danger rounded" to="/games" onClick={this.closeNav}>НАЙТИ ИГРУ</NavLink>
+                  <NavLink tag={Link} className="btn btn-danger rounded" to="/games" onClick={this.closeNav}>
+                    НАЙТИ ИГРУ
+                  </NavLink>
                 </NavItem>
                 {isAuthenticated ? 
                 <UncontrolledDropdown nav inNavbar>
