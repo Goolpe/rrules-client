@@ -2,10 +2,19 @@
 .navbar
 {
     background: #587ea2;
+    font-size: 0.8rem;
 }
 
 .navbar-brand__img{
-    height: 60px;
+    height: 40px;
+}
+
+.navbar .dropdown-menu{
+    font-size: 0.8rem !important;
+}
+
+.navbar .btn{
+  font-size: 0.8rem !important;
 }
 
 .nav-link{

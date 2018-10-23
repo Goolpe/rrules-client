@@ -34,7 +34,7 @@ class HomePage extends Component {
         <section className='container text_card'>
           <div className='row'>
             <section className='col-12 col-lg-8'>
-              <div className='bg-info p-3 text-center shadow mb-4 d-block w-100'>
+              <div className='bg-info p-3 text-center shadow d-block w-100'>
                 ИГРЫ
               </div>
               <Games />
@@ -43,54 +43,54 @@ class HomePage extends Component {
             <section className='col-12 col-lg-4'>
               <Link to='/streams'>
                 <figure className='w-100 text-white shadow mb-4'>
+                  <figcaption className='bg-info p-3 text-center w-100'>
+                    СТРИМЫ
+                  </figcaption>
                   <div className='figure__block'>
                     <img src='./streams.jpg'
                       alt='streams'
                       className='img-fluid'
                     />
                   </div>
-                  <figcaption className='bg-info p-3 text-center w-100'>
-                    СТРИМЫ
-                  </figcaption>
                 </figure>
               </Link>
               <Link to='/masters'>
                 <figure className='w-100 text-white shadow mb-4' >
+                  <figcaption className='bg-info p-3 text-center w-100'>
+                    МАСТЕРА
+                  </figcaption>
                   <div className='figure__block'>
                     <img src='./masters.jpg'
                       alt='masters'
                       className='img-fluid'
                     />
                   </div>
-                  <figcaption className='bg-info p-3 text-center w-100'>
-                    МАСТЕРА
-                  </figcaption>
                 </figure>
               </Link>
               <Link to='/library'>
                 <figure className='w-100 text-white shadow mb-4'>
+                  <figcaption className='bg-info p-3 text-center w-100'>
+                    БИБЛИОТЕКА
+                  </figcaption>
                   <div className='figure__block'>
                     <img src='./library.jpg'
                       alt='library'
                       className='img-fluid'
                     />
                   </div>
-                  <figcaption className='bg-info p-3 text-center w-100'>
-                    БИБЛИОТЕКА
-                  </figcaption>
                 </figure>
               </Link>
               <Link to='/shop'>
                 <figure className='w-100 text-white shadow'>
+                  <figcaption className='bg-info p-3 text-center w-100'>
+                    МАГАЗИН
+                  </figcaption>
                   <div className='figure__block'>
                     <img src='./shop.jpg'
                       alt='shop'
                       className='img-fluid'
                     />
                   </div>
-                  <figcaption className='bg-info p-3 text-center w-100'>
-                    МАГАЗИН
-                  </figcaption>
                 </figure>
               </Link>
             </section>

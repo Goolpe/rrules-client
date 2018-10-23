@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link,withRouter } from 'react-router-dom';
-import { FiLogIn, FiUser } from "react-icons/fi";
+import { FiLogIn, FiUser } from 'react-icons/fi';
 import {
   Badge,
   Collapse,
@@ -20,14 +20,14 @@ import { logoutUser } from './actions/authActions';
 import { fetchGames } from './actions/gameActions';
 import '../styles/navigation.css';
 
-class Navigation extends Component{
+class Navigation extends Component {
   constructor(props) {
     super(props);
     this.onLogout = this.onLogout.bind(this);
     this.toggle = this.toggle.bind(this);
     this.closeNav = this.closeNav.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
     };
   }
 
@@ -38,7 +38,7 @@ class Navigation extends Component{
     });
   }
 
-  closeNav(){
+  closeNav() {
     this.setState({
       isOpen: false
     });
@@ -52,66 +52,68 @@ class Navigation extends Component{
     });
   }
 
-  render(){
-    const {isAuthenticated, user} = this.props.auth;
+  render() {
+    const { isAuthenticated, user } = this.props.auth;
     return(
       <React.Fragment>
-        <Navbar dark expand="md">
-          <div className="container">
-            <NavbarBrand tag={Link} to="/"><img alt="logo" src="../logo.png" className="navbar-brand__img"/></NavbarBrand>
+        <Navbar dark expand='md'>
+          <div className='container'>
+            <NavbarBrand tag={Link} to='/'>
+              <img alt='logo' src='../logo.png' className='navbar-brand__img'/>
+            </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto" navbar>
+              <Nav className='ml-auto' navbar>
                 <NavItem>
-                  <NavLink tag={Link} to="/" onClick={this.closeNav}>ГЛАВНАЯ</NavLink>
+                  <NavLink tag={Link} to='/' onClick={this.closeNav}>ГЛАВНАЯ</NavLink>
                 </NavItem>
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav caret>
                     МЕНЮ
                   </DropdownToggle>
                   <DropdownMenu>
-                    <DropdownItem tag={Link} to="/about-project" onClick={this.closeNav}>
+                    <DropdownItem tag={Link} to='/about-project' onClick={this.closeNav}>
                       О ПРОЕКТЕ
                     </DropdownItem>
-                    <DropdownItem tag={Link} to="/library" onClick={this.closeNav}>
+                    <DropdownItem tag={Link} to='/library' onClick={this.closeNav}>
                       БИБЛИОТЕКА
                     </DropdownItem>
-                    <DropdownItem tag={Link} to="/masters" onClick={this.closeNav}>
+                    <DropdownItem tag={Link} to='/masters' onClick={this.closeNav}>
                       МАСТЕРА КАНАЛА
                     </DropdownItem>
-                    <DropdownItem tag={Link} to="/art" onClick={this.closeNav}>
+                    <DropdownItem tag={Link} to='/art' onClick={this.closeNav}>
                       ФАН-АРТ
                     </DropdownItem>
-                    <DropdownItem tag={Link} to="/support" onClick={this.closeNav}>
+                    <DropdownItem tag={Link} to='/support' onClick={this.closeNav}>
                       ПОДДЕРЖАТЬ ПРОЕКТ
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
                 <NavItem>
-                  <NavLink tag={Link} to="/streams" onClick={this.closeNav}>СТРИМЫ</NavLink>
+                  <NavLink tag={Link} to='/streams' onClick={this.closeNav}>СТРИМЫ</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} to="/articles" onClick={this.closeNav}>НОВОСТИ</NavLink>
+                  <NavLink tag={Link} to='/articles' onClick={this.closeNav}>НОВОСТИ</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} to="/shop" onClick={this.closeNav}>МАГАЗИН</NavLink>
+                  <NavLink tag={Link} to='/shop' onClick={this.closeNav}>МАГАЗИН</NavLink>
                 </NavItem>
                 <NavItem >
-                  <NavLink tag={Link} className="btn btn-danger rounded" to="/games" onClick={this.closeNav}>
+                  <NavLink tag={Link} className='btn btn-danger rounded' to='/games' onClick={this.closeNav}>
                     НАЙТИ ИГРУ
                   </NavLink>
                 </NavItem>
                 {isAuthenticated ? 
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav>
-                    <FiUser size="1.5em" />
+                    <FiUser size='1.5em' />
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem tag={Link} to={`/@${user.name}`} onClick={this.closeNav}>
                       ПРОФИЛЬ
                     </DropdownItem>
-                    <DropdownItem tag={Link} to="/msgs" onClick={this.closeNav}>
-                      СООБЩЕНИЯ {this.state.read ? <Badge color="danger">{this.state.read}</Badge> : ""}
+                    <DropdownItem tag={Link} to='/msgs' onClick={this.closeNav}>
+                      СООБЩЕНИЯ {this.state.read ? <Badge color='danger'>{this.state.read}</Badge> : ''}
                     </DropdownItem>
                     <DropdownItem tag={Link} to={`/edit/@${user.name}`} onClick={this.closeNav}>
                       НАСТРОЙКИ
@@ -124,7 +126,7 @@ class Navigation extends Component{
                 </UncontrolledDropdown>
                 :
                 <NavItem>
-                  <NavLink tag={Link} to="/auth" onClick={this.closeNav}><FiLogIn size="1.5em"/></NavLink>
+                  <NavLink tag={Link} to='/auth' onClick={this.closeNav}><FiLogIn size='1.5em'/></NavLink>
                 </NavItem>
                 }
                 
@@ -134,7 +136,7 @@ class Navigation extends Component{
         </Navbar>
        
       </React.Fragment>
-    )
+    );
   }
 }
 
@@ -142,12 +144,12 @@ Navigation.propTypes = {
   fetchGames: PropTypes.func,
   logoutUser: PropTypes.func,
   auth: PropTypes.object,
-  games: PropTypes.array
-}
+  games: PropTypes.array,
+};
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth,
-  games: state.games.items
-})
+  games: state.games.items,
+});
 
 export default connect(mapStateToProps, { fetchGames, logoutUser })(withRouter(Navigation));

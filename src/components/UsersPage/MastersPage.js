@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import _ from "lodash";
+import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FiUsers} from "react-icons/fi";
+import { FiUsers } from 'react-icons/fi';
+import { FaThLarge, FaThList } from 'react-icons/fa';
 import '../../styles/masters.css';
 import { fetchPersons } from '../actions/personActions';
 
@@ -31,12 +32,12 @@ class MastersPage extends Component {
   render(){
     var mastersSort = _.sortBy(this.props.persons, ['rating']).reverse()
 
-    const mastersView = mastersSort.filter(master => master.status === "мастер")
+    const mastersView = mastersSort.filter(master => master.status === 'мастер')
       .map((master, index) =>
-        <div className="col-12 col-md-6 col-lg-4 mb-5" key={index}>
+        <div className='col-12 col-md-6 col-lg-4 mb-5' key={index}>
           <Link to={`/@${master.name}`}>
-            <div className="master__wrapper shadow" style={ { backgroundImage: `url(${master.photo})`} }>
-              <div className="master__card text_card d-flex align-items-center justify-content-center rounded-0" >
+            <div className='master__wrapper shadow' style={ { backgroundImage: `url(${master.photo})`} }>
+              <div className='master__card text_card d-flex align-items-center justify-content-center rounded-0' >
                 <h1 style={{textShadow: 'black 0 0 20px'}}>{master.name.toUpperCase()}</h1>
               </div>
             </div>
@@ -44,19 +45,19 @@ class MastersPage extends Component {
         </div>,
       )
 
-    const mastersList = mastersSort.filter(master => master.status === "мастер")
+    const mastersList = mastersSort.filter(master => master.status === 'мастер')
       .map((master, index) => 
-        <div className="col-12" key={index}>
+        <div className='col-12' key={index}>
           <Link to={`/@${master.name}`}>  
-            <div className="row p-3 text-left align-items-start text_card bg_card mb-4 shadow">
-              <div className="col-12 col-md-4">
-                <p className="m-0">{master.name}</p>
+            <div className='row p-3 text-left align-items-start text_card bg_card mb-4 shadow'>
+              <div className='col-12 col-md-4'>
+                <p className='m-0'>{master.name}</p>
               </div>
-              <div className="col-12 col-md-4">
-                <i className="fas fa-star text-warning fa-1x"></i> - {master.rating}/5
+              <div className='col-12 col-md-4'>
+                <i className='fas fa-star text-warning fa-1x'></i> - {master.rating}/5
               </div>
-              <div className="col-12 col-md-4">
-                <p className="m-0">Количество игр: {master.gamesCount || "0"}</p>
+              <div className='col-12 col-md-4'>
+                <p className='m-0'>Количество игр: {master.gamesCount || '0'}</p>
               </div>
             </div>
           </Link>
@@ -64,22 +65,24 @@ class MastersPage extends Component {
       ) 
     return (
       <main>
-        <section className="container">
-          <h1 className="text_card">
-            <FiUsers size="1.5em"/> Мастера канала
+        <section className='container'>
+          <h1 className='text_card'>
+            <FiUsers size='1.5em'/> Мастера канала
           </h1>
-          <div className="d-flex justify-content-end align-items-center text_card pb-2">
-            <p className="m-0">Вид:</p>
-            <button className="btn bg-transparent ml-2" onClick={ () => this.setState({ viewList: false }) }>
-              <i className={"fas fa-th-large fa-2x " + (this.state.viewList ? "text-secondary" : "text_card")}>
-              </i>
+          <div className='d-flex justify-content-end align-items-center text_card pb-2'>
+            <p className='m-0'>Вид:</p>
+            <button className={'btn bg-transparent ml-2 ' + (this.state.viewList ? 'text-secondary' : 'text_card')}
+              onClick={ () => this.setState({ viewList: false }) }
+            >
+              <FaThLarge size='2em' />
             </button>
-            <button className="btn bg-transparent" onClick={ () => this.setState({ viewList: true }) }>
-              <i  className={"fas fa-th-list fa-2x " + (this.state.viewList ? "text_card" : "text-secondary")}>
-              </i>
+            <button className={'btn bg-transparent ' + (this.state.viewList ? 'text_card' : 'text-secondary')}
+              onClick={ () => this.setState({ viewList: true }) }
+            >
+              <FaThList size='2em' />
             </button>
           </div>
-          <div className="row">
+          <div className='row'>
             {this.state.viewList ? mastersList : mastersView }
           </div>
         </section>

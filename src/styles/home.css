@@ -1,6 +1,6 @@
 
 .news__carousel{
-    height: calc(100vh - 80px);
+    height: calc(100vh - 60px);
 }
 .news__item{
     align-items: center;

@@ -16,7 +16,7 @@ export default combineReducers({
   game: gameReducer,
   errors: errorReducer,
   auth: authReducer,
-  art: artReducer
+  art: artReducer,
 });
 
 
