@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { FaStar, FaAngleLeft } from 'react-icons/fa';
+import { FaSpinner, FaStar, FaAngleLeft } from 'react-icons/fa';
 import ReactPlayer from 'react-player';
 import '../../styles/user.css';
 import { fetchPerson } from '../actions/personActions';
@@ -39,22 +39,25 @@ class UserPage extends Component {
             <FaAngleLeft size='1.5em'/> Все мастера 
           </Link>}
           <div className='shadow bg_card mt-3'>
-            <div className='w-100 position-relative border-bottom userpage__bg'
+            {person.bgphoto && <div className='w-100 position-relative border-bottom userpage__bg'
               style={ { backgroundImage: `url(${person.bgphoto})` } }
             >
               <figure className='position-absolute userpage__avatar' style={{bottom:'0',left:'0'}}>
-                  <img width='100%' alt='person' src={person.photo}/>
+                  <img width='100%' alt='user' src={person.photo}/>
               </figure>
-            </div>
+            </div>}
             <ul className='p-4 text_card'>
-              <h1>{person.name || ''}</h1>
+              {!person.name && <h1><FaSpinner /> Проверьте интернет соединение</h1>}
+              {person.name && <h1>{person.name}</h1>}
+              {person.status && 
               <li>
                 <span className='text-muted'>Статус: </span>{person.status}
-              </li>
+              </li>}
+              {person.rating >= 0 &&
               <li>
                 <span className='text-muted'>Рейтинг: </span>
                 <FaStar className='text-warning' /> - {person.rating}/5
-              </li>
+              </li>}
               {person.status === 'мастер' &&
               <li>
                 <span className='text-muted'>Проведенных игр: </span>{person.gamesCount}
@@ -63,10 +66,11 @@ class UserPage extends Component {
               <li>
                 <span className='text-muted'>Платные игры: </span>{person.paidGames ? 'водит' : 'не водит'}
               </li>}
+              {person.date &&
               <li>
                 <span className='text-muted'>Зарегистрирован: </span>
                 {moment(person.date).startOf('hour').fromNow()}
-              </li>
+              </li>}
 
               {(person.fullName || person.sex || person.dateBirth || person.cityLive) && <hr/>}
 

@@ -57,7 +57,7 @@ class Msgs extends Component {
         <div className='shadow bg_card text_card pb-2 pl-2 pr-2 mb-3' key={index}>
           <div className='row align-items-center'>
             <div className='col-12 col-md-2 mt-2'>
-              {this.props.persons.filter(player=> msg.user === player.id).map(player =>
+              {this.props.persons.filter(player => msg.user === player.id).map(player =>
                 <React.Fragment key={index}>
                   <Link target='_blank' className='mr-3' to={`/@${player.name}`}>{player.name}</Link>
                 </React.Fragment>
