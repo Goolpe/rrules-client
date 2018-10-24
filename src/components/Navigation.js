@@ -65,68 +65,149 @@ class Navigation extends Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className='ml-auto' navbar>
                 <NavItem>
-                  <NavLink tag={Link} to='/' onClick={this.closeNav}>ГЛАВНАЯ</NavLink>
+                  <NavLink tag={Link}
+                    to='/'
+                    onClick={this.closeNav}
+                    className={this.props.history.location.pathname === '/' ? 'nav-link--active' : ''}
+                  >
+                    ГЛАВНАЯ
+                  </NavLink>
                 </NavItem>
                 <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav caret>
+                  <DropdownToggle nav caret 
+                    className={
+                      this.props.history.location.pathname === '/about-project' ||
+                      this.props.history.location.pathname === '/library' ||
+                      this.props.history.location.pathname === '/masters' ||
+                      this.props.history.location.pathname === '/art' ||
+                      this.props.history.location.pathname === '/support' ? 'nav-link--active' : ''}>
                     МЕНЮ
                   </DropdownToggle>
                   <DropdownMenu>
-                    <DropdownItem tag={Link} to='/about-project' onClick={this.closeNav}>
+                    <DropdownItem tag={Link}
+                      to='/about-project'
+                      onClick={this.closeNav}
+                      className={this.props.history.location.pathname === '/about-project' ?
+                        'dropdown-item--active' : ''}
+                    >
                       О ПРОЕКТЕ
                     </DropdownItem>
-                    <DropdownItem tag={Link} to='/library' onClick={this.closeNav}>
+                    <DropdownItem tag={Link}
+                      to='/library'
+                      onClick={this.closeNav}
+                      className={this.props.history.location.pathname === '/library' ?
+                        'dropdown-item--active' : ''}
+                    >
                       БИБЛИОТЕКА
                     </DropdownItem>
-                    <DropdownItem tag={Link} to='/masters' onClick={this.closeNav}>
+                    <DropdownItem tag={Link}
+                      to='/masters'
+                      onClick={this.closeNav}
+                      className={this.props.history.location.pathname === '/masters' ?
+                        'dropdown-item--active' : ''}
+                    >
                       МАСТЕРА КАНАЛА
                     </DropdownItem>
-                    <DropdownItem tag={Link} to='/art' onClick={this.closeNav}>
+                    <DropdownItem tag={Link}
+                      to='/art'
+                      onClick={this.closeNav}
+                      className={this.props.history.location.pathname === '/art' ?
+                      'dropdown-item--active' : ''}>
                       ФАН-АРТ
                     </DropdownItem>
-                    <DropdownItem tag={Link} to='/support' onClick={this.closeNav}>
+                    <DropdownItem tag={Link}
+                      to='/support'
+                      onClick={this.closeNav}
+                      className={this.props.history.location.pathname === '/support' ?
+                        'dropdown-item--active' : ''}
+                    >
                       ПОДДЕРЖАТЬ ПРОЕКТ
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
                 <NavItem>
-                  <NavLink tag={Link} to='/streams' onClick={this.closeNav}>СТРИМЫ</NavLink>
+                  <NavLink tag={Link}
+                    to='/streams'
+                    onClick={this.closeNav}
+                    className={this.props.history.location.pathname === '/streams' ? 'nav-link--active' : ''}
+                  >
+                    СТРИМЫ
+                  </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} to='/articles' onClick={this.closeNav}>НОВОСТИ</NavLink>
+                  <NavLink tag={Link}
+                    to='/articles'
+                    onClick={this.closeNav}
+                    className={this.props.history.location.pathname.includes('/article') ?
+                      'nav-link--active' : ''}
+                  >
+                    НОВОСТИ
+                  </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} to='/shop' onClick={this.closeNav}>МАГАЗИН</NavLink>
+                  <NavLink tag={Link}
+                    to='/shop'
+                    onClick={this.closeNav}
+                    className={this.props.history.location.pathname === '/shop' ? 'nav-link--active' : ''}
+                  >
+                    МАГАЗИН
+                  </NavLink>
                 </NavItem>
                 <NavItem >
-                  <NavLink tag={Link} className='btn btn-danger rounded' to='/games' onClick={this.closeNav}>
+                  <NavLink tag={Link} className='btn-danger' to='/games' onClick={this.closeNav}>
                     НАЙТИ ИГРУ
                   </NavLink>
                 </NavItem>
                 {isAuthenticated ? 
-                <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav>
-                    <FiUser size='1.5em' />
-                  </DropdownToggle>
-                  <DropdownMenu right>
-                    <DropdownItem tag={Link} to={`/@${user.name}`} onClick={this.closeNav}>
-                      ПРОФИЛЬ
-                    </DropdownItem>
-                    <DropdownItem tag={Link} to='/msgs' onClick={this.closeNav}>
-                      СООБЩЕНИЯ {this.state.read ? <Badge color='danger'>{this.state.read}</Badge> : ''}
-                    </DropdownItem>
-                    <DropdownItem tag={Link} to={`/edit/@${user.name}`} onClick={this.closeNav}>
-                      НАСТРОЙКИ
-                    </DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem onClick={this.onLogout} >
-                      ВЫЙТИ
-                    </DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
+                  <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle nav
+                      className={
+                      this.props.history.location.pathname.includes('/@' + user.name) ||
+                      this.props.history.location.pathname === '/msgs' ||
+                      this.props.history.location.pathname.includes('/edit') ? 'nav-link--active' : ''}
+                    >
+                      <FiUser size='1.5em' />
+                    </DropdownToggle>
+                    <DropdownMenu right>
+                      <DropdownItem tag={Link}
+                        to={`/@${user.name}`}
+                        onClick={this.closeNav}
+                        className={this.props.history.location.pathname.includes('/@' + user.name) ?
+                          'dropdown-item--active' : ''}
+                      >
+                        ПРОФИЛЬ
+                      </DropdownItem>
+                      <DropdownItem tag={Link}
+                        to='/msgs'
+                        onClick={this.closeNav}
+                        className={this.props.history.location.pathname === '/msgs' ?
+                        'dropdown-item--active' : ''}
+                      >
+                        СООБЩЕНИЯ {this.state.read ? <Badge color='danger'>{this.state.read}</Badge> : ''}
+                      </DropdownItem>
+                      <DropdownItem tag={Link}
+                        to={`/edit/${user.name}`}
+                        onClick={this.closeNav}
+                        className={this.props.history.location.pathname.includes('/edit/') ?
+                        'dropdown-item--active' : ''}
+                      >
+                        НАСТРОЙКИ
+                      </DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem onClick={this.onLogout} >
+                        ВЫЙТИ
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
                 :
                 <NavItem>
-                  <NavLink tag={Link} to='/auth' onClick={this.closeNav}><FiLogIn size='1.5em'/></NavLink>
+                  <NavLink tag={Link}
+                    to='/auth'
+                    onClick={this.closeNav}
+                    className={this.props.history.location.pathname === '/auth' ? 'nav-link--active' : ''}
+                  >
+                    <FiLogIn size='1.5em'/>
+                  </NavLink>
                 </NavItem>
                 }
                 
