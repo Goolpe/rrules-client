@@ -21,7 +21,7 @@ class UserPage extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(this.props.person.name !== prevProps.person.name){
+    if(this.props.match.params.nickname !== prevProps.match.params.nickname){
       this.props.fetchPerson(this.props.match.params.nickname, this.props.history);
     }
   }
@@ -30,6 +30,7 @@ class UserPage extends Component {
   }
 
   render() {
+    console.log(this.props)
     const person = this.props.person;
     return (
       <main>
@@ -47,7 +48,7 @@ class UserPage extends Component {
               </figure>
             </div>}
             <ul className='p-4 text_card'>
-              {!person.name && <h1><FaSpinner /> Проверьте интернет соединение</h1>}
+              {!person.name && <FaSpinner />}
               {person.name && <h1>{person.name}</h1>}
               {person.status && 
               <li>

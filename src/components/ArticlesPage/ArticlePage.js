@@ -11,6 +11,12 @@ class ArticlePage extends Component {
     window.scrollTo(0, 0);
     this.props.fetchArticle(this.props.match.params.id, this.props.history);
   }
+  componentDidUpdate(prevProps){
+    if(this.props.match.params.id !== prevProps.match.params.id){
+      window.scrollTo(0, 0);
+      this.props.fetchArticle(this.props.match.params.id, this.props.history);
+    }
+  }
   render() {
     const article = this.props.article;
     return (

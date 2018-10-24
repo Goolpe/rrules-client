@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FiYoutube } from 'react-icons/fi';
+import { withRouter } from 'react-router-dom';
 
 class StreamsPage extends Component {
   componentDidMount () {
@@ -44,5 +45,5 @@ class StreamsPage extends Component {
     );
   }
 }
-export default StreamsPage;
+export default withRouter(StreamsPage);
 

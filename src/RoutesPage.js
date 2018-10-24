@@ -1,17 +1,34 @@
 import React, { Component } from 'react';
 import {
-  BrowserRouter as Router,
+  Router,
   Route,
   Switch,
   Redirect,
+  NavLink,
+  Link,
 } from 'react-router-dom';
+import history from './history';
+
+import { FiLogIn, FiUser } from 'react-icons/fi';
+import {
+  Badge,
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 
 import HomePage from './components/HomePage';
-import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import ArrowUp from './components/ArrowUp';
 import error404Page from './components/error404Page';
@@ -42,7 +59,7 @@ import StreamsPage from './components/StreamsPage';
 
 import setAuthToken from './components/setAuthToken';
 import { setCurrentUser, logoutUser } from './components/actions/authActions';
-
+import './styles/navigation.css';
 import store from './components/store';
 
 if (localStorage.jwtToken) {
@@ -62,11 +79,37 @@ class RoutesPage extends Component {
     super(props);
     this.state = {
       techs: false,
+      isOpen: false,
     };
+    this.onLogout = this.onLogout.bind(this);
+    this.toggle = this.toggle.bind(this);
+    this.closeNav = this.closeNav.bind(this);
+  }
+
+//handling navigation toggle in media query
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+
+  closeNav() {
+    this.setState({
+      isOpen: false
+    });
+  }
+// handling logout button
+  onLogout(e) {
+    e.preventDefault();
+    this.props.logoutUser(history);
+    this.setState({
+      isOpen: false
+    });
   }
   render() {
+    const { isAuthenticated, user } = this.props.auth;
     return (
-      <Router>
+      <Router history={history}>
         <React.Fragment>
           {this.state.techs
             ?
@@ -76,7 +119,161 @@ class RoutesPage extends Component {
           </Switch>
             :
           <React.Fragment>
-            <Navigation/>
+            <Navbar dark expand='md'>
+              <div className='container'>
+                <NavbarBrand tag={Link} to='/'>
+                  <img alt='logo' src='../logo.png' className='navbar-brand__img'/>
+                </NavbarBrand>
+                <NavbarToggler onClick={this.toggle} />
+                <Collapse isOpen={this.state.isOpen} navbar>
+                  <Nav className='ml-auto' navbar>
+                    <NavItem>
+                      <NavLink
+                        to='/' exact={true}
+                        onClick={this.closeNav}
+                        activeClassName = 'nav-link--active'
+                        className='nav-link'
+                      >
+                        ГЛАВНАЯ
+                      </NavLink>
+                    </NavItem>
+                    <UncontrolledDropdown nav inNavbar>
+                      <DropdownToggle nav caret>
+                        МЕНЮ
+                      </DropdownToggle>
+                      <DropdownMenu>
+                        <DropdownItem tag={NavLink}
+                            to='/about-project'
+                            onClick={this.closeNav}
+                            activeClassName = 'dropdown-item--active'
+                          >
+                            О ПРОЕКТЕ
+                        </DropdownItem>
+                        <DropdownItem tag={NavLink}
+                          to='/library'
+                          onClick={this.closeNav}
+                          activeClassName = 'dropdown-item--active'
+                          className='dropdown-item'
+                          tabIndex='0'
+                        >
+                          БИБЛИОТЕКА
+                        </DropdownItem>
+                        <DropdownItem tag={NavLink}
+                          to='/masters'
+                          onClick={this.closeNav}
+                          activeClassName = 'dropdown-item--active'
+                          className='dropdown-item'
+                          tabIndex='0'
+                        >
+                          МАСТЕРА КАНАЛА
+                        </DropdownItem>
+                        <DropdownItem tag={NavLink}
+                          to='/art'
+                          onClick={this.closeNav}
+                          activeClassName = 'dropdown-item--active'
+                          className='dropdown-item'
+                          tabIndex='0'
+                        >
+                          ФАН-АРТ
+                        </DropdownItem>
+                        <DropdownItem tag={NavLink}
+                          to='/support'
+                          onClick={this.closeNav}
+                          activeClassName = 'dropdown-item--active'
+                          className='dropdown-item'
+                          tabIndex='0'
+                        >
+                          ПОДДЕРЖАТЬ ПРОЕКТ
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
+                    <NavItem>
+                      <NavLink
+                        to='/streams'
+                        onClick={this.closeNav}
+                        activeClassName = 'nav-link--active'
+                        className='nav-link'
+                      >
+                        СТРИМЫ
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink
+                        to='/articles'
+                        onClick={this.closeNav}
+                        activeClassName = 'nav-link--active'
+                        className='nav-link'
+                      >
+                        НОВОСТИ
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink
+                        to='/shop'
+                        onClick={this.closeNav}
+                        activeClassName = 'nav-link--active'
+                        className='nav-link'
+                      >
+                        МАГАЗИН
+                      </NavLink>
+                    </NavItem>
+                    <NavItem >
+                      <NavLink className='btn-danger nav-link' to='/games' onClick={this.closeNav}>
+                        НАЙТИ ИГРУ
+                      </NavLink>
+                    </NavItem>
+                    {isAuthenticated ? 
+                      <UncontrolledDropdown nav inNavbar>
+                        <DropdownToggle nav>
+                          <FiUser size='1.5em' />
+                        </DropdownToggle>
+                        <DropdownMenu right>
+                          <DropdownItem tag={NavLink}
+                            to={`/@${user.name}`}
+                            onClick={this.closeNav}
+                            activeClassName = 'dropdown-item--active'
+                            className='dropdown-item'
+                          >
+                            ПРОФИЛЬ
+                          </DropdownItem>
+                          <DropdownItem tag={NavLink}
+                            to='/msgs'
+                            onClick={this.closeNav}
+                            activeClassName = 'dropdown-item--active'
+                            className='dropdown-item'
+                          >
+                            СООБЩЕНИЯ {this.state.read ? <Badge color='danger'>{this.state.read}</Badge> : ''}
+                          </DropdownItem>
+                          <DropdownItem tag={NavLink}
+                            to={`/edit/${user.name}`}
+                            onClick={this.closeNav}
+                            activeClassName = 'dropdown-item--active'
+                            className='dropdown-item'
+                          >
+                            НАСТРОЙКИ
+                          </DropdownItem>
+                          <div className="dropdown-divider"></div>
+                          <DropdownItem tag={NavLink} to='/auth' className='dropdown-item' onClick={this.onLogout} >
+                            ВЫЙТИ
+                          </DropdownItem>
+                        </DropdownMenu>
+                      </UncontrolledDropdown>
+                    :
+                    <NavItem>
+                      <NavLink
+                        to='/auth'
+                        onClick={this.closeNav}
+                        activeClassName = 'nav-link--active'
+                        className='nav-link'
+                      >
+                        <FiLogIn size='1.5em'/>
+                      </NavLink>
+                    </NavItem>
+                    }
+                  </Nav>
+                </Collapse>
+              </div>
+            </Navbar>
             <Switch>
               <Route path="/" exact={true} component={HomePage} />
               <Route path="/about-project" component={AboutPage} />
@@ -114,10 +311,11 @@ class RoutesPage extends Component {
 
 RoutesPage.propTypes = {
   auth: PropTypes.object,
+  logoutUser: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, {})(RoutesPage);
+export default connect(mapStateToProps, { logoutUser })(RoutesPage);

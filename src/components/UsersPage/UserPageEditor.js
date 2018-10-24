@@ -40,7 +40,7 @@ class UserPageEditor extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     if(this.props.auth.isAuthenticated){
-      this.props.fetchPerson(this.props.auth.user.name);
+      this.props.fetchPerson(this.props.auth.user.name, this.props.history);
       this.props.history.push(`/edit/${this.props.auth.user.name}`);
     }
     else{
