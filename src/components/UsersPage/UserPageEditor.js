@@ -17,6 +17,7 @@ class UserPageEditor extends Component {
       photo: this.props.person.photo,
       bgphoto: this.props.person.bgphoto,
       selectedDay: this.props.person.dateBirth,
+      maxDate: new Date(),
       gamesCount: this.props.person.gamesCount,
       about: this.props.person.about,
       skype: this.props.person.skype,
@@ -166,7 +167,12 @@ class UserPageEditor extends Component {
                 <Flatpickr
                   value={this.state.selectedDay}
                   onChange={ selectedDay => { this.setState({ selectedDay }) } } 
-                  options={ { dateFormat: 'd-m-Y', 'locale': Russian } }
+                  options={ { 
+                    dateFormat: 'd-m-Y',
+                    'locale': Russian,
+                    minDate: '01-01-1918',
+                    maxDate: this.state.maxDate
+                     } }
                   />
                 </Col>
               </FormGroup>
