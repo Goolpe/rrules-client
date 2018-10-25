@@ -30,7 +30,6 @@ class UserPage extends Component {
   }
 
   render() {
-    console.log(this.props)
     const person = this.props.person;
     return (
       <main>
