@@ -19,7 +19,7 @@
     "react": "^16.4.2",
     "react-bootstrap-date-picker": "^5.1.0",
     "react-day-picker": "^7.2.1",
-    "react-dev-utils": "^5.0.1",
+    "react-dev-utils": "^11.0.4",
     "react-dom": "^16.4.2",
     "react-flatpickr": "^3.6.4",
     "react-google-recaptcha": "^1.0.0",
